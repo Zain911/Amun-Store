@@ -3,6 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/TheBoss/ITI/FinalProject/Amun-Store/app/src/main/res/layout/fragment_dashboard.xml" value="0.358695652173913" />
+        <entry key="..\:/TheBoss/ITI/FinalProject/Amun-Store/app/src/main/res/layout/fragment_home.xml" value="0.358695652173913" />
+        <entry key="..\:/TheBoss/ITI/FinalProject/Amun-Store/app/src/main/res/layout/fragment_notifications.xml" value="0.358695652173913" />
+        <entry key="..\:/TheBoss/ITI/FinalProject/Amun-Store/app/src/main/res/layout/signin.xml" value="0.358695652173913" />
+        <entry key="..\:/TheBoss/ITI/FinalProject/Amun-Store/app/src/main/res/layout/sigup.xml" value="0.358695652173913" />
         <entry key="..\:/Users/Ghaly/Desktop/ITI Final Project/Final Project/app/src/main/res/layout/activity_main.xml" value="0.19635416666666666" />
       </map>
     </option>
