@@ -4,6 +4,10 @@
     <string name="title_categories">Categories</string>
     <string name="title_notifications">Notifications</string>
 
+    <string name="wish_list">Description of favourite Image Button</string>
+    <string name="no_internet_connection">No Connection</string>
+
+
     <string name="men">Men</string>
     <string name="women">Women</string>
     <string name="sale">Sale</string>
