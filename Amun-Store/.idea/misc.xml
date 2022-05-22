@@ -3,23 +3,18 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-
+        <entry key="..\:/TheBoss/ITI/FinalProject/Amun-Store/app/src/main/res/drawable/bottom_nav.xml" value="0.332" />
         <entry key="..\:/TheBoss/ITI/FinalProject/Amun-Store/app/src/main/res/drawable/custom_button.xml" value="0.1975" />
+        <entry key="..\:/TheBoss/ITI/FinalProject/Amun-Store/app/src/main/res/drawable/heart.xml" value="0.332" />
         <entry key="..\:/TheBoss/ITI/FinalProject/Amun-Store/app/src/main/res/layout/activity_main.xml" value="0.17617753623188406" />
+        <entry key="..\:/TheBoss/ITI/FinalProject/Amun-Store/app/src/main/res/layout/cart_toolbar_view.xml" value="0.36666666666666664" />
+        <entry key="..\:/TheBoss/ITI/FinalProject/Amun-Store/app/src/main/res/layout/fragment_categories.xml" value="0.36666666666666664" />
         <entry key="..\:/TheBoss/ITI/FinalProject/Amun-Store/app/src/main/res/layout/fragment_dashboard.xml" value="0.358695652173913" />
         <entry key="..\:/TheBoss/ITI/FinalProject/Amun-Store/app/src/main/res/layout/fragment_home.xml" value="0.358695652173913" />
         <entry key="..\:/TheBoss/ITI/FinalProject/Amun-Store/app/src/main/res/layout/fragment_notifications.xml" value="0.358695652173913" />
-        <entry key="..\:/TheBoss/ITI/FinalProject/Amun-Store/app/src/main/res/layout/signin.xml" value="0.358695652173913" />
+        <entry key="..\:/TheBoss/ITI/FinalProject/Amun-Store/app/src/main/res/layout/list_toolbar_view.xml" value="0.36666666666666664" />
+        <entry key="..\:/TheBoss/ITI/FinalProject/Amun-Store/app/src/main/res/layout/signin.xml" value="0.26330532212885155" />
         <entry key="..\:/TheBoss/ITI/FinalProject/Amun-Store/app/src/main/res/layout/sigup.xml" value="0.358695652173913" />
-
-        <entry key="..\:/Users/Ghaly/Desktop/ITI Final Project/Amun-Store/app/src/main/res/drawable/bottom_nav.xml" value="0.175" />
-        <entry key="..\:/Users/Ghaly/Desktop/ITI Final Project/Amun-Store/app/src/main/res/drawable/heart.xml" value="0.159" />
-        <entry key="..\:/Users/Ghaly/Desktop/ITI Final Project/Amun-Store/app/src/main/res/drawable/ic_baseline_shopping_cart_24.xml" value="0.175" />
-        <entry key="..\:/Users/Ghaly/Desktop/ITI Final Project/Amun-Store/app/src/main/res/drawable/order_update_status_background_shape.xml" value="0.159" />
-        <entry key="..\:/Users/Ghaly/Desktop/ITI Final Project/Amun-Store/app/src/main/res/layout/activity_main.xml" value="0.22" />
-        <entry key="..\:/Users/Ghaly/Desktop/ITI Final Project/Amun-Store/app/src/main/res/layout/cart_toolbar_view.xml" value="0.19635416666666666" />
-        <entry key="..\:/Users/Ghaly/Desktop/ITI Final Project/Amun-Store/app/src/main/res/layout/list_toolbar_view.xml" value="0.19635416666666666" />
-
         <entry key="..\:/Users/Ghaly/Desktop/ITI Final Project/Final Project/app/src/main/res/layout/activity_main.xml" value="0.19635416666666666" />
       </map>
     </option>
