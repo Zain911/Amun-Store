@@ -1,9 +1,8 @@
 <resources>
     <string name="app_name">Amun Store</string>
     <string name="title_home">Home</string>
-    <string name="title_categories">Categories</string>
+    <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
-
 
 <!--    //sign in and sign out keywords-->
     <string name="log_in">Log in</string>
@@ -16,7 +15,7 @@
     <string name="password">Password</string>
     <string name="create_account">Create account</string>
     <string name="name">Name</string>
-    
+
 
     <string name="wish_list">Description of favourite Image Button</string>
     <string name="no_internet_connection">No Connection</string>
@@ -27,7 +26,5 @@
     <string name="sale">Sale</string>
     <string name="kids">Kids</string>
     <string name="home_page">Home</string>
-
-
 
 </resources>

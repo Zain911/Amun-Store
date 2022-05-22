@@ -147,10 +147,11 @@
             app:layout_constraintStart_toStartOf="@+id/signup_linear"
             app:layout_constraintTop_toBottomOf="@+id/signup_linear">
 
-            <EditText
+            <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/signup_name"
                 android:layout_width="330dp"
                 android:layout_height="64dp"
+                android:background="#368C8C8C"
                 android:ems="10"
                 android:hint="@string/name"
                 android:inputType="textPersonName" />
@@ -167,10 +168,11 @@
             app:layout_constraintStart_toStartOf="@+id/signup_name_card"
             app:layout_constraintTop_toBottomOf="@+id/signup_name_card">
 
-            <EditText
+            <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/signup_email"
                 android:layout_width="330dp"
                 android:layout_height="64dp"
+                android:background="#368C8C8C"
                 android:ems="10"
                 android:hint="@string/email"
                 android:inputType="textEmailAddress" />
@@ -187,10 +189,11 @@
             app:layout_constraintStart_toStartOf="@+id/signup_email_card"
             app:layout_constraintTop_toBottomOf="@+id/signup_email_card">
 
-            <EditText
+            <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/signup_password"
                 android:layout_width="330dp"
                 android:layout_height="64dp"
+                android:background="#368C8C8C"
                 android:ems="10"
                 android:hint="@string/password"
                 android:inputType="textPassword" />
@@ -225,6 +228,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
             android:layout_marginTop="32dp"
+            android:paddingBottom="16dp"
             android:text="@string/don_t_have_an_account"
             app:layout_constraintStart_toStartOf="@+id/signup_password_card"
             app:layout_constraintTop_toBottomOf="@+id/cardView" />

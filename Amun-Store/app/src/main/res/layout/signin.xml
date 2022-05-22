@@ -99,7 +99,7 @@
 
         <LinearLayout
             android:id="@+id/signup_linearlayout"
-            android:layout_width="393dp"
+            android:layout_width="match_parent"
             android:layout_height="46dp"
             android:layout_marginTop="32dp"
             android:gravity="center"
@@ -148,16 +148,16 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/signup_linearlayout">
 
-            <EditText
+            <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/signin_email"
                 android:layout_width="328dp"
                 android:layout_height="64dp"
+                android:background="#368C8C8C"
+
+
                 android:ems="10"
                 android:hint="Email"
-                android:inputType="textEmailAddress"
-
-
-                />
+                android:inputType="textEmailAddress" />
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
@@ -171,11 +171,12 @@
             app:layout_constraintStart_toStartOf="@+id/signin_email_card"
             app:layout_constraintTop_toBottomOf="@+id/signin_email_card">
 
-            <EditText
+            <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/signin_password"
                 android:layout_width="324dp"
                 android:layout_height="64dp"
 
+                android:background="#368C8C8C"
                 android:ems="10"
                 android:hint="@string/password"
                 android:inputType="textPassword" />
@@ -211,6 +212,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
             android:layout_marginTop="32dp"
+            android:paddingBottom="16dp"
             android:text="@string/don_t_have_an_account"
             app:layout_constraintStart_toStartOf="@+id/signin_password_card"
             app:layout_constraintTop_toBottomOf="@+id/cardView" />
