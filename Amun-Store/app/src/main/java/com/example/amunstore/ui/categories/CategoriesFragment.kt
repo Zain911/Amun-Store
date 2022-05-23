@@ -17,7 +17,9 @@ import com.example.amunstore.R
 import com.example.amunstore.databinding.FragmentCategoriesBinding
 import com.example.amunstore.model.Products
 import com.google.android.material.tabs.TabLayout
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class CategoriesFragment : Fragment() {
 
 
