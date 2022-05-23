@@ -18,6 +18,10 @@ import com.example.amunstore.databinding.FragmentCategoriesBinding
 import com.example.amunstore.model.Products
 import com.google.android.material.tabs.TabLayout
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlin.math.log
 
 @AndroidEntryPoint
 class CategoriesFragment : Fragment() {
@@ -43,21 +47,13 @@ class CategoriesFragment : Fragment() {
         binding.categoriesProductsRecyclerView.layoutManager = GridLayoutManager(context, 3)
         binding.categoriesProductsRecyclerView.adapter = productsAdapter
 
-
-        //TODO remove the list it is just for testing and viewing products in the screen
-        val mutableList = mutableListOf<Products>()
-        mutableList.add(Products(title = "NewShirt"))
-        mutableList.add(Products(title = "NewShirt"))
-        mutableList.add(Products(title = "NewShirt"))
-        mutableList.add(Products(title = "NewShirt"))
-        mutableList.add(Products(title = "NewShirt"))
-        mutableList.add(Products(title = "NewShirt"))
-        productsAdapter.productList = mutableList
-
         viewModel.productList.observe(viewLifecycleOwner) {
-            productsAdapter.productList = it as MutableList<Products>
+            productsAdapter.changeList(it as MutableList<Products>)
         }
 
+        CoroutineScope(Dispatchers.IO).launch {
+            viewModel.getAllProducts()
+        }
         return root
     }
 

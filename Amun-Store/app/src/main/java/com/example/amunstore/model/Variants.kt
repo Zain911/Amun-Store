@@ -5,8 +5,8 @@ import com.google.gson.annotations.SerializedName
 
 data class Variants (
 
-  @SerializedName("id"                     ) var id                   : Int?     = null,
-  @SerializedName("product_id"             ) var productId            : Int?     = null,
+  @SerializedName("id"                     ) var id                   : Long?     = null,
+  @SerializedName("product_id"             ) var productId            : Long?     = null,
   @SerializedName("title"                  ) var title                : String?  = null,
   @SerializedName("price"                  ) var price                : String?  = null,
   @SerializedName("sku"                    ) var sku                  : String?  = null,
@@ -26,7 +26,7 @@ data class Variants (
   @SerializedName("image_id"               ) var imageId              : String?  = null,
   @SerializedName("weight"                 ) var weight               : Int?     = null,
   @SerializedName("weight_unit"            ) var weightUnit           : String?  = null,
-  @SerializedName("inventory_item_id"      ) var inventoryItemId      : Int?     = null,
+  @SerializedName("inventory_item_id"      ) var inventoryItemId      : Long?     = null,
   @SerializedName("inventory_quantity"     ) var inventoryQuantity    : Int?     = null,
   @SerializedName("old_inventory_quantity" ) var oldInventoryQuantity : Int?     = null,
   @SerializedName("requires_shipping"      ) var requiresShipping     : Boolean? = null,

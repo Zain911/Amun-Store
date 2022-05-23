@@ -1,5 +1,8 @@
 package com.example.amunstore.repository
 
+import com.example.amunstore.model.ProductsResponse
+import retrofit2.Response
+
 interface ProductsRepositoryInterface {
 
     fun getMenCategoryProducts()
@@ -10,5 +13,5 @@ interface ProductsRepositoryInterface {
 
     fun getSaleCategoryProducts()
 
-    suspend fun getAllProducts()
+    suspend fun getAllProducts() : Response<ProductsResponse>
 }
