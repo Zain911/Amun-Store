@@ -2,6 +2,7 @@
     <string name="app_name">Amun Store</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
+    <string name="title_categories">Categories</string>
     <string name="title_notifications">Notifications</string>
 
 <!--    //sign in and sign out keywords-->
