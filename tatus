@@ -1,0 +1,42 @@
+[33mcommit a04a13cdc31e99b2083b55cbfdb1970a22781163[m[33m ([m[1;36mHEAD -> [m[1;32mHomeScreen[m[33m, [m[1;31morigin/MainToolBar[m[33m, [m[1;32mMainToolBar[m[33m)[m
+Merge: 36fda8c c525640
+Author: Walid Zain <walidzeno@gmail.com>
+Date:   Sat May 21 20:57:42 2022 +0200
+
+    Merge branch 'main' into MainToolBar
+
+[33mcommit 36fda8c4a96af2cf023ffa190a7ee66629b5c4eb[m
+Author: Walid Zain <walidzeno@gmail.com>
+Date:   Sat May 21 20:48:08 2022 +0200
+
+    ADD ToolBar with Favourite , Setting and Shopping Cart
+
+[33mcommit c5256404d2ef85d1072ee590c17931de8e467fda[m
+Author: Eslam Esmael <EslamEsmael012@Gmail.com>
+Date:   Sat May 21 20:43:23 2022 +0200
+
+    Adding tabLayout to CategoriesFragment with(Men,Women,Kids,Sale), adding products models and retrofit module for di, adding hilt dependencies
+
+[33mcommit 4d90f84f5b649a8404a4884f33ab4d0cee286b22[m
+Author: Walid Zain <walidzeno@gmail.com>
+Date:   Thu May 19 23:15:18 2022 +0200
+
+    Delete unused file
+
+[33mcommit 7901f595fbeae5b00db8bfe7a328eef886ee8815[m
+Author: Walid Zain <walidzeno@gmail.com>
+Date:   Thu May 19 23:12:35 2022 +0200
+
+    initial Commit
+
+[33mcommit 1a552caf50209f51fe38fe040de0f8e61f12b04e[m
+Author: Walid Zain <walidzeno@gmail.com>
+Date:   Thu May 19 23:00:25 2022 +0200
+
+    Add skeleton app
+
+[33mcommit 74669ea23ec61041ba78b5c562ad1591423aeb17[m
+Author: Walid Zain <walidzeno@gmail.com>
+Date:   Thu May 19 22:55:50 2022 +0200
+
+    first commit
