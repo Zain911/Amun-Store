@@ -3,6 +3,12 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/ESLAM ESMAIL/Desktop/Projects/Amun-Store/Amun-Store/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/Users/ESLAM ESMAIL/Desktop/Projects/Amun-Store/Amun-Store/app/src/main/res/layout/cart_toolbar_view.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/ESLAM ESMAIL/Desktop/Projects/Amun-Store/Amun-Store/app/src/main/res/layout/fragment_categories.xml" value="0.33" />
+        <entry key="..\:/Users/ESLAM ESMAIL/Desktop/Projects/Amun-Store/Amun-Store/app/src/main/res/layout/item_category_product.xml" value="0.365625" />
+        <entry key="..\:/Users/ESLAM ESMAIL/Desktop/Projects/Amun-Store/Amun-Store/app/src/main/res/layout/list_toolbar_view.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/ESLAM ESMAIL/Desktop/Projects/Amun-Store/Amun-Store/app/src/main/res/menu/bottom_nav_menu.xml" value="0.18512820512820513" />
         <entry key="..\:/TheBoss/ITI/FinalProject/Amun-Store/app/src/main/res/drawable/bottom_nav.xml" value="0.332" />
         <entry key="..\:/TheBoss/ITI/FinalProject/Amun-Store/app/src/main/res/drawable/custom_button.xml" value="0.1975" />
         <entry key="..\:/TheBoss/ITI/FinalProject/Amun-Store/app/src/main/res/drawable/heart.xml" value="0.332" />
