@@ -8,7 +8,14 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class CategoriesViewModel @Inject constructor(repo: ProductsRepository) : ViewModel() {
+class CategoriesViewModel @Inject constructor(private val repo: ProductsRepository) : ViewModel() {
 
-    var productList = repo.getAllProducts()
+    //Todo add suspend function to call get all products
+    val productList = MutableLiveData<List<Products>?>()
+
+    suspend fun getAllProducts() {
+        productList.postValue(repo.getAllProducts().body()?.products)
+    }
+
+
 }

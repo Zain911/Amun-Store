@@ -24,9 +24,9 @@ class ProductsRepository(
         TODO("Not yet implemented")
     }
 
-    override suspend fun getAllProducts() {
+    override suspend fun getAllProducts() =
         weatherServices.getProducts()
-    }
+
 
 
 }

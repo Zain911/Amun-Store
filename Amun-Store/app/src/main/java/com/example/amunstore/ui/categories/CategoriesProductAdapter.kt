@@ -34,7 +34,7 @@ class CategoriesProductAdapter(var productList: MutableList<Products>) :
 
         holder.view.productNameTextView.text = productList[position].title
         Glide.with(holder.view.productImageView.context)
-            .load(productList[position].image)
+            .load(productList[position].image?.src)
             .placeholder(R.drawable.tshirt)
             .into(holder.view.productImageView)
     }
