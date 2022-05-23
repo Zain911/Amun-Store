@@ -27,5 +27,7 @@
     <string name="sale">Sale</string>
     <string name="kids">Kids</string>
     <string name="home_page">Home</string>
+    <string name="search_products">Search Products…</string>
+    <string name="brands">Brands</string>
 
 </resources>
