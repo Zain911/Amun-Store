@@ -115,12 +115,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:visibility="visible"
-                app:layout_constraintHorizontal_bias="0.95"
+                app:layout_constraintBottom_toBottomOf="@+id/favourite"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.95"
                 app:layout_constraintStart_toEndOf="@+id/toolbar_title"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="@+id/favourite" />
 
-            <SearchView
+          <!--  <SearchView
                 android:id="@+id/mainSearchView"
                 android:visibility="gone"
                 android:layout_width="300dp"
@@ -129,7 +130,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/toolbar_title"
                 app:layout_constraintTop_toTopOf="parent"/>
-
+-->
             <LinearLayout
                 android:orientation="horizontal"
                 android:id="@+id/viewInternetConnection"
