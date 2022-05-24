@@ -50,6 +50,7 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
+        val root: View = binding.root
         viewPager = binding.adsViewPager
         viewPagerAdapter = SliderViewPagerAdapter(getImage())
 
@@ -68,10 +69,13 @@ class HomeFragment : Fragment() {
             }
         }
 
-        vendorAdapter = VendorAdapter(arrayListOf())
+        vendorAdapter = VendorAdapter(arrayListOf()) {
+            viewModel.NavigateToProductVendor(it, binding.root)
+
+        }
         binding.brandsRecyclerView.adapter = vendorAdapter
 
-        val root: View = binding.root
+
 
         CoroutineScope(Dispatchers.Main).launch {
             viewModel.getBrands()
