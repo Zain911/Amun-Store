@@ -1,4 +1,4 @@
-package com.example. amunstore.ui.home
+package com.example.amunstore.ui.home
 
 import android.os.Bundle
 import android.text.Html
@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.viewpager2.widget.ViewPager2
@@ -15,11 +16,17 @@ import com.example.amunstore.R
 
 import com.example.amunstore.databinding.FragmentHomeBinding
 import com.example.amunstore.model.getImage
+import com.example.amunstore.ui.home.HomeViewModel
+import com.example.amunstore.ui.home.SliderViewPagerAdapter
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-
+@AndroidEntryPoint
 class HomeFragment : Fragment() {
 
+    private val viewModel: HomeViewModel by viewModels()
     private var _binding: FragmentHomeBinding? = null
 
     private val binding get() = _binding!!
@@ -27,12 +34,13 @@ class HomeFragment : Fragment() {
     private lateinit var viewPager: ViewPager2
     private lateinit var viewPagerAdapter: SliderViewPagerAdapter
     private var dots: Array<TextView?> = arrayOfNulls<TextView>(getImage().size)
-    private var onImageSliderChange =object :ViewPager2.OnPageChangeCallback(){
+    private var onImageSliderChange = object : ViewPager2.OnPageChangeCallback() {
         override fun onPageSelected(position: Int) {
             super.onPageSelected(position)
             addDots(position)
         }
     }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -60,7 +68,10 @@ class HomeFragment : Fragment() {
 
 
         val root: View = binding.root
+        CoroutineScope(Dispatchers.IO).launch {
+            viewModel.getBrands()
 
+        }
 
         return root
     }
@@ -70,16 +81,21 @@ class HomeFragment : Fragment() {
         for (i in getImage().indices) {
             dots[i] = TextView(context)
             dots[i]?.text = Html.fromHtml("&#8226", Html.FROM_HTML_MODE_LEGACY)
-            dots[i]?.textSize  =32f
-            dots[i]?.setTextColor(ContextCompat.getColor(requireContext(),R.color.inactive_dots))
+            dots[i]?.textSize = 32f
+            dots[i]?.setTextColor(ContextCompat.getColor(requireContext(), R.color.inactive_dots))
             binding.linearLayoutDots.addView(dots[i])
         }
         if (dots.isNotEmpty())
-            dots[currentImage]?.setTextColor(ContextCompat.getColor(requireContext(),
-              R.color.primary_color))
+            dots[currentImage]?.setTextColor(
+                ContextCompat.getColor(
+                    requireContext(),
+                    R.color.primary_color
+                )
+            )
 
 
     }
+
     override fun onDestroyView() {
         super.onDestroyView()
         viewPager.unregisterOnPageChangeCallback(onImageSliderChange)
