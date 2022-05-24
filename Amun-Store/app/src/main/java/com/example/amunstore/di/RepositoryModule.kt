@@ -1,8 +1,9 @@
 package com.example.amunstore.di
 
-import com.example.amunstore.network.ProductsServices
-import com.example.amunstore.repository.ProductDto
-import com.example.amunstore.repository.ProductsRepository
+import com.example.amunstore.network.NetworkServices
+import com.example.amunstore.repository.categories.CategoriesRepository
+import com.example.amunstore.repository.products.ProductDto
+import com.example.amunstore.repository.products.ProductsRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -16,9 +17,15 @@ object RepositoryModule {
     @Singleton
     @Provides
     fun provideProductRepository(
-        productServices: ProductsServices,
+        networkServices: NetworkServices,
         productsDto: ProductDto
     ): ProductsRepository {
-        return ProductsRepository(productServices, productsDto)
+        return ProductsRepository(networkServices, productsDto)
+    }
+
+    @Singleton
+    @Provides
+    fun provideCategoryRepository(networkServices: NetworkServices): CategoriesRepository {
+        return CategoriesRepository(networkServices)
     }
 }

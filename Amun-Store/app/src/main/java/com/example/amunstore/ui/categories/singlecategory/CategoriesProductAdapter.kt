@@ -1,4 +1,4 @@
-package com.example.amunstore.ui.categories
+package com.example.amunstore.ui.categories.singlecategory
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.amunstore.R
 import com.example.amunstore.databinding.ItemCategoryProductBinding
-import com.example.amunstore.model.Products
+import com.example.amunstore.model.product.Products
 
 class CategoriesProductAdapter(var productList: MutableList<Products>) :
     RecyclerView.Adapter<CategoriesProductAdapter.ProductViewHolder>() {
