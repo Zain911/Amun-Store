@@ -9,7 +9,7 @@ import com.example.amunstore.R
 import com.example.amunstore.databinding.ItemCategoryProductBinding
 import com.example.amunstore.model.product.Products
 
-class CategoriesProductAdapter(var productList: MutableList<Products>) :
+class CategoriesProductAdapter(private var productList: MutableList<Products>) :
     RecyclerView.Adapter<CategoriesProductAdapter.ProductViewHolder>() {
 
     @SuppressLint("NotifyDataSetChanged")
@@ -31,7 +31,6 @@ class CategoriesProductAdapter(var productList: MutableList<Products>) :
     }
 
     override fun onBindViewHolder(holder: ProductViewHolder, position: Int) {
-
         holder.view.productNameTextView.text = productList[position].title
         Glide.with(holder.view.productImageView.context)
             .load(productList[position].image?.src)

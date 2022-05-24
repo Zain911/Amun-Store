@@ -2,6 +2,7 @@ package com.example.amunstore.ui.home
 
 import android.os.Bundle
 import android.text.Html
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,6 +10,7 @@ import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.viewpager2.widget.ViewPager2
@@ -18,17 +20,18 @@ import com.example.amunstore.databinding.FragmentHomeBinding
 import com.example.amunstore.model.getImage
 import com.example.amunstore.ui.home.HomeViewModel
 import com.example.amunstore.ui.home.SliderViewPagerAdapter
+import com.example.example.SmartCollections
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
+
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
 
+    private lateinit var vendorAdapter: VendorAdapter
+
     private val viewModel: HomeViewModel by viewModels()
     private var _binding: FragmentHomeBinding? = null
-
+    lateinit var job: Job
     private val binding get() = _binding!!
 
     private lateinit var viewPager: ViewPager2
@@ -46,8 +49,6 @@ class HomeFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val homeViewModel = ViewModelProvider(this)[HomeViewModel::class.java]
-
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         viewPager = binding.adsViewPager
         viewPagerAdapter = SliderViewPagerAdapter(getImage())
@@ -56,7 +57,8 @@ class HomeFragment : Fragment() {
             adapter = viewPagerAdapter
             registerOnPageChangeCallback(onImageSliderChange)
         }
-        lifecycleScope.launch {
+
+        job = lifecycleScope.launch {
             while (true) for (i in 0..getImage().size) {
                 delay(1500)
                 if (i == 0) viewPager.setCurrentItem(i, false) else {
@@ -66,11 +68,17 @@ class HomeFragment : Fragment() {
             }
         }
 
+        vendorAdapter = VendorAdapter(arrayListOf())
+        binding.brandsRecyclerView.adapter = vendorAdapter
 
         val root: View = binding.root
-        CoroutineScope(Dispatchers.IO).launch {
-            viewModel.getBrands()
 
+        CoroutineScope(Dispatchers.Main).launch {
+            viewModel.getBrands()
+        }
+
+        viewModel.brands.observe(viewLifecycleOwner) {
+            vendorAdapter.changeList(it as MutableList<SmartCollections>)
         }
 
         return root
@@ -96,9 +104,16 @@ class HomeFragment : Fragment() {
 
     }
 
+    override fun onPause() {
+        super.onPause()
+        viewPager.unregisterOnPageChangeCallback(onImageSliderChange)
+
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         viewPager.unregisterOnPageChangeCallback(onImageSliderChange)
         _binding = null
+        job.cancel()
     }
 }

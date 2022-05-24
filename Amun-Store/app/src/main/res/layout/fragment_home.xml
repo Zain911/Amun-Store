@@ -25,8 +25,8 @@
             android:id="@+id/searchInputEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:drawableStart="@drawable/ic_baseline_search_24"
             android:background="@android:color/transparent"
+            android:drawableStart="@drawable/ic_baseline_search_24"
 
 
             android:drawablePadding="8dp"
@@ -66,11 +66,12 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-android:background="@color/white"
-        android:paddingTop="16dp"
-        android:layout_marginEnd="16dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="@color/white"
+        android:paddingTop="16dp"
         app:layout_constraintEnd_toEndOf="@+id/linearLayoutDots"
         app:layout_constraintStart_toStartOf="@+id/linearLayoutDots"
         app:layout_constraintTop_toBottomOf="@id/brandTextView">
@@ -78,13 +79,14 @@ android:background="@color/white"
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/brandsRecyclerView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:paddingBottom="8dp"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:spanCount="2"
-            tools:itemCount="10"
             tools:listitem="@layout/item_brands" />
 
 
