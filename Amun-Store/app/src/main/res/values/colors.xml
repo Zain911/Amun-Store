@@ -9,5 +9,7 @@
     <color name="white">#FFFFFFFF</color>
     <color name="darkRed">#EEFF0000</color>
     <color name="gray">#373737</color>
-
+    <color name="primary_color">#1D4ED8</color>
+    <color name="inactive_dots">#E5E7EB</color>
+    <color name="gray_light">#F7F7F7</color>
 </resources>
