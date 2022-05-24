@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName
 
 data class SmartCollections (
 
-  @SerializedName("id"                   ) var id                : Int?             = null,
+  @SerializedName("id"                   ) var id                : Long?             = null,
   @SerializedName("handle"               ) var handle            : String?          = null,
   @SerializedName("title"                ) var title             : String?          = null,
   @SerializedName("sort_order"           ) var sortOrder         : String?          = null,
