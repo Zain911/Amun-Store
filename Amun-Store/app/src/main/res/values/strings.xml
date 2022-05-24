@@ -34,5 +34,8 @@
     <string name="search_products">Search Products…</string>
     <string name="brands">Brands</string>
 
+    <!--    product details layout-->
+    <string name="buy">Buy</string>
+    <string name="product_id" translatable="false">proID</string>
 
 </resources>
