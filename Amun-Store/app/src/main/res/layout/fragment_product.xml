@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.product.ProductFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:context=".ui.product.ProductFragment">
+
+        <ImageView
+            android:id="@+id/product_imageView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:foregroundGravity="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@tools:sample/avatars[1]" />
+
+        <TextView
+            android:id="@+id/product_titleText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="64dp"
+            android:text="title"
+            app:layout_constraintStart_toStartOf="@+id/product_imageView"
+            app:layout_constraintTop_toBottomOf="@+id/product_imageView" />
+
+        <TextView
+            android:id="@+id/product_vendorText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="64dp"
+            android:text="vendor"
+            app:layout_constraintStart_toStartOf="@+id/product_titleText"
+            app:layout_constraintTop_toBottomOf="@+id/product_titleText" />
+
+        <TextView
+            android:id="@+id/product_bodyHtmlText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="64dp"
+            android:layout_marginEnd="16dp"
+            android:overScrollMode="ifContentScrolls"
+            android:text="body_html"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/product_priceText"
+            app:layout_constraintTop_toBottomOf="@+id/product_priceText" />
+
+        <TextView
+            android:id="@+id/product_statusText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:text="status"
+            app:layout_constraintBottom_toBottomOf="@+id/product_titleText"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/product_titleText" />
+
+        <TextView
+            android:id="@+id/product_similarProductsText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="512dp"
+            android:text="similar products"
+            app:layout_constraintStart_toStartOf="@+id/product_bodyHtmlText"
+            app:layout_constraintTop_toBottomOf="@+id/product_bodyHtmlText" />
+
+        <TextView
+            android:id="@+id/product_priceText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="64dp"
+            android:text="price"
+            app:layout_constraintStart_toStartOf="@+id/product_vendorText"
+            app:layout_constraintTop_toBottomOf="@+id/product_vendorText" />
+
+        <Button
+            android:id="@+id/product_buyButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/buy"
+            android:textColor="#757575"
+            app:layout_constraintBottom_toBottomOf="@+id/product_vendorText"
+            app:layout_constraintEnd_toEndOf="@+id/product_statusText"
+            app:layout_constraintTop_toTopOf="@+id/product_vendorText" />
+
+        <TextView
+            android:id="@+id/product_moreDetailsText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            app:layout_constraintBottom_toBottomOf="@+id/product_priceText"
+            app:layout_constraintEnd_toEndOf="@+id/product_buyButton"
+            app:layout_constraintTop_toTopOf="@+id/product_priceText" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>
