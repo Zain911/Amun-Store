@@ -2,8 +2,8 @@ package com.example.amunstore.di
 
 import android.annotation.SuppressLint
 import com.example.amunstore.network.AuthInterceptor
-import com.example.amunstore.network.ProductsServices
-import com.example.amunstore.repository.ProductDto
+import com.example.amunstore.network.NetworkServices
+import com.example.amunstore.repository.products.ProductDto
 import com.google.gson.GsonBuilder
 import dagger.Module
 import dagger.Provides
@@ -32,13 +32,13 @@ object NetworkModule {
 
     @Singleton
     @Provides
-    fun provideProductsService(): ProductsServices {
+    fun provideProductsService(): NetworkServices {
         return Retrofit.Builder()
             .client(OkHttpClient.Builder()
                 .addInterceptor(AuthInterceptor()).build())
             .baseUrl(baseUrl)
             .addConverterFactory(GsonConverterFactory.create(GsonBuilder().create()))
             .build()
-            .create(ProductsServices::class.java)
+            .create(NetworkServices::class.java)
     }
 }

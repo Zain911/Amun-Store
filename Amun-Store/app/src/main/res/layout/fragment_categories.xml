@@ -10,44 +10,34 @@
         android:id="@+id/categoriesTab_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:tabMode="scrollable"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:tabGravity="fill">
+        app:tabGravity="fill"/>
 
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/men" />
 
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/women" />
-
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/kids" />
-
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/sale" />
-
-    </com.google.android.material.tabs.TabLayout>
-
-    <androidx.recyclerview.widget.RecyclerView
-        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-        tools:listitem="@layout/item_category_product"
-        android:id="@+id/categoriesProductsRecyclerView"
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/categoriesViewPager"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:padding="12dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/categoriesTab_layout" />
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/categoriesProductsRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:padding="12dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/categoriesTab_layout"
+        tools:listitem="@layout/item_category_product" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
