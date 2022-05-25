@@ -4,6 +4,7 @@ import com.example.amunstore.network.NetworkServices
 import com.example.amunstore.repository.categories.CategoriesRepository
 import com.example.amunstore.repository.products.ProductDto
 import com.example.amunstore.repository.products.ProductsRepository
+import com.example.amunstore.repository.productvendor.ProductVendorRepository
 import com.example.amunstore.repository.vendor.BrandsRepository
 import dagger.Module
 import dagger.Provides
@@ -34,5 +35,10 @@ object RepositoryModule {
     @Provides
     fun provideVendorRepository(networkServices: NetworkServices):BrandsRepository{
         return BrandsRepository(networkServices)
+    }
+    @Singleton
+    @Provides
+    fun provideVendorProductsRepository(networkServices: NetworkServices):ProductVendorRepository{
+        return ProductVendorRepository(networkServices)
     }
 }

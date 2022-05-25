@@ -18,8 +18,8 @@ class HomeViewModel @Inject constructor(val repository: BrandsRepository) : View
     fun NavigateToProductVendor(it: SmartCollections, view: View) {
         val nav = Navigation.findNavController(view)
         val bundle = Bundle()
-       // bundle.putSerializable(ARTICLE_KEY, it)
-        nav.navigate(R.id.action_navigation_home_to_productVendor)
+        val action = HomeFragmentDirections.actionNavigationHomeToProductVendor(it)
+        nav.navigate(action)
     }
 
 
