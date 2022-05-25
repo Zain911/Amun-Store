@@ -10,7 +10,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class SingleCategoryFragmentViewModel @Inject constructor(private val repo: ProductsRepository) :
+class SingleCategoryViewModel @Inject constructor(private val repo: ProductsRepository) :
     ViewModel() {
 
     //Todo add suspend function to call get all products

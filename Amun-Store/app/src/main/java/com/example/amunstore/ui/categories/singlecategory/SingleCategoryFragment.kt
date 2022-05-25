@@ -14,14 +14,12 @@ import com.example.amunstore.databinding.FragmentSingleCategoryBinding
 import com.example.amunstore.model.product.Products
 import com.example.example.CustomCollections
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class SingleCategoryFragment(private val category: CustomCollections) : Fragment() {
 
-    private val viewModel: SingleCategoryFragmentViewModel by viewModels()
+    private val viewModel: SingleCategoryViewModel by viewModels()
 
     private var _binding: FragmentSingleCategoryBinding? = null
 
