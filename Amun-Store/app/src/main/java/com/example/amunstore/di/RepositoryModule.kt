@@ -2,7 +2,6 @@ package com.example.amunstore.di
 
 import com.example.amunstore.network.NetworkServices
 import com.example.amunstore.repository.categories.CategoriesRepository
-import com.example.amunstore.repository.details.ProductDetailsRepository
 import com.example.amunstore.repository.products.ProductDto
 import com.example.amunstore.repository.products.ProductsRepository
 import com.example.amunstore.repository.vendor.BrandsRepository
@@ -37,9 +36,4 @@ object RepositoryModule {
         return BrandsRepository(networkServices)
     }
 
-    @Singleton
-    @Provides
-    fun provideProductDetailsRepository(networkServices: NetworkServices):ProductDetailsRepository{
-        return ProductDetailsRepository(networkServices)
-    }
 }

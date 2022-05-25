@@ -3,16 +3,12 @@ package com.example.amunstore.ui.details
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.amunstore.model.details.ProductDetailsResponse
-import com.example.amunstore.model.product.ProductsResponse
-import com.example.amunstore.repository.details.ProductDetailsRepository
-import com.example.amunstore.repository.vendor.BrandsRepository
-import com.example.example.CustomCollections
-import com.example.example.SmartCollections
+import com.example.amunstore.repository.products.ProductsRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class ProductDetailsViewModel@Inject constructor(val repository: ProductDetailsRepository) : ViewModel() {
+class ProductDetailsViewModel@Inject constructor(val repository: ProductsRepository) : ViewModel() {
 
     val productDetails = MutableLiveData<ProductDetailsResponse>()
 

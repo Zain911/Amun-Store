@@ -19,8 +19,6 @@ import kotlinx.coroutines.launch
 
 
 class ProductDetailsFragment : Fragment() {
-
-
     private val viewModel: ProductDetailsViewModel by viewModels()
     private var _binding: FragmentProductDetailsBinding? = null
     private val binding get() = _binding!!
@@ -34,24 +32,18 @@ class ProductDetailsFragment : Fragment() {
         val root: View = binding.root
 
         viewModel.productDetails.observe(viewLifecycleOwner) {
-            if (it != null) {
-                binding.productTitleText.text=it.product.title
-                binding.productVendorText.text=it.product.vendor
-                binding.productPriceText.text=it.product.variants[0].price
-                binding.productBodyHtmlText.text=it.product.body_html
-                binding.productStatusText.text=it.product.status   // need some equipments
-//                binding.productImageView.setImageResource()   //glide
+
+                binding.productTitleText.text=it?.products?.title
+                binding.productVendorText.text=it?.products?.vendor
+                binding.productPriceText.text= it.products.variants[0].price
+                binding.productBodyHtmlText.text=it?.products?.bodyHtml
+                binding.productStatusText.text=it?.products?.status   // need some equipments
+
                 Glide.with(requireContext())
-                    .load(it.product.image.src)
+                    .load(it.products.image?.src)
                     .into(binding.productImageView)
 
-                }
-
-
-
-
         }
-
 
             CoroutineScope(Dispatchers.IO).launch {
             viewModel.getProductDetails(
@@ -61,7 +53,6 @@ class ProductDetailsFragment : Fragment() {
 
         return root
     }
-
 
     override fun onDestroyView() {
         super.onDestroyView()
