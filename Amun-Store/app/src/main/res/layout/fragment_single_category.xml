@@ -7,13 +7,22 @@
     tools:context=".ui.categories.singlecategory.SingleCategoryFragment">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/categoriesProductsRecyclerView"
-        android:layout_width="match_parent"
+        android:background="@color/gray_light"
+        android:id="@+id/subCategoryRecyclerView"
+        android:layout_width="90dp"
         android:layout_height="0dp"
-        android:padding="12dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:listitem="@layout/item_sub_categories_filter" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/categoriesProductsRecyclerView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@id/subCategoryRecyclerView"
         app:layout_constraintTop_toTopOf="parent"
         tools:listitem="@layout/item_category_product" />
 
