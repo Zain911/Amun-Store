@@ -7,11 +7,13 @@
     tools:context=".ui.categories.CategoriesFragment">
 
     <com.google.android.material.tabs.TabLayout
+        android:paddingBottom="4dp"
         app:tabIndicatorColor="@color/black"
         app:tabSelectedTextColor="@color/black"
         app:tabTextColor="@color/black"
         android:id="@+id/categoriesTab_layout"
         android:layout_width="0dp"
+        style="@style/TabStyle"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
