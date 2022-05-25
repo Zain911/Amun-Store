@@ -36,9 +36,11 @@ object RepositoryModule {
     fun provideVendorRepository(networkServices: NetworkServices):BrandsRepository{
         return BrandsRepository(networkServices)
     }
+
     @Singleton
     @Provides
     fun provideVendorProductsRepository(networkServices: NetworkServices):ProductVendorRepository{
         return ProductVendorRepository(networkServices)
     }
+
 }
