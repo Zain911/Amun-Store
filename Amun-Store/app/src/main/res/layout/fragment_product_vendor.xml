@@ -10,7 +10,6 @@
         android:id="@+id/coordinatorContainer"
         android:layout_width="match_parent"
         android:layout_height="160dp"
-        android:background="@drawable/banner_vendor"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
