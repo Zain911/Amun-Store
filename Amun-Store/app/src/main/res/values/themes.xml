@@ -22,4 +22,12 @@
         <item name="android:colorControlNormal">@color/black</item>
     </style>
 
+    <style name="TabStyle" parent="Widget.MaterialComponents.TabLayout">
+        <item name="tabIndicatorFullWidth">false</item>
+        <item name="tabInlineLabel">true</item>
+        <item name="indicatorInset">4dp</item>
+        <item name="tabIndicatorHeight">2dp</item>
+        <item name="tabIndicatorAnimationMode"> elastic</item>
+    </style>
+
 </resources>

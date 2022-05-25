@@ -15,9 +15,10 @@
             android:id="@+id/action_navigation_home_to_productVendor"
             app:destination="@id/productVendor"
             app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@animator/nav_default_exit_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+
 
     </fragment>
 
@@ -29,13 +30,18 @@
 
     <fragment
         android:id="@+id/navigation_notifications"
-        android:name="com.example.amunstore.ui.notifications.NotificationsFragment"
-        android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
+        android:name="com.example.amunstore.ui.profile.ProfileFragment"
+        android:label="@string/title_profile"
+        tools:layout="@layout/fragment_profile" />
 
     <fragment
         android:id="@+id/productVendor"
-        android:name="com.example.amunstore.ui.vendorproduct.ProductVendor"
+        android:name="com.example.amunstore.ui.vendorproduct.ProductVendorFragment"
         android:label="fragment_product_vendor"
-        tools:layout="@layout/fragment_product_vendor" />
+        tools:layout="@layout/fragment_product_vendor" >
+
+        <argument
+            android:name="smartCollection"
+            app:argType="com.example.example.SmartCollections" />
+    </fragment>
 </navigation>
