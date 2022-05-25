@@ -33,6 +33,7 @@
 
     <string name="search_products">Search Products…</string>
     <string name="brands">Brands</string>
+    <string name="product_vendor">ProductVendor</string>
 
     <!--    product details layout-->
     <string name="buy">Buy</string>

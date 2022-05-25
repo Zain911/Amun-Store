@@ -2,12 +2,13 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="wrap_content"
+    android:layout_margin="8dp"
     android:layout_height="wrap_content">
 
     <ImageView
         android:id="@+id/productImageView"
-        android:layout_width="120dp"
-        android:layout_height="140dp"
+        android:layout_width="100dp"
+        android:layout_height="120dp"
         android:src="@drawable/tshirt"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -18,7 +19,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
+        android:textSize="12sp"
         android:text="Adidas 2020"
+        android:maxEms="12"
+        android:singleLine="true"
         app:layout_constraintEnd_toEndOf="@id/productImageView"
         app:layout_constraintStart_toStartOf="@+id/productImageView"
         app:layout_constraintTop_toBottomOf="@id/productImageView" />
