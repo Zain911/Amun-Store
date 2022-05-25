@@ -7,7 +7,6 @@ import javax.inject.Inject
 
 class BrandsRepository (private val brandsService: BrandsService) : BrandsRepositoryInterface {
 
-
     override suspend fun getBrands(): Response<BrandResponse> =
         brandsService.getBrands()
 
