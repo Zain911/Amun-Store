@@ -12,5 +12,5 @@ interface ProductsRepositoryInterface {
     suspend fun getAllProducts(): Response<ProductsResponse>
 
     //for details about product
-    suspend fun getProductsByID(byId:String ): Response<ProductDetailsResponse>
+    suspend fun getProductsByID(byId: Long): Response<ProductDetailsResponse>
 }

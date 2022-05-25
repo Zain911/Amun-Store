@@ -20,6 +20,6 @@ class ProductsRepository(
         networkServices.getProducts()
 
 //    here to fetch the details of spacific product by it's id
-    override suspend fun getProductsByID(byId: String): Response<ProductDetailsResponse> =networkServices.getProductsByID(byId)
+    override suspend fun getProductsByID(byId: Long): Response<ProductDetailsResponse> =networkServices.getProductsByID(byId)
 
 }

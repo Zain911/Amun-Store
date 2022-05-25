@@ -11,7 +11,8 @@
         android:layout_height="wrap_content"
         tools:context=".ui.product.ProductFragment">
 
-        <ImageView
+
+        <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/product_imageView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -24,6 +25,43 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:src="@tools:sample/avatars[1]" />
 
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/product_linearLayoutDots"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@color/white"
+            android:gravity="center"
+            app:layout_constraintBottom_toBottomOf="@+id/product_imageView" />
+
+
+<!--        <androidx.viewpager2.widget.ViewPager2-->
+<!--            android:id="@+id/adsViewPager"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="250dp"-->
+<!--            android:layout_marginTop="16dp"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/SearchCoordinator" />-->
+
+<!--        <androidx.appcompat.widget.LinearLayoutCompat-->
+<!--            android:id="@+id/linearLayoutDots"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="40dp"-->
+<!--            android:background="@color/white"-->
+<!--            android:gravity="center"-->
+<!--            app:layout_constraintBottom_toBottomOf="@+id/adsViewPager" />-->
+
+<!--        <ImageView-->
+<!--            android:id="@+id/product_imageView"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginStart="16dp"-->
+<!--            android:layout_marginTop="16dp"-->
+<!--            android:layout_marginEnd="16dp"-->
+<!--            android:foregroundGravity="center"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent"-->
+<!--            tools:src="@tools:sample/avatars[1]" />-->
+
         <TextView
             android:id="@+id/product_titleText"
             android:layout_width="wrap_content"
@@ -31,7 +69,7 @@
             android:layout_marginTop="64dp"
             android:text="title"
             app:layout_constraintStart_toStartOf="@+id/product_imageView"
-            app:layout_constraintTop_toBottomOf="@+id/product_imageView" />
+            app:layout_constraintTop_toBottomOf="@+id/product_linearLayoutDots" />
 
         <TextView
             android:id="@+id/product_vendorText"

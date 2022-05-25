@@ -19,7 +19,7 @@ interface ProductServices {
     ): Response<ProductsResponse>
 
     //https://c48655414af1ada2cd256a6b5ee391be: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@mobile-ismailia.myshopify.com/admin/api/2022-04/products.json?product=7782820643045
-    @GET("products.json")
-    suspend fun getProductsByID(@Query("product") productID : String
+    @GET("/products.json")
+    suspend fun getProductsByID(@Query("product") productID : Long
     ): Response<ProductDetailsResponse>
 }
