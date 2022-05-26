@@ -11,23 +11,15 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.viewpager2.widget.ViewPager2
-import com.bumptech.glide.Glide
 import com.example.amunstore.R
-
 import com.example.amunstore.databinding.FragmentProductDetailsBinding
 import com.example.amunstore.model.getImage
-import com.example.amunstore.ui.categories.ViewPagerCategoriesAdapter
-import com.example.amunstore.ui.categories.singlecategory.SingleCategoryFragment
 import com.example.amunstore.ui.home.SliderViewPagerAdapter
-import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
-import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class ProductDetailsFragment(val productID:Long) : Fragment() {
+class ProductDetailsFragment(val productID: Long) : Fragment() {
 
     private val viewModel: ProductDetailsViewModel by viewModels()
     private var _binding: FragmentProductDetailsBinding? = null
@@ -53,24 +45,24 @@ class ProductDetailsFragment(val productID:Long) : Fragment() {
     ): View {
         _binding = FragmentProductDetailsBinding.inflate(inflater, container, false)
         val root: View = binding.root
-
+        viewModel.getProductDetails(productID)
         viewModel.productDetails.observe(viewLifecycleOwner) {
 
             if (it != null) {
-                binding.productTitleText.text = it?.products?.title
-                binding.productVendorText.text = it?.products?.vendor
-                binding.productPriceText.text= it.products.variants[0].price
-                binding.productBodyHtmlText.text = it?.products?.bodyHtml
-                binding.productStatusText.text = it?.products?.status   // need some equipments
+                binding.productTitleText.text = it.product.title
+                binding.productVendorText.text = it.product.vendor
+                binding.productPriceText.text = it.product.variants[0].price
+                binding.productBodyHtmlText.text = it.product.bodyHtml
+                binding.productStatusText.text = it.product.status   // need some equipments
             }
         }
 
-            viewModel.errorMessage.observe(viewLifecycleOwner) {
-                Toast.makeText(context, it, Toast.LENGTH_LONG).show()
+        viewModel.errorMessage.observe(viewLifecycleOwner) {
+            Toast.makeText(context, it, Toast.LENGTH_LONG).show()
 
-            }
+        }
 
-            viewModel.getProductDetails(productID )
+
 
         return root
     }

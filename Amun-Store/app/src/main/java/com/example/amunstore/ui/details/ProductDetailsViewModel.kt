@@ -21,17 +21,19 @@ class ProductDetailsViewModel@Inject constructor(val repository: ProductsReposit
 
     val errorMessage = MutableLiveData<String>()
     val productDetails = MutableLiveData<ProductDetailsResponse>()
+
     var job: Job? = null
 
-    val loading = MutableLiveData<Boolean>()
+   // val loading = MutableLiveData<Boolean>()
 
     fun getProductDetails(id:Long) {
         job = CoroutineScope(Dispatchers.IO).launch {
             val response = repository.getProductsByID(id)
             withContext(Dispatchers.Main) {
                 if (response.isSuccessful) {
-                    productDetails.postValue(response.body())
-                    loading.value = false
+                    productDetails.postValue(
+                        response.body())
+                //    loading.value = false
                 } else {
                     onError("Error : ${response.message()} ")
                 }
@@ -42,7 +44,7 @@ class ProductDetailsViewModel@Inject constructor(val repository: ProductsReposit
 
     private fun onError(message: String) {
         errorMessage.value = message
-        loading.value = false
+        //loading.value = false
     }
 
     override fun onCleared() {
