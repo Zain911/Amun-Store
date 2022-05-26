@@ -11,19 +11,10 @@ import javax.inject.Inject
 @HiltViewModel
 class ProductDetailsViewModel@Inject constructor(val repository: ProductsRepository) : ViewModel() {
 
-   // val productDetails = MutableLiveData<ProductDetailsResponse>()
-
-//    suspend fun getProductDetails(byID : Long) =
-//        productDetails.postValue(//repository.getBrands().body()?.brands
-//            repository.getProductsByID(byId = byID).body()
-//        )
-
-
     val errorMessage = MutableLiveData<String>()
     val productDetails = MutableLiveData<ProductDetailsResponse>()
 
     var job: Job? = null
-
    // val loading = MutableLiveData<Boolean>()
 
     fun getProductDetails(id:Long) {
