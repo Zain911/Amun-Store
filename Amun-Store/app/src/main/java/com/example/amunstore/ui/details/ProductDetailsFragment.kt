@@ -16,6 +16,10 @@ import com.example.amunstore.databinding.FragmentProductDetailsBinding
 import com.example.amunstore.model.product.Images
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Job
+import java.text.ParseException
+import java.text.SimpleDateFormat
+import java.util.*
+
 
 @AndroidEntryPoint
 class ProductDetailsFragment(val productID: Long) : Fragment() {
@@ -37,6 +41,7 @@ class ProductDetailsFragment(val productID: Long) : Fragment() {
         }
     }
 
+    var adapter: ProductDetailsAdapter? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -49,12 +54,17 @@ class ProductDetailsFragment(val productID: Long) : Fragment() {
         viewModel.getProductDetails(productID)
 
         viewModel.productDetails.observe(viewLifecycleOwner) {
+
             if (it != null) {
                 binding.productTitleText.text = it.product.title
                 binding.productVendorText.text = it.product.vendor
-                binding.productPriceText.text = it.product.variants[0].price
+                binding.productPriceText.text = "${it.product.variants[0].price} ${getCurrencyInfoForDefaultLocale()}"
                 binding.productBodyHtmlText.text = it.product.bodyHtml
-                binding.productStatusText.text = it.product.status   // need some equipments
+                binding.productDateTxt.text = modifyDateLayout(it.product.createdAt.toString())
+                // to make buy button invisible if the priduct is inactive
+                if (!it.product.status.equals("active")){
+                binding.productBuyButton.visibility = View.INVISIBLE
+                }
 
                 //inflating view pager and it's dot from the respond of the api
                 productImagesList = it.product.images
@@ -63,8 +73,10 @@ class ProductDetailsFragment(val productID: Long) : Fragment() {
                 viewPager.apply {
                     adapter = viewPagerAdapter
                     registerOnPageChangeCallback(onImageSliderChange)
-
                 }
+
+                adapter = ProductDetailsAdapter(requireContext(), it)
+                binding.productListView.adapter = adapter
             }
         }
 
@@ -72,8 +84,6 @@ class ProductDetailsFragment(val productID: Long) : Fragment() {
             Toast.makeText(context, it, Toast.LENGTH_LONG).show()
 
         }
-
-
 
         return root
     }
@@ -108,6 +118,23 @@ class ProductDetailsFragment(val productID: Long) : Fragment() {
         job.cancel()
     }
 
+    @Throws(ParseException::class)
+    private fun modifyDateLayout(inputDate: String): String? {
+        val date: Date = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ").parse(inputDate) as Date
+        return SimpleDateFormat("dd.MM.yyyy").format(date)
+    }
+
+    fun getCurrencyInfoForDefaultLocale(): String? {
+        val defaultLocale = Locale.getDefault()
+      //  displayCurrencyInfoForLocale(defaultLocale)
+       // System.out.println("Locale: " + locale.displayName)
+        val currency = Currency.getInstance(defaultLocale)
+        //System.out.println("Currency Code: " + currency.currencyCode)
+        //System.out.println("Symbol: " + currency.symbol)
+        return currency.symbol
+        //System.out.println("Default Fraction Digits: " + currency.defaultFractionDigits)
+        //println()
+    }
 }
 
 

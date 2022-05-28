@@ -37,5 +37,8 @@
 
     <!--    product details layout-->
     <string name="buy">Buy</string>
+    <string name="save_item">Save item</string>
+    <string name="buy_now">Buy now</string>
+    <string name="product_option">Product options</string>
 
 </resources>
