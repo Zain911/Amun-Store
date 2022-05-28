@@ -7,119 +7,121 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-<ScrollView
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.details.ProductDetailsFragment"
-    android:layout_marginBottom="64dp"
-   >
-
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        tools:context=".ui.details.ProductDetailsFragment">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:context=".ui.product.ProductFragment">
+            android:orientation="vertical">
 
-
-            <androidx.viewpager2.widget.ViewPager2
-                android:id="@+id/product_imageView"
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
-                android:foregroundGravity="center"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:src="@tools:sample/avatars[1]" />
-
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:id="@+id/product_linearLayoutDots"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:background="@color/white"
-                android:gravity="center"
-                app:layout_constraintBottom_toBottomOf="@+id/product_imageView" />
-
-            <TextView
-                android:id="@+id/product_titleText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="64dp"
-                android:text="title"
-                app:layout_constraintStart_toStartOf="@+id/product_imageView"
-                app:layout_constraintTop_toBottomOf="@+id/product_linearLayoutDots" />
-
-            <TextView
-                android:id="@+id/product_vendorText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text="vendor"
-                app:layout_constraintStart_toStartOf="@+id/product_titleText"
-                app:layout_constraintTop_toBottomOf="@+id/product_titleText" />
-
-            <TextView
-                android:id="@+id/product_bodyHtmlText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="40dp"
-                android:layout_marginEnd="16dp"
-                android:overScrollMode="ifContentScrolls"
-                android:text="body_html"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toStartOf="@+id/product_priceText"
-                app:layout_constraintTop_toBottomOf="@+id/product_priceText" />
-
-            <TextView
-                android:id="@+id/product_similarProductsText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="132dp"
-                android:text="@string/product_option"
-                android:textColor="#000000"
-                app:layout_constraintStart_toStartOf="@+id/product_bodyHtmlText"
-                app:layout_constraintTop_toBottomOf="@+id/product_bodyHtmlText" />
-
-            <TextView
-                android:id="@+id/product_priceText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text="price"
-                app:layout_constraintStart_toStartOf="@+id/product_vendorText"
-                app:layout_constraintTop_toBottomOf="@+id/product_vendorText" />
-
-            <ListView
-                android:id="@+id/product_listView"
-                android:layout_width="409dp"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/product_similarProductsText" />
-
-            <TextView
-                android:id="@+id/product_dateTxt"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="48dp"
-                android:text="created_at"
-                app:layout_constraintStart_toStartOf="@+id/product_bodyHtmlText"
-                app:layout_constraintTop_toBottomOf="@+id/product_bodyHtmlText" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                tools:context=".ui.product.ProductFragment">
 
 
-    </LinearLayout>
-</ScrollView>
+                <androidx.viewpager2.widget.ViewPager2
+                    android:id="@+id/product_imageView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:foregroundGravity="center"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:src="@tools:sample/avatars[1]" />
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:id="@+id/product_linearLayoutDots"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:background="@color/white"
+                    android:gravity="center"
+                    app:layout_constraintBottom_toBottomOf="@+id/product_imageView" />
+
+                <TextView
+                    android:id="@+id/product_titleText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="64dp"
+                    android:text="title"
+                    app:layout_constraintStart_toStartOf="@+id/product_imageView"
+                    app:layout_constraintTop_toBottomOf="@+id/product_linearLayoutDots" />
+
+                <TextView
+                    android:id="@+id/product_vendorText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="vendor"
+                    app:layout_constraintStart_toStartOf="@+id/product_titleText"
+                    app:layout_constraintTop_toBottomOf="@+id/product_titleText" />
+
+                <TextView
+                    android:id="@+id/product_bodyHtmlText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="40dp"
+                    android:layout_marginEnd="16dp"
+                    android:overScrollMode="ifContentScrolls"
+                    android:text="body_html"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toStartOf="@+id/product_priceText"
+                    app:layout_constraintTop_toBottomOf="@+id/product_priceText" />
+
+                <TextView
+                    android:id="@+id/product_similarProductsText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="132dp"
+                    android:text="@string/product_option"
+                    android:textColor="#000000"
+                    app:layout_constraintStart_toStartOf="@+id/product_bodyHtmlText"
+                    app:layout_constraintTop_toBottomOf="@+id/product_bodyHtmlText" />
+
+                <TextView
+                    android:id="@+id/product_priceText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="price"
+                    app:layout_constraintStart_toStartOf="@+id/product_vendorText"
+                    app:layout_constraintTop_toBottomOf="@+id/product_vendorText" />
+
+                <ListView
+                    android:id="@+id/product_listView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="16dp"
+                    android:minHeight="48dp"
+                    android:orientation="horizontal"
+                    android:padding="16dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/product_similarProductsText" />
+
+                <TextView
+                    android:id="@+id/product_dateTxt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="48dp"
+                    android:text="created_at"
+                    app:layout_constraintStart_toStartOf="@+id/product_bodyHtmlText"
+                    app:layout_constraintTop_toBottomOf="@+id/product_bodyHtmlText" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </LinearLayout>
+    </ScrollView>
 
     <LinearLayout
         android:layout_alignParentBottom="true"
