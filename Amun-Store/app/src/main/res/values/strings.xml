@@ -38,4 +38,6 @@
     <!--    product details layout-->
     <string name="buy">Buy</string>
 
+    <!--    login and register strings-->
+    <string name="preference_loggin" translatable="false">pref_loggin</string>
 </resources>
