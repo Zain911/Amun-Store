@@ -37,20 +37,6 @@ class MainActivity : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
-        setFragment()
-    }
 
-    fun setFragment() {
-        val productID  = 7782820643045
-        // Create new fragment and transaction
-        val newFragment: Fragment = ProductDetailsFragment(productID)
-        val transaction: FragmentTransaction = supportFragmentManager.beginTransaction()
-
-        // Replace whatever is in the fragment_container view with this fragment, and add the transaction to the back stack
-        transaction.replace(R.id.nav_host_fragment_activity_main, newFragment)
-        transaction.addToBackStack(null)
-
-        // Commit the transaction
-        transaction.commit()
     }
 }
