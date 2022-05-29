@@ -17,7 +17,6 @@ class CategoriesViewModel @Inject constructor(private val repo: CategoriesReposi
 
     suspend fun getCategories() {
         categoriesList.postValue(repo.getCategories().body()?.customCollections)
-
     }
 
 
