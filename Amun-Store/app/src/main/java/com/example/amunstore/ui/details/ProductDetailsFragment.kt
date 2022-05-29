@@ -7,9 +7,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.widget.LinearLayoutCompat.HORIZONTAL
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager.HORIZONTAL
+import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView.HORIZONTAL
 import androidx.viewpager2.widget.ViewPager2
 import com.example.amunstore.R
 import com.example.amunstore.databinding.FragmentProductDetailsBinding
@@ -42,7 +47,7 @@ class ProductDetailsFragment(val productID: Long) : Fragment() {
     }
 
     var adapter: ProductDetailsAdapter? = null
-
+    lateinit var recyclerView:RecyclerView
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -52,6 +57,8 @@ class ProductDetailsFragment(val productID: Long) : Fragment() {
         val root: View = binding.root
         viewPager = binding.productImageView
         viewModel.getProductDetails(productID)
+
+        recyclerView=binding.productListView
 
         viewModel.productDetails.observe(viewLifecycleOwner) {
 
@@ -75,6 +82,8 @@ class ProductDetailsFragment(val productID: Long) : Fragment() {
                     registerOnPageChangeCallback(onImageSliderChange)
                 }
 
+                val linear =LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL, false)
+                recyclerView.layoutManager =linear
                 adapter = ProductDetailsAdapter(requireContext(), it)
                 binding.productListView.adapter = adapter
             }

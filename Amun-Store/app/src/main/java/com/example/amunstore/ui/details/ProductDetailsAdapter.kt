@@ -7,40 +7,46 @@ import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.amunstore.R
 import com.example.amunstore.model.details.ProductDetailsResponse
 
-class ProductDetailsAdapter(private val context: Context, private val arrayList:ProductDetailsResponse) : BaseAdapter() {
-    private lateinit var imageView: ImageView
-    private lateinit var titles: TextView
-    private lateinit var price: TextView
+class ProductDetailsAdapter (private val context: Context,private val arrayList:ProductDetailsResponse) : RecyclerView.Adapter<ProductDetailsAdapter.ViewHolder>() {
 
-    override fun getCount(): Int {
+    // create new views
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        // inflates the card_view_design view
+        // that is used to hold list item
+        val view = LayoutInflater.from(parent.context)
+            .inflate(R.layout.item_similar_products, parent, false)
+
+        return ViewHolder(view)
+    }
+
+    // binds the list items to a view
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+
+        Glide.with(context).load(arrayList.product.image?.src).into(holder.imageView)
+        holder.titles.text =  arrayList.product.options[position].name
+        holder.price.text = arrayList.product.options[position].values[0]
+
+    }
+
+    // return the number of the items in the list
+    override fun getItemCount(): Int {
         return arrayList.product.options.size
     }
-    override fun getItem(position: Int): Any {
-        return position
-    }
-    override fun getItemId(position: Int): Long {
-        return position.toLong()
-    }
-    override fun getView(position: Int, convertView: View?, parent: ViewGroup): View? {
 
-        val inflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-        val convertView = inflater.inflate(R.layout.item_similar_products, parent,false)
+    // Holds the views for adding it to image and text
+    class ViewHolder(ItemView: View) : RecyclerView.ViewHolder(ItemView) {
+        //val imageView: ImageView = itemView.findViewById(R.id.imageview)
+        //val textView: TextView = itemView.findViewById(R.id.textView)
 
-       // var convertView = convertView
-       // convertView = LayoutInflater.from(context).inflate(R.layout.item_similar_products, parent, false)
-        imageView = convertView.findViewById(R.id.details_image)
-        titles = convertView.findViewById(R.id.details_name)
-        price = convertView.findViewById(R.id.details_price)
-
-        Glide.with(context).load(arrayList.product.image?.src).into(imageView)
-        titles.text =  arrayList.product.options[position].name
-        price.text = arrayList.product.options[position].values[0]
-
-        return convertView
+       val imageView:ImageView = itemView.findViewById(R.id.details_image)
+        val titles:TextView = itemView.findViewById(R.id.details_name)
+        val price:TextView = itemView.findViewById(R.id.details_price)
     }
 }
-//Class MyData class MyData(var num: Int, var name: String, var mobileNumber: String)
+
+
