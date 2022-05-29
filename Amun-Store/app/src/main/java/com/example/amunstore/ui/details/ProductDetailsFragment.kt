@@ -37,7 +37,6 @@ class ProductDetailsFragment(val productID: Long) : Fragment() {
         }
     }
 
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -70,11 +69,7 @@ class ProductDetailsFragment(val productID: Long) : Fragment() {
 
         viewModel.errorMessage.observe(viewLifecycleOwner) {
             Toast.makeText(context, it, Toast.LENGTH_LONG).show()
-
         }
-
-
-
         return root
     }
 

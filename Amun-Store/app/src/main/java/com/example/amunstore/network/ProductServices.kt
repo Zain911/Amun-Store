@@ -13,7 +13,6 @@ interface ProductServices {
     suspend fun getProducts(
     ): Response<ProductsResponse>
 
-
     //https://mobile-ismailia.myshopify.com//admin/api/2022-04/products.json?collection_id=395728158949
     @GET("products.json")
     suspend fun getProductsByCategory(@Query("collection_id") collectionID : String

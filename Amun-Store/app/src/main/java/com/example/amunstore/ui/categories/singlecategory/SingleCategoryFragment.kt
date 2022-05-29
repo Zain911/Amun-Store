@@ -37,7 +37,7 @@ class SingleCategoryFragment(private val category: CustomCollections) : Fragment
         val root: View = binding.root
 
         productsAdapter = CategoriesProductAdapter(arrayListOf())
-        binding.categoriesProductsRecyclerView.layoutManager = GridLayoutManager(context, 3)
+        binding.categoriesProductsRecyclerView.layoutManager = GridLayoutManager(context, 2)
         binding.categoriesProductsRecyclerView.adapter = productsAdapter
 
         subCategoriesAdapter = SubCategoriesRecyclerAdapter(viewModel.getSubCategories()) {
