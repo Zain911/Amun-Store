@@ -11,7 +11,7 @@ import androidx.lifecycle.coroutineScope
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.amunstore.databinding.FragmentSingleCategoryBinding
-import com.example.amunstore.model.product.Product
+import com.example.amunstore.data.model.product.Product
 import com.example.example.CustomCollections
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch

@@ -2,9 +2,9 @@ package com.example.amunstore.ui.categories.singlecategory
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.amunstore.model.product.Product
-import com.example.amunstore.model.subcategory.SubCategory
-import com.example.amunstore.repository.products.ProductsRepository
+import com.example.amunstore.data.model.product.Product
+import com.example.amunstore.data.model.subcategory.SubCategory
+import com.example.amunstore.data.repositories.products.ProductsRepository
 import com.example.example.CustomCollections
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject

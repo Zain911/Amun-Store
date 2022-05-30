@@ -13,7 +13,7 @@ import androidx.fragment.app.viewModels
 import androidx.viewpager2.widget.ViewPager2
 import com.example.amunstore.R
 import com.example.amunstore.databinding.FragmentProductDetailsBinding
-import com.example.amunstore.model.product.Images
+import com.example.amunstore.data.model.product.Images
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Job
 

@@ -1,7 +1,7 @@
 package com.example.amunstore.di
 
-import com.example.amunstore.network.AuthInterceptor
-import com.example.amunstore.network.NetworkServices
+import com.example.amunstore.data.network.AuthInterceptor
+import com.example.amunstore.data.network.NetworkServices
 import com.google.gson.GsonBuilder
 import dagger.Module
 import dagger.Provides

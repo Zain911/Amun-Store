@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.amunstore.R
 import com.example.amunstore.databinding.ItemCategoryProductBinding
-import com.example.amunstore.model.product.Product
+import com.example.amunstore.data.model.product.Product
 
 class VendorProductAdapter(private var productList: MutableList<Product>) :
     RecyclerView.Adapter<VendorProductAdapter.ProductViewHolder>() {
