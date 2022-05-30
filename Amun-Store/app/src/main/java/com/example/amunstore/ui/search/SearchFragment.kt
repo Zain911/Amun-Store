@@ -14,7 +14,6 @@ import com.example.amunstore.R
 import com.example.amunstore.data.model.product.Product
 import com.example.amunstore.databinding.FragmentSearchBinding
 
-import com.example.amunstore.model.product.Product
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -56,14 +55,11 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
             SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
                 viewModel.searchProduct(query, productFilter)
-                Log.d( "onQueryTextSubmit: ",productFilter)
                 return false
             }
 
             override fun onQueryTextChange(query: String): Boolean {
                 viewModel.searchProduct(query, productFilter)
-                Log.d( "onQueryTextSubmit: ",productFilter)
-
                 return true
             }
         })
@@ -73,7 +69,6 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
         return binding.root
 
     }
-
 
     private fun initView(productsList: List<Product>?) {
         if (productsList != null) {
@@ -86,54 +81,45 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
                 binding.emptyImg.visibility = View.GONE
                 searchAdapter.changeList(productsList.toMutableList())
             }
-
-    private fun initView(productsList: MutableList<Product>) {
-        if (productsList.isEmpty()) {
-            binding.emptyText.visibility = View.VISIBLE
-            binding.emptyImg.visibility = View.VISIBLE
-            searchAdapter.changeList(productsList)
-        } else {
-            searchAdapter.changeList(productsList)
-            binding.emptyText.visibility = View.GONE
-            binding.emptyImg.visibility = View.GONE
-
         }
     }
 
+
     private fun intiFilterSpinner() {
-        binding.sortSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(
-                parent: AdapterView<*>?,
-                view: View?,
-                position: Int,
-                id: Long,
-            ) {
-                when {
-                    parent?.getItemAtPosition(position)!!.equals("Alphabetically") -> {
-                        productFilter = "Alphabetically"
+        binding.sortSpinner.onItemSelectedListener =
+            object : AdapterView.OnItemSelectedListener {
+                override fun onItemSelected(
+                    parent: AdapterView<*>?,
+                    view: View?,
+                    position: Int,
+                    id: Long,
+                ) {
+                    when {
+                        parent?.getItemAtPosition(position)!!.equals("Alphabetically") -> {
+                            productFilter = "Alphabetically"
+
+                        }
+                        parent.getItemAtPosition(position).equals("price: Low to High") -> {
+                            productFilter = "price: Low to High"
+                        }
+                        parent.getItemAtPosition(position).equals("price: High to Low") -> {
+                            productFilter = "price: High to Low"
+                        }
+                        else -> {
+                            productFilter = "none"
+                        }
 
                     }
-                    parent.getItemAtPosition(position).equals("price: Low to High") -> {
-                        productFilter = "price: Low to High"
-                    }
-                    parent.getItemAtPosition(position).equals("price: High to Low") -> {
-                        productFilter = "price: High to Low"
-                    }
-                    else -> {
-                        productFilter = "none"
-                    }
-
+                    Log.d("onItemSelected: ", productFilter)
+                    viewModel.sortProducts(productFilter)
                 }
-                Log.d("onItemSelected: ",productFilter)
-                viewModel.sortProducts(productFilter)
-            }
 
-            override fun onNothingSelected(parent: AdapterView<*>?) {
-                viewModel.sortProducts(productFilter)
-              //  productFilter = "none"
+                override fun onNothingSelected(parent: AdapterView<*>?) {
+                    viewModel.sortProducts(productFilter)
+                }
             }
-        }
 
     }
 
 }
+
