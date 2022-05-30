@@ -51,11 +51,11 @@ class SingleCategoryViewModel @Inject constructor(private val repo: ProductsRepo
     )
 
     fun addItemToFavourite(product: Product){
-
+        repo.addProductToFavourite(product)
     }
 
     fun removeItemFromFavourite(product: Product){
-
+        repo.removeProductFromFavourite(product)
     }
 
 
