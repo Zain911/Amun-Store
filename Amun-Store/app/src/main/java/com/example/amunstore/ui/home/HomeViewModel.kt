@@ -16,6 +16,7 @@ class HomeViewModel @Inject constructor(val repository: BrandsRepository) : View
 
 
     fun NavigateToProductVendor(it: SmartCollections, view: View) {
+        //Todo view not allow here
         val nav = Navigation.findNavController(view)
         val bundle = Bundle()
         val action = HomeFragmentDirections.actionNavigationHomeToProductVendor(it)

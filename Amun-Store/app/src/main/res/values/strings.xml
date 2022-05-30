@@ -35,7 +35,19 @@
     <string name="brands">Brands</string>
     <string name="product_vendor">ProductVendor</string>
 
+    <string name="no_results_found">No results found</string>
+
+    <string-array name="sortArr">
+        <item>SORT</item>
+        <item>price: Low to High</item>
+        <item>price: High to Low</item>
+        <item>Alphabetically</item>
+        <item>none</item>
+    </string-array>
+
+
     <!--    product details layout-->
     <string name="buy">Buy</string>
+
 
 </resources>
