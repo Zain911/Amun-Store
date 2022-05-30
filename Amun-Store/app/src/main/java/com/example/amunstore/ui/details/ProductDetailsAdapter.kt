@@ -4,15 +4,15 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.BaseAdapter
+import com.example.amunstore.data.model.details.ProductDetailsResponse
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.amunstore.R
-import com.example.amunstore.model.details.ProductDetailsResponse
 
-class ProductDetailsAdapter (private val context: Context,private val arrayList:ProductDetailsResponse) : RecyclerView.Adapter<ProductDetailsAdapter.ViewHolder>() {
+
+class ProductDetailsAdapter (private val context: Context,private val arrayList: ProductDetailsResponse) : RecyclerView.Adapter<ProductDetailsAdapter.ViewHolder>() {
 
     // create new views
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -40,9 +40,6 @@ class ProductDetailsAdapter (private val context: Context,private val arrayList:
 
     // Holds the views for adding it to image and text
     class ViewHolder(ItemView: View) : RecyclerView.ViewHolder(ItemView) {
-        //val imageView: ImageView = itemView.findViewById(R.id.imageview)
-        //val textView: TextView = itemView.findViewById(R.id.textView)
-
        val imageView:ImageView = itemView.findViewById(R.id.details_image)
         val titles:TextView = itemView.findViewById(R.id.details_name)
         val price:TextView = itemView.findViewById(R.id.details_price)
