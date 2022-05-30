@@ -47,9 +47,10 @@
 
 
     <!--    product details layout-->
-    <string name="buy">Buy</string>
     <string name="save_item">Save item</string>
     <string name="buy_now">Buy now</string>
     <string name="product_option">Product options</string>
+    <string name="not_available">Not available</string>
+    <string name="pro_id" translatable="false">pro_id_bundle</string>
 
 </resources>

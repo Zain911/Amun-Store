@@ -6,6 +6,9 @@ import com.example.amunstore.data.model.details.ProductDetailsResponse
 import com.example.amunstore.data.repositories.products.ProductsRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.*
+import java.text.ParseException
+import java.text.SimpleDateFormat
+import java.util.*
 import javax.inject.Inject
 
 @HiltViewModel
@@ -43,5 +46,22 @@ class ProductDetailsViewModel@Inject constructor(val repository: ProductsReposit
         job?.cancel()
     }
 
+    @Throws(ParseException::class)
+     fun modifyDateLayout(inputDate: String): String? {
+        val date: Date = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ").parse(inputDate) as Date
+        return SimpleDateFormat("dd.MM.yyyy").format(date)
+    }
+
+    fun getCurrencyInfoForDefaultLocale(): String? {
+        val defaultLocale = Locale.getDefault()
+        //  displayCurrencyInfoForLocale(defaultLocale)
+        // System.out.println("Locale: " + locale.displayName)
+        val currency = Currency.getInstance(defaultLocale)
+        //System.out.println("Currency Code: " + currency.currencyCode)
+        //System.out.println("Symbol: " + currency.symbol)
+        return currency.symbol
+        //System.out.println("Default Fraction Digits: " + currency.defaultFractionDigits)
+        //println()
+    }
 
 }

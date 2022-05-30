@@ -12,7 +12,7 @@ import com.bumptech.glide.Glide
 import com.example.amunstore.R
 
 
-class ProductDetailsAdapter (private val context: Context,private val arrayList: ProductDetailsResponse) : RecyclerView.Adapter<ProductDetailsAdapter.ViewHolder>() {
+class ProductDetailsAdapter (private val arrayList: ProductDetailsResponse) : RecyclerView.Adapter<ProductDetailsAdapter.ViewHolder>() {
 
     // create new views
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -27,7 +27,7 @@ class ProductDetailsAdapter (private val context: Context,private val arrayList:
     // binds the list items to a view
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
-        Glide.with(context).load(arrayList.product.image?.src).into(holder.imageView)
+        Glide.with(holder.imageView.context).load(arrayList.product.image?.src).into(holder.imageView)
         holder.titles.text =  arrayList.product.options[position].name
         holder.price.text = arrayList.product.options[position].values[0]
 
