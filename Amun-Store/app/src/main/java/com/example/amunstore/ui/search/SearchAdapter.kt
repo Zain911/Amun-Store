@@ -6,13 +6,12 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.amunstore.R
+import com.example.amunstore.data.model.product.Product
 import com.example.amunstore.databinding.ItemBrandsBinding
-import com.example.amunstore.model.product.Products
-import com.example.example.SmartCollections
 
 class SearchAdapter(
-    private var productList: MutableList<Products>,
-    val itemOnClickProduct: (Products) -> Unit
+    private var productList: MutableList<Product>,
+    val itemOnClickProduct: (Product) -> Unit
 ) :
     RecyclerView.Adapter<SearchAdapter.ViewHolder>() {
 
@@ -20,7 +19,7 @@ class SearchAdapter(
     private var selected = 0
 
     @SuppressLint("NotifyDataSetChanged")
-    fun changeList(list: MutableList<Products>) {
+    fun changeList(list: MutableList<Product>) {
         productList.clear()
         productList = list
         notifyDataSetChanged()

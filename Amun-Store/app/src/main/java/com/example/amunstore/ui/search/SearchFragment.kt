@@ -9,8 +9,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.coroutineScope
 import com.example.amunstore.R
+import com.example.amunstore.data.model.product.Product
 import com.example.amunstore.databinding.FragmentSearchBinding
-import com.example.amunstore.model.product.Products
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -40,7 +40,7 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
         binding.itemsRecView.adapter = searchAdapter
 
         viewModel.filterList.observe(viewLifecycleOwner) {
-            initView(it as MutableList<Products>)
+            initView(it as MutableList<Product>)
         }
 
         binding.searchProductSearchView.setOnQueryTextListener(object :
@@ -62,7 +62,7 @@ binding.backImageView.setOnClickListener{requireActivity().onBackPressed()}
 
     }
 
-    private fun initView(productsList: MutableList<Products>) {
+    private fun initView(productsList: MutableList<Product>) {
         if (productsList.isEmpty()) {
             binding.emptyText.visibility = View.VISIBLE
             binding.emptyImg.visibility = View.VISIBLE
