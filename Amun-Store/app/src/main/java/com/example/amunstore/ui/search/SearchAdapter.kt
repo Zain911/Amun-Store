@@ -6,15 +6,17 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.amunstore.R
+import com.example.amunstore.data.model.product.Product
 import com.example.amunstore.databinding.ItemBrandsBinding
+
 import com.example.amunstore.model.product.Product
+
 
 class SearchAdapter(
     private var productList: MutableList<Product>,
     val itemOnClickProduct: (Product) -> Unit
 ) :
     RecyclerView.Adapter<SearchAdapter.ViewHolder>() {
-
 
 
     @SuppressLint("NotifyDataSetChanged")

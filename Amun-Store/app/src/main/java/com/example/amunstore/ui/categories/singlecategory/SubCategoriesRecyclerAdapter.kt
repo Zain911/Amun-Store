@@ -8,7 +8,7 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.amunstore.R
 import com.example.amunstore.databinding.ItemSubCategoriesFilterBinding
-import com.example.amunstore.model.subcategory.SubCategory
+import com.example.amunstore.data.model.subcategory.SubCategory
 
 class SubCategoriesRecyclerAdapter(
     private var list: ArrayList<SubCategory>,

@@ -11,7 +11,7 @@ import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.example.amunstore.R
 import com.example.amunstore.databinding.FragmentProductVendorBinding
-import com.example.amunstore.model.product.Product
+import com.example.amunstore.data.model.product.Product
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 

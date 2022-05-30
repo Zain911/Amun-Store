@@ -11,7 +11,9 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.coroutineScope
 import com.example.amunstore.R
+import com.example.amunstore.data.model.product.Product
 import com.example.amunstore.databinding.FragmentSearchBinding
+
 import com.example.amunstore.model.product.Product
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -45,7 +47,9 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
         binding.itemsRecView.adapter = searchAdapter
 
         viewModel.filterList.observe(viewLifecycleOwner) {
+
             initView(it)
+
         }
 
         binding.searchProductSearchView.setOnQueryTextListener(object :
@@ -70,6 +74,7 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
 
     }
 
+
     private fun initView(productsList: List<Product>?) {
         if (productsList != null) {
             if (productsList.isEmpty()) {
@@ -81,6 +86,17 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
                 binding.emptyImg.visibility = View.GONE
                 searchAdapter.changeList(productsList.toMutableList())
             }
+
+    private fun initView(productsList: MutableList<Product>) {
+        if (productsList.isEmpty()) {
+            binding.emptyText.visibility = View.VISIBLE
+            binding.emptyImg.visibility = View.VISIBLE
+            searchAdapter.changeList(productsList)
+        } else {
+            searchAdapter.changeList(productsList)
+            binding.emptyText.visibility = View.GONE
+            binding.emptyImg.visibility = View.GONE
+
         }
     }
 

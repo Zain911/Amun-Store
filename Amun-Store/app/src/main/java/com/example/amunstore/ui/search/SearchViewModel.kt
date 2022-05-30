@@ -3,13 +3,17 @@ package com.example.amunstore.ui.search
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.amunstore.model.product.Product
-import com.example.amunstore.repository.products.ProductsRepository
+
+import com.example.amunstore.data.model.product.Product
+import com.example.amunstore.data.repositories.products.ProductsRepository
+
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class SearchViewModel @Inject constructor(val repo: ProductsRepository) : ViewModel() {
+
+class SearchViewModel @Inject constructor(private val repo: ProductsRepository) : ViewModel() {
+
     private val _productsList = MutableLiveData<List<Product>>()
 
     suspend fun getProduct() {
