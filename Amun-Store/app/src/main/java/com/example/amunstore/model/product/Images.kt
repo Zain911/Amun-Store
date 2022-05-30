@@ -5,8 +5,8 @@ import com.google.gson.annotations.SerializedName
 
 data class Images (
 
-  @SerializedName("id"                   ) var id                : Long?              = null,
-  @SerializedName("product_id"           ) var productId         : Long?              = null,
+  @SerializedName("id"                   ) var id                : Long?             = null,
+  @SerializedName("product_id"           ) var productId         : Long?             = null,
   @SerializedName("position"             ) var position          : Int?              = null,
   @SerializedName("created_at"           ) var createdAt         : String?           = null,
   @SerializedName("updated_at"           ) var updatedAt         : String?           = null,

@@ -7,8 +7,7 @@ import com.example.example.CustomCollections
 import retrofit2.Response
 
 class ProductsRepository(
-    private val networkServices: NetworkServices,
-    private val productsDao: ProductDto
+    private val networkServices: NetworkServices
 ) : ProductsRepositoryInterface {
 
     override suspend fun getProductByCategory(category: CustomCollections): Response<ProductsResponse> =

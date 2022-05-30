@@ -1,6 +1,6 @@
 package com.example.amunstore.network
 
-import com.example.amunstore.model.Brands.BrandResponse
+import com.example.amunstore.model.brands.BrandResponse
 import retrofit2.Response
 import retrofit2.http.GET
 

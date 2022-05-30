@@ -2,7 +2,7 @@ package com.example.amunstore.ui.categories.singlecategory
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.amunstore.model.product.Products
+import com.example.amunstore.model.product.Product
 import com.example.amunstore.model.subcategory.SubCategory
 import com.example.amunstore.repository.products.ProductsRepository
 import com.example.example.CustomCollections
@@ -14,8 +14,8 @@ class SingleCategoryViewModel @Inject constructor(private val repo: ProductsRepo
     ViewModel() {
 
     //Todo add suspend function to call get all products
-    private val productList = MutableLiveData<List<Products>?>()
-    val viewedList = MutableLiveData<List<Products>?>()
+    private val productList = MutableLiveData<List<Product>?>()
+    val viewedList = MutableLiveData<List<Product>?>()
 
     suspend fun getProductByCategory(category: CustomCollections) {
         productList.postValue(repo.getProductByCategory(category).body()?.products)
@@ -49,6 +49,14 @@ class SingleCategoryViewModel @Inject constructor(private val repo: ProductsRepo
         SubCategory.Tie,
         SubCategory.Shirts
     )
+
+    fun addItemToFavourite(product: Product){
+
+    }
+
+    fun removeItemFromFavourite(product: Product){
+
+    }
 
 
 }

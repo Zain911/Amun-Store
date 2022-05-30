@@ -3,7 +3,7 @@ package com.example.amunstore.model.product
 import com.google.gson.annotations.SerializedName
 
 
-data class Products (
+data class Product (
 
     @SerializedName("id"                   ) var id                : Long?                = null,
     @SerializedName("title"                ) var title             : String?             = null,
@@ -22,6 +22,6 @@ data class Products (
     @SerializedName("variants"             ) var variants          : ArrayList<Variants> = arrayListOf(),
     @SerializedName("options"              ) var options           : ArrayList<Options>  = arrayListOf(),
     @SerializedName("images"               ) var images            : ArrayList<Images>   = arrayListOf(),
-    @SerializedName("image"                ) var image             : Image?              = Image()
-
+    @SerializedName("image"                ) var image             : Image?              = Image(),
+                                             var isFavourite       : Boolean             = false
 )

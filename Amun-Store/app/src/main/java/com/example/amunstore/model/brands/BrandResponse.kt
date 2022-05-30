@@ -1,4 +1,4 @@
-package com.example.amunstore.model.Brands
+package com.example.amunstore.model.brands
 
 import com.example.example.SmartCollections
 import com.google.gson.annotations.SerializedName

@@ -1,6 +1,6 @@
 package com.example.amunstore.repository.productvendor
 
-import com.example.amunstore.model.ProductVendor.ProductVendorResponse
+import com.example.amunstore.model.productvendors.ProductVendorResponse
 import retrofit2.Response
 
 interface ProductVendorRepositoryInterface {
