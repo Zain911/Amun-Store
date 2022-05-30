@@ -1,11 +1,11 @@
 package com.example.amunstore.di
 
-import com.example.amunstore.network.NetworkServices
-import com.example.amunstore.repository.categories.CategoriesRepository
-import com.example.amunstore.repository.local.ProductsDao
-import com.example.amunstore.repository.products.ProductsRepository
-import com.example.amunstore.repository.productvendor.ProductVendorRepository
-import com.example.amunstore.repository.vendor.BrandsRepository
+import com.example.amunstore.data.network.NetworkServices
+import com.example.amunstore.data.repositories.categories.CategoriesRepository
+import com.example.amunstore.data.presistentstorage.room.ProductsDao
+import com.example.amunstore.data.repositories.products.ProductsRepository
+import com.example.amunstore.data.repositories.productvendor.ProductVendorRepository
+import com.example.amunstore.data.repositories.vendor.BrandsRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

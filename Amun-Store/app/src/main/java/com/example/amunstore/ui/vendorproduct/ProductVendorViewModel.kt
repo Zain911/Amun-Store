@@ -2,8 +2,8 @@ package com.example.amunstore.ui.vendorproduct
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.amunstore.model.product.Product
-import com.example.amunstore.repository.productvendor.ProductVendorRepository
+import com.example.amunstore.data.model.product.Product
+import com.example.amunstore.data.repositories.productvendor.ProductVendorRepository
 
 import com.example.example.SmartCollections
 import dagger.hilt.android.lifecycle.HiltViewModel

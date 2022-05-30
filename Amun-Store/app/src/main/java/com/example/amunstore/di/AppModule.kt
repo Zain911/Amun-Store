@@ -2,7 +2,7 @@ package com.example.amunstore.di
 
 import android.content.Context
 import androidx.room.Room
-import com.example.amunstore.repository.local.AppDatabase
+import com.example.amunstore.data.presistentstorage.room.AppDatabase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

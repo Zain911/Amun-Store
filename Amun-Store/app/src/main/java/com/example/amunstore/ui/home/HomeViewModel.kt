@@ -5,8 +5,7 @@ import android.view.View
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.navigation.Navigation
-import com.example.amunstore.R
-import com.example.amunstore.repository.vendor.BrandsRepository
+import com.example.amunstore.data.repositories.vendor.BrandsRepository
 import com.example.example.SmartCollections
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
