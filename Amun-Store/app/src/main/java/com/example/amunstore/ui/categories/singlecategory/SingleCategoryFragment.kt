@@ -11,7 +11,7 @@ import androidx.lifecycle.coroutineScope
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.amunstore.databinding.FragmentSingleCategoryBinding
-import com.example.amunstore.model.product.Products
+import com.example.amunstore.data.model.product.Product
 import com.example.example.CustomCollections
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -36,8 +36,12 @@ class SingleCategoryFragment(private val category: CustomCollections) : Fragment
         _binding = FragmentSingleCategoryBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        productsAdapter = CategoriesProductAdapter(arrayListOf())
-        binding.categoriesProductsRecyclerView.layoutManager = GridLayoutManager(context, 3)
+        productsAdapter = CategoriesProductAdapter(arrayListOf(), {
+            viewModel.addItemToFavourite(it)
+        }, {
+            viewModel.removeItemFromFavourite(it)
+        })
+        binding.categoriesProductsRecyclerView.layoutManager = GridLayoutManager(context, 2)
         binding.categoriesProductsRecyclerView.adapter = productsAdapter
 
         subCategoriesAdapter = SubCategoriesRecyclerAdapter(viewModel.getSubCategories()) {
@@ -47,13 +51,12 @@ class SingleCategoryFragment(private val category: CustomCollections) : Fragment
         binding.subCategoryRecyclerView.adapter = subCategoriesAdapter
 
         viewModel.viewedList.observe(viewLifecycleOwner) {
-            productsAdapter.changeList(it as MutableList<Products>)
+            productsAdapter.changeList(it as MutableList<Product>)
             Log.d("ProductList", it.toString())
         }
 
         lifecycle.coroutineScope.launch {
             viewModel.getProductByCategory(category)
-
         }
 
         return root

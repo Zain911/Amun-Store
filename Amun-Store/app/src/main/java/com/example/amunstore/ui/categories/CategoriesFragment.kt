@@ -8,7 +8,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.coroutineScope
 import com.example.amunstore.databinding.FragmentCategoriesBinding
-import com.example.amunstore.model.subcategory.SubCategory
 import com.example.amunstore.ui.categories.singlecategory.SingleCategoryFragment
 import com.example.example.CustomCollections
 import com.google.android.material.tabs.TabLayoutMediator
@@ -34,6 +33,8 @@ class CategoriesFragment : Fragment() {
         val fragmentList = arrayListOf<SingleCategoryFragment>()
 
         viewModel.categoriesList.observe(viewLifecycleOwner) {
+            titleList.clear()
+            fragmentList.clear()
             if (it != null) {
                 for (category in it) {
                     titleList.add(category)

@@ -19,8 +19,6 @@ class SliderViewPagerAdapter(private val imageList: List<Int>) :
     class ImageViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val slider = itemView.findViewById<ShapeableImageView>(R.id.sliderImageView)
         fun bind(data: Int) {
-
-
            slider.setImageResource(data)
 
         }

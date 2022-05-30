@@ -1,11 +1,11 @@
 package com.example.amunstore.di
 
-import com.example.amunstore.network.NetworkServices
-import com.example.amunstore.repository.categories.CategoriesRepository
-import com.example.amunstore.repository.products.ProductDto
-import com.example.amunstore.repository.products.ProductsRepository
-import com.example.amunstore.repository.productvendor.ProductVendorRepository
-import com.example.amunstore.repository.vendor.BrandsRepository
+import com.example.amunstore.data.network.NetworkServices
+import com.example.amunstore.data.repositories.categories.CategoriesRepository
+import com.example.amunstore.data.presistentstorage.room.ProductsDao
+import com.example.amunstore.data.repositories.products.ProductsRepository
+import com.example.amunstore.data.repositories.productvendor.ProductVendorRepository
+import com.example.amunstore.data.repositories.vendor.BrandsRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -18,11 +18,8 @@ object RepositoryModule {
 
     @Singleton
     @Provides
-    fun provideProductRepository(
-        networkServices: NetworkServices,
-        productsDto: ProductDto
-    ): ProductsRepository {
-        return ProductsRepository(networkServices, productsDto)
+    fun provideProductRepository(networkServices: NetworkServices , productsDao: ProductsDao): ProductsRepository {
+        return ProductsRepository(productsDao , networkServices )
     }
 
     @Singleton
@@ -33,13 +30,13 @@ object RepositoryModule {
 
     @Singleton
     @Provides
-    fun provideVendorRepository(networkServices: NetworkServices):BrandsRepository{
+    fun provideVendorRepository(networkServices: NetworkServices): BrandsRepository {
         return BrandsRepository(networkServices)
     }
 
     @Singleton
     @Provides
-    fun provideVendorProductsRepository(networkServices: NetworkServices):ProductVendorRepository{
+    fun provideVendorProductsRepository(networkServices: NetworkServices): ProductVendorRepository {
         return ProductVendorRepository(networkServices)
     }
 

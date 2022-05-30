@@ -7,13 +7,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.amunstore.R
 import com.example.amunstore.databinding.ItemCategoryProductBinding
-import com.example.amunstore.model.product.Products
+import com.example.amunstore.data.model.product.Product
 
-class VendorProductAdapter(private var productList: MutableList<Products>) :
+class VendorProductAdapter(private var productList: MutableList<Product>) :
     RecyclerView.Adapter<VendorProductAdapter.ProductViewHolder>() {
 
     @SuppressLint("NotifyDataSetChanged")
-    fun changeList(newList: MutableList<Products>) {
+    fun changeList(newList: MutableList<Product>) {
         productList.clear()
         productList = newList
         notifyDataSetChanged()

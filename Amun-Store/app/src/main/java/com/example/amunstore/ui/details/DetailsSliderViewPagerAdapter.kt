@@ -6,7 +6,11 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.amunstore.R
+<<<<<<< HEAD
 import com.example.amunstore.model.product.Images
+=======
+import com.example.amunstore.data.model.product.Images
+>>>>>>> main
 import com.google.android.material.imageview.ShapeableImageView
 
 

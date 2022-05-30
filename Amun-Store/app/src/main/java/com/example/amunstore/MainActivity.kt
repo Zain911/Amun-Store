@@ -1,20 +1,26 @@
 package com.example.amunstore
 
+import android.content.Context
 import android.os.Bundle
-import com.google.android.material.bottomnavigation.BottomNavigationView
+import android.view.View
+import android.view.View.INVISIBLE
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.NavDestination
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.amunstore.databinding.ActivityMainBinding
+import com.example.amunstore.ui.main.MainViewModel
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
+    private val viewmodel: MainViewModel by viewModels()
     private lateinit var binding: ActivityMainBinding
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -34,5 +40,26 @@ class MainActivity : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
-    }
-}
+
+        binding.searchIcon.setOnClickListener {
+
+            navController.navigate(R.id.searchFragment)
+
+
+            // viewmodel.printLog()
+        }
+        navController.addOnDestinationChangedListener { _, nd: NavDestination, _ ->
+            // the IDs of fragments as defined in the `navigation_graph`
+            if (nd.id == R.id.navigation_home || nd.id == R.id.navigation_categories
+                || nd.id == R.id.navigation_notifications
+            ) {
+                navView.visibility = View.VISIBLE
+                binding.toolbar.visibility=View.VISIBLE
+            } else {
+                navView.visibility = View.GONE
+                binding.toolbar.visibility=View.GONE
+            }
+        }
+
+
+}}
