@@ -34,6 +34,8 @@ class CategoriesFragment : Fragment() {
         val fragmentList = arrayListOf<SingleCategoryFragment>()
 
         viewModel.categoriesList.observe(viewLifecycleOwner) {
+            titleList.clear()
+            fragmentList.clear()
             if (it != null) {
                 for (category in it) {
                     titleList.add(category)

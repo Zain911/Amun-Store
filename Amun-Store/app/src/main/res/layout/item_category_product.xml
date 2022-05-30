@@ -14,15 +14,24 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
+        app:layout_constraintEnd_toEndOf="@id/productImageView"
         android:id="@+id/productNameTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
-        android:text="Adidas 2020"
         android:gravity="center"
-        android:maxEms="10"
-        app:layout_constraintEnd_toEndOf="@id/productImageView"
+        android:maxEms="12"
+        android:text="Adidas 2020"
         app:layout_constraintStart_toStartOf="@+id/productImageView"
         app:layout_constraintTop_toBottomOf="@id/productImageView" />
+
+    <ImageView
+        android:layout_margin="4dp"
+        android:id="@+id/favouriteButtonImageView"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:src="@drawable/ic_baseline_favorite_border_24"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

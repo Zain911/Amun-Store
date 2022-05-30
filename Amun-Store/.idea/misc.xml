@@ -12,6 +12,11 @@
         <entry key="..\:/TheBoss/ITI/FinalProject/Amun-Store/app/src/main/res/layout/fragment_dashboard.xml" value="0.358695652173913" />
         <entry key="..\:/TheBoss/ITI/FinalProject/Amun-Store/app/src/main/res/layout/fragment_home.xml" value="0.358695652173913" />
         <entry key="..\:/TheBoss/ITI/FinalProject/Amun-Store/app/src/main/res/layout/fragment_notifications.xml" value="0.358695652173913" />
+        <entry key="..\:/TheBoss/ITI/FinalProject/Amun-Store/app/src/main/res/layout/fragment_product.xml" value="0.27364864864864863" />
+        <entry key="..\:/TheBoss/ITI/FinalProject/Amun-Store/app/src/main/res/layout/fragment_product_details.xml" value="0.5" />
+        <entry key="..\:/TheBoss/ITI/FinalProject/Amun-Store/app/src/main/res/layout/fragment_single_category.xml" value="0.1" />
+        <entry key="..\:/TheBoss/ITI/FinalProject/Amun-Store/app/src/main/res/layout/item_brands.xml" value="0.1" />
+        <entry key="..\:/TheBoss/ITI/FinalProject/Amun-Store/app/src/main/res/layout/item_category_product.xml" value="0.1" />
         <entry key="..\:/TheBoss/ITI/FinalProject/Amun-Store/app/src/main/res/layout/list_toolbar_view.xml" value="0.36666666666666664" />
         <entry key="..\:/TheBoss/ITI/FinalProject/Amun-Store/app/src/main/res/layout/signin.xml" value="0.26330532212885155" />
         <entry key="..\:/TheBoss/ITI/FinalProject/Amun-Store/app/src/main/res/layout/sigup.xml" value="0.358695652173913" />
@@ -42,6 +47,7 @@
         <entry key="..\:/Users/Ghaly/Desktop/ITI Final Project/Amun-Store/app/src/main/res/layout/item_sub_categories_filter.xml" value="0.19635416666666666" />
         <entry key="..\:/Users/Ghaly/Desktop/ITI Final Project/Amun-Store/app/src/main/res/layout/list_toolbar_view.xml" value="0.19635416666666666" />
         <entry key="..\:/Users/Ghaly/Desktop/ITI Final Project/Amun-Store/app/src/main/res/layout/slider_item.xml" value="0.19635416666666666" />
+
         <entry key="..\:/Users/Ghaly/Desktop/ITI Final Project/Final Project/app/src/main/res/layout/activity_main.xml" value="0.19635416666666666" />
       </map>
     </option>
