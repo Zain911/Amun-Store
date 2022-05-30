@@ -15,9 +15,6 @@ class SearchAdapter(
 ) :
     RecyclerView.Adapter<SearchAdapter.ViewHolder>() {
 
-    private var selectedItem: ViewHolder? = null
-    private var selected = 0
-
     @SuppressLint("NotifyDataSetChanged")
     fun changeList(list: MutableList<Product>) {
         productList.clear()
@@ -45,7 +42,7 @@ class SearchAdapter(
             .placeholder(R.drawable.tshirt)
             .into(holder.view.brandImageView)
 
-        holder.view.brandNameTextView.text = productList[position].title?.slice(1..12)
+        holder.view.brandNameTextView.text = productList[position].title?.slice(0..13)
         holder.view.root.setOnClickListener { itemOnClickProduct(item) }
     }
 

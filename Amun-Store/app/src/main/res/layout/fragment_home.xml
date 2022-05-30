@@ -6,41 +6,41 @@
     android:layout_height="match_parent"
     android:background="@color/gray_light"
     tools:context=".ui.home.HomeFragment">
-<!--
+    <!--
 
-    <androidx.coordinatorlayout.widget.CoordinatorLayout
-        android:id="@+id/SearchCoordinator"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="20dp"
-        android:background="@drawable/border_search"
-        android:padding="8dp"
-        app:cardCornerRadius="18dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/searchInputEditText"
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
+            android:id="@+id/SearchCoordinator"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@android:color/transparent"
-            android:drawableStart="@drawable/ic_baseline_search_24"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/border_search"
+            android:padding="8dp"
+            app:cardCornerRadius="18dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/searchInputEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:drawableStart="@drawable/ic_baseline_search_24"
 
 
-            android:drawablePadding="8dp"
-            android:hint="@string/search_products" />
-    </androidx.coordinatorlayout.widget.CoordinatorLayout>
--->
+                android:drawablePadding="8dp"
+                android:hint="@string/search_products" />
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+    -->
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/adsViewPager"
         android:layout_width="match_parent"
-        android:layout_height="250dp"
-        android:layout_marginTop="4dp"
 
+        android:layout_height="260dp"
+        tools:background="@drawable/ads5"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -48,16 +48,20 @@
     <androidx.appcompat.widget.LinearLayoutCompat
         android:id="@+id/linearLayoutDots"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="36dp"
+        android:layout_marginTop="220dp"
         android:background="@color/white"
         android:gravity="center"
-        app:layout_constraintBottom_toBottomOf="@+id/adsViewPager" />
+        app:layout_constraintTop_toBottomOf="@id/adsViewPager"
+        app:layout_constraintBottom_toBottomOf="@+id/adsViewPager"
+      />
 
     <TextView
         android:id="@+id/brandTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
+        android:fontFamily="casual"
         android:gravity="start"
         android:paddingStart="12dp"
         android:paddingEnd="12dp"
@@ -72,11 +76,11 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:background="@color/white"
         android:paddingTop="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/linearLayoutDots"
         app:layout_constraintStart_toStartOf="@+id/linearLayoutDots"
         app:layout_constraintTop_toBottomOf="@id/brandTextView">
