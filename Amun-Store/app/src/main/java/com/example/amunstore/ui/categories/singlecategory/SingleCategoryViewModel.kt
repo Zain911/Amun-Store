@@ -25,7 +25,7 @@ class SingleCategoryViewModel @Inject constructor(private val repo: ProductsRepo
     fun filterDataBasedOnSubCategory(category: SubCategory) {
 
         if (category.name == SubCategory.All.toString()) {
-            viewedList.value = productList.value
+            viewedList.value = productList.value?.map { it.copy() }?.let { ArrayList(it) }
         } else {
             viewedList.value = productList.value?.filter {
                 it.productType == category.serverName
