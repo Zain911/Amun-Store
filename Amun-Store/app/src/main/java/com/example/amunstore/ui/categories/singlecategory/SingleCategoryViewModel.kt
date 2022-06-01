@@ -51,6 +51,7 @@ class SingleCategoryViewModel @Inject constructor(private val repo: ProductsRepo
     )
 
     fun addItemToFavourite(product: Product){
+        product.imageSrc = product.image?.src
         repo.addProductToFavourite(product)
     }
 

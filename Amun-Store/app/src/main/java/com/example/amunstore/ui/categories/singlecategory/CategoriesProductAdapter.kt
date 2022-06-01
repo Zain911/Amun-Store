@@ -36,7 +36,7 @@ class CategoriesProductAdapter(
 
     @SuppressLint("ResourceAsColor")
     override fun onBindViewHolder(holder: ProductViewHolder, position: Int) {
-        holder.view.productNameTextView.text = productList[position].title
+        holder.view.productNameTextView.text = productList[position].title?.slice(0..10)
         Glide.with(holder.view.productImageView.context)
             .load(productList[position].image?.src)
             .placeholder(R.drawable.tshirt)
