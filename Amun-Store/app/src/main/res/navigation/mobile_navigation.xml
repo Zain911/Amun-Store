@@ -26,7 +26,12 @@
         android:id="@+id/navigation_categories"
         android:name="com.example.amunstore.ui.categories.CategoriesFragment"
         android:label="@string/title_categories"
-        tools:layout="@layout/fragment_categories" />
+        tools:layout="@layout/fragment_categories" >
+        <action
+            android:id="@+id/action_navigation_categories_to_productDetailsFragment"
+            app:destination="@id/productDetailsFragment" />
+
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_notifications"
@@ -43,6 +48,9 @@
         <argument
             android:name="smartCollection"
             app:argType="com.example.example.SmartCollections" />
+        <action
+            android:id="@+id/action_productVendor_to_productDetailsFragment"
+            app:destination="@id/productDetailsFragment" />
     </fragment>
 
     <fragment
@@ -56,4 +64,21 @@
         android:name="com.example.amunstore.ui.favourites.FavouritesFragment"
         android:label="fragment_favourites"
         tools:layout="@layout/fragment_favourites" />
+    <fragment
+        android:id="@+id/productDetailsFragment"
+        tools:layout="@layout/fragment_product_details"
+        android:name="com.example.amunstore.ui.details.ProductDetailsFragment"
+        android:label="ProductDetailsFragment">
+        <argument
+            android:name="productId"
+            app:argType="long" />
+    </fragment>
+    <fragment
+        android:id="@+id/singleCategoryFragment"
+        android:name="com.example.amunstore.ui.categories.singlecategory.SingleCategoryFragment"
+        android:label="fragment_single_category"
+        tools:layout="@layout/fragment_single_category" >
+          </fragment>
+
+
 </navigation>
