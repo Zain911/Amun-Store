@@ -10,26 +10,32 @@ import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import com.example.amunstore.R
-import com.example.amunstore.databinding.FragmentProductDetailsBinding
+import com.example.amunstore.data.model.details.ProductDetailsResponse
 import com.example.amunstore.data.model.product.Images
+import com.example.amunstore.databinding.FragmentProductDetailsBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Job
+import java.text.ParseException
+import java.text.SimpleDateFormat
+import java.util.*
+
 
 @AndroidEntryPoint
-class ProductDetailsFragment(val productID: Long) : Fragment() {
+class ProductDetailsFragment() : Fragment() {
 
     private val viewModel: ProductDetailsViewModel by viewModels()
     private var _binding: FragmentProductDetailsBinding? = null
     private val binding get() = _binding!!
 
     //viewPager components
-    private lateinit var  productImagesList : List<Images>
-    private lateinit var job: Job
+    private lateinit var productImagesList: List<Images>
     private lateinit var viewPager: ViewPager2
     private lateinit var viewPagerAdapter: DetailsSliderViewPagerAdapter
-    private lateinit var dots : Array<TextView?>
+    private lateinit var dots: Array<TextView?>
     private var onImageSliderChange = object : ViewPager2.OnPageChangeCallback() {
         override fun onPageSelected(position: Int) {
             super.onPageSelected(position)
@@ -37,6 +43,8 @@ class ProductDetailsFragment(val productID: Long) : Fragment() {
         }
     }
 
+    var adapter: ProductDetailsAdapter? = null
+    lateinit var recyclerView: RecyclerView
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -45,31 +53,19 @@ class ProductDetailsFragment(val productID: Long) : Fragment() {
         _binding = FragmentProductDetailsBinding.inflate(inflater, container, false)
         val root: View = binding.root
         viewPager = binding.productImageView
-        viewModel.getProductDetails(productID)
+        viewModel.getProductDetails(savedInstanceState?.getLong(getString(R.string.pro_id))
+            ?: 7782820643045)
+
+        recyclerView = binding.productListView
 
         viewModel.productDetails.observe(viewLifecycleOwner) {
-            if (it != null) {
-                binding.productTitleText.text = it.product.title
-                binding.productVendorText.text = it.product.vendor
-                binding.productPriceText.text = it.product.variants[0].price
-                binding.productBodyHtmlText.text = it.product.bodyHtml
-                binding.productStatusText.text = it.product.status   // need some equipments
-
-                //inflating view pager and it's dot from the respond of the api
-                productImagesList = it.product.images
-                dots =arrayOfNulls<TextView>(productImagesList.size)
-                viewPagerAdapter = DetailsSliderViewPagerAdapter(productImagesList)
-                viewPager.apply {
-                    adapter = viewPagerAdapter
-                    registerOnPageChangeCallback(onImageSliderChange)
-
-                }
-            }
+            setDataToScreen(it)
         }
 
         viewModel.errorMessage.observe(viewLifecycleOwner) {
             Toast.makeText(context, it, Toast.LENGTH_LONG).show()
         }
+
         return root
     }
 
@@ -100,7 +96,37 @@ class ProductDetailsFragment(val productID: Long) : Fragment() {
         super.onDestroyView()
         viewPager.unregisterOnPageChangeCallback(onImageSliderChange)
         _binding = null
-        job.cancel()
+    }
+
+    fun setDataToScreen(it : ProductDetailsResponse?){
+        if (it != null) {
+            binding.productTitleText.text = it.product.title
+            binding.productVendorText.text = it.product.vendor
+            binding.productPriceText.text =
+                "${it.product.variants[0].price} ${viewModel.getCurrencyInfoForDefaultLocale()}"
+            binding.productBodyHtmlText.text = it.product.bodyHtml
+            binding.productDateTxt.text = viewModel.modifyDateLayout(it.product.createdAt.toString())
+            // to make buy button invisible if the priduct is inactive
+            if (!it.product.status.equals("active")) {
+                binding.productBuyButton.visibility = View.INVISIBLE
+                binding.productBuyButton.text = getString(R.string.not_available)
+            }
+
+            //inflating view pager and it's dot from the respond of the api
+            productImagesList = it.product.images
+            dots = arrayOfNulls<TextView>(productImagesList.size)
+            viewPagerAdapter = DetailsSliderViewPagerAdapter(productImagesList)
+            viewPager.apply {
+                adapter = viewPagerAdapter
+                registerOnPageChangeCallback(onImageSliderChange)
+            }
+
+            val linear = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+            recyclerView.layoutManager = linear
+            adapter = ProductDetailsAdapter(it)
+            binding.productListView.adapter = adapter
+
+        }
     }
 
 }

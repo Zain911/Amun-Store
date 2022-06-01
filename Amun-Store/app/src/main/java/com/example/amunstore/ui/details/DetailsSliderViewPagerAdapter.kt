@@ -25,7 +25,7 @@ class DetailsSliderViewPagerAdapter(private val imageList: List<Images>) :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ImageViewHolder {
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.slider_item, parent, false)
+            .inflate(R.layout.details_slider_item, parent, false)
         return ImageViewHolder(view)
     }
 
