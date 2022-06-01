@@ -13,7 +13,7 @@ import com.example.amunstore.databinding.ItemBrandsBinding
 
 class SearchAdapter(
     private var productList: MutableList<Product>,
-    val itemOnClickProduct: (Product) -> Unit
+    val navigation: (Product) -> Unit
 ) :
     RecyclerView.Adapter<SearchAdapter.ViewHolder>() {
 
@@ -46,7 +46,7 @@ class SearchAdapter(
             .into(holder.view.brandImageView)
 
         holder.view.brandNameTextView.text = productList[position].title?.slice(0..13)
-        holder.view.root.setOnClickListener { itemOnClickProduct(item) }
+        holder.view.root.setOnClickListener { navigation(item) }
     }
 
     override fun getItemCount() = productList.size
