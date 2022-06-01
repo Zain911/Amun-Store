@@ -2,6 +2,7 @@ package com.example.amunstore.ui.details
 
 import android.os.Bundle
 import android.text.Html
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,12 +11,14 @@ import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import com.example.amunstore.R
 import com.example.amunstore.data.model.details.ProductDetailsResponse
 import com.example.amunstore.data.model.product.Images
+import com.example.amunstore.data.model.product.Product
 import com.example.amunstore.databinding.FragmentProductDetailsBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Job
@@ -30,6 +33,7 @@ class ProductDetailsFragment() : Fragment() {
     private val viewModel: ProductDetailsViewModel by viewModels()
     private var _binding: FragmentProductDetailsBinding? = null
     private val binding get() = _binding!!
+    private val args: ProductDetailsFragmentArgs by navArgs()
 
     //viewPager components
     private lateinit var productImagesList: List<Images>
@@ -48,13 +52,12 @@ class ProductDetailsFragment() : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View {
         _binding = FragmentProductDetailsBinding.inflate(inflater, container, false)
         val root: View = binding.root
         viewPager = binding.productImageView
-        viewModel.getProductDetails(savedInstanceState?.getLong(getString(R.string.pro_id))
-            ?: 7782820643045)
+        viewModel.getProductDetails(args.productId)
 
         recyclerView = binding.productListView
 

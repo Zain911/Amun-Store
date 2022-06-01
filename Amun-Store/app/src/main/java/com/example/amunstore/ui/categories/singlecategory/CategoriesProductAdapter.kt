@@ -12,8 +12,9 @@ import com.example.amunstore.data.model.product.Product
 class CategoriesProductAdapter(
     private var productList: MutableList<Product>,
     val addProductToFavourite: (Product) -> Unit,
-    val removeProductFromFavourite: (Product) -> Unit
-) :
+    val removeProductFromFavourite: (Product) -> Unit,
+    val navigation: (Product) -> Unit,
+    ) :
     RecyclerView.Adapter<CategoriesProductAdapter.ProductViewHolder>() {
 
     @SuppressLint("NotifyDataSetChanged")
@@ -60,6 +61,7 @@ class CategoriesProductAdapter(
             }
             notifyItemChanged(position)
         }
+        holder.view.root.setOnClickListener { navigation(productList[position]) }
 
     }
 

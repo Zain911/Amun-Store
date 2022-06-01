@@ -8,16 +8,21 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.coroutineScope
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.amunstore.databinding.FragmentSingleCategoryBinding
 import com.example.amunstore.data.model.product.Product
+import com.example.amunstore.ui.vendorproduct.ProductVendorFragmentDirections
 import com.example.example.CustomCollections
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class SingleCategoryFragment(private val category: CustomCollections) : Fragment() {
+class SingleCategoryFragment(
+    private val category: CustomCollections,
+    val navigation: (Product) -> Unit,
+) : Fragment() {
 
     private val viewModel: SingleCategoryViewModel by viewModels()
 
@@ -31,7 +36,7 @@ class SingleCategoryFragment(private val category: CustomCollections) : Fragment
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View {
         _binding = FragmentSingleCategoryBinding.inflate(inflater, container, false)
         val root: View = binding.root
@@ -40,6 +45,8 @@ class SingleCategoryFragment(private val category: CustomCollections) : Fragment
             viewModel.addItemToFavourite(it)
         }, {
             viewModel.removeItemFromFavourite(it)
+        }, {
+            navigation(it)
         })
         binding.categoriesProductsRecyclerView.layoutManager = GridLayoutManager(context, 2)
         binding.categoriesProductsRecyclerView.adapter = productsAdapter

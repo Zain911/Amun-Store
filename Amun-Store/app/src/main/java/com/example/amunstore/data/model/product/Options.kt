@@ -1,6 +1,7 @@
 package com.example.amunstore.data.model.product
 
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 
 data class Options (
