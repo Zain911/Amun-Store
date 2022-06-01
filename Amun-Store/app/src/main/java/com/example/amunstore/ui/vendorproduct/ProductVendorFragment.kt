@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.coroutineScope
+import androidx.navigation.Navigation
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.example.amunstore.R
@@ -25,17 +26,36 @@ class ProductVendorFragment : Fragment(R.layout.fragment_product_vendor) {
     private lateinit var productAdapter: VendorProductAdapter
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View {
+
         _binding = FragmentProductVendorBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        productAdapter = VendorProductAdapter(arrayListOf())
+        productAdapter = VendorProductAdapter(arrayListOf(), {
+            viewModel.addItemToFavourite(it)
+        }, {
+            viewModel.removeItemFromFavourite(it)
+        },
+            {
+                val action =
+                    it.id?.let { it1 ->
+                        ProductVendorFragmentDirections.actionProductVendorToProductDetailsFragment(
+                            it1)
+                    }
+                view?.let { it1 ->
+                    action?.let { it2 ->
+                        Navigation.findNavController(it1).navigate(it2)
+                    }
+                }
+                // nav?.navigate(action)
+            }
+        )
         binding.nameVendorTextView.text = args.smartCollection.title
 
         context?.let {
             Glide.with(binding.imageVendorAppImageView.context)
-             .load(args.smartCollection.image?.src)
+                .load(args.smartCollection.image?.src)
 
                 .placeholder(R.drawable.brand_mock)
                 .into(binding.imageVendorAppImageView)
@@ -53,3 +73,4 @@ class ProductVendorFragment : Fragment(R.layout.fragment_product_vendor) {
 
 
 }
+

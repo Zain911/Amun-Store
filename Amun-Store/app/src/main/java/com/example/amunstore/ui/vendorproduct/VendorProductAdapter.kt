@@ -9,7 +9,12 @@ import com.example.amunstore.R
 import com.example.amunstore.databinding.ItemCategoryProductBinding
 import com.example.amunstore.data.model.product.Product
 
-class VendorProductAdapter(private var productList: MutableList<Product>) :
+class VendorProductAdapter(
+    private var productList: MutableList<Product>,
+    val addProductToFavourite: (Product) -> Unit,
+    val removeProductFromFavourite: (Product) -> Unit,
+    val navigation:(Product)->Unit
+) :
     RecyclerView.Adapter<VendorProductAdapter.ProductViewHolder>() {
 
     @SuppressLint("NotifyDataSetChanged")
@@ -27,6 +32,7 @@ class VendorProductAdapter(private var productList: MutableList<Product>) :
         val binding =
             ItemCategoryProductBinding.inflate(LayoutInflater.from(parent.context), parent, false)
 
+
         return ProductViewHolder(binding)
     }
 
@@ -36,6 +42,25 @@ class VendorProductAdapter(private var productList: MutableList<Product>) :
             .load(productList[position].image?.src)
             .placeholder(R.drawable.tshirt)
             .into(holder.view.productImageView)
+        if (productList[position].isFavourite) {
+            holder.view.favouriteButtonImageView.setImageResource(R.drawable.ic_baseline_favorite_24)
+            holder.view.favouriteButtonImageView.setColorFilter(R.color.darkRed)
+        } else {
+            holder.view.favouriteButtonImageView.setImageResource(R.drawable.ic_baseline_favorite_border_24)
+            holder.view.favouriteButtonImageView.setColorFilter(R.color.black)
+        }
+
+        holder.view.favouriteButtonImageView.setOnClickListener {
+            if (productList[position].isFavourite) {
+                productList[position].isFavourite = false
+                removeProductFromFavourite(productList[position])
+            } else {
+                productList[position].isFavourite = true
+                addProductToFavourite(productList[position])
+            }
+            notifyItemChanged(position)
+        }
+        holder.view.root.setOnClickListener { navigation(productList[position]) }
     }
 
     override fun getItemCount() = productList.size
