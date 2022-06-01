@@ -10,6 +10,7 @@ import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.coroutineScope
+import androidx.navigation.Navigation
 import com.example.amunstore.R
 import com.example.amunstore.data.model.product.Product
 import com.example.amunstore.databinding.FragmentSearchBinding
@@ -40,7 +41,15 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
             viewModel.getProduct()
         }
         searchAdapter = SearchAdapter(arrayListOf()) {
-            it
+            val action = it.id?.let { it1 ->
+                SearchFragmentDirections.actionSearchFragmentToProductDetailsFragment(it1)
+            }
+            view?.let { it1 ->
+                action?.let { it2 ->
+                    Navigation.findNavController(it1).navigate(it2)
+                }
+            }
+
         }
 
         binding.itemsRecView.adapter = searchAdapter
