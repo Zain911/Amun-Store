@@ -42,12 +42,13 @@ class MainActivity : AppCompatActivity() {
         navView.setupWithNavController(navController)
 
         binding.searchIcon.setOnClickListener {
-
             navController.navigate(R.id.searchFragment)
-
-
-            // viewmodel.printLog()
         }
+
+        binding.favourite.favouriteButton.setOnClickListener{
+            navController.navigate(R.id.favouriteFragment)
+        }
+
         navController.addOnDestinationChangedListener { _, nd: NavDestination, _ ->
             // the IDs of fragments as defined in the `navigation_graph`
             if (nd.id == R.id.navigation_home || nd.id == R.id.navigation_categories

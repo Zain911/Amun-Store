@@ -25,9 +25,6 @@ class ProductsRepository @Inject constructor(
 
 
 
-
-
-
     override suspend fun getAllFavouriteProducts() = productsDao.getAllFavourite()
 
     override fun addProductToFavourite(product: Product) {
@@ -35,7 +32,7 @@ class ProductsRepository @Inject constructor(
     }
 
     override fun removeProductFromFavourite(product: Product) {
-        productsDao.addItemToFavourite(product)
+        productsDao.delete(product)
     }
 
 

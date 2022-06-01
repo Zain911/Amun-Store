@@ -16,7 +16,7 @@ interface ProductsRepositoryInterface {
     //for details about product
     suspend fun getProductsByID(byId: Long): Response<ProductDetailsResponse>
 
-    suspend fun getAllFavouriteProducts() : LiveData<List<Product>>
+    suspend fun getAllFavouriteProducts() : List<Product>
 
     fun addProductToFavourite(product: Product)
 

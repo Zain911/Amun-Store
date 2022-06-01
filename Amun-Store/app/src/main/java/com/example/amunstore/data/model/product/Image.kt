@@ -2,9 +2,7 @@ package com.example.amunstore.data.model.product
 
 import com.google.gson.annotations.SerializedName
 
-
 data class Image (
-
   @SerializedName("id"                   ) var id                : Long?              = null,
   @SerializedName("product_id"           ) var productId         : Long?              = null,
   @SerializedName("position"             ) var position          : Int?              = null,
@@ -16,5 +14,4 @@ data class Image (
   @SerializedName("src"                  ) var src               : String?           = null,
   @SerializedName("variant_ids"          ) var variantIds        : ArrayList<String> = arrayListOf(),
   @SerializedName("admin_graphql_api_id" ) var adminGraphqlApiId : String?           = null
-
 )

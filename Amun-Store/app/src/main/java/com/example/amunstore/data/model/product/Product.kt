@@ -14,7 +14,6 @@ data class Product(
     @ColumnInfo(name = "id")
     @SerializedName("id") var id: Long? = null,
 
-
     @ColumnInfo(name = "title")
     @SerializedName("title") var title: String? = null,
     @SerializedName("body_html") var bodyHtml: String? = null,
@@ -32,6 +31,7 @@ data class Product(
     @SerializedName("status") var status: String? = null,
     @SerializedName("published_scope") var publishedScope: String? = null,
     @SerializedName("tags") var tags: String? = null,
+    @Ignore
     @SerializedName("admin_graphql_api_id") var adminGraphqlApiId: String? = null,
     @Ignore
     @SerializedName("variants") var variants: ArrayList<Variants> = arrayListOf(),
@@ -41,6 +41,9 @@ data class Product(
     @SerializedName("images") var images: ArrayList<Images> = arrayListOf(),
     @Ignore
     @SerializedName("image") var image: Image? = Image(),
+
+    @ColumnInfo(name = "imageSrc")
+    var imageSrc: String? = "",
 
     @ColumnInfo(name = "isFavourite")
     var isFavourite: Boolean = false

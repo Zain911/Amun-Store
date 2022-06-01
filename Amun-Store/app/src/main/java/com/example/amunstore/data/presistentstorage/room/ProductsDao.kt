@@ -12,7 +12,7 @@ import com.example.amunstore.data.model.product.Product
 interface ProductsDao {
 
     @Query("SELECT * FROM product WHERE isFavourite = :isFavourite")
-    fun getAllFavourite(isFavourite: Boolean = true): LiveData<List<Product>>
+    fun getAllFavourite(isFavourite: Boolean = true): List<Product>
 
     @Query("SELECT * FROM product WHERE id IN (:productId)")
     fun loadAllByIds(productId: IntArray): List<Product>
