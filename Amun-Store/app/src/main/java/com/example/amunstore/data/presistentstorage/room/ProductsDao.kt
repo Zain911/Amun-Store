@@ -1,6 +1,5 @@
 package com.example.amunstore.data.presistentstorage.room
 
-import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
@@ -27,5 +26,5 @@ interface ProductsDao {
     fun addItemToFavourite(product: Product)
 
     @Query("SELECT * From Product WHERE (:productId)=id")
-    fun getProductById(productId : Long) : Product
+    fun getProductById(productId : Long) : Product?
 }

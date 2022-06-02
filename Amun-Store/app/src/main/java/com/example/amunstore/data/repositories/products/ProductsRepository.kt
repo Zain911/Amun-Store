@@ -34,12 +34,14 @@ class ProductsRepository @Inject constructor(
         productsDao.delete(product)
     }
 
-
-
     override fun isProductFavourite(id: Long): Boolean {
-        //don't remove elvis operator it will crash it is just a bug from the android :(
-        val product = productsDao.getProductById(id) ?: return false
-        return product.isFavourite
+        val product = productsDao.getProductById(id)
+        product.let {
+            if (it != null) {
+                return it.isFavourite
+            }
+        }
+        return false
     }
 
 
