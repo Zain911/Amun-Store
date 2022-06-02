@@ -78,6 +78,7 @@
     <string name="sign_in">Sign in</string>
     <string name="signup_sucessful">Signup Successful!</string>
     <string name="password_updated_successfully">Password updated Successfully!</string>
+    <string name="confirm_password">Confirm Password</string>
 
 
 </resources>

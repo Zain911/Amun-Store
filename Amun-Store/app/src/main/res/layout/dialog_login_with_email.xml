@@ -36,28 +36,24 @@
 
     <com.google.android.material.textfield.TextInputLayout
         app:passwordToggleEnabled="true"
-        app:passwordToggleTintMode="@drawable/show_password_selector"
         android:background="@drawable/round_corners"
-        android:padding="16dp"
         android:id="@+id/dialogLogin_passwordEdt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
         android:drawableStart="@drawable/ic_baseline_lock_24"
-        android:ems="10"
-        android:hint="@string/password"
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="@+id/dialogLogin_emailIdEdt"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/dialogLogin_emailIdEdt"
         app:layout_constraintTop_toBottomOf="@+id/dialogLogin_emailIdEdt" >
 
-        <com.google.android.material.textfield.TextInputEditText
+        <androidx.appcompat.widget.AppCompatEditText
+            android:layout_margin="16dp"
             android:drawableStart="@drawable/ic_baseline_lock_24"
             android:background="@drawable/round_corners"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:inputType="textPassword" />
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:hint="@string/password" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
