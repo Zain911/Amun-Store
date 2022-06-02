@@ -8,7 +8,7 @@
     <!--    //sign in and sign out keywords-->
     <string name="log_in">Log in</string>
     <string name="login_with_one_of_the_following_options">Login with one of the following options</string>
-    <string name="don_t_have_an_account">Don\'t have an account?</string>
+    <string name="don_t_have_an_account_yet">Don\'t have an account yet?</string>
     <string name="sign_up">Sign up</string>
     <string name="or">Or</string>
     <string name="sign_up_with_one_of_the_following_options">Sign up with one of the following options</string>
@@ -52,5 +52,32 @@
     <string name="product_option">Product options</string>
     <string name="not_available">Not available</string>
     <string name="pro_id" translatable="false">pro_id_bundle</string>
+
+    <!--    // new sign in and sign out keywords-->
+    <string name="login_successful">Login Successful!</string>
+    <string name="done">Done</string>
+    <string name="login_with_email">Login with Email</string>
+    <string name="email_id">Email Id</string>
+    <string name="forgot_password">Forgot Password ?</string>
+    <string name="login">Login</string>
+    <string name="sign_up_with_email">Sign up with email</string>
+    <string name="create_new_password">Create New Password</string>
+    <string name="new_password">New Password</string>
+    <string name="confirm_new_password">Confirm New Password</string>
+    <string name="update_password">Update Password</string>
+    <string name="enter_your_email_id_for_the_verification_process_nwe_will_send_4_digits_code_to_your_email">Enter your email id for the verification process,\nWe will send 4 digits code to your email</string>
+    <string name="continu">Continue</string>
+    <string name="login_to_a_m_u_n">Login to A M U N</string>
+    <string name="login_with_google">Login with Google</string>
+    <string name="login_with_facebook">Login with Facebook</string>
+    <string name="already_have_an_account">Already have an account ?</string>
+    <string name="signup_to_a_m_u_n">Signup to A M U N</string>
+    <string name="signup_with_google">Signup with Google</string>
+    <string name="signup_with_facebook">Signup with Facebook</string>
+    <string name="signup_with_email">Signup with Email</string>
+    <string name="sign_in">Sign in</string>
+    <string name="signup_sucessful">Signup Successful!</string>
+    <string name="password_updated_successfully">Password updated Successfully!</string>
+
 
 </resources>
