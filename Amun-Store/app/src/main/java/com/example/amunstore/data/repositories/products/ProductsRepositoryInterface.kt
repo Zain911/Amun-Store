@@ -21,5 +21,7 @@ interface ProductsRepositoryInterface {
     fun addProductToFavourite(product: Product)
 
     fun removeProductFromFavourite(product: Product)
+
+    fun isProductFavourite(id : Long) : Boolean
     
 }

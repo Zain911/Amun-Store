@@ -25,4 +25,7 @@ interface ProductsDao {
 
     @Insert(onConflict = REPLACE)
     fun addItemToFavourite(product: Product)
+
+    @Query("SELECT * From Product WHERE (:productId)=id")
+    fun getProductById(productId : Long) : Product
 }

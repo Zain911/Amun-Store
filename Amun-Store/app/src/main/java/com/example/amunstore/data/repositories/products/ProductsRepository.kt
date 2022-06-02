@@ -24,7 +24,6 @@ class ProductsRepository @Inject constructor(
         networkServices.getProductsByID(byId)
 
 
-
     override suspend fun getAllFavouriteProducts() = productsDao.getAllFavourite()
 
     override fun addProductToFavourite(product: Product) {
@@ -33,6 +32,14 @@ class ProductsRepository @Inject constructor(
 
     override fun removeProductFromFavourite(product: Product) {
         productsDao.delete(product)
+    }
+
+
+
+    override fun isProductFavourite(id: Long): Boolean {
+        //don't remove elvis operator it will crash it is just a bug from the android :(
+        val product = productsDao.getProductById(id) ?: return false
+        return product.isFavourite
     }
 
 

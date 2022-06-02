@@ -18,8 +18,23 @@ class SingleCategoryViewModel @Inject constructor(private val repo: ProductsRepo
     val viewedList = MutableLiveData<List<Product>?>()
 
     suspend fun getProductByCategory(category: CustomCollections) {
-        productList.postValue(repo.getProductByCategory(category).body()?.products)
-        viewedList.postValue(repo.getProductByCategory(category).body()?.products)
+
+        val list = repo.getProductByCategory(category).body()?.products
+
+        if (list != null) {
+            checkForFavouriteItems(list)
+        }
+
+        productList.postValue(list)
+        viewedList.postValue(list)
+    }
+
+    private fun checkForFavouriteItems(list: ArrayList<Product>) {
+        for (product in list) {
+            product.id?.let {
+                product.isFavourite = repo.isProductFavourite(it)
+            }
+        }
     }
 
     fun filterDataBasedOnSubCategory(category: SubCategory) {
@@ -50,12 +65,12 @@ class SingleCategoryViewModel @Inject constructor(private val repo: ProductsRepo
         SubCategory.Shirts
     )
 
-    fun addItemToFavourite(product: Product){
+    fun addItemToFavourite(product: Product) {
         product.imageSrc = product.image?.src
         repo.addProductToFavourite(product)
     }
 
-    fun removeItemFromFavourite(product: Product){
+    fun removeItemFromFavourite(product: Product) {
         repo.removeProductFromFavourite(product)
     }
 
