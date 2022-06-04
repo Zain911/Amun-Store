@@ -7,10 +7,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
-import androidx.compose.ui.graphics.Paint
+import androidx.activity.OnBackPressedCallback
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.NavController
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -19,6 +21,7 @@ import com.example.amunstore.R
 import com.example.amunstore.data.model.details.ProductDetailsResponse
 import com.example.amunstore.data.model.product.Images
 import com.example.amunstore.databinding.FragmentProductDetailsBinding
+import com.google.android.material.appbar.MaterialToolbar
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -47,7 +50,7 @@ class ProductDetailsFragment() : Fragment() {
     lateinit var colorRecyclerView: RecyclerView
     lateinit var sizeRecyclerView: RecyclerView
 
-
+    lateinit var topAppBar: MaterialToolbar
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -61,6 +64,30 @@ class ProductDetailsFragment() : Fragment() {
 
         colorRecyclerView=binding.productProductPhotsRecycler
         sizeRecyclerView = binding.productSizeRecycler
+
+        topAppBar   =binding.topAppBar
+
+        topAppBar.setNavigationOnClickListener {
+         this.findNavController().popBackStack()
+        }
+
+        topAppBar.setOnMenuItemClickListener { menuItem ->
+            when (menuItem.itemId) {
+                R.id.favorite -> {
+                    // Handle edit text press
+                    true
+                }
+                R.id.share -> {
+                    // Handle favorite icon press
+                    true
+                }
+                R.id.bag -> {
+                    // Handle more item (inside overflow menu) press
+                    true
+                }
+                else -> false
+            }
+        }
 
         viewModel.productDetails.observe(viewLifecycleOwner) {
             initFragmentAdapters(it)
