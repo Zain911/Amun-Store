@@ -25,7 +25,6 @@ class ProductDetailsColorAdapter (private val arrayList: ProductDetailsResponse?
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
         Glide.with(holder.imageView.context).load(arrayList?.product!!.images[position].src).into(holder.imageView)
-
     }
 
     // return the number of the items in the list

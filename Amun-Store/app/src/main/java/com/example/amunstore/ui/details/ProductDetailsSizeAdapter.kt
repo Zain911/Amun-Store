@@ -8,15 +8,18 @@ import android.widget.CheckedTextView
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.widget.CheckedTextViewCompat
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.amunstore.R
 import com.example.amunstore.data.model.details.ProductDetailsResponse
 import com.example.amunstore.data.model.product.Options
 
+
 class ProductDetailsSizeAdapter (private val arrayList:ArrayList<String> ) : RecyclerView.Adapter<ProductDetailsSizeAdapter.ViewHolder>() {
 
-    public var checkedItemPosition = -1
+
+    var checkedItemPosition = 0
     // create new views
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         // inflates the card_view_design view
@@ -41,11 +44,8 @@ class ProductDetailsSizeAdapter (private val arrayList:ArrayList<String> ) : Rec
                 holder.size.isChecked = true
                 checkedItemPosition=position
             }
-            else {
-                holder.size.isChecked = false
-                checkedItemPosition=-1
-            }
-            this.notifyDataSetChanged()
+            //update fragment
+            notifyDataSetChanged()
         }
     }
 

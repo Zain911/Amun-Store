@@ -17,7 +17,7 @@ class ProductDetailsViewModel @Inject constructor(val repository: ProductsReposi
 
     val errorMessage = MutableLiveData<String>()
     val productDetails = MutableLiveData<ProductDetailsResponse>()
-
+    val sizeChooser = MutableLiveData<Int>()
     var job: Job? = null
 
     fun getProductDetails(id: Long) {
@@ -57,5 +57,11 @@ class ProductDetailsViewModel @Inject constructor(val repository: ProductsReposi
         return currency.symbol
 
     }
+
+    fun setVarientsPosition(position:Int){
+        sizeChooser.postValue(
+            position)
+    }
+
 
 }

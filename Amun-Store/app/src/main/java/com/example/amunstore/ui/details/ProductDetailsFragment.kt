@@ -7,11 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
-import androidx.activity.OnBackPressedCallback
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -52,6 +50,7 @@ class ProductDetailsFragment() : Fragment() {
 
     lateinit var topAppBar: MaterialToolbar
 
+    lateinit var productDetails: ProductDetailsResponse
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -92,12 +91,16 @@ class ProductDetailsFragment() : Fragment() {
         viewModel.productDetails.observe(viewLifecycleOwner) {
             initFragmentAdapters(it)
             setDataToScreen(it)
-
+            productDetails =it
         }
 
         viewModel.errorMessage.observe(viewLifecycleOwner) {
             Toast.makeText(context, it, Toast.LENGTH_LONG).show()
         }
+
+//        viewModel.sizeChooser.observe(viewLifecycleOwner) {
+//            setDataToScreen(productDetails,it)
+//        }
 
         return root
     }
@@ -148,33 +151,34 @@ class ProductDetailsFragment() : Fragment() {
 
 
 
-
-
-    fun setDataToScreen(it : ProductDetailsResponse?){
+    fun setDataToScreen(it : ProductDetailsResponse? ){
+        var variantNumber:Int = sizeAdapter!!.checkedItemPosition
         if (it != null) {
-            binding.productColorTxt.text=it.product.options[1].values[0]
+            binding.productColorTxt.text= it.product.options[1].values[0]
             binding.productTitleText.text = it.product.title
             binding.productVendorText.text = it.product.vendor
-            if (sizeAdapter?.checkedItemPosition !=-1)
-            binding.productPriceText.text = "${it.product.variants[sizeAdapter!!.checkedItemPosition].price} ${viewModel.getCurrencyInfoForDefaultLocale()}"
-            else
-                binding.productPriceText.text =   "${it.product.variants[0].price} ${viewModel.getCurrencyInfoForDefaultLocale()}"
+
+            binding.productPriceText.text = "${it.product.variants[variantNumber].price} ${viewModel.getCurrencyInfoForDefaultLocale()}"
 
             binding.productProductDetailsTxt.text = "\u2022 ${it.product.bodyHtml}"
 
-            if (it.product.variants[0].compareAtPrice.isNullOrEmpty()) {
+            //discount
+            if (it.product.variants[variantNumber].compareAtPrice.isNullOrEmpty()) {
                 binding.productOldPriceTxt.visibility = View.INVISIBLE
                 binding.productPricePercentTxt.visibility = View.INVISIBLE
             }
             else {
-                binding.productOldPriceTxt.text = it.product.variants[0].compareAtPrice
+                binding.productOldPriceTxt.text = it.product.variants[variantNumber].compareAtPrice
                 binding.productOldPriceTxt.setPaintFlags( binding.productOldPriceTxt.getPaintFlags()  );
-                val percent :Int = it.product.variants[0].compareAtPrice!!.toInt() / it.product.variants[0].price?.toInt()!! *100
+                val percent :Int = it.product.variants[variantNumber].compareAtPrice!!.toInt() / it.product.variants[variantNumber].price?.toInt()!! *100
                 binding.productPricePercentTxt.text = " ${percent}% OFF"
             }
+
+            binding.productNumberOfLeftTxt.text = "ONLY ${it.product.variants[variantNumber].inventoryQuantity} LEFT"
+
             // to make buy button invisible if the priduct is inactive
             if (!it.product.status.equals("active")) {
-                binding.productBuyButton.visibility = View.INVISIBLE
+                binding.productBuyButton.isEnabled = false
                 binding.productBuyButton.text = getString(R.string.not_available)
             }
 
