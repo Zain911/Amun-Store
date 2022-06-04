@@ -52,5 +52,11 @@
     <string name="product_option">Product options</string>
     <string name="not_available">Not available</string>
     <string name="pro_id" translatable="false">pro_id_bundle</string>
+    <string name="enter_code">Enter Code</string>
+    <string name="add_to_cart">Add to cart</string>
+    <string name="delivery_options">Delivery Options</string>
+    <string name="product_details">Product Details</string>
+    <string name="size">Size</string>
+    <string name="check">CHECK</string>
 
 </resources>
