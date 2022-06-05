@@ -10,6 +10,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.coroutineScope
 import com.example.amunstore.R
 import com.example.amunstore.data.model.product.Product
+import androidx.lifecycle.ViewModelProvider
 import com.example.amunstore.databinding.FragmentProfileBinding
 import com.example.amunstore.ui.favourites.FavouriteListAdapter
 import dagger.hilt.android.AndroidEntryPoint
@@ -18,9 +19,12 @@ import kotlinx.coroutines.launch
 @AndroidEntryPoint
 class ProfileFragment : Fragment() {
 
-    private val viewModel: ProfileViewModel by viewModels()
+  private val viewModel: ProfileViewModel by viewModels()
 
     private var _binding: FragmentProfileBinding? = null
+
+    // This property is only valid between onCreateView and
+    // onDestroyView.
     private val binding get() = _binding!!
 
     private lateinit var favouriteListAdapter: FavouriteListAdapter
@@ -32,6 +36,8 @@ class ProfileFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        val notificationsViewModel =
+            ViewModelProvider(this).get(ProfileViewModel::class.java)
 
         _binding = FragmentProfileBinding.inflate(inflater, container, false)
         val root: View = binding.root
@@ -77,6 +83,11 @@ class ProfileFragment : Fragment() {
 
 
         //viewModel.isUserLoggedIn()
+        val textView: TextView = binding.textNotifications
+        notificationsViewModel.text.observe(viewLifecycleOwner) {
+            textView.text = it
+        }
+
         return root
     }
 
