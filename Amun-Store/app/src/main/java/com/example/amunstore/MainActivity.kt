@@ -48,6 +48,9 @@ class MainActivity : AppCompatActivity() {
         binding.favourite.favouriteButton.setOnClickListener{
             navController.navigate(R.id.favouriteFragment)
         }
+        binding.cartView.cartButton.setOnClickListener{
+            navController.navigate(R.id.cartFragment)
+        }
 
         navController.addOnDestinationChangedListener { _, nd: NavDestination, _ ->
             // the IDs of fragments as defined in the `navigation_graph`

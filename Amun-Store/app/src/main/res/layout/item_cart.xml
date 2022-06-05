@@ -105,14 +105,15 @@
         app:layout_constraintTop_toBottomOf="@id/containerCounterLinearLayout" />
 
     <TextView
+        android:id="@+id/removeBtnTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:fontFamily="sans-serif-condensed-medium"
         android:gravity="center"
         android:padding="8dp"
-        android:paddingEnd="28dp"
         android:paddingStart="4dp"
+        android:paddingEnd="28dp"
         android:text="@string/remove"
         android:textColor="@color/removeRed"
         android:textSize="14sp"
@@ -121,6 +122,16 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/seprator" />
+
+    <TextView
+        android:id="@+id/sizeTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="XXL"
+        android:layout_marginTop="12dp"
+
+        app:layout_constraintStart_toEndOf="@+id/itemCartImage"
+        app:layout_constraintTop_toBottomOf="@+id/itemCartPrice" />
 </androidx.constraintlayout.widget.ConstraintLayout>
 
 
