@@ -4,22 +4,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.amunstore.R
 import com.example.amunstore.data.model.details.ProductDetailsResponse
 
-
-
-class ProductDetailsAdapter (private val arrayList: ProductDetailsResponse) : RecyclerView.Adapter<ProductDetailsAdapter.ViewHolder>() {
+class ProductDetailsColorAdapter (private val arrayList: ProductDetailsResponse?) : RecyclerView.Adapter<ProductDetailsColorAdapter.ViewHolder>() {
 
     // create new views
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         // inflates the card_view_design view
         // that is used to hold list item
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_similar_products, parent, false)
+            .inflate(R.layout.item_product_details_color, parent, false)
 
         return ViewHolder(view)
     }
@@ -27,23 +24,18 @@ class ProductDetailsAdapter (private val arrayList: ProductDetailsResponse) : Re
     // binds the list items to a view
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
-        Glide.with(holder.imageView.context).load(arrayList.product.image?.src).into(holder.imageView)
-        holder.titles.text =  arrayList.product.options[position].name
-        holder.price.text = arrayList.product.options[position].values[0]
-
+        Glide.with(holder.imageView.context).load(arrayList?.product!!.images[position].src).into(holder.imageView)
     }
 
     // return the number of the items in the list
     override fun getItemCount(): Int {
-        return arrayList.product.options.size
+        return arrayList?.product?.images!!.size
     }
 
     // Holds the views for adding it to image and text
     class ViewHolder(ItemView: View) : RecyclerView.ViewHolder(ItemView) {
-       val imageView:ImageView = itemView.findViewById(R.id.details_image)
-        val titles:TextView = itemView.findViewById(R.id.details_name)
-        val price:TextView = itemView.findViewById(R.id.details_price)
+
+        val imageView:ImageView = itemView.findViewById(R.id.item_product_color_image)
+
     }
 }
-
-
