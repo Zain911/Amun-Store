@@ -8,7 +8,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import androidx.fragment.app.Fragment
-import  com.example.amunstore.databinding.FragmentSignupBinding
+import com.example.amunstore.databinding.FragmentSignupBinding
 import com.example.amunstore.ui.auth.AuthViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.regex.Pattern

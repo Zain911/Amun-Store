@@ -8,7 +8,7 @@
     <!--    //sign in and sign out keywords-->
     <string name="log_in">Log in</string>
     <string name="login_with_one_of_the_following_options">Login with one of the following options</string>
-    <string name="don_t_have_an_account">Don\'t have an account?</string>
+    <string name="don_t_have_an_account_yet">Don\'t have an account yet?</string>
     <string name="sign_up">Sign up</string>
     <string name="or">Or</string>
     <string name="sign_up_with_one_of_the_following_options">Sign up with one of the following options</string>
@@ -17,8 +17,7 @@
     <string name="create_account">Create account</string>
     <string name="name">Name</string>
 
-
-    <string name="wish_list">Description of favourite Image Button</string>
+    <string name="wish_list">Wish List</string>
     <string name="no_internet_connection">No Connection</string>
 
 
@@ -35,9 +34,37 @@
     <string name="brands">Brands</string>
     <string name="product_vendor">ProductVendor</string>
 
+    <string name="no_results_found">No results found</string>
+
+    <string-array name="sortArr">
+        <item>SORT</item>
     <!--    product details layout-->
-    <string name="buy">Buy</string>
+
+
 
     <!--    login and register strings-->
     <string name="preference_loggin" translatable="false">pref_loggin</string>
+    <string name="full_name">" full name"</string>
+    <string name="phone_number">Phone number</string>
+    <string name="city">City</string>
+    <string name="state_province_optional">State province optional</string>
+    <string name="post_zip_code">Post zip code</string>
+    <string name="address_line_1">address line 1</string>
+    <string name="address_line_2">address line 2</string>
+    <string name="country">Country</string>
+    <string name="save">Save</string>
+    <string name="favorite">Favourite</string>
+    <string name="share">Share</string>
+    <string name="shopping_bag">Shopping Bag</string>
+    <string name="delivery_options">Delivery Options</string>
+    <string name="enter_code">Enter Code</string>
+    <string name="check">Check</string>
+    <string name="size">Size</string>
+    <string name="product_details">Product details</string>
+    <string name="add_to_cart">Add to cart</string>
+    <string name="orders">Orders</string>
+    <string name="more">More</string>
+    <string name="zero">Zero</string>
+    <string name="remove">Remove</string>
+    <string name="welcome">Welcome</string>
 </resources>

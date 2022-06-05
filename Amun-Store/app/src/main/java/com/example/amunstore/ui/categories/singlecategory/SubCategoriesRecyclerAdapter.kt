@@ -4,9 +4,11 @@ import android.annotation.SuppressLint
 import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.example.amunstore.R
 import com.example.amunstore.databinding.ItemSubCategoriesFilterBinding
-import com.example.amunstore.model.subcategory.SubCategory
+import com.example.amunstore.data.model.subcategory.SubCategory
 
 class SubCategoriesRecyclerAdapter(
     private var list: ArrayList<SubCategory>,
@@ -42,13 +44,13 @@ class SubCategoriesRecyclerAdapter(
 
             selected = position
             // unselect previous
-            selectedItem?.view?.mainConstrainLayout?.setBackgroundColor(Color.WHITE)
-            selectedItem?.view?.subCategoryTitleTextView?.setTextColor(Color.BLACK)
+            selectedItem?.view?.mainConstrainLayout?.setBackgroundColor(ContextCompat.getColor(holder.view.mainConstrainLayout.context , R.color.subcategory_unselected_background))
+            selectedItem?.view?.subCategoryTitleTextView?.setTextColor(ContextCompat.getColor(holder.view.mainConstrainLayout.context , R.color.subcategory_unselected_text_color))
 
             selectedItem = holder
             itemOnClickFilter(list[position])
-            holder.view.mainConstrainLayout.setBackgroundColor(Color.BLACK)
-            holder.view.subCategoryTitleTextView.setTextColor(Color.WHITE)
+            selectedItem?.view?.mainConstrainLayout?.setBackgroundColor(ContextCompat.getColor(holder.view.mainConstrainLayout.context , R.color.subcategory_selected_background))
+            holder.view.subCategoryTitleTextView.setTextColor(ContextCompat.getColor(holder.view.mainConstrainLayout.context , R.color.subcategory_selected_text_color))
         }
     }
 

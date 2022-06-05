@@ -1,7 +1,7 @@
 package com.example.amunstore.ui.auth
 
 import androidx.lifecycle.ViewModel
-import com.example.amunstore.repository.users.UsersRepository
+import com.example.amunstore.data.repositories.users.UsersRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 

@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.amunstore.R
-import com.example.amunstore.model.product.Images
+import com.example.amunstore.data.model.product.Images
 import com.google.android.material.imageview.ShapeableImageView
 
 
@@ -25,7 +25,7 @@ class DetailsSliderViewPagerAdapter(private val imageList: List<Images>) :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ImageViewHolder {
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.slider_item, parent, false)
+            .inflate(R.layout.details_slider_item, parent, false)
         return ImageViewHolder(view)
     }
 

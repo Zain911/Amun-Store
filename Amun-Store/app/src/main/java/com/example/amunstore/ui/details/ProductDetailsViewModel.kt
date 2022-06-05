@@ -2,29 +2,38 @@ package com.example.amunstore.ui.details
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.amunstore.model.details.ProductDetailsResponse
-import com.example.amunstore.repository.products.ProductsRepository
+import com.example.amunstore.data.model.cart.ItemCart
+import com.example.amunstore.data.model.details.ProductDetailsResponse
+import com.example.amunstore.data.repositories.cart.CartRepository
+import com.example.amunstore.data.repositories.cart.CartRepositoryInterface
+import com.example.amunstore.data.repositories.products.ProductsRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.*
+import java.text.ParseException
+import java.text.SimpleDateFormat
+import java.util.*
 import javax.inject.Inject
 
 @HiltViewModel
-class ProductDetailsViewModel@Inject constructor(val repository: ProductsRepository) : ViewModel() {
+class ProductDetailsViewModel @Inject constructor(
+    val repository: ProductsRepository,
+    val repositoryCart: CartRepository
+) :
+    ViewModel() {
 
     val errorMessage = MutableLiveData<String>()
     val productDetails = MutableLiveData<ProductDetailsResponse>()
-
+    val sizeChooser = MutableLiveData<Int>()
     var job: Job? = null
-   // val loading = MutableLiveData<Boolean>()
 
-    fun getProductDetails(id:Long) {
+    fun getProductDetails(id: Long) {
         job = CoroutineScope(Dispatchers.IO).launch {
             val response = repository.getProductsByID(id)
             withContext(Dispatchers.Main) {
                 if (response.isSuccessful) {
                     productDetails.postValue(
                         response.body())
-                //    loading.value = false
+                    //    loading.value = false
                 } else {
                     onError("Error : ${response.message()} ")
                 }
@@ -35,12 +44,33 @@ class ProductDetailsViewModel@Inject constructor(val repository: ProductsReposit
 
     private fun onError(message: String) {
         errorMessage.value = message
-        //loading.value = false
     }
 
     override fun onCleared() {
         super.onCleared()
         job?.cancel()
+    }
+
+    @Throws(ParseException::class)
+    fun modifyDateLayout(inputDate: String): String? {
+        val date: Date = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ").parse(inputDate) as Date
+        return SimpleDateFormat("dd.MM.yyyy").format(date)
+    }
+
+    fun getCurrencyInfoForDefaultLocale(): String? {
+        val defaultLocale = Locale.getDefault()
+        val currency = Currency.getInstance(defaultLocale)
+        return currency.symbol
+
+    }
+
+    fun setVarientsPosition(position: Int) {
+        sizeChooser.postValue(
+            position)
+    }
+
+   suspend fun addToCart(itemCart: ItemCart) {
+        repositoryCart.addItem(itemCart)
     }
 
 

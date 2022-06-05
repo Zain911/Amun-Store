@@ -18,6 +18,7 @@
         android:src="@drawable/ic_baseline_shopping_cart_24"
         android:contentDescription="@string/wish_list" />
     <TextView
+        android:visibility="gone"
         android:background="@drawable/order_update_status_background_shape"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"

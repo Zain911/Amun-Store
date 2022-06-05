@@ -12,7 +12,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import com.example.amunstore.R
-import com.example.amunstore.databinding.FragmentSigninBinding
+import com.example.amunstore.databinding.FragmentLoginBinding
 import com.example.amunstore.ui.auth.AuthViewModel
 import com.example.amunstore.ui.details.ProductDetailsFragment
 import dagger.hilt.android.AndroidEntryPoint
@@ -20,7 +20,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class SigninFragment : Fragment() {
 
-    private var _binding: FragmentSigninBinding? = null
+    private var _binding: FragmentLoginBinding? = null
     private val binding get() = _binding!!
     private lateinit var viewModel: AuthViewModel
 
@@ -34,11 +34,8 @@ class SigninFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentSigninBinding.inflate(inflater, container, false)
+        _binding = FragmentLoginBinding.inflate(inflater, container, false)
         val root: View = binding.root
-        loginBtn = binding.signinLogin
-        loginBtn.setOnClickListener {  setFragment() ;
-            Log.v("F_U" ,"button pressed") }
 
 //        userNameEdt = binding.loginEditUserName
 //        passwordEdt = binding.loginEditPassword
@@ -100,20 +97,6 @@ class SigninFragment : Fragment() {
 //    }
 
 
-
-    fun setFragment() {
-        val productID  = 7782820643045
-        // Create new fragment and transaction
-        val newFragment: Fragment = ProductDetailsFragment(productID)
-        val transaction: FragmentTransaction = parentFragmentManager.beginTransaction()
-
-        // Replace whatever is in the fragment_container view with this fragment, and add the transaction to the back stack
-        transaction.replace(R.id.nav_auth_fragment, newFragment)
-        transaction.addToBackStack(null)
-
-        // Commit the transaction
-        transaction.commit()
-    }
 
 
 }
