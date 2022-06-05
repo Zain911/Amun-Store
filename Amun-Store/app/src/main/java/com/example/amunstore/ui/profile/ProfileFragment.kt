@@ -83,10 +83,6 @@ class ProfileFragment : Fragment() {
 
 
         //viewModel.isUserLoggedIn()
-        val textView: TextView = binding.textNotifications
-        notificationsViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
-        }
 
         return root
     }
