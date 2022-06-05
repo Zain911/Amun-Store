@@ -62,5 +62,6 @@
     <string name="shopping_bag">Shopping bag</string>
     <string name="orders">Orders</string>
     <string name="more">More</string>
+    <string name="welcome">Welcome,</string>
 
 </resources>
