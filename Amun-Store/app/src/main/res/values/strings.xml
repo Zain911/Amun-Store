@@ -53,4 +53,18 @@
     <string name="not_available">Not available</string>
     <string name="pro_id" translatable="false">pro_id_bundle</string>
 
+    <string name="full_name">*FULL NAME</string>
+    <string name="category">Category</string>
+    <string name="shop">Shop</string>
+    <string name="checkout">CHECKOUT</string>
+    <string name="save">save</string>
+    <string name="phone_number">*Phone Number</string>
+    <string name="city">*City</string>
+    <string name="address_line_2">Address Line 2</string>
+    <string name="post_zip_code">*Post/Zip Code</string>
+    <string name="address_line_1">*Address Line 1</string>
+    <string name="state_province_optional">*State/province</string>
+    <string name="country">*Country</string>
+    <string name="remove">Remove</string>
+    <string name="zero">0</string>
 </resources>
