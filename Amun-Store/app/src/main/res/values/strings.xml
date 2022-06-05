@@ -61,5 +61,7 @@
     <string name="favorite">Favourite</string>
     <string name="share">Share</string>
     <string name="shopping_bag">Shopping bag</string>
+    <string name="start_shopping">Start Shopping</string>
+    <string name="currently_you_do_not_have_any_orders_when_you_order_something_it_will_appear_here">Currently you do not have any orders. When you order something. It will appear here</string>
 
 </resources>
