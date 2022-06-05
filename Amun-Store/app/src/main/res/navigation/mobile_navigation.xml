@@ -83,6 +83,11 @@
         android:label="fragment_single_category"
         tools:layout="@layout/fragment_single_category" >
           </fragment>
+    <fragment
+        android:id="@+id/cartFragment"
+        android:name="com.example.amunstore.ui.cart.CartFragment"
+        android:label="fragment_cart"
+        tools:layout="@layout/fragment_cart" />
 
 
 </navigation>
