@@ -30,7 +30,7 @@ class CartViewModel @Inject constructor(val cartRepository: CartRepository) : Vi
         cartItems.removeObserver(x)
     }
 
-    suspend fun removeItem(itemCart: ItemCart) {
+     fun removeItem(itemCart: ItemCart) {
         cartRepository.deleteItem(itemCart)
 
     }
