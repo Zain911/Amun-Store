@@ -21,11 +21,18 @@
         <entry key="..\:/TheBoss/ITI/FinalProject/Amun-Store/app/src/main/res/layout/signin.xml" value="0.26330532212885155" />
         <entry key="..\:/TheBoss/ITI/FinalProject/Amun-Store/app/src/main/res/layout/sigup.xml" value="0.358695652173913" />
         <entry key="..\:/TheBoss/ITI/FinalProject/Amun-Store/app/src/main/res/menu/bottom_nav_menu.xml" value="0.22604166666666667" />
-        <entry key="..\:/Users/ESLAM ESMAIL/Desktop/Projects/Amun-Store/Amun-Store/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/Users/ESLAM ESMAIL/Desktop/Projects/Amun-Store/Amun-Store/app/src/main/res/drawable/status_item_background.xml" value="0.1615" />
+        <entry key="..\:/Users/ESLAM ESMAIL/Desktop/Projects/Amun-Store/Amun-Store/app/src/main/res/layout/activity_main.xml" value="0.6760925449871465" />
         <entry key="..\:/Users/ESLAM ESMAIL/Desktop/Projects/Amun-Store/Amun-Store/app/src/main/res/layout/cart_toolbar_view.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/ESLAM ESMAIL/Desktop/Projects/Amun-Store/Amun-Store/app/src/main/res/layout/fragment_categories.xml" value="0.33" />
+        <entry key="..\:/Users/ESLAM ESMAIL/Desktop/Projects/Amun-Store/Amun-Store/app/src/main/res/layout/fragment_favourites.xml" value="0.25" />
+        <entry key="..\:/Users/ESLAM ESMAIL/Desktop/Projects/Amun-Store/Amun-Store/app/src/main/res/layout/fragment_product_details.xml" value="0.33" />
+        <entry key="..\:/Users/ESLAM ESMAIL/Desktop/Projects/Amun-Store/Amun-Store/app/src/main/res/layout/fragment_profile.xml" value="0.33" />
         <entry key="..\:/Users/ESLAM ESMAIL/Desktop/Projects/Amun-Store/Amun-Store/app/src/main/res/layout/item_category_product.xml" value="0.365625" />
+        <entry key="..\:/Users/ESLAM ESMAIL/Desktop/Projects/Amun-Store/Amun-Store/app/src/main/res/layout/item_favourite.xml" value="0.4067547723935389" />
         <entry key="..\:/Users/ESLAM ESMAIL/Desktop/Projects/Amun-Store/Amun-Store/app/src/main/res/layout/list_toolbar_view.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/ESLAM ESMAIL/Desktop/Projects/Amun-Store/Amun-Store/app/src/main/res/layout/signin.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/ESLAM ESMAIL/Desktop/Projects/Amun-Store/Amun-Store/app/src/main/res/layout/sigup.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/ESLAM ESMAIL/Desktop/Projects/Amun-Store/Amun-Store/app/src/main/res/menu/bottom_nav_menu.xml" value="0.18512820512820513" />
         <entry key="..\:/Users/Ghaly/Desktop/ITI Final Project/Amun-Store/app/src/main/res/drawable/border_search.xml" value="0.2" />
         <entry key="..\:/Users/Ghaly/Desktop/ITI Final Project/Amun-Store/app/src/main/res/drawable/bottom_nav.xml" value="0.175" />
@@ -47,7 +54,6 @@
         <entry key="..\:/Users/Ghaly/Desktop/ITI Final Project/Amun-Store/app/src/main/res/layout/item_sub_categories_filter.xml" value="0.19635416666666666" />
         <entry key="..\:/Users/Ghaly/Desktop/ITI Final Project/Amun-Store/app/src/main/res/layout/list_toolbar_view.xml" value="0.19635416666666666" />
         <entry key="..\:/Users/Ghaly/Desktop/ITI Final Project/Amun-Store/app/src/main/res/layout/slider_item.xml" value="0.19635416666666666" />
-
         <entry key="..\:/Users/Ghaly/Desktop/ITI Final Project/Final Project/app/src/main/res/layout/activity_main.xml" value="0.19635416666666666" />
       </map>
     </option>

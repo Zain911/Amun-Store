@@ -18,8 +18,11 @@ object RepositoryModule {
 
     @Singleton
     @Provides
-    fun provideProductRepository(networkServices: NetworkServices , productsDao: ProductsDao): ProductsRepository {
-        return ProductsRepository(productsDao , networkServices )
+    fun provideProductRepository(
+        networkServices: NetworkServices,
+        productsDao: ProductsDao
+    ): ProductsRepository {
+        return ProductsRepository(productsDao, networkServices)
     }
 
     @Singleton
@@ -39,5 +42,4 @@ object RepositoryModule {
     fun provideVendorProductsRepository(networkServices: NetworkServices): ProductVendorRepository {
         return ProductVendorRepository(networkServices)
     }
-
 }

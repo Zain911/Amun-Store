@@ -18,9 +18,8 @@
     <string name="name">Name</string>
 
 
-    <string name="wish_list">Description of favourite Image Button</string>
+    <string name="wish_list">Wish list</string>
     <string name="no_internet_connection">No Connection</string>
-
 
     <string name="men">Men</string>
     <string name="women">Women</string>
@@ -61,5 +60,7 @@
     <string name="favorite">Favourite</string>
     <string name="share">Share</string>
     <string name="shopping_bag">Shopping bag</string>
+    <string name="orders">Orders</string>
+    <string name="more">More</string>
 
 </resources>

@@ -6,17 +6,87 @@
     android:layout_height="match_parent"
     tools:context=".ui.profile.ProfileFragment">
 
-    <TextView
-        android:id="@+id/text_notifications"
-        android:layout_width="match_parent"
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/userDataGroup"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:constraint_referenced_ids="ordersMoreTextView,ordersRecyclerView,ordersMoreTextView,wishListTextView,wishListRecyclerView,wishListMoreTextView" />
+
+    <TextView
+        android:id="@+id/userNameWelcomeTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        android:text="Welcome, Eslam"
+        android:textColor="@color/black"
+        android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/ordersTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="@string/orders"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@id/userNameWelcomeTextView"
+        app:layout_constraintTop_toBottomOf="@id/userNameWelcomeTextView" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/ordersRecyclerView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="24dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/userNameWelcomeTextView"
+        app:layout_constraintTop_toBottomOf="@id/ordersTextView" />
+
+    <TextView
+        android:id="@+id/ordersMoreTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="24dp"
+        android:text="@string/more"
+        app:layout_constraintBottom_toBottomOf="@id/ordersTextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/ordersTextView" />
+
+    <TextView
+        android:id="@+id/wishListMoreTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="24dp"
+        android:text="@string/more"
+        app:layout_constraintBottom_toBottomOf="@id/wishListTextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/wishListTextView" />
+
+    <TextView
+        android:id="@+id/wishListTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="@string/wish_list"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@id/ordersTextView"
+        app:layout_constraintTop_toBottomOf="@id/ordersRecyclerView" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/wishListRecyclerView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="24dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/userNameWelcomeTextView"
+        app:layout_constraintTop_toBottomOf="@id/wishListTextView" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
