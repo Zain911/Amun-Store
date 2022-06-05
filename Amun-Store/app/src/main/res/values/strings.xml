@@ -17,17 +17,14 @@
     <string name="create_account">Create account</string>
     <string name="name">Name</string>
 
-
     <string name="wish_list">Description of favourite Image Button</string>
     <string name="no_internet_connection">No Connection</string>
-
 
     <string name="men">Men</string>
     <string name="women">Women</string>
     <string name="sale">Sale</string>
     <string name="kids">Kids</string>
     <string name="home_page">Home</string>
-
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
@@ -45,7 +42,6 @@
         <item>none</item>
     </string-array>
 
-
     <!--    product details layout-->
     <string name="save_item">Save item</string>
     <string name="buy_now">Buy now</string>
@@ -61,6 +57,9 @@
     <string name="favorite">Favourite</string>
     <string name="share">Share</string>
     <string name="shopping_bag">Shopping bag</string>
+    <string name="orders">Orders</string>
+    <string name="more">More</string>
+    <string name="welcome">Welcome,</string>
 
     <string name="full_name">*FULL NAME</string>
     <string name="category">Category</string>
@@ -76,4 +75,5 @@
     <string name="country">*Country</string>
     <string name="remove">Remove</string>
     <string name="zero">0</string>
+  
 </resources>

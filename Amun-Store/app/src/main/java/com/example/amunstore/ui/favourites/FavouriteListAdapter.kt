@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.amunstore.R
 import com.example.amunstore.data.model.product.Product
+import com.example.amunstore.databinding.ItemFavourite2Binding
 import com.example.amunstore.databinding.ItemFavouriteBinding
 
 class FavouriteListAdapter(
@@ -22,11 +23,11 @@ class FavouriteListAdapter(
         notifyDataSetChanged()
     }
 
-    class ViewHolder(var view: ItemFavouriteBinding) : RecyclerView.ViewHolder(view.root)
+    class ViewHolder(var view: ItemFavourite2Binding) : RecyclerView.ViewHolder(view.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding =
-            ItemFavouriteBinding.inflate(
+            ItemFavourite2Binding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,
                 false
@@ -43,11 +44,9 @@ class FavouriteListAdapter(
             .placeholder(R.drawable.tshirt)
             .into(holder.view.productImageView)
 
-        holder.view.productNameTextView.text = favouriteList[position].title
-        holder.view.productVendorTextView.text = favouriteList[position].vendor
-        holder.view.productStatusTextView.text = favouriteList[position].status
+        holder.view.productNameTextView.text = favouriteList[position].title?.slice(0..15)
 
-        holder.view.favouriteImageView.setOnClickListener {
+        holder.view.favouriteButtonImageView.setOnClickListener {
             removeProductFromFavourite(favouriteList[position])
         }
     }

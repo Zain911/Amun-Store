@@ -4,16 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_gravity="center"
     tools:context=".ui.favourites.FavouritesFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/favouritesRecyclerView"
         android:layout_width="match_parent"
+        android:foregroundGravity="center"
         android:layout_height="match_parent"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:spanCount="2"
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:listitem="@layout/item_favourite" />
+        tools:listitem="@layout/item_favourite_2" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
