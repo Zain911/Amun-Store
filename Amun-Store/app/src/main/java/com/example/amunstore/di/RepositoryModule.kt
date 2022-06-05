@@ -6,7 +6,6 @@ import com.example.amunstore.data.presistentstorage.room.ProductsDao
 import com.example.amunstore.data.repositories.products.ProductsRepository
 import com.example.amunstore.data.repositories.productvendor.ProductVendorRepository
 import com.example.amunstore.data.repositories.user.UserRepository
-import com.example.amunstore.data.repositories.users.UsersRepository
 import com.example.amunstore.data.repositories.vendor.BrandsRepository
 import dagger.Module
 import dagger.Provides
@@ -32,20 +31,20 @@ object RepositoryModule {
 
     @Singleton
     @Provides
-    fun provideVendorRepository(networkServices: NetworkServices):BrandsRepository{
+    fun provideVendorRepository(networkServices: NetworkServices): BrandsRepository {
         return BrandsRepository(networkServices)
     }
 
     @Singleton
     @Provides
-    fun provideVendorProductsRepository(networkServices: NetworkServices):ProductVendorRepository{
+    fun provideVendorProductsRepository(networkServices: NetworkServices): ProductVendorRepository {
         return ProductVendorRepository(networkServices)
     }
 
+
     @Singleton
     @Provides
-    fun provideUsersRepository(networkServices: NetworkServices): UsersRepository {
-        return UsersRepository(networkServices)
+    fun provideUserRepository(networkServices: NetworkServices): UserRepository {
+        return UserRepository(networkServices)
     }
-
 }

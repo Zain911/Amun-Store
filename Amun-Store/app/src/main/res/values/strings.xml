@@ -20,13 +20,11 @@
     <string name="wish_list">Wish List</string>
     <string name="no_internet_connection">No Connection</string>
 
-
     <string name="men">Men</string>
     <string name="women">Women</string>
     <string name="sale">Sale</string>
     <string name="kids">Kids</string>
     <string name="home_page">Home</string>
-
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
@@ -44,6 +42,16 @@
         <item>none</item>
     </string-array>
 
+
+    <string name="no_results_found">No results found</string>
+
+    <string-array name="sortArr">
+        <item>SORT</item>
+        <item>price: Low to High</item>
+        <item>price: High to Low</item>
+        <item>Alphabetically</item>
+        <item>none</item>
+    </string-array>
 
     <!--    product details layout-->
     <string name="save_item">Save item</string>
@@ -80,6 +88,38 @@
     <string name="confirm_password">Confirm Password</string>
 
 
+    <string name="save_item">Save item</string>
+    <string name="buy_now">Buy now</string>
+    <string name="product_option">Product options</string>
+    <string name="not_available">Not available</string>
+    <string name="pro_id" translatable="false">pro_id_bundle</string>
+    <string name="enter_code">Enter Code</string>
+    <string name="add_to_cart">Add to cart</string>
+    <string name="delivery_options">Delivery Options</string>
+    <string name="product_details">Product Details</string>
+    <string name="size">Size</string>
+    <string name="check">CHECK</string>
+    <string name="favorite">Favourite</string>
+    <string name="share">Share</string>
+    <string name="shopping_bag">Shopping bag</string>
+    <string name="orders">Orders</string>
+    <string name="more">More</string>
+    <string name="welcome">Welcome,</string>
+
+    <string name="full_name">*FULL NAME</string>
+    <string name="category">Category</string>
+    <string name="shop">Shop</string>
+    <string name="checkout">CHECKOUT</string>
+    <string name="save">save</string>
+    <string name="phone_number">*Phone Number</string>
+    <string name="city">*City</string>
+    <string name="address_line_2">Address Line 2</string>
+    <string name="post_zip_code">*Post/Zip Code</string>
+    <string name="address_line_1">*Address Line 1</string>
+    <string name="state_province_optional">*State/province</string>
+    <string name="country">*Country</string>
+    <string name="remove">Remove</string>
+    <string name="zero">0</string>
 
 
     <!--    login and register strings-->

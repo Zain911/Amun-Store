@@ -89,6 +89,34 @@ class ProductDetailsFragment() : Fragment() {
                 else -> false
             }
         }
+        viewModel.getProductDetails(args.productId)
+
+        colorRecyclerView = binding.productProductPhotsRecycler
+        sizeRecyclerView = binding.productSizeRecycler
+
+        topAppBar = binding.topAppBar
+
+        topAppBar.setNavigationOnClickListener {
+            this.findNavController().popBackStack()
+        }
+
+        topAppBar.setOnMenuItemClickListener { menuItem ->
+            when (menuItem.itemId) {
+                R.id.favorite -> {
+                    // Handle edit text press
+                    true
+                }
+                R.id.share -> {
+                    // Handle favorite icon press
+                    true
+                }
+                R.id.bag -> {
+                    // Handle more item (inside overflow menu) press
+                    true
+                }
+                else -> false
+            }
+        }
 
         viewModel.productDetails.observe(viewLifecycleOwner) {
             initFragmentAdapters(it)
@@ -106,10 +134,24 @@ class ProductDetailsFragment() : Fragment() {
                 adapter = viewPagerAdapter
                 registerOnPageChangeCallback(onImageSliderChange)
             }
+            initFragmentAdapters(it)
+            setDataToScreen(it)
+            productDetails = it
         }
 
         viewModel.errorMessage.observe(viewLifecycleOwner) {
             Toast.makeText(context, it, Toast.LENGTH_LONG).show()
+        }
+
+        binding.productSaveButton.setOnClickListener {
+            productDetails.product.id?.let { it ->
+                ItemCart(it,
+                    productDetails.product.title,
+                    productDetails.product.variants[0].price,
+                    productDetails.product.image?.src,
+                    "1",
+                    selectedSize ?: productDetails.product.options[0].values[0])
+            }?.let { it2 -> viewLifecycleOwner.lifecycleScope.launch { viewModel.addToCart(it2) } }
         }
 
         return root
