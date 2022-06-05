@@ -70,6 +70,8 @@ class ProductDetailsFragment() : Fragment() {
          this.findNavController().popBackStack()
         }
 
+
+
         topAppBar.setOnMenuItemClickListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.favorite -> {
@@ -90,17 +92,25 @@ class ProductDetailsFragment() : Fragment() {
 
         viewModel.productDetails.observe(viewLifecycleOwner) {
             initFragmentAdapters(it)
-            setDataToScreen(it)
+            setDataToScreen(it,0)
             productDetails =it
+            sizeAdapter?.checkedItemPosition?.observe(viewLifecycleOwner) {
+                setDataToScreen(productDetails,it)
+            }
+
+            //inflating view pager and it's dot from the respond of the api
+            productImagesList = it.product.images
+            dots = arrayOfNulls<TextView>(productImagesList.size)
+            viewPagerAdapter = DetailsSliderViewPagerAdapter(productImagesList)
+            viewPager.apply {
+                adapter = viewPagerAdapter
+                registerOnPageChangeCallback(onImageSliderChange)
+            }
         }
 
         viewModel.errorMessage.observe(viewLifecycleOwner) {
             Toast.makeText(context, it, Toast.LENGTH_LONG).show()
         }
-
-//        viewModel.sizeChooser.observe(viewLifecycleOwner) {
-//            setDataToScreen(productDetails,it)
-//        }
 
         return root
     }
@@ -151,10 +161,11 @@ class ProductDetailsFragment() : Fragment() {
 
 
 
-    fun setDataToScreen(it : ProductDetailsResponse? ){
-        var variantNumber:Int = sizeAdapter!!.checkedItemPosition
+    fun setDataToScreen(it: ProductDetailsResponse?, variantNumber: Int){
+
+
         if (it != null) {
-            binding.productColorTxt.text= it.product.options[1].values[0]
+            binding.productColorTxt.text= it.product.variants[variantNumber].option2
             binding.productTitleText.text = it.product.title
             binding.productVendorText.text = it.product.vendor
 
@@ -182,13 +193,13 @@ class ProductDetailsFragment() : Fragment() {
                 binding.productBuyButton.text = getString(R.string.not_available)
             }
 
-            //inflating view pager and it's dot from the respond of the api
-            productImagesList = it.product.images
-            dots = arrayOfNulls<TextView>(productImagesList.size)
-            viewPagerAdapter = DetailsSliderViewPagerAdapter(productImagesList)
-            viewPager.apply {
-                adapter = viewPagerAdapter
-                registerOnPageChangeCallback(onImageSliderChange)
+            if (it.product.variants[variantNumber].inventoryQuantity == 0)
+            {binding.productBuyButton.isEnabled = false
+                binding.productSaveButton.isEnabled = false
+            }
+            else{
+                binding.productBuyButton.isEnabled = true
+                binding.productSaveButton.isEnabled = true
             }
 
 

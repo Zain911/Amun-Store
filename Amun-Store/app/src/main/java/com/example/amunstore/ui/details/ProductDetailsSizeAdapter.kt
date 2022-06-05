@@ -9,6 +9,8 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.widget.CheckedTextViewCompat
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.amunstore.R
@@ -18,8 +20,8 @@ import com.example.amunstore.data.model.product.Options
 
 class ProductDetailsSizeAdapter (private val arrayList:ArrayList<String> ) : RecyclerView.Adapter<ProductDetailsSizeAdapter.ViewHolder>() {
 
-
-    var checkedItemPosition = 0
+    var checkedItemPosition : MutableLiveData<Int> = MutableLiveData<Int>(0)
+//    var checkedItemPosition = 0
     // create new views
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         // inflates the card_view_design view
@@ -32,7 +34,7 @@ class ProductDetailsSizeAdapter (private val arrayList:ArrayList<String> ) : Rec
 
     // binds the list items to a view
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-         if (position==checkedItemPosition)
+         if (position==checkedItemPosition.value)
          {     holder.size.isChecked = true  }
         else
          {     holder.size.isChecked = false  }
@@ -40,9 +42,9 @@ class ProductDetailsSizeAdapter (private val arrayList:ArrayList<String> ) : Rec
         holder.size.text=  arrayList[position]
         holder.size.setOnClickListener {
 
-            if (checkedItemPosition != position) {
+            if (checkedItemPosition.value != position) {
                 holder.size.isChecked = true
-                checkedItemPosition=position
+                checkedItemPosition.postValue(position)
             }
             //update fragment
             notifyDataSetChanged()
