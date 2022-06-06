@@ -182,8 +182,8 @@ class ProductDetailsFragment() : Fragment() {
             } else {
                 binding.productOldPriceTxt.text = it.product.variants[variantNumber].compareAtPrice
                 binding.productOldPriceTxt.setPaintFlags(binding.productOldPriceTxt.getPaintFlags());
-                val percent: Int =
-                    it.product.variants[variantNumber].compareAtPrice!!.toInt() / it.product.variants[variantNumber].price?.toInt()!! * 100
+                val percent =
+                    it.product.variants[variantNumber].compareAtPrice!!.toDouble() / it.product.variants[variantNumber].price?.toDouble()!! * 100
                 binding.productPricePercentTxt.text = " ${percent}% OFF"
             }
 
