@@ -8,12 +8,23 @@
         <entry key="..\:/TheBoss/ITI/FinalProject/Amun-Store/app/src/main/res/drawable/heart.xml" value="0.332" />
         <entry key="..\:/TheBoss/ITI/FinalProject/Amun-Store/app/src/main/res/layout/activity_main.xml" value="0.17617753623188406" />
         <entry key="..\:/TheBoss/ITI/FinalProject/Amun-Store/app/src/main/res/layout/cart_toolbar_view.xml" value="0.36666666666666664" />
+        <entry key="..\:/TheBoss/ITI/FinalProject/Amun-Store/app/src/main/res/layout/details_slider_item.xml" value="0.36666666666666664" />
+        <entry key="..\:/TheBoss/ITI/FinalProject/Amun-Store/app/src/main/res/layout/dialog_login_successful.xml" value="0.36666666666666664" />
+        <entry key="..\:/TheBoss/ITI/FinalProject/Amun-Store/app/src/main/res/layout/dialog_login_with_email.xml" value="0.33" />
+        <entry key="..\:/TheBoss/ITI/FinalProject/Amun-Store/app/src/main/res/layout/dialog_password_updated_successfully.xml" value="0.36666666666666664" />
+        <entry key="..\:/TheBoss/ITI/FinalProject/Amun-Store/app/src/main/res/layout/dialog_signup_successful.xml" value="0.36666666666666664" />
+        <entry key="..\:/TheBoss/ITI/FinalProject/Amun-Store/app/src/main/res/layout/dialog_signup_with_email.xml" value="0.36666666666666664" />
+        <entry key="..\:/TheBoss/ITI/FinalProject/Amun-Store/app/src/main/res/layout/fragment_add_address.xml" value="0.36666666666666664" />
         <entry key="..\:/TheBoss/ITI/FinalProject/Amun-Store/app/src/main/res/layout/fragment_categories.xml" value="0.36666666666666664" />
         <entry key="..\:/TheBoss/ITI/FinalProject/Amun-Store/app/src/main/res/layout/fragment_dashboard.xml" value="0.358695652173913" />
+        <entry key="..\:/TheBoss/ITI/FinalProject/Amun-Store/app/src/main/res/layout/fragment_favourites.xml" value="0.36666666666666664" />
+        <entry key="..\:/TheBoss/ITI/FinalProject/Amun-Store/app/src/main/res/layout/fragment_forgot_password.xml" value="0.36666666666666664" />
         <entry key="..\:/TheBoss/ITI/FinalProject/Amun-Store/app/src/main/res/layout/fragment_home.xml" value="0.358695652173913" />
+        <entry key="..\:/TheBoss/ITI/FinalProject/Amun-Store/app/src/main/res/layout/fragment_login.xml" value="0.36666666666666664" />
         <entry key="..\:/TheBoss/ITI/FinalProject/Amun-Store/app/src/main/res/layout/fragment_notifications.xml" value="0.358695652173913" />
         <entry key="..\:/TheBoss/ITI/FinalProject/Amun-Store/app/src/main/res/layout/fragment_product.xml" value="0.27364864864864863" />
         <entry key="..\:/TheBoss/ITI/FinalProject/Amun-Store/app/src/main/res/layout/fragment_product_details.xml" value="0.5" />
+        <entry key="..\:/TheBoss/ITI/FinalProject/Amun-Store/app/src/main/res/layout/fragment_signup.xml" value="0.36666666666666664" />
         <entry key="..\:/TheBoss/ITI/FinalProject/Amun-Store/app/src/main/res/layout/fragment_single_category.xml" value="0.1" />
         <entry key="..\:/TheBoss/ITI/FinalProject/Amun-Store/app/src/main/res/layout/item_brands.xml" value="0.1" />
         <entry key="..\:/TheBoss/ITI/FinalProject/Amun-Store/app/src/main/res/layout/item_category_product.xml" value="0.1" />

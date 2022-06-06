@@ -8,8 +8,13 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.navigation.ActionOnlyNavDirections
+import androidx.navigation.fragment.findNavController
+import com.example.amunstore.R
 import com.example.amunstore.databinding.FragmentSignupBinding
 import com.example.amunstore.ui.auth.AuthViewModel
+import com.example.amunstore.ui.auth.login.LoginBottomSheetDialogFragment
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.regex.Pattern
 
@@ -17,25 +22,7 @@ import java.util.regex.Pattern
 class SignupFragment : Fragment() {
     private lateinit var _binding: FragmentSignupBinding
     private val binding get() = _binding
-    private lateinit var viewModel: AuthViewModel
-
-    val EMAIL_ADDRESS_PATTERN = Pattern.compile(
-        "[a-zA-Z0-9\\+\\.\\_\\%\\-\\+]{1,32}" +  // 1 - 265
-                "\\@" +
-                "[a-zA-Z0-9][a-zA-Z0-9\\-]{0,32}" +    // 0 - 64
-                "(" +
-                "\\." +
-                "[a-zA-Z0-9][a-zA-Z0-9\\-]{0,32}" +   // 0 - 25
-                ")+"
-    )
-
-    lateinit var userNameEdt: EditText
-    lateinit var passWordEdt: EditText
-    lateinit var passConfirmEdt: EditText
-    lateinit var emailEdt: EditText
-    lateinit var phoneEdt: EditText
-    lateinit var registerBtn: Button
-    lateinit var gotoLoginTxt: TextView
+    private val viewModel: AuthViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -44,24 +31,15 @@ class SignupFragment : Fragment() {
         _binding = FragmentSignupBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-//        viewModel = ViewModelProvider(
-//            this, AuthModelFactory(
-//                UserRepositoryImp(localSource = LocalSource(NewsDatabase.getInstance(requireContext()).userDao()))
-//            )
-//        ).get(AuthViewModel::class.java)
+        binding.signupSignupWithEmailBtn.setOnClickListener { showBottomSheetDialogFragment() }
 
-//        userNameEdt = binding.registerEditUserName
-//        passWordEdt = binding.registerEditPassword
-//        passConfirmEdt = binding.registerEditPasswordConfirm
-//        emailEdt = binding.registerEditEmail
-//        phoneEdt = binding.registerEditPhone
-//        registerBtn = binding.registerButtonRegister
-//        gotoLoginTxt = binding.registerTextLogin
-//
-//        gotoLoginTxt.setOnClickListener {
-//            findNavController().navigate(ActionOnlyNavDirections(R.id.action_registerFragment_to_loginFragment)) //for test purposal only
-//        }
-//
+
+        binding.signinLogin.setOnClickListener {  findNavController().navigate(
+            ActionOnlyNavDirections(R.id.action_registerFragment_to_loginFragment)
+        ) }
+
+
+
 //        registerBtn.setOnClickListener {
 //            registerBtn.visibility = View.INVISIBLE
 //
@@ -86,9 +64,9 @@ class SignupFragment : Fragment() {
 //                    Toast.LENGTH_LONG
 //                ).show()
 //
-//                findNavController().navigate(ActionOnlyNavDirections(R.id.action_registerFragment_to_loginFragment)) //navigate auto after registeration
+
 //            }}
-//
+
         return root
     }
 //
@@ -100,4 +78,10 @@ class SignupFragment : Fragment() {
 //        Toast.makeText(context, message , Toast.LENGTH_LONG).show()
 //        registerBtn.visibility = View.VISIBLE
 //    }
+
+
+    private fun showBottomSheetDialogFragment() {
+        val bottomSheetFragment = SignupBottomSheetDialogFragment(viewModel)
+        bottomSheetFragment.show(childFragmentManager, bottomSheetFragment.tag)
+    }
 }

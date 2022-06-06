@@ -36,6 +36,7 @@
 
             android:drawableStart="@drawable/ic_baseline_lock_24"
             android:background="@drawable/round_corners"
+            android:backgroundTint="@color/white"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPassword"
@@ -62,7 +63,7 @@
         app:layout_constraintTop_toBottomOf="@+id/dialogSignup_emailIdEdt" >
 
         <com.google.android.material.textfield.TextInputEditText
-
+            android:backgroundTint="@color/white"
             android:drawableStart="@drawable/ic_baseline_lock_24"
             android:background="@drawable/round_corners"
             android:layout_width="match_parent"
@@ -87,6 +88,7 @@
         app:layout_constraintTop_toBottomOf="@+id/dialogSignup_passwordEdt" >
 
         <androidx.appcompat.widget.AppCompatEditText
+            android:backgroundTint="@color/white"
             android:drawableStart="@drawable/ic_baseline_lock_24"
             android:background="@drawable/round_corners"
             android:layout_width="match_parent"
@@ -97,14 +99,15 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/dialogSignup_LoginBtn"
+        android:id="@+id/dialogSignup_SignupBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         android:background="@drawable/round_corners"
         android:backgroundTint="@color/primary_color"
-        android:textColor="@color/white"
         android:text="@string/sign_up"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/dialogSignup_passwordEdt"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/dialogSignup_passwordEdt"

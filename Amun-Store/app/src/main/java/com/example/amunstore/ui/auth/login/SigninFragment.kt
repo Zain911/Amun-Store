@@ -1,34 +1,34 @@
 package com.example.amunstore.ui.auth.login
 
+import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.CheckBox
-import android.widget.EditText
-import android.widget.TextView
+import android.widget.*
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentTransaction
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewTreeLifecycleOwner
+import androidx.navigation.ActionOnlyNavDirections
+import androidx.navigation.fragment.FragmentNavigator
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.fragment.findNavController
+import com.example.amunstore.MainActivity
 import com.example.amunstore.R
 import com.example.amunstore.databinding.FragmentLoginBinding
 import com.example.amunstore.ui.auth.AuthViewModel
-import com.example.amunstore.ui.details.ProductDetailsFragment
+import com.example.amunstore.ui.favourites.FavouritesViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import dagger.hilt.android.internal.managers.FragmentComponentManager
 
 @AndroidEntryPoint
 class SigninFragment : Fragment() {
 
     private var _binding: FragmentLoginBinding? = null
     private val binding get() = _binding!!
-    private lateinit var viewModel: AuthViewModel
 
-    lateinit var loginBtn: Button
-    lateinit var userNameEdt: EditText
-    lateinit var passwordEdt: EditText
-    lateinit var gotoRegisterTxt: TextView
-    lateinit var rememberMeCheckBox: CheckBox
+    private val viewModel: AuthViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,18 +37,13 @@ class SigninFragment : Fragment() {
         _binding = FragmentLoginBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-//        userNameEdt = binding.loginEditUserName
-//        passwordEdt = binding.loginEditPassword
-//        loginBtn = binding.loginButtonLogin
-//        gotoRegisterTxt = binding.loginTextCreateNewAccount
-//        rememberMeCheckBox=binding.loginCheckerTextRememberMe
-//
-//        viewModel = ViewModelProvider(
-//            this, AuthModelFactory(
-//                UserRepositoryImp(LocalSource( NewsDatabase.getInstance(requireContext()).userDao()))
-//            )
-//        ).get(AuthViewModel::class.java)
-//
+        binding.loginLoginWithEmailBtn.setOnClickListener { showBottomSheetDialogFragment() }
+
+        binding.loginSignupTxt.setOnClickListener {  findNavController().navigate(
+            ActionOnlyNavDirections(R.id.action_loginFragment_to_registerFragment)
+        ) }
+
+
 //        gotoRegisterTxt.setOnClickListener {
 //            findNavController().navigate(ActionOnlyNavDirections(R.id.action_loginFragment_to_registerFragment)) //for test purposal only
 //        }
@@ -97,6 +92,9 @@ class SigninFragment : Fragment() {
 //    }
 
 
-
+    private fun showBottomSheetDialogFragment() {
+        val bottomSheetFragment = LoginBottomSheetDialogFragment(viewModel)
+        bottomSheetFragment.show(childFragmentManager, bottomSheetFragment.tag)
+    }
 
 }

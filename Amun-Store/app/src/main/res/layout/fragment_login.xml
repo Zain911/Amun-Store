@@ -15,7 +15,7 @@
         app:layout_constraintStart_toStartOf="@+id/login_loginWithEmailBtn" />
 
     <TextView
-        android:id="@+id/login_signin"
+        android:id="@+id/login_signupTxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
