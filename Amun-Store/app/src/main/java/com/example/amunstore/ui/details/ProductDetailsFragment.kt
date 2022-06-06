@@ -108,7 +108,7 @@ class ProductDetailsFragment() : Fragment() {
                     productDetails.product.title,
                     productDetails.product.variants[0].price,
                     productDetails.product.image?.src,
-                    "1",
+                    1,
                     selectedSize ?: productDetails.product.options[0].values[0])
             }?.let { it2 -> viewLifecycleOwner.lifecycleScope.launch { viewModel.addToCart(it2) } }
         }

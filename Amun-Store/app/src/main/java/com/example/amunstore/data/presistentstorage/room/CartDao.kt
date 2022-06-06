@@ -11,11 +11,14 @@ interface CartDao {
     @Insert(onConflict = REPLACE)
     fun addToCart(itemCart: ItemCart)
 
-    @Query("Select * From ItemCart" )
-     fun getCartProducts() :LiveData<List<ItemCart>>
+    @Query("Select * From ItemCart")
+    fun getCartProducts(): LiveData<List<ItemCart>>
 
     @Delete
     fun deleteItem(itemCart: ItemCart)
+
+    @Update
+    fun updateItem(itemCart: ItemCart)
 
 
 }
