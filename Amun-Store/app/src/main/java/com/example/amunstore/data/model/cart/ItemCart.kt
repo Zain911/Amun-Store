@@ -11,6 +11,6 @@ data class ItemCart(
     @SerializedName("title") val title: String?,
     @SerializedName("price") val price: String?,
     @SerializedName("src") val src: String?,
-    @SerializedName("item_number") val item_number: String?,
+    @SerializedName("item_number") var item_number: Int?,
     @SerializedName("item_size") val size: String?
 )

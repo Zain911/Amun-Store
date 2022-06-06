@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import com.example.amunstore.data.model.cart.ItemCart
 import com.example.amunstore.databinding.FragmentCartBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -29,13 +30,20 @@ class CartFragment : Fragment() {
         _binding = FragmentCartBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
+        cartAdapter = CartAdapter(
+            arrayListOf(),
+            { orderViewModel.removeItem(it) },
+            { orderViewModel.increaseItemQuantity(it) },
+            { orderViewModel.decreaseItemQuantity(it) }
+        )
+        binding.recyclerView.adapter = cartAdapter
 
-        cartAdapter = CartAdapter(arrayListOf()) { orderViewModel.removeItem(it) }
         viewLifecycleOwner.lifecycleScope.launch {
             orderViewModel.getCartItems()
         }
+
         orderViewModel.data.observe(viewLifecycleOwner) {
-            // Log.d("Cart: ", it.toString())
+            cartAdapter.changeList(it as MutableList<ItemCart>)
         }
         return root
     }

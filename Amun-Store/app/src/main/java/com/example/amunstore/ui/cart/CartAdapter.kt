@@ -7,13 +7,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.amunstore.R
 import com.example.amunstore.data.model.cart.ItemCart
-import com.example.amunstore.data.model.product.Product
 import com.example.amunstore.databinding.ItemCartBinding
-import com.example.amunstore.databinding.ItemFavouriteBinding
 
 class CartAdapter(
     private var itemCartList: MutableList<ItemCart>,
     val removeProductFromFavourite: (ItemCart) -> Unit,
+    val increaseItem: (ItemCart) -> Unit,
+    val decreaseItem: (ItemCart) -> Unit
 ) :
     RecyclerView.Adapter<CartAdapter.ViewHolder>() {
 
@@ -48,11 +48,22 @@ class CartAdapter(
         holder.view.itemCartTitle.text = itemCartList[position].title
         holder.view.itemCartPrice.text = itemCartList[position].price
         holder.view.sizeTextView.text = itemCartList[position].size
-        holder.view.itemCountText.text = itemCartList[position].item_number
+        holder.view.itemCountText.text = itemCartList[position].item_number.toString()
 
         holder.view.removeBtnTextView.setOnClickListener {
             removeProductFromFavourite(itemCartList[position])
         }
+
+        holder.view.increaseButton.setOnClickListener {
+            increaseItem(itemCartList[position])
+            holder.view.decreaseButton.isEnabled = itemCartList[position].item_number != 0
+        }
+
+        holder.view.decreaseButton.setOnClickListener {
+            decreaseItem(itemCartList[position])
+            holder.view.decreaseButton.isEnabled = itemCartList[position].item_number != 0
+        }
+
     }
 
     override fun getItemCount() = itemCartList.size

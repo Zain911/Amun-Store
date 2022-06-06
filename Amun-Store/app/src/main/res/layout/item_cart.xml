@@ -24,7 +24,6 @@
         android:id="@+id/itemCartTitle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-
         android:lines="1"
         android:padding="5dp"
         tools:text=" Disney Donald Duck T-Shirt"
@@ -42,7 +41,6 @@
         android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="@id/itemCartTitle"
         app:layout_constraintTop_toBottomOf="@id/itemCartTitle" />
-
 
     <LinearLayout
         android:id="@+id/containerCounterLinearLayout"
@@ -129,9 +127,9 @@
         android:layout_height="wrap_content"
         tools:text="XXL"
         android:layout_marginTop="12dp"
-
         app:layout_constraintStart_toEndOf="@+id/itemCartImage"
         app:layout_constraintTop_toBottomOf="@+id/itemCartPrice" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
 
 
