@@ -26,7 +26,6 @@ class UserSharedPreferences @Inject constructor(@ApplicationContext context: Con
         prefs.edit().putString(userEmailInSharedPreferences, query).apply()
     }
 
-
     override fun getCustomerId() =
         prefs.getLong(userCustomerIdInSharedPreferences, -1L)
 
@@ -41,7 +40,6 @@ class UserSharedPreferences @Inject constructor(@ApplicationContext context: Con
     override fun setUserName(name: String) {
         prefs.edit().putString(userNameInSharedPreferences, name).apply()
     }
-
 
     fun clearAllCache() {
         prefs.edit().clear().apply()

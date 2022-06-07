@@ -37,11 +37,7 @@ class ProductDetailsSizeAdapter(
 
     // binds the list items to a view
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        if (position == checkedItemPosition) {
-            holder.size.isChecked = true
-        } else {
-            holder.size.isChecked = false
-        }
+        holder.size.isChecked = position == checkedItemPosition
 
         holder.size.text = arrayList[position]
         holder.size.setOnClickListener {

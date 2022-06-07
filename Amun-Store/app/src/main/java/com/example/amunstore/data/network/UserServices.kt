@@ -2,13 +2,9 @@ package com.example.amunstore.data.network
 
 import com.example.amunstore.data.model.address.AddAddress
 import com.example.amunstore.data.model.address.AddingAddressResponseModel
-import com.example.amunstore.data.model.address.Address
 import com.example.amunstore.data.model.address.AddressResponse
-import okhttp3.RequestBody
-import retrofit2.Call
 import com.example.amunstore.data.model.customer.CustomerResponse
 import com.example.amunstore.data.model.order.Customer
-import com.example.amunstore.data.model.order.Order
 import okhttp3.RequestBody
 import retrofit2.Response
 import retrofit2.http.*
