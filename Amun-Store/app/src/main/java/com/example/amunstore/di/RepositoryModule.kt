@@ -1,10 +1,13 @@
 package com.example.amunstore.di
 
 import com.example.amunstore.data.network.NetworkServices
-import com.example.amunstore.data.repositories.categories.CategoriesRepository
 import com.example.amunstore.data.presistentstorage.room.ProductsDao
+import com.example.amunstore.data.presistentstorage.sharedprefs.UserSharedPreferences
+import com.example.amunstore.data.repositories.categories.CategoriesRepository
+import com.example.amunstore.data.repositories.orders.OrdersRepository
 import com.example.amunstore.data.repositories.products.ProductsRepository
 import com.example.amunstore.data.repositories.productvendor.ProductVendorRepository
+import com.example.amunstore.data.repositories.user.UserRepository
 import com.example.amunstore.data.repositories.vendor.BrandsRepository
 import dagger.Module
 import dagger.Provides
@@ -18,8 +21,11 @@ object RepositoryModule {
 
     @Singleton
     @Provides
-    fun provideProductRepository(networkServices: NetworkServices , productsDao: ProductsDao): ProductsRepository {
-        return ProductsRepository(productsDao , networkServices )
+    fun provideProductRepository(
+        networkServices: NetworkServices,
+        productsDao: ProductsDao
+    ): ProductsRepository {
+        return ProductsRepository(productsDao, networkServices)
     }
 
     @Singleton
@@ -40,4 +46,18 @@ object RepositoryModule {
         return ProductVendorRepository(networkServices)
     }
 
+    @Singleton
+    @Provides
+    fun provideUserRepository(
+        networkServices: NetworkServices,
+        userSharedPreferences: UserSharedPreferences
+    ): UserRepository {
+        return UserRepository(networkServices, userSharedPreferences)
+    }
+
+    @Singleton
+    @Provides
+    fun provideOrdersRepository(networkServices: NetworkServices): OrdersRepository {
+        return OrdersRepository(networkServices)
+    }
 }

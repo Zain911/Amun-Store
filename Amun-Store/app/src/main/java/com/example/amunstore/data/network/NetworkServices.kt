@@ -1,3 +1,4 @@
 package com.example.amunstore.data.network
 
-interface NetworkServices : CategoryServices , ProductServices , BrandsService,ProductsVendorService
+interface NetworkServices : CategoryServices, ProductServices, BrandsService, ProductsVendorService,
+    UserServices, OrdersServices

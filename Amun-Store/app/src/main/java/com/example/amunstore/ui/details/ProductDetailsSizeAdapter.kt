@@ -16,10 +16,15 @@ import com.example.amunstore.data.model.details.ProductDetailsResponse
 import com.example.amunstore.data.model.product.Options
 
 
-class ProductDetailsSizeAdapter (private val arrayList:ArrayList<String> ) : RecyclerView.Adapter<ProductDetailsSizeAdapter.ViewHolder>() {
+class ProductDetailsSizeAdapter(
+    private val arrayList: ArrayList<String>,
+    val clickItem: (String) -> Unit,
+) : RecyclerView.Adapter<ProductDetailsSizeAdapter.ViewHolder>() {
 
 
     var checkedItemPosition = 0
+    lateinit var item: String
+
     // create new views
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         // inflates the card_view_design view
@@ -32,17 +37,20 @@ class ProductDetailsSizeAdapter (private val arrayList:ArrayList<String> ) : Rec
 
     // binds the list items to a view
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-         if (position==checkedItemPosition)
-         {     holder.size.isChecked = true  }
-        else
-         {     holder.size.isChecked = false  }
+        if (position == checkedItemPosition) {
+            holder.size.isChecked = true
+        } else {
+            holder.size.isChecked = false
+        }
 
-        holder.size.text=  arrayList[position]
+        holder.size.text = arrayList[position]
         holder.size.setOnClickListener {
 
             if (checkedItemPosition != position) {
                 holder.size.isChecked = true
-                checkedItemPosition=position
+                checkedItemPosition = position
+                clickItem(arrayList[position])
+
             }
             //update fragment
             notifyDataSetChanged()
@@ -57,7 +65,7 @@ class ProductDetailsSizeAdapter (private val arrayList:ArrayList<String> ) : Rec
     // Holds the views for adding it to image and text
     class ViewHolder(ItemView: View) : RecyclerView.ViewHolder(ItemView) {
 
-        val size :CheckedTextView = itemView.findViewById(R.id.item_product_size_checkbox)
+        val size: CheckedTextView = itemView.findViewById(R.id.item_product_size_checkbox)
 
     }
 }

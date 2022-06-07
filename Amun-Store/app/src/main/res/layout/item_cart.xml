@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    android:background="@drawable/border_address_order"
+    android:elevation="8dp"
+    android:padding="8dp">
+
+    <ImageView
+        android:id="@+id/itemCartImage"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+
+        android:layout_marginTop="12dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/tshirt" />
+
+    <TextView
+        android:id="@+id/itemCartTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:lines="1"
+        android:padding="5dp"
+        tools:text=" Disney Donald Duck T-Shirt"
+        android:textColor="@color/gray"
+        android:textSize="12sp"
+        app:layout_constraintStart_toEndOf="@id/itemCartImage"
+        app:layout_constraintTop_toTopOf="@id/itemCartImage" />
+
+    <TextView
+        android:id="@+id/itemCartPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        tools:text="60.00 EGP"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="@id/itemCartTitle"
+        app:layout_constraintTop_toBottomOf="@id/itemCartTitle" />
+
+    <LinearLayout
+        android:id="@+id/containerCounterLinearLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="4dp"
+        android:background="@drawable/border_order_counter"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"
+        android:weightSum="3"
+        app:layout_constraintBottom_toBottomOf="@id/itemCartImage"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/itemCartPrice">
+
+
+        <ImageButton
+            android:id="@+id/decreaseButton"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="end"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            app:srcCompat="@drawable/ic_min" />
+
+        <TextView
+            android:id="@+id/itemCountText"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
+            android:text="@string/zero"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+
+        <ImageButton
+            android:id="@+id/increaseButton"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:backgroundTint="@android:color/transparent"
+            app:srcCompat="@drawable/ic_add" />
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/seprator"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@color/gray_medium"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/containerCounterLinearLayout" />
+
+    <TextView
+        android:id="@+id/removeBtnTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:fontFamily="sans-serif-condensed-medium"
+        android:gravity="center"
+        android:padding="8dp"
+        android:paddingStart="4dp"
+        android:paddingEnd="28dp"
+        android:text="@string/remove"
+        android:textColor="@color/removeRed"
+        android:textSize="14sp"
+        app:drawableStartCompat="@drawable/ic_baseline_delete_forever_24"
+        app:drawableTint="@color/removeRed"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/seprator" />
+
+    <TextView
+        android:id="@+id/sizeTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="XXL"
+        android:layout_marginTop="12dp"
+        app:layout_constraintStart_toEndOf="@+id/itemCartImage"
+        app:layout_constraintTop_toBottomOf="@+id/itemCartPrice" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+

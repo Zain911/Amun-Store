@@ -10,7 +10,7 @@ class AuthInterceptor : Interceptor {
     private val password = "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"
     private var credentials: String = basic(username, password)
 
-     override fun intercept(chain: Interceptor.Chain): okhttp3.Response {
+    override fun intercept(chain: Interceptor.Chain): okhttp3.Response {
         var request = chain.request()
         request = request.newBuilder().header("Authorization", credentials).build()
         return chain.proceed(request)

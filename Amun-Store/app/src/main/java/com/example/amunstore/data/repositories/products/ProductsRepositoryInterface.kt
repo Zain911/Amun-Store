@@ -1,6 +1,5 @@
 package com.example.amunstore.data.repositories.products
 
-import androidx.lifecycle.LiveData
 import com.example.amunstore.data.model.details.ProductDetailsResponse
 import com.example.amunstore.data.model.product.Product
 import com.example.amunstore.data.model.product.ProductsResponse
