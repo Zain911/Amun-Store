@@ -1,5 +1,6 @@
 package com.example.amunstore.di
 
+import android.app.Application
 import com.example.amunstore.data.network.NetworkServices
 import com.example.amunstore.data.repositories.categories.CategoriesRepository
 import com.example.amunstore.data.presistentstorage.room.ProductsDao
@@ -44,7 +45,16 @@ object RepositoryModule {
 
     @Singleton
     @Provides
-    fun provideUserRepository(networkServices: NetworkServices): UserRepository {
-        return UserRepository(networkServices)
+    fun provideUserRepository(networkServices: NetworkServices , application: Application): UserRepository {
+        return UserRepository(networkServices,application)
     }
+
+//    @Singleton
+//    @Provides
+//    fun providesSharedPreferences( application: Application) : SharedPreferences {
+//        return application.getSharedPreferences(Resources.getSystem().getString(R.string.preference_loggin),  Context.MODE_PRIVATE)
+//    }
+
+
 }
+

@@ -44,45 +44,6 @@ class SigninFragment : Fragment() {
         ) }
 
 
-//        gotoRegisterTxt.setOnClickListener {
-//            findNavController().navigate(ActionOnlyNavDirections(R.id.action_loginFragment_to_registerFragment)) //for test purposal only
-//        }
-//
-//        loginBtn.setOnClickListener {
-//            loginBtn.visibility = View.INVISIBLE
-//            check if there are strings or not
-//            if (userNameEdt.text.toString().trim().isNullOrEmpty() || passwordEdt.text.toString()
-//                    .trim().isNullOrEmpty()
-//            ) {
-//                tryAgain(getString(R.string.try_again))
-//            } else
-//                viewModel.getUserByEmail(email = userNameEdt.text.toString().trim())
-//                    ?.observe(this@LoginFragment.viewLifecycleOwner, androidx.lifecycle.Observer
-//                    {
-//                        if (it != null) {
-//
-//                            if (it.isNullOrEmpty()) {
-//                              tryAgain(getString(R.string.try_again))
-//                            } else {
-//                                if (it[0].password == passwordEdt.text.toString()) {
-//                                    here password = list password so let him in the app
-//                                    val intent = Intent(context, NewsActivity::class.java)
-//                                   if(rememberMeCheckBox.isChecked){
-//                                       SharedPreferenceUtil.setUserLoggedIn(requireContext())
-//                                   }
-//                                    startActivity(intent)
-//                                } else {
-//                                   tryAgain( getString(R.string.wrong_password))
-//                                }
-//                            }
-//                        } else {
-//                            tryAgain(getString(R.string.try_again))
-//                        }
-//
-//                    })
-//        }
-
-
         return root
     }
 

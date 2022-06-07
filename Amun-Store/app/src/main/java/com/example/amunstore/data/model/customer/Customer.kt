@@ -8,7 +8,7 @@ import okhttp3.Address
 data class Customer(
    @SerializedName("id")
    @Expose
- val id : Long? = null,
+ val id : Long ,
     val accepts_marketing: Boolean = false,
     val accepts_marketing_updated_at: String = " ",
     val addresses: List<Address>? = null,
@@ -33,6 +33,7 @@ data class Customer(
     val tax_exemptions: List<String?>? = null,
     val total_spent: String = " ",
     val updated_at: String = " ",
+   val password :String="",
     val verified_email: Boolean = true,
     val send_email_welcome: Boolean = false,
 

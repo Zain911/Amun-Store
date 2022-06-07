@@ -28,8 +28,8 @@ class SignupSuccesfulBottomSheetDialogFragment : BottomSheetDialogFragment() {
         _binding = DialogSignupSuccessfulBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        binding.dialogSuccessfulButton.setOnClickListener {  }
-        binding.dialogSuccessfulButton.setOnClickListener { dismiss() }
+        binding.dialogLoginSuccessfullyImage.setOnClickListener { this@SignupSuccesfulBottomSheetDialogFragment.dismiss() }
+        binding.dialogSuccessfulButton.setOnClickListener { this@SignupSuccesfulBottomSheetDialogFragment.dismiss() }
 
         return root
     }

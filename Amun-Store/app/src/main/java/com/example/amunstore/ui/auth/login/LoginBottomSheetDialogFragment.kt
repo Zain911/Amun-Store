@@ -48,19 +48,9 @@ class LoginBottomSheetDialogFragment(val viewModel: AuthViewModel) : BottomSheet
             if (it){
                 showBottomSheetDialogFragment()
             }
-            else {
-                Toast.makeText(context,getString(R.string.login_failed), Toast.LENGTH_LONG).show()
-            }
         }
 
-        binding.dialogLoginForgotPasswordTxt.setOnClickListener {  }
-
-
-
-
-
-
-
+        binding.dialogLoginForgotPasswordTxt.setOnClickListener { Toast.makeText(context,getString(R.string.not_available),Toast.LENGTH_LONG).show() }
 
 
         return root

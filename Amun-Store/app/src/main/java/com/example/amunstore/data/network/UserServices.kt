@@ -5,13 +5,11 @@ import com.example.amunstore.data.model.customer.Customer
 import com.example.amunstore.data.model.customer.CustomerResponse
 import com.example.amunstore.data.model.order.Order
 import okhttp3.RequestBody
+import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.Query
+import retrofit2.http.*
 
 
 interface UserServices {
@@ -24,7 +22,7 @@ interface UserServices {
     //https://your-development-store.myshopify.com/admin/api/2022-07/customers.json
 
     @POST("customers.json")
-    suspend fun createCustomer(@Body body: Customer): Callback<Customer>
+    suspend fun createCustomer(@Body body: RequestBody): Response<Customer>
 
     fun getUserOrders(): List<Order>
 }

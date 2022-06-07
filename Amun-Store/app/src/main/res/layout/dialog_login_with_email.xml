@@ -19,12 +19,13 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatEditText
+        android:nextFocusDown="@id/dialogLogin_LoginBtn"
         android:drawablePadding="8dp"
         android:padding="16dp"
         android:id="@+id/dialogLogin_emailIdEdt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
+        android:layout_margin="16dp"
         android:drawableStart="@drawable/ic_baseline_email_24"
         android:ems="10"
         android:hint="@string/email_id"
@@ -48,6 +49,7 @@
         app:layout_constraintTop_toBottomOf="@+id/dialogLogin_emailIdEdt" >
 
         <androidx.appcompat.widget.AppCompatEditText
+            android:nextFocusDown="@id/dialogLogin_LoginBtn"
             android:id="@+id/dialogLogin_passwordEdt2"
             android:layout_gravity="center"
             android:backgroundTint="@color/white"
