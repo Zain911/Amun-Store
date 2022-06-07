@@ -13,7 +13,6 @@ import javax.inject.Inject
 class SingleCategoryViewModel @Inject constructor(private val repo: ProductsRepository) :
     ViewModel() {
 
-    //Todo add suspend function to call get all products
     private val productList = MutableLiveData<List<Product>?>()
     val viewedList = MutableLiveData<List<Product>?>()
 
@@ -26,7 +25,7 @@ class SingleCategoryViewModel @Inject constructor(private val repo: ProductsRepo
         }
 
         productList.postValue(list)
-        viewedList.postValue(list)
+        viewedList.postValue(list?.map { it.copy() }?.let { ArrayList(it) })
     }
 
     private fun checkForFavouriteItems(list: ArrayList<Product>) {
