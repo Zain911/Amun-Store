@@ -24,9 +24,7 @@
                 android:id="@+id/tv_nameField"
                 style="@style/AddressTextInputLayout"
                 android:layout_width="match_parent"
-                app:layout_constraintTop_toTopOf="parent"
-
-                >
+                app:layout_constraintTop_toTopOf="parent">
 
                 <EditText
                     android:id="@+id/name_edt"

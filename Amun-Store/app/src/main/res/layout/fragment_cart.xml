@@ -11,17 +11,13 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:background="@color/gray_light"
-
         app:layout_constraintTop_toTopOf="parent">
-
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-
             android:background="@color/gray_light"
             tools:context=".ui.profile.ProfileFragment">
-
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/containerAddressConstraintLayout"
@@ -60,8 +56,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="serif"
-                    android:paddingTop="12dp"
+                    android:paddingTop="8dp"
                     android:text="Walid Zain"
+                    android:textAlignment="viewStart"
                     android:textColor="@color/black"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/seprator" />
@@ -71,7 +68,6 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:lines="2"
-                    android:paddingStart="4dp"
                     android:paddingEnd="8dp"
                     android:text="addre adss in adress  in  a dress in adress  in  a"
                     app:layout_constraintEnd_toStartOf="@+id/changeAddressAppCompactButton"
@@ -98,12 +94,13 @@
                 android:id="@+id/recyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_marginTop="28dp"
+                android:layout_marginTop="8dp"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/containerAddressConstraintLayout"
+                tools:itemCount="2"
                 tools:listitem="@layout/item_cart" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -140,17 +137,14 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/coupon_txt" />
 
-
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/couponTextInputLayout"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     app:errorEnabled="false"
-
                     app:layout_constraintEnd_toStartOf="@+id/applyCouponAppCompactButton"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/sepratorCoupon">
-
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/couponInputEditText"
@@ -179,13 +173,12 @@
                     app:layout_constraintTop_toTopOf="@+id/couponTextInputLayout" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/priceDetialsConstraintLayout"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="80dp"
                 android:layout_marginTop="16dp"
+                android:layout_marginBottom="80dp"
                 android:background="@drawable/border_address_order"
                 android:elevation="8dp"
                 android:padding="12dp"
@@ -228,9 +221,10 @@
                     android:id="@+id/totalPriceTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    tools:text="26EGP"
+                    android:layout_marginEnd="8dp"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/totalPrice_txt" />
+                    app:layout_constraintTop_toTopOf="@+id/totalPrice_txt"
+                    tools:text="26EGP" />
 
                 <TextView
                     android:id="@+id/discount_txt"
@@ -245,9 +239,11 @@
                     android:id="@+id/discountTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="6EGP"
+                    android:layout_marginEnd="8dp"
+                    android:text="0 L.E"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/discount_txt" />
+
                 <View
                     android:id="@+id/sepratorAmount"
                     android:layout_width="0dp"
@@ -264,8 +260,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
-                    android:visibility="visible"
                     android:text="Total Amount"
+                    android:visibility="visible"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/sepratorAmount" />
 
@@ -273,9 +269,10 @@
                     android:id="@+id/totalAmountTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    tools:text="20EPG"
+                    android:layout_marginEnd="8dp"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/totalAmount_txt" />
+                    app:layout_constraintTop_toTopOf="@+id/totalAmount_txt"
+                    tools:text="20EPG" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -296,4 +293,5 @@
         android:textColor="@color/white"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

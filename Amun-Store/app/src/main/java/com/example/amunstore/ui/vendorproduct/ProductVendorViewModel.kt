@@ -12,8 +12,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class ProductVendorViewModel @Inject constructor(
-    val repository: ProductVendorRepository,
-    val repo: ProductsRepository,
+    private val repository: ProductVendorRepository,
+    private val repo: ProductsRepository,
 ) : ViewModel() {
 
     val brands = MutableLiveData<List<SmartCollections>>()
