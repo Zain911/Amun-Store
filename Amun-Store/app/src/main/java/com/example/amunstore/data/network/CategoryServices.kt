@@ -9,5 +9,5 @@ interface CategoryServices {
 
     //https://mobile-ismailia.myshopify.com/admin/api/2022-04/custom_collections.json
     @GET("custom_collections.json")
-    suspend fun getCategories() : Response<CategoriesResponse>
+    suspend fun getCategories(): Response<CategoriesResponse>
 }

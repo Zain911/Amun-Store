@@ -1,11 +1,7 @@
 package com.example.amunstore.data.repositories.user
 
-import android.app.Application
-import android.content.Context
-import android.content.SharedPreferences
-import com.example.amunstore.R
-import com.example.amunstore.data.model.customer.Customer
 import com.example.amunstore.data.model.customer.CustomerResponse
+import com.example.amunstore.data.model.order.Customer
 import com.example.amunstore.data.model.user.User
 import com.example.amunstore.data.network.NetworkServices
 import com.example.amunstore.data.presistentstorage.sharedprefs.UserSharedPreferences
@@ -20,34 +16,20 @@ class UserRepository @Inject constructor(
     private var sharedPref: UserSharedPreferences
 ) : UserRepositoryInterface {
 
+    override fun isUserLoggedIn(): Boolean {
+        return sharedPref.getCustomerId() == -1L
+    }
+
+    override fun getUser(): User {
+        TODO("Implement the return of user based on room or shared prefs")
+    }
+
     override suspend fun createCustomer(customer: RequestBody): Response<Customer> {
         return networkServices.createCustomer(customer)
     }
 
     override suspend fun getUserByEmail(email: String): Response<CustomerResponse?> {
         return networkServices.getUserByEmail(email)
-    }
-
-    override fun isUserLoggedIn(): Boolean {
-        return sharedPref.getCustomerId() == -1L
-        //shared preference in repo
-        if (sharedpreferences.getLong(prefVal, 0) != 0L) { //logged in user
-            return true
-        }
-        //not logged in user
-        return false
-    }
-
-    override fun addUserID(id: Long) {
-        sharedpreferences.edit().putLong(prefVal, id).apply()
-    }
-
-    override fun getUser(): User {
-        TODO("Implement the return of userID based on room or shared prefs")
-
-        //return of user id in LONG format form shared preferences
-        //just uncomment the following
-        /*            return sharedpreferences.getLong(pref_val,0)      */
     }
 
     override suspend fun getUserAddresses(customerId: Long) =

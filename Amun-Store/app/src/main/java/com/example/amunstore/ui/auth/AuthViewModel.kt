@@ -37,19 +37,20 @@ class AuthViewModel @Inject constructor(
         CoroutineScope(Dispatchers.IO).launch {
             val response = repository.getUserByEmail("email:$email")
             withContext(Dispatchers.Main) {
-                if (response.isSuccessful) {
+                if (response.isSuccessful && response.body()!!.customers.isNotEmpty()) {
+                    if (response.body()!!.customers[0].note.equals(password, true)) {
 
-                    if (response.body()!!.customers.isNotEmpty()) {
+                        val userName =
+                            "${response.body()!!.customers[0].firstName} ${response.body()!!.customers[0].lastName}"
+                        repository.setCustomerId(response.body()!!.customers[0].id!!)
+                        repository.setUserName(userName)
+                        users.postValue(true)
 
-                        if (response.body()!!.customers[0].note
-                                .equals(password, true)
-                        ) {
-                            repository.addUserID(response.body()!!.customers[0].id)
-                            users.postValue(true)
-                        }
                     } else {
                         users.postValue(false)
                     }
+                } else {
+                    users.postValue(false)
                 }
             }
         }
@@ -97,10 +98,11 @@ class AuthViewModel @Inject constructor(
         }
     }
 
+
     fun inputsIsEmpty(email: String, pass1: String, pass2: String): Boolean =
         !(pass1.isEmpty() || pass2.isEmpty() || email.isEmpty())
 
-    fun isPasswordConfirmed(pass1: String, pass2: String) = pass1 == pass2
+    fun isPasswordConfirmed(pass1: String, pass2: String): Boolean = pass1 == pass2
 
     fun checkIfPaswwordIsGood(pass1: String): Boolean = pass1.count() > 5
 
@@ -110,3 +112,5 @@ class AuthViewModel @Inject constructor(
     }
 
 }
+
+
