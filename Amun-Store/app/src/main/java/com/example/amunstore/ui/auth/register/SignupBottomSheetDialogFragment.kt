@@ -10,6 +10,7 @@ import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.ViewModel
 import com.example.amunstore.MainActivity
 import com.example.amunstore.R
+import com.example.amunstore.data.model.customer.Customer
 import com.example.amunstore.databinding.DialogLoginWithEmailBinding
 import com.example.amunstore.databinding.DialogSignupWithEmailBinding
 import com.example.amunstore.ui.auth.AuthViewModel
@@ -21,7 +22,11 @@ class SignupBottomSheetDialogFragment(val viewModel: AuthViewModel) : BottomShee
     private var _binding: DialogSignupWithEmailBinding? = null
     private val binding get() = _binding!!
 
-
+    private lateinit var email:String
+    private lateinit var password:String
+    private lateinit var passwordConfirm:String
+    private lateinit var first:String
+    private lateinit var second:String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,6 +49,8 @@ class SignupBottomSheetDialogFragment(val viewModel: AuthViewModel) : BottomShee
 
 
 
+
+
         viewModel.users.observe(viewLifecycleOwner){
             if (it){
                 var intent = Intent(context, MainActivity::class.java)
@@ -56,6 +63,35 @@ class SignupBottomSheetDialogFragment(val viewModel: AuthViewModel) : BottomShee
         }
 
 
+        binding.dialogSignupSignupBtn.setOnClickListener {
+            email = binding.dialogSignupEmailIdEdt.text.toString().trim().lowercase()
+            passwordConfirm =binding.dialogSignupPasswordConfirmEdtIn.text.toString().trim()
+            password =binding.dialogSignupPasswordEdtIn.text.toString().trim()
+
+            first =binding.signupFirstNAmeEdt.text.toString().trim()
+            second = binding.signupLastNameEdt.text.toString().trim()
+
+        if (!viewModel.InputsIsEmpty(email, pass1 = password , pass2 = passwordConfirm)){
+            Toast.makeText(context,getString(R.string.fields_are_empty),Toast.LENGTH_LONG).show()
+        }
+            else if (!viewModel.isPasswordConfirmed(pass2 = password , pass1 = passwordConfirm))
+            {  Toast.makeText(context,getString(R.string.two_passwords_are_not_similar),Toast.LENGTH_LONG).show()}
+
+            else if ( !viewModel.checkIfEmailIsGood(email = email))
+            {
+                Toast.makeText(context,getString(R.string.email_format_is_not_accepted),Toast.LENGTH_LONG).show()
+            }
+            else{
+
+            var customer = Customer(email = email, first_name = first, last_name = second , note = password)
+//                var customer = Customer(email = email , password = password, password_confirmation = passwordConfirm , first_name = first, last_name = second)
+            viewModel.createUser(customer)
+            showBottomSheetDialogFragment()
+            }
+
+
+
+        }
 
 
 
@@ -68,7 +104,8 @@ class SignupBottomSheetDialogFragment(val viewModel: AuthViewModel) : BottomShee
     }
 
     private fun showBottomSheetDialogFragment() {
-        val bottomSheetFragment = SignupBottomSheetDialogFragment(viewModel)
+        val bottomSheetFragment = SignupSuccesfulBottomSheetDialogFragment()
         bottomSheetFragment.show(childFragmentManager, bottomSheetFragment.tag)
+        this@SignupBottomSheetDialogFragment.dismiss()
     }
 }

@@ -40,9 +40,9 @@ class LoginBottomSheetDialogFragment(val viewModel: AuthViewModel) : BottomSheet
 
         binding.dialogLoginCloseImageView.setOnClickListener { FragmentManager.POP_BACK_STACK_INCLUSIVE } // to close dialog
 
-        binding.dialogLoginLoginBtn.setOnClickListener { viewModel.getUserByEmail(binding.dialogLoginEmailIdEdt.text.toString()) }
+        binding.dialogLoginLoginBtn.setOnClickListener { viewModel.getUserByEmail(binding.dialogLoginEmailIdEdt.text.toString(),binding.dialogLoginPasswordEdt2.text.toString() ) }
 
-        binding.dialogLoginForgotPasswordTxt.setOnClickListener {  }
+        //binding.dialogLoginForgotPasswordTxt.setOnClickListener {  }
 
         viewModel.users.observe(viewLifecycleOwner){
             if (it){

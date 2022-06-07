@@ -9,8 +9,6 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.widget.CheckedTextViewCompat
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.amunstore.R
@@ -18,10 +16,15 @@ import com.example.amunstore.data.model.details.ProductDetailsResponse
 import com.example.amunstore.data.model.product.Options
 
 
-class ProductDetailsSizeAdapter (private val arrayList:ArrayList<String> ) : RecyclerView.Adapter<ProductDetailsSizeAdapter.ViewHolder>() {
+class ProductDetailsSizeAdapter(
+    private val arrayList: ArrayList<String>,
+    val clickItem: (String) -> Unit,
+) : RecyclerView.Adapter<ProductDetailsSizeAdapter.ViewHolder>() {
 
-    var checkedItemPosition : MutableLiveData<Int> = MutableLiveData<Int>(0)
-//    var checkedItemPosition = 0
+
+    var checkedItemPosition = 0
+    lateinit var item: String
+
     // create new views
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         // inflates the card_view_design view
@@ -34,17 +37,20 @@ class ProductDetailsSizeAdapter (private val arrayList:ArrayList<String> ) : Rec
 
     // binds the list items to a view
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-         if (position==checkedItemPosition.value)
-         {     holder.size.isChecked = true  }
-        else
-         {     holder.size.isChecked = false  }
+        if (position == checkedItemPosition) {
+            holder.size.isChecked = true
+        } else {
+            holder.size.isChecked = false
+        }
 
-        holder.size.text=  arrayList[position]
+        holder.size.text = arrayList[position]
         holder.size.setOnClickListener {
 
-            if (checkedItemPosition.value != position) {
+            if (checkedItemPosition != position) {
                 holder.size.isChecked = true
-                checkedItemPosition.postValue(position)
+                checkedItemPosition = position
+                clickItem(arrayList[position])
+
             }
             //update fragment
             notifyDataSetChanged()
@@ -59,7 +65,7 @@ class ProductDetailsSizeAdapter (private val arrayList:ArrayList<String> ) : Rec
     // Holds the views for adding it to image and text
     class ViewHolder(ItemView: View) : RecyclerView.ViewHolder(ItemView) {
 
-        val size :CheckedTextView = itemView.findViewById(R.id.item_product_size_checkbox)
+        val size: CheckedTextView = itemView.findViewById(R.id.item_product_size_checkbox)
 
     }
 }

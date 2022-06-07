@@ -33,7 +33,7 @@ class ProductDetailsFragment() : Fragment() {
     private var _binding: FragmentProductDetailsBinding? = null
     private val binding get() = _binding!!
     private val args: ProductDetailsFragmentArgs by navArgs()
-     var selectedSize: String?=null
+    var selectedSize: String?=null
 
     //viewPager components
     private lateinit var productImagesList: List<Images>
@@ -108,7 +108,7 @@ class ProductDetailsFragment() : Fragment() {
                     productDetails.product.title,
                     productDetails.product.variants[0].price,
                     productDetails.product.image?.src,
-                    "1",
+                    1,
                     selectedSize ?: productDetails.product.options[0].values[0])
             }?.let { it2 -> viewLifecycleOwner.lifecycleScope.launch { viewModel.addToCart(it2) } }
         }
@@ -210,6 +210,3 @@ class ProductDetailsFragment() : Fragment() {
     }
 
 }
-
-
-

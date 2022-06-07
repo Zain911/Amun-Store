@@ -110,4 +110,9 @@
     <!--    login and register strings-->
     <string name="preference_loggin" translatable="false">pref_loggin</string>
     <string name="login_failed">Login Failed</string>
+    <string name="last_name">Last name</string>
+    <string name="first_name">First name</string>
+    <string name="two_passwords_are_not_similar">Two passwords are not similar</string>
+    <string name="fields_are_empty">Fields are empty</string>
+    <string name="email_format_is_not_accepted">Email format is not accepted</string>
 </resources>

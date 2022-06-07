@@ -29,6 +29,7 @@ class SignupSuccesfulBottomSheetDialogFragment : BottomSheetDialogFragment() {
         val root: View = binding.root
 
         binding.dialogSuccessfulButton.setOnClickListener {  }
+        binding.dialogSuccessfulButton.setOnClickListener { dismiss() }
 
         return root
     }
