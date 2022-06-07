@@ -1,9 +1,9 @@
 package com.example.amunstore.di
 
 import com.example.amunstore.data.network.NetworkServices
-import com.example.amunstore.data.repositories.categories.CategoriesRepository
 import com.example.amunstore.data.presistentstorage.room.ProductsDao
 import com.example.amunstore.data.presistentstorage.sharedprefs.UserSharedPreferences
+import com.example.amunstore.data.repositories.categories.CategoriesRepository
 import com.example.amunstore.data.repositories.orders.OrdersRepository
 import com.example.amunstore.data.repositories.products.ProductsRepository
 import com.example.amunstore.data.repositories.productvendor.ProductVendorRepository

@@ -10,6 +10,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.coroutineScope
 import com.example.amunstore.R
 import com.example.amunstore.data.model.product.Product
+import androidx.lifecycle.ViewModelProvider
 import com.example.amunstore.databinding.FragmentProfileBinding
 import com.example.amunstore.ui.favourites.FavouriteListAdapter
 import dagger.hilt.android.AndroidEntryPoint
@@ -35,6 +36,8 @@ class ProfileFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        val notificationsViewModel =
+            ViewModelProvider(this).get(ProfileViewModel::class.java)
 
         _binding = FragmentProfileBinding.inflate(inflater, container, false)
         val root: View = binding.root
@@ -42,17 +45,12 @@ class ProfileFragment : Fragment() {
         favouriteListAdapter = FavouriteListAdapter(arrayListOf()) {
 
         }
+
         binding.wishListRecyclerView.adapter = favouriteListAdapter
 
-        viewModel.userName.observe(viewLifecycleOwner) {
-            binding.userNameWelcomeTextView.text = resources.getString(R.string.welcome) + it
-        }
 
         viewModel.ordersList.observe(viewLifecycleOwner) {
             //add data to adapter
-            if(it.isNotEmpty()){
-                //println(it)
-            }
         }
 
         viewModel.favProductList.observe(viewLifecycleOwner) {
@@ -62,6 +60,9 @@ class ProfileFragment : Fragment() {
             favouriteListAdapter.changeList(list as MutableList<Product>)
         }
 
+        viewModel.userName.observe(viewLifecycleOwner) {
+            binding.userNameWelcomeTextView.text = resources.getString(R.string.welcome) + it
+        }
 
         viewModel.isUserLoggedIn.observe(viewLifecycleOwner) {
             if (it) {
@@ -76,8 +77,12 @@ class ProfileFragment : Fragment() {
             }
         }
 
+        lifecycle.coroutineScope.launch {
+            viewModel.getUserFavouriteProducts()
+        }
 
-        viewModel.isUserLoggedIn()
+
+        //viewModel.isUserLoggedIn()
 
         return root
     }

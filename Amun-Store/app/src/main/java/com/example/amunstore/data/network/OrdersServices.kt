@@ -1,6 +1,5 @@
 package com.example.amunstore.data.network
 
-import com.example.amunstore.data.model.order.Order
 import com.example.amunstore.data.model.order.OrdersResponse
 import retrofit2.http.GET
 import retrofit2.http.Query

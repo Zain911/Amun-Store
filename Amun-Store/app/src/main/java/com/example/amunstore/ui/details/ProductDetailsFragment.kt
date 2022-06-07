@@ -10,17 +10,20 @@ import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import com.example.amunstore.R
+import com.example.amunstore.data.model.cart.ItemCart
 import com.example.amunstore.data.model.details.ProductDetailsResponse
 import com.example.amunstore.data.model.product.Images
 import com.example.amunstore.databinding.FragmentProductDetailsBinding
 import com.google.android.material.appbar.MaterialToolbar
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
 
 @AndroidEntryPoint
@@ -30,6 +33,7 @@ class ProductDetailsFragment() : Fragment() {
     private var _binding: FragmentProductDetailsBinding? = null
     private val binding get() = _binding!!
     private val args: ProductDetailsFragmentArgs by navArgs()
+    var selectedSize: String?=null
 
     //viewPager components
     private lateinit var productImagesList: List<Images>
@@ -61,16 +65,14 @@ class ProductDetailsFragment() : Fragment() {
         viewPager = binding.productImageView
         viewModel.getProductDetails(args.productId)
 
-        colorRecyclerView=binding.productProductPhotsRecycler
+        colorRecyclerView = binding.productProductPhotsRecycler
         sizeRecyclerView = binding.productSizeRecycler
 
-        topAppBar   =binding.topAppBar
+        topAppBar = binding.topAppBar
 
         topAppBar.setNavigationOnClickListener {
-         this.findNavController().popBackStack()
+            this.findNavController().popBackStack()
         }
-
-
 
         topAppBar.setOnMenuItemClickListener { menuItem ->
             when (menuItem.itemId) {
@@ -92,24 +94,23 @@ class ProductDetailsFragment() : Fragment() {
 
         viewModel.productDetails.observe(viewLifecycleOwner) {
             initFragmentAdapters(it)
-            setDataToScreen(it,0)
-            productDetails =it
-            sizeAdapter?.checkedItemPosition?.observe(viewLifecycleOwner) {
-                setDataToScreen(productDetails,it)
-            }
-
-            //inflating view pager and it's dot from the respond of the api
-            productImagesList = it.product.images
-            dots = arrayOfNulls<TextView>(productImagesList.size)
-            viewPagerAdapter = DetailsSliderViewPagerAdapter(productImagesList)
-            viewPager.apply {
-                adapter = viewPagerAdapter
-                registerOnPageChangeCallback(onImageSliderChange)
-            }
+            setDataToScreen(it)
+            productDetails = it
         }
 
         viewModel.errorMessage.observe(viewLifecycleOwner) {
             Toast.makeText(context, it, Toast.LENGTH_LONG).show()
+        }
+
+        binding.productSaveButton.setOnClickListener {
+            productDetails.product.id?.let { it ->
+                ItemCart(it,
+                    productDetails.product.title,
+                    productDetails.product.variants[0].price,
+                    productDetails.product.image?.src,
+                    1,
+                    selectedSize ?: productDetails.product.options[0].values[0])
+            }?.let { it2 -> viewLifecycleOwner.lifecycleScope.launch { viewModel.addToCart(it2) } }
         }
 
         return root
@@ -144,7 +145,7 @@ class ProductDetailsFragment() : Fragment() {
         _binding = null
     }
 
-    fun initFragmentAdapters(it : ProductDetailsResponse?){
+    fun initFragmentAdapters(it: ProductDetailsResponse?) {
         var linear = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         colorRecyclerView.layoutManager = linear
 
@@ -152,24 +153,25 @@ class ProductDetailsFragment() : Fragment() {
         sizeRecyclerView.layoutManager = linear
 
         colorAdapter = ProductDetailsColorAdapter(it)
-            binding.productProductPhotsRecycler.adapter = colorAdapter
+        binding.productProductPhotsRecycler.adapter = colorAdapter
 
-        sizeAdapter = ProductDetailsSizeAdapter(it!!.product.options[0].values)
-            binding.productSizeRecycler.adapter = sizeAdapter
+        sizeAdapter = ProductDetailsSizeAdapter(it!!.product.options[0].values) {
+            selectedSize = it
+        }
+        binding.productSizeRecycler.adapter = sizeAdapter
 
     }
 
 
-
-    fun setDataToScreen(it: ProductDetailsResponse?, variantNumber: Int){
-
-
+    fun setDataToScreen(it: ProductDetailsResponse?) {
+        var variantNumber: Int = sizeAdapter!!.checkedItemPosition
         if (it != null) {
-            binding.productColorTxt.text= it.product.variants[variantNumber].option2
+            binding.productColorTxt.text = it.product.options[1].values[0]
             binding.productTitleText.text = it.product.title
             binding.productVendorText.text = it.product.vendor
 
-            binding.productPriceText.text = "${it.product.variants[variantNumber].price} ${viewModel.getCurrencyInfoForDefaultLocale()}"
+            binding.productPriceText.text =
+                "${it.product.variants[variantNumber].price} ${viewModel.getCurrencyInfoForDefaultLocale()}"
 
             binding.productProductDetailsTxt.text = "\u2022 ${it.product.bodyHtml}"
 
@@ -177,15 +179,16 @@ class ProductDetailsFragment() : Fragment() {
             if (it.product.variants[variantNumber].compareAtPrice.isNullOrEmpty()) {
                 binding.productOldPriceTxt.visibility = View.INVISIBLE
                 binding.productPricePercentTxt.visibility = View.INVISIBLE
-            }
-            else {
+            } else {
                 binding.productOldPriceTxt.text = it.product.variants[variantNumber].compareAtPrice
-                binding.productOldPriceTxt.setPaintFlags( binding.productOldPriceTxt.getPaintFlags()  );
-                val percent :Int = it.product.variants[variantNumber].compareAtPrice!!.toInt() / it.product.variants[variantNumber].price?.toInt()!! *100
+                binding.productOldPriceTxt.setPaintFlags(binding.productOldPriceTxt.getPaintFlags());
+                val percent =
+                    it.product.variants[variantNumber].compareAtPrice!!.toDouble() / it.product.variants[variantNumber].price?.toDouble()!! * 100
                 binding.productPricePercentTxt.text = " ${percent}% OFF"
             }
 
-            binding.productNumberOfLeftTxt.text = "ONLY ${it.product.variants[variantNumber].inventoryQuantity} LEFT"
+            binding.productNumberOfLeftTxt.text =
+                "ONLY ${it.product.variants[variantNumber].inventoryQuantity} LEFT"
 
             // to make buy button invisible if the priduct is inactive
             if (!it.product.status.equals("active")) {
@@ -193,21 +196,17 @@ class ProductDetailsFragment() : Fragment() {
                 binding.productBuyButton.text = getString(R.string.not_available)
             }
 
-            if (it.product.variants[variantNumber].inventoryQuantity == 0)
-            {binding.productBuyButton.isEnabled = false
-                binding.productSaveButton.isEnabled = false
+            //inflating view pager and it's dot from the respond of the api
+            productImagesList = it.product.images
+            dots = arrayOfNulls<TextView>(productImagesList.size)
+            viewPagerAdapter = DetailsSliderViewPagerAdapter(productImagesList)
+            viewPager.apply {
+                adapter = viewPagerAdapter
+                registerOnPageChangeCallback(onImageSliderChange)
             }
-            else{
-                binding.productBuyButton.isEnabled = true
-                binding.productSaveButton.isEnabled = true
-            }
-
 
 
         }
     }
 
 }
-
-
-
