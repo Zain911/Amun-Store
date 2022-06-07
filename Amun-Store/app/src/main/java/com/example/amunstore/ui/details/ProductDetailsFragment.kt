@@ -27,13 +27,13 @@ import kotlinx.coroutines.launch
 
 
 @AndroidEntryPoint
-class ProductDetailsFragment() : Fragment() {
+class ProductDetailsFragment : Fragment() {
 
     private val viewModel: ProductDetailsViewModel by viewModels()
     private var _binding: FragmentProductDetailsBinding? = null
     private val binding get() = _binding!!
     private val args: ProductDetailsFragmentArgs by navArgs()
-    var selectedSize: String?=null
+    var selectedSize: String? = null
 
     //viewPager components
     private lateinit var productImagesList: List<Images>
@@ -93,9 +93,9 @@ class ProductDetailsFragment() : Fragment() {
         }
 
         viewModel.productDetails.observe(viewLifecycleOwner) {
-            initFragmentAdapters(it)
-            setDataToScreen(it)
             productDetails = it
+            initFragmentAdapters(it)
+            setDataToScreen(it, 0)
         }
 
         viewModel.errorMessage.observe(viewLifecycleOwner) {
@@ -104,15 +104,16 @@ class ProductDetailsFragment() : Fragment() {
 
         binding.productSaveButton.setOnClickListener {
             productDetails.product.id?.let { it ->
-                ItemCart(it,
+                ItemCart(
+                    it,
                     productDetails.product.title,
                     productDetails.product.variants[0].price,
                     productDetails.product.image?.src,
                     1,
-                    selectedSize ?: productDetails.product.options[0].values[0])
+                    selectedSize ?: productDetails.product.options[0].values[0]
+                )
             }?.let { it2 -> viewLifecycleOwner.lifecycleScope.launch { viewModel.addToCart(it2) } }
         }
-
         return root
     }
 
@@ -159,14 +160,22 @@ class ProductDetailsFragment() : Fragment() {
             selectedSize = it
         }
         binding.productSizeRecycler.adapter = sizeAdapter
-
+        //inflating view pager and it's dot from the respond of the api
+        productImagesList = productDetails.product.images
+        dots = arrayOfNulls<TextView>(productImagesList.size)
+        viewPagerAdapter = DetailsSliderViewPagerAdapter(productImagesList)
+        viewPager.apply {
+            adapter = viewPagerAdapter
+            registerOnPageChangeCallback(onImageSliderChange)
+        }
+        sizeAdapter?.checkedItemPosition?.observe(viewLifecycleOwner) {
+            setDataToScreen(productDetails, it)
+        }
     }
 
-
-    fun setDataToScreen(it: ProductDetailsResponse?) {
-        var variantNumber: Int = sizeAdapter!!.checkedItemPosition
+    fun setDataToScreen(it: ProductDetailsResponse?, variantNumber: Int) {
         if (it != null) {
-            binding.productColorTxt.text = it.product.options[1].values[0]
+            binding.productColorTxt.text = it.product.variants[variantNumber].option2
             binding.productTitleText.text = it.product.title
             binding.productVendorText.text = it.product.vendor
 
@@ -181,7 +190,7 @@ class ProductDetailsFragment() : Fragment() {
                 binding.productPricePercentTxt.visibility = View.INVISIBLE
             } else {
                 binding.productOldPriceTxt.text = it.product.variants[variantNumber].compareAtPrice
-                binding.productOldPriceTxt.setPaintFlags(binding.productOldPriceTxt.getPaintFlags());
+                binding.productOldPriceTxt.paintFlags = binding.productOldPriceTxt.paintFlags
                 val percent =
                     it.product.variants[variantNumber].compareAtPrice!!.toDouble() / it.product.variants[variantNumber].price?.toDouble()!! * 100
                 binding.productPricePercentTxt.text = " ${percent}% OFF"
@@ -194,18 +203,19 @@ class ProductDetailsFragment() : Fragment() {
             if (!it.product.status.equals("active")) {
                 binding.productBuyButton.isEnabled = false
                 binding.productBuyButton.text = getString(R.string.not_available)
+            } else {
+                binding.productBuyButton.isEnabled = true
+                binding.productBuyButton.text = getString(R.string.buy_now)
             }
-
-            //inflating view pager and it's dot from the respond of the api
-            productImagesList = it.product.images
-            dots = arrayOfNulls<TextView>(productImagesList.size)
-            viewPagerAdapter = DetailsSliderViewPagerAdapter(productImagesList)
-            viewPager.apply {
-                adapter = viewPagerAdapter
-                registerOnPageChangeCallback(onImageSliderChange)
+            if (it.product.variants[variantNumber].inventoryQuantity == 0) {
+                binding.productBuyButton.isEnabled = false
+                binding.productSaveButton.isEnabled = false
+                binding.productBuyButton.text = getString(R.string.not_available)
+            } else {
+                binding.productBuyButton.isEnabled = true
+                binding.productSaveButton.isEnabled = true
+                binding.productBuyButton.text = getString(R.string.buy_now)
             }
-
-
         }
     }
 
