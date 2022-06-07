@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/circle_image_border">
@@ -12,6 +11,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
         android:text="@string/login_with_email"
         android:textColor="@color/black"
         android:textSize="24sp"
@@ -19,9 +19,11 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatEditText
+        android:maxLength="32"
         android:nextFocusDown="@id/dialogLogin_LoginBtn"
         android:drawablePadding="8dp"
-        android:padding="16dp"
+        android:backgroundTint="@color/white"
+        android:background="@drawable/round_corners"
         android:id="@+id/dialogLogin_emailIdEdt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -43,13 +45,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="textPassword"
+        android:backgroundTint="@color/white"
+        android:background="@drawable/round_corners"
         app:layout_constraintEnd_toEndOf="@+id/dialogLogin_emailIdEdt"
         app:layout_constraintStart_toStartOf="@+id/dialogLogin_emailIdEdt"
         android:layout_gravity="center"
+        android:nextFocusForward="@id/dialogLogin_LoginBtn"
         app:layout_constraintTop_toBottomOf="@+id/dialogLogin_emailIdEdt" >
 
         <androidx.appcompat.widget.AppCompatEditText
-            android:nextFocusDown="@id/dialogLogin_LoginBtn"
+            android:maxLength="32"
+            android:background="@drawable/round_corners"
+            android:nextFocusForward="@id/dialogLogin_LoginBtn"
             android:id="@+id/dialogLogin_passwordEdt2"
             android:layout_gravity="center"
             android:backgroundTint="@color/white"

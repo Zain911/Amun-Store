@@ -7,6 +7,7 @@
     android:background="@drawable/circle_image_border">
 
         <EditText
+            android:maxLength="32"
             android:id="@+id/signup_firstNAmeEdt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -20,6 +21,7 @@
             app:layout_constraintTop_toBottomOf="@+id/dialogSignup_loginWithEmailTxt" />
 
     <EditText
+        android:maxLength="32"
         android:id="@+id/signup_lastNameEdt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -46,9 +48,11 @@
 
 
     <androidx.appcompat.widget.AppCompatEditText
+        android:layout_margin="8dp"
+        android:maxLength="32"
         android:nextFocusForward="@+id/dialogLogin_passwordEdt2"
         android:drawablePadding="8dp"
-        android:padding="16dp"
+        android:padding="8dp"
         android:id="@+id/dialogSignup_emailIdEdt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -82,6 +86,7 @@
         app:passwordToggleEnabled="true">
 
         <androidx.appcompat.widget.AppCompatEditText
+            android:maxLength="32"
             android:drawablePadding="8dp"
             android:nextFocusDown="@+id/dialogSignup_passwordConfirmEdtIn"
             android:id="@+id/dialogSignup_passwordEdtIn"
@@ -110,6 +115,7 @@
         app:passwordToggleEnabled="true">
 
         <androidx.appcompat.widget.AppCompatEditText
+            android:maxLength="32"
             android:drawablePadding="8dp"
             android:nextFocusDown="@+id/dialogSignup_SignupBtn"
             android:id="@+id/dialogSignup_passwordConfirmEdtIn"
