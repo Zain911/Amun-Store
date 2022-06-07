@@ -9,8 +9,7 @@ import retrofit2.http.Path
 
 interface UserServices {
 
-    //TODO make it get data from the shopify API
-    fun getUserOrders(): List<Order>
+
 
     //admin/api/2022-04/customers/207119551/addresses.json
     @GET("customers/{customer_id}/addresses.json")

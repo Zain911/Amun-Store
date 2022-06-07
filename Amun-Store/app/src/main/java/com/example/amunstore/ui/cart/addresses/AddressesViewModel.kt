@@ -12,7 +12,9 @@ class AddressesViewModel @Inject constructor(private val userRepo: UserRepositor
 
     val addressesList = MutableLiveData<List<Address>?>()
     suspend fun getUserAddresses() {
-        //TODO change the customer id for the real customer id saved on device
+
+        //TODO remove static customer id and get it from sharedPref
+        //val list = userRepo.getUserAddresses(userRepo.getCustomerId())
         val list = userRepo.getUserAddresses(6465366753509)
         addressesList.postValue(list.addresses)
     }

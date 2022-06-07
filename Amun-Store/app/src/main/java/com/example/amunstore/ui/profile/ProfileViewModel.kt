@@ -4,6 +4,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.amunstore.data.model.order.Order
 import com.example.amunstore.data.model.product.Product
+import com.example.amunstore.data.presistentstorage.sharedprefs.UserSharedPreferences
+import com.example.amunstore.data.repositories.orders.OrdersRepository
 import com.example.amunstore.data.repositories.products.ProductsRepository
 import com.example.amunstore.data.repositories.user.UserRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -12,7 +14,9 @@ import javax.inject.Inject
 @HiltViewModel
 class ProfileViewModel @Inject constructor(
     private val productRepository: ProductsRepository,
-    private val userRepository: UserRepository
+    private val userRepository: UserRepository,
+    private val ordersRepository: OrdersRepository,
+    private val sharedPreferences: UserSharedPreferences
 ) :
     ViewModel() {
 
@@ -26,12 +30,7 @@ class ProfileViewModel @Inject constructor(
         val isLoggedIn = userRepository.isUserLoggedIn()
         isUserLoggedIn.postValue(isLoggedIn)
         if (isLoggedIn) {
-            //Todo change it to user name saved in room or shared prefs
-            val user = userRepository.getUser()
-            user.name.let {
-                userName.postValue(user.name)
-            }
-
+            userName.postValue(sharedPreferences.getUserName())
         } else {
             userName.postValue("Guest")
         }
@@ -41,9 +40,10 @@ class ProfileViewModel @Inject constructor(
         favProductList.postValue(productRepository.getAllFavouriteProducts())
     }
 
-    fun getUserOrders() {
-
-        userRepository.getUserOrders()
+    suspend fun getUserOrders() {
+        //TODO remove static customer id and get it from sharedPref
+        //ordersList.postValue(ordersRepository.getUserOrders(sharedPreferences.getCustomerId()).orders)
+        ordersList.postValue(ordersRepository.getUserOrders(6432302989541).orders)
     }
 
 

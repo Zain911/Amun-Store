@@ -30,22 +30,22 @@ class AddressesBottomSheetDialogFragment : BottomSheetDialogFragment() {
         val root: View = binding.root
 
         addressAdapter = AddressAdapter(mutableListOf(), { })
-        addressAdapter.setList(
-            mutableListOf(
-                Address(
-                    name = "Home",
-                    address1 = "4517 Washington Ave. Manchester,Kentucky 39545 asdasdasdasdasdasd"
-                ),
-                Address(
-                    name = "Home",
-                    address1 = "4517 Washington Ave. Manchester,Kentucky 39545 asdasdasdasdasdasd"
-                ),
-                Address(
-                    name = "Home",
-                    address1 = "4517 Washington Ave. Manchester,Kentucky 39545 asdasdasdasdasdasd"
-                )
-            )
-        )
+//        addressAdapter.setList(
+//            mutableListOf(
+//                Address(
+//                    name = "Home",
+//                    address1 = "4517 Washington Ave. Manchester,Kentucky 39545 asdasdasdasdasdasd"
+//                ),
+//                Address(
+//                    name = "Home",
+//                    address1 = "4517 Washington Ave. Manchester,Kentucky 39545 asdasdasdasdasdasd"
+//                ),
+//                Address(
+//                    name = "Home",
+//                    address1 = "4517 Washington Ave. Manchester,Kentucky 39545 asdasdasdasdasdasd"
+//                )
+//            )
+//        )
         binding.addressesRecyclerView.adapter = addressAdapter
 
         binding.cancelImageView.setOnClickListener {
