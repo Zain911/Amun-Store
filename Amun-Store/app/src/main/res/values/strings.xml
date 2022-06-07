@@ -110,6 +110,8 @@
     <string name="size_name">"Size: "</string>
     <string name="change_address">Change Address</string>
     <string name="continue_address">Continue</string>
+    <string name="lastName">Last Name</string>
+    <string name="firstName">First Name</string>
 
 
 

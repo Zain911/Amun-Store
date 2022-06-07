@@ -46,13 +46,19 @@
     <style name="TextAppearance.MaterialComponents.Body2_Thin" parent="TextAppearance.MaterialComponents.Body2">
         <item name="android:textSize">12sp</item>
     </style>
-    <style name="AddressTextInputLayout" parent="Widget.Design.TextInputLayout" >
+    <style name="AddressTextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense" >
         <item name="layout_constraintEnd_toEndOf">parent</item>
         <item name="layout_constraintStart_toStartOf">parent</item>
+<!--
         <item name="android:background">@drawable/border_background_add_address</item>
+-->
         <item name="android:layout_margin">8dp</item>
         <item name="android:elevation">4dp</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
+        <item name="helperTextTextColor">@android:color/holo_red_dark</item>
+        <item name="boxStrokeColor">@color/gray_medium</item>
+        <item name="hintTextColor">@color/hyber_blue</item>
+
     </style>
 </resources>

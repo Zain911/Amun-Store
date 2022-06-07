@@ -9,6 +9,7 @@
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginTop="12dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -20,28 +21,59 @@
 
             app:layout_constraintTop_toTopOf="parent">
 
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.5" />
+
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/tv_nameField"
+                android:id="@+id/firstNameInputText"
+                android:layout_width="0dp"
+
                 style="@style/AddressTextInputLayout"
-                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_constraintEnd_toEndOf="@id/guideline1"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
                 <EditText
-                    android:id="@+id/name_edt"
+                    android:id="@+id/firstName_edt"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
                     android:backgroundTint="@color/white"
-                    android:hint="@string/full_name"
+                    android:hint="@string/firstName"
                     android:inputType="text|textNoSuggestions"
                     android:textColorHint="@color/gray" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/tv_phoneField"
+                android:id="@+id/lastNameInputText"
+                android:layout_width="0dp"
+                style="@style/AddressTextInputLayout"
+                android:layout_height="match_parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="@id/guideline1">
+
+                <EditText
+                    android:id="@+id/lastName_edt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:backgroundTint="@color/white"
+                    android:hint="@string/lastName"
+                    android:inputType="text|textNoSuggestions"
+                    android:textColorHint="@color/gray" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/phoneTextInput"
                 style="@style/AddressTextInputLayout"
                 android:layout_width="match_parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_nameField">
+                app:layout_constraintTop_toBottomOf="@+id/firstNameInputText">
 
                 <EditText
                     android:id="@+id/phone_edt"
@@ -56,10 +88,10 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/tv_cityField"
+                android:id="@+id/cityTextInput"
                 style="@style/AddressTextInputLayout"
                 android:layout_width="match_parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_phoneField">
+                app:layout_constraintTop_toBottomOf="@+id/phoneTextInput">
 
                 <EditText
                     android:id="@+id/city_edt"
@@ -72,10 +104,10 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/tv_stateField"
+                android:id="@+id/stateTextInput"
                 style="@style/AddressTextInputLayout"
                 android:layout_width="match_parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_cityField">
+                app:layout_constraintTop_toBottomOf="@+id/cityTextInput">
 
                 <EditText
                     android:id="@+id/state_edt"
@@ -88,10 +120,10 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/tv_postCodeField"
+                android:id="@+id/postCodeTextInput"
                 style="@style/AddressTextInputLayout"
                 android:layout_width="match_parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_stateField">
+                app:layout_constraintTop_toBottomOf="@+id/stateTextInput">
 
                 <EditText
                     android:id="@+id/postCode_edt"
@@ -104,10 +136,10 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/tv_addressField"
+                android:id="@+id/addressTextInput"
                 style="@style/AddressTextInputLayout"
                 android:layout_width="match_parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_postCodeField">
+                app:layout_constraintTop_toBottomOf="@+id/postCodeTextInput">
 
                 <EditText
                     android:id="@+id/address_edt"
@@ -120,10 +152,10 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/tv_address2Field"
+                android:id="@+id/address2TextInput"
                 style="@style/AddressTextInputLayout"
                 android:layout_width="match_parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_addressField">
+                app:layout_constraintTop_toBottomOf="@+id/addressTextInput">
 
                 <EditText
                     android:id="@+id/address2_edt"
@@ -136,11 +168,11 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/tv_countryField"
+                android:id="@+id/countryTextInput"
                 style="@style/AddressTextInputLayout"
                 android:layout_width="match_parent"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_address2Field">
+                app:layout_constraintTop_toBottomOf="@+id/address2TextInput">
 
                 <EditText
                     android:id="@+id/country_edt"
@@ -157,7 +189,7 @@
     </androidx.core.widget.NestedScrollView>
 
     <Button
-        android:id="@+id/save_btn"
+        android:id="@+id/saveAddressButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/hyber_blue"

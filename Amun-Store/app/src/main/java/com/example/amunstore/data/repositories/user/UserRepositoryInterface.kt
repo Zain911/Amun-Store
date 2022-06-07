@@ -1,5 +1,7 @@
 package com.example.amunstore.data.repositories.user
 
+import com.example.amunstore.data.model.address.AddAddress
+import com.example.amunstore.data.model.address.Address
 import com.example.amunstore.data.model.address.AddressResponse
 import com.example.amunstore.data.model.customer.CustomerResponse
 import com.example.amunstore.data.model.order.Customer
@@ -9,6 +11,8 @@ import retrofit2.Response
 
 
 interface UserRepositoryInterface {
+
+    suspend fun addUserAddress(address: AddAddress)
 
     suspend fun createCustomer(customer: RequestBody): Response<Customer>?
 
