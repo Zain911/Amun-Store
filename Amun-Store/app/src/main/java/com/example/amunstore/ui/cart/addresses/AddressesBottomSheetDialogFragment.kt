@@ -6,6 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.coroutineScope
+import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
+import com.example.amunstore.R
 import com.example.amunstore.databinding.FragmentBottomSheetAddressesBinding
 import com.example.amunstore.data.model.address.Address
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
@@ -30,22 +33,7 @@ class AddressesBottomSheetDialogFragment : BottomSheetDialogFragment() {
         val root: View = binding.root
 
         addressAdapter = AddressAdapter(mutableListOf(), { })
-//        addressAdapter.setList(
-//            mutableListOf(
-//                Address(
-//                    name = "Home",
-//                    address1 = "4517 Washington Ave. Manchester,Kentucky 39545 asdasdasdasdasdasd"
-//                ),
-//                Address(
-//                    name = "Home",
-//                    address1 = "4517 Washington Ave. Manchester,Kentucky 39545 asdasdasdasdasdasd"
-//                ),
-//                Address(
-//                    name = "Home",
-//                    address1 = "4517 Washington Ave. Manchester,Kentucky 39545 asdasdasdasdasdasd"
-//                )
-//            )
-//        )
+
         binding.addressesRecyclerView.adapter = addressAdapter
 
         binding.cancelImageView.setOnClickListener {
@@ -56,10 +44,13 @@ class AddressesBottomSheetDialogFragment : BottomSheetDialogFragment() {
             addressAdapter.setList(it as MutableList<Address>)
         }
 
-        lifecycle.coroutineScope.launch{
+        lifecycle.coroutineScope.launch {
             viewModel.getUserAddresses()
         }
 
+        binding.addNewAddressLinearLayout.setOnClickListener {
+            findNavController().navigate(R.id.addressFragment)
+        }
         return root
     }
 

@@ -88,6 +88,11 @@
         android:name="com.example.amunstore.ui.cart.CartFragment"
         android:label="fragment_cart"
         tools:layout="@layout/fragment_cart" />
+    <fragment
+        android:id="@+id/addressFragment"
+        android:name="com.example.amunstore.ui.address.AddressFragment"
+        android:label="fragment_address"
+        tools:layout="@layout/fragment_add_address" />
 
 
 </navigation>

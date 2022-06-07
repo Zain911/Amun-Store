@@ -1,9 +1,13 @@
 package com.example.amunstore.data.repositories.user
 
+import com.example.amunstore.data.model.address.AddAddress
+import com.example.amunstore.data.model.address.Address
 import com.example.amunstore.data.model.address.AddressResponse
 import com.example.amunstore.data.model.user.User
 
 interface UserRepositoryInterface {
+
+    suspend fun addUserAddress(address: AddAddress)
 
     fun isUserLoggedIn(): Boolean
 
