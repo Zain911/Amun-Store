@@ -6,48 +6,50 @@
     android:layout_height="wrap_content"
     android:layout_margin="8dp"
     android:background="@drawable/border_address_order"
-    android:elevation="8dp"
+    android:elevation="4dp"
     android:padding="8dp">
 
     <ImageView
         android:id="@+id/itemCartImage"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-
-        android:layout_marginTop="12dp"
-        android:scaleType="centerCrop"
+        android:layout_width="140dp"
+        android:layout_height="120dp"
+        android:layout_marginTop="4dp"
+        android:scaleType="fitXY"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/tshirt" />
+        app:srcCompat="@drawable/tshirt"
+        tools:ignore="ContentDescription" />
 
     <TextView
         android:id="@+id/itemCartTitle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
         android:lines="1"
-        android:padding="5dp"
-        tools:text=" Disney Donald Duck T-Shirt"
+        android:paddingTop="4dp"
+        android:paddingBottom="4dp"
         android:textColor="@color/gray"
-        android:textSize="12sp"
+        android:textSize="14sp"
         app:layout_constraintStart_toEndOf="@id/itemCartImage"
-        app:layout_constraintTop_toTopOf="@id/itemCartImage" />
+        app:layout_constraintTop_toTopOf="@id/itemCartImage"
+        tools:text=" Disney Donald Duck T-Shirt" />
 
     <TextView
         android:id="@+id/itemCartPrice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        tools:text="60.00 EGP"
+        android:layout_marginTop="4dp"
         android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="@id/itemCartTitle"
-        app:layout_constraintTop_toBottomOf="@id/itemCartTitle" />
+        app:layout_constraintTop_toBottomOf="@id/itemCartTitle"
+        tools:text="60.00 EGP" />
 
     <LinearLayout
         android:id="@+id/containerCounterLinearLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginEnd="12dp"
         android:layout_marginBottom="4dp"
         android:background="@drawable/border_order_counter"
         android:gravity="center"
@@ -59,7 +61,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/itemCartPrice">
 
-
         <ImageButton
             android:id="@+id/decreaseButton"
             android:layout_width="0dp"
@@ -67,7 +68,8 @@
             android:layout_gravity="end"
             android:layout_weight="1"
             android:background="@android:color/transparent"
-            app:srcCompat="@drawable/ic_min" />
+            app:srcCompat="@drawable/ic_min"
+            tools:ignore="ContentDescription" />
 
         <TextView
             android:id="@+id/itemCountText"
@@ -75,8 +77,8 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
-            android:paddingStart="8dp"
-            android:paddingEnd="8dp"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
             android:text="@string/zero"
             android:textColor="@color/black"
             android:textSize="16sp" />
@@ -87,7 +89,8 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:backgroundTint="@android:color/transparent"
-            app:srcCompat="@drawable/ic_add" />
+            app:srcCompat="@drawable/ic_add"
+            tools:ignore="ContentDescription" />
 
     </LinearLayout>
 
@@ -95,8 +98,7 @@
         android:id="@+id/seprator"
         android:layout_width="0dp"
         android:layout_height="1dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginTop="12dp"
         android:background="@color/gray_medium"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -122,13 +124,22 @@
         app:layout_constraintTop_toBottomOf="@+id/seprator" />
 
     <TextView
+        android:id="@+id/sizeNameTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="@string/size_name"
+        app:layout_constraintStart_toStartOf="@+id/itemCartTitle"
+        app:layout_constraintTop_toBottomOf="@id/itemCartPrice" />
+
+    <TextView
         android:id="@+id/sizeTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:text="XXL"
-        android:layout_marginTop="12dp"
-        app:layout_constraintStart_toEndOf="@+id/itemCartImage"
-        app:layout_constraintTop_toBottomOf="@+id/itemCartPrice" />
+        app:layout_constraintBottom_toBottomOf="@+id/sizeNameTextView"
+        app:layout_constraintStart_toEndOf="@+id/sizeNameTextView"
+        app:layout_constraintTop_toTopOf="@+id/sizeNameTextView"
+        tools:text="XXL" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

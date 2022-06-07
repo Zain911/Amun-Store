@@ -75,5 +75,8 @@
     <string name="country">*Country</string>
     <string name="remove">Remove</string>
     <string name="zero">0</string>
-  
+    <string name="size_name">"Size: "</string>
+    <string name="change_address">Change Address</string>
+    <string name="continue_address">Continue</string>
+
 </resources>

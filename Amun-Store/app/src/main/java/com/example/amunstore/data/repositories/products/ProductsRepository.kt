@@ -4,6 +4,7 @@ import com.example.amunstore.data.model.details.ProductDetailsResponse
 import com.example.amunstore.data.model.product.Product
 import com.example.amunstore.data.model.product.ProductsResponse
 import com.example.amunstore.data.network.NetworkServices
+import com.example.amunstore.data.network.ProductServices
 import com.example.amunstore.data.presistentstorage.room.ProductsDao
 import com.example.example.CustomCollections
 import retrofit2.Response
@@ -11,7 +12,7 @@ import javax.inject.Inject
 
 class ProductsRepository @Inject constructor(
     private val productsDao: ProductsDao,
-    private val networkServices: NetworkServices
+    private val networkServices: ProductServices
 ) : ProductsRepositoryInterface {
 
     override suspend fun getProductByCategory(category: CustomCollections): Response<ProductsResponse> =

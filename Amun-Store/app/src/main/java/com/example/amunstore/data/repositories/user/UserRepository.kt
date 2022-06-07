@@ -2,6 +2,7 @@ package com.example.amunstore.data.repositories.user
 
 import com.example.amunstore.data.model.user.User
 import com.example.amunstore.data.network.NetworkServices
+import com.example.amunstore.data.network.UserServices
 import javax.inject.Inject
 
 class UserRepository @Inject constructor(
@@ -19,4 +20,6 @@ class UserRepository @Inject constructor(
     override fun getUser(): User {
         TODO("Implement the return of user based on room or shared prefs")
     }
+
+    override suspend fun getUserAddresses(customerId: Long) = networkServices.getUserAddresses(customerId)
 }
