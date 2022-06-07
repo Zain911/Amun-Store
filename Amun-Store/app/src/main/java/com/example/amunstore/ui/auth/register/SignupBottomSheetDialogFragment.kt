@@ -23,21 +23,18 @@ class SignupBottomSheetDialogFragment(val viewModel: AuthViewModel) : BottomShee
     private lateinit var first: String
     private lateinit var second: String
 
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = DialogSignupWithEmailBinding.inflate(inflater, container, false)
         val root: View = binding.root
-
         binding.dialogSignupCloseImageView.setOnClickListener { this@SignupBottomSheetDialogFragment.dismiss() } // to close dialog
-
 
         viewModel.users.observe(viewLifecycleOwner) {
             if (it) {
-                var intent = Intent(context, MainActivity::class.java)
+                val intent = Intent(context, MainActivity::class.java)
                 startActivity(intent)
                 activity?.finish()
             } else {
@@ -45,9 +42,7 @@ class SignupBottomSheetDialogFragment(val viewModel: AuthViewModel) : BottomShee
             }
         }
 
-
         binding.dialogSignupSignupBtn.setOnClickListener {
-
             email = binding.dialogSignupEmailIdEdt.text.toString().trim().lowercase()
             passwordConfirm = binding.dialogSignupPasswordConfirmEdtIn.text.toString().trim()
             password = binding.dialogSignupPasswordEdtIn.text.toString().trim()
@@ -55,7 +50,7 @@ class SignupBottomSheetDialogFragment(val viewModel: AuthViewModel) : BottomShee
             first = binding.signupFirstNAmeEdt.text.toString().trim()
             second = binding.signupLastNameEdt.text.toString().trim()
 
-            if (!viewModel.InputsIsEmpty(email, pass1 = password, pass2 = passwordConfirm)) {
+            if (!viewModel.inputsIsEmpty(email, pass1 = password, pass2 = passwordConfirm)) {
                 Toast.makeText(context, getString(R.string.fields_are_empty), Toast.LENGTH_LONG)
                     .show()
             } else if (!viewModel.isPasswordConfirmed(pass2 = password, pass1 = passwordConfirm)) {
@@ -78,8 +73,6 @@ class SignupBottomSheetDialogFragment(val viewModel: AuthViewModel) : BottomShee
                     Toast.LENGTH_LONG
                 ).show()
             } else {
-//            var customer = Customer(email = email, first_name = first, last_name = second , note = password)
-//                var customer = Customer(email = email , password = password, password_confirmation = passwordConfirm , first_name = first, last_name = second)
                 viewModel.createUser(
                     email = email,
                     first_name = first,
@@ -89,18 +82,13 @@ class SignupBottomSheetDialogFragment(val viewModel: AuthViewModel) : BottomShee
                 )
                 this@SignupBottomSheetDialogFragment.dismiss()
             }
-
-
         }
-
 
         viewModel.isRegistered.observe(viewLifecycleOwner) {
             if (it) {
                 showBottomSheetDialogFragment()
             }
-
         }
-
 
         return root
     }
@@ -108,6 +96,5 @@ class SignupBottomSheetDialogFragment(val viewModel: AuthViewModel) : BottomShee
     private fun showBottomSheetDialogFragment() {
         val bottomSheetFragment = SignupSuccesfulBottomSheetDialogFragment()
         bottomSheetFragment.show(childFragmentManager, bottomSheetFragment.tag)
-//        this@SignupBottomSheetDialogFragment.dismiss()
     }
 }

@@ -42,19 +42,11 @@ object RepositoryModule {
         return ProductVendorRepository(networkServices)
     }
 
-
     @Singleton
     @Provides
     fun provideUserRepository(networkServices: NetworkServices , application: Application): UserRepository {
         return UserRepository(networkServices,application)
     }
-
-//    @Singleton
-//    @Provides
-//    fun providesSharedPreferences( application: Application) : SharedPreferences {
-//        return application.getSharedPreferences(Resources.getSystem().getString(R.string.preference_loggin),  Context.MODE_PRIVATE)
-//    }
-
 
 }
 
