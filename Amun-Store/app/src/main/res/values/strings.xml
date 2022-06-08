@@ -80,5 +80,8 @@
     <string name="continue_address">Continue</string>
     <string name="lastName">Last Name</string>
     <string name="firstName">First Name</string>
+    <string name="color">Color</string>
+    <string name="quantity">Quantity</string>
+    <string name="financial_state">Financial State</string>
 
 </resources>
