@@ -70,6 +70,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
+        android:nextFocusForward="@id/dialogLogin_LoginBtn"
         android:padding="10dp"
         android:id="@+id/dialogLogin_forgotPasswordTxt"
         android:layout_width="wrap_content"
