@@ -4,14 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/circle_image_border"
-    android:padding="24dp">
+    android:layout_margin="12dp"
+    android:background="@drawable/border_background_coupons"
+    android:elevation="12dp">
 
     <TextView
         android:id="@+id/coupons_txt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/change_address"
+        android:layout_margin="8dp"
+        android:padding="8dp"
+        android:text="@string/avaliableCoupons"
         android:textColor="@color/black"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -27,40 +30,15 @@
         app:layout_constraintTop_toTopOf="@id/coupons_txt" />
 
     <androidx.recyclerview.widget.RecyclerView
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         android:id="@+id/couponsRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintTop_toBottomOf="@id/coupons_txt"
         tools:itemCount="2"
-        tools:listitem="@layout/item_address" />
+        tools:listitem="@layout/item_coupon" />
 
-    <LinearLayout
-        android:id="@+id/addNewAddressLinearLayout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="24dp"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/couponsRecyclerView">
-
-        <ImageView
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:src="@drawable/ic_add"
-            app:tint="@color/hyber_blue" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:text="Add New Address"
-            android:textColor="@color/hyber_blue"
-            android:textSize="18sp" />
-    </LinearLayout>
 
     <androidx.appcompat.widget.AppCompatButton
         android:layout_width="match_parent"
@@ -70,10 +48,10 @@
         android:background="@drawable/corner_raduis_button"
         android:backgroundTint="@color/hyber_blue"
         android:minHeight="50dp"
-        android:text="@string/continue_address"
+        android:text="@string/done"
         android:textColor="@color/white"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/addNewAddressLinearLayout" />
+        app:layout_constraintTop_toBottomOf="@id/couponsRecyclerView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
