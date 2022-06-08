@@ -58,6 +58,20 @@
         <entry key="..\:/Users/Ghaly/Desktop/ITI Final Project/Amun-Store/app/src/main/res/layout/list_toolbar_view.xml" value="0.19635416666666666" />
         <entry key="..\:/Users/Ghaly/Desktop/ITI Final Project/Amun-Store/app/src/main/res/layout/slider_item.xml" value="0.19635416666666666" />
         <entry key="..\:/Users/Ghaly/Desktop/ITI Final Project/Final Project/app/src/main/res/layout/activity_main.xml" value="0.19635416666666666" />
+        <entry key="..\:/itiProjects/final/Amun-Store/app/src/main/res/layout/activity_auth.xml" value="0.1" />
+        <entry key="..\:/itiProjects/final/Amun-Store/app/src/main/res/layout/cart_toolbar_view.xml" value="0.10104166666666667" />
+        <entry key="..\:/itiProjects/final/Amun-Store/app/src/main/res/layout/dialog_login_successful.xml" value="0.10052083333333334" />
+        <entry key="..\:/itiProjects/final/Amun-Store/app/src/main/res/layout/dialog_login_with_email.xml" value="0.10104166666666667" />
+        <entry key="..\:/itiProjects/final/Amun-Store/app/src/main/res/layout/dialog_password_updated_successfully.xml" value="0.10104166666666667" />
+        <entry key="..\:/itiProjects/final/Amun-Store/app/src/main/res/layout/dialog_signup_successful.xml" value="0.10104166666666667" />
+        <entry key="..\:/itiProjects/final/Amun-Store/app/src/main/res/layout/dialog_signup_with_email.xml" value="0.10104166666666667" />
+        <entry key="..\:/itiProjects/final/Amun-Store/app/src/main/res/layout/fragment_add_address.xml" value="0.10104166666666667" />
+        <entry key="..\:/itiProjects/final/Amun-Store/app/src/main/res/layout/fragment_categories.xml" value="0.10104166666666667" />
+        <entry key="..\:/itiProjects/final/Amun-Store/app/src/main/res/layout/fragment_create_new_password.xml" value="0.10104166666666667" />
+        <entry key="..\:/itiProjects/final/Amun-Store/app/src/main/res/layout/fragment_login.xml" value="0.10104166666666667" />
+        <entry key="..\:/itiProjects/final/Amun-Store/app/src/main/res/layout/fragment_orders.xml" value="0.10104166666666667" />
+        <entry key="..\:/itiProjects/final/Amun-Store/app/src/main/res/layout/fragment_signup.xml" value="0.10104166666666667" />
+        <entry key="..\:/itiProjects/final/Amun-Store/app/src/main/res/layout/item_order.xml" value="0.10104166666666667" />
       </map>
     </option>
   </component>

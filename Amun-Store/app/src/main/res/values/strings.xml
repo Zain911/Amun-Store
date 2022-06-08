@@ -80,5 +80,7 @@
     <string name="continue_address">Continue</string>
     <string name="lastName">Last Name</string>
     <string name="firstName">First Name</string>
+    <string name="currently_you_do_not_have_any_orders_when_you_order_something_it_will_appear_here">Currently you do not have any orders when you order something it will appear here</string>
+    <string name="start_shopping">Start shopping</string>
 
 </resources>
