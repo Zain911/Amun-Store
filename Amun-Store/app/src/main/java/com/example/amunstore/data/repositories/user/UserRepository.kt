@@ -1,21 +1,14 @@
 package com.example.amunstore.data.repositories.user
 
-import android.util.Log
 import com.example.amunstore.data.model.address.AddAddress
-import com.example.amunstore.data.model.address.Address
+import com.example.amunstore.data.model.customer.CustomerResponse
+import com.example.amunstore.data.model.order.Customer
 import com.example.amunstore.data.model.user.User
 import com.example.amunstore.data.network.NetworkServices
-import com.example.amunstore.data.network.UserServices
 import com.example.amunstore.data.presistentstorage.sharedprefs.UserSharedPreferences
-import com.google.gson.GsonBuilder
-import com.google.gson.JsonParser
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
-import okhttp3.MediaType
 import okhttp3.RequestBody
 import org.json.JSONObject
+import retrofit2.Response
 import javax.inject.Inject
 
 class UserRepository @Inject constructor(
@@ -24,17 +17,15 @@ class UserRepository @Inject constructor(
 ) : UserRepositoryInterface {
 
     override suspend fun addUserAddress(address: AddAddress) {
-
-
         val response = networkServices.addUserAddress("6466883977445", address)
         try {
             if (response.isSuccessful) {
-           //     return "Done"
+                //     return "Done"
 
             } else {
                 val jObjError =
                     JSONObject(response.errorBody()!!.toString()).getJSONObject("errors")
-              //  return "Check Your Input"
+                //  return "Check Your Input"
             }
         } catch (e: Exception) {
             e.printStackTrace()
@@ -66,6 +57,14 @@ class UserRepository @Inject constructor(
 
     override fun setUserName(name: String) {
         sharedPref.setUserName(name)
+    }
+
+    override suspend fun createCustomer(customer: RequestBody): Response<Customer> {
+        return networkServices.createCustomer(customer)
+    }
+
+    override suspend fun getUserByEmail(email: String): Response<CustomerResponse?> {
+        return networkServices.getUserByEmail(email)
     }
 
 }
