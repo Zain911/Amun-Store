@@ -171,6 +171,17 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/sepratorCoupon"
                     app:layout_constraintTop_toTopOf="@+id/couponTextInputLayout" />
+
+                <TextView
+                    android:id="@+id/ShowAvaliable"
+                    android:layout_width="0dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_height="wrap_content"
+                    android:text="show avalibale discount"
+                    app:layout_constraintBottom_toBottomOf="@+id/coupon_txt"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/coupon_txt"
+                    app:layout_constraintTop_toTopOf="@+id/coupon_txt" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout

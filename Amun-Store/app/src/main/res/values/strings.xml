@@ -82,7 +82,6 @@
     <string name="firstName">First Name</string>
 
     <string name="coupons">Coupons</string>
-    <string name="done">DONE</string>
     <string name="avaliableCoupons">Available coupons</string>
     <string name="copy">Copy</string>
     <string name="discount_value">Discount value</string>

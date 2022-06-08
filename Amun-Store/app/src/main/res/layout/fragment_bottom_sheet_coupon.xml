@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="12dp"
-    android:background="@drawable/border_background_coupons"
+    android:layout_margin="16dp"
     android:elevation="12dp">
 
     <TextView
@@ -20,14 +19,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/cancelImageView"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:src="@drawable/ic_baseline_close_24"
-        app:layout_constraintBottom_toBottomOf="@id/coupons_txt"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/coupons_txt" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/couponsRecyclerView"
