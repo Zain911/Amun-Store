@@ -11,6 +11,7 @@ import androidx.lifecycle.lifecycleScope
 import com.example.amunstore.data.model.cart.ItemCart
 import com.example.amunstore.databinding.FragmentCartBinding
 import com.example.amunstore.ui.cart.addresses.AddressesBottomSheetDialogFragment
+import com.example.amunstore.ui.cart.coupon.CouponBottomSheetDialogFragment
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -59,6 +60,10 @@ class CartFragment : Fragment() {
 
         binding.changeAddressAppCompactButton.setOnClickListener{
             val fragment = AddressesBottomSheetDialogFragment()
+            fragment.show(childFragmentManager , "Address")
+        }
+        binding.ShowAvaliable.setOnClickListener {
+            val fragment = CouponBottomSheetDialogFragment()
             fragment.show(childFragmentManager , "Address")
         }
 
