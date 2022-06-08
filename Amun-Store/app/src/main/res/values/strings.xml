@@ -80,5 +80,32 @@
     <string name="continue_address">Continue</string>
     <string name="lastName">Last Name</string>
     <string name="firstName">First Name</string>
+    <string name="password_updated_successfully">Password updated successfully</string>
+    <string name="done">Done</string>
+    <string name="login_with_email">Login with email</string>
+    <string name="email_id">Email id</string>
+    <string name="login" />
+    <string name="forgot_password">Forgot password</string>
+    <string name="first_name">First name</string>
+    <string name="last_name">Last name</string>
+    <string name="sign_up_with_email">Sign up with email</string>
+    <string name="confirm_password">Confirm password</string>
+    <string name="don_t_have_an_account_yet">Don\'t have an account yet ?</string>
+    <string name="login_to_a_m_u_n">Login to A M U N</string>
+    <string name="login_with_google">Login with Google</string>
+    <string name="login_with_facebook">Login with Facebok</string>
+    <string name="login_successful">Login successful</string>
+    <string name="create_new_password">Create new password</string>
+    <string name="new_password">New password</string>
+    <string name="confirm_new_password">Confirm new password</string>
+    <string name="update_password">Update password</string>
+    <string name="enter_your_email_id_for_the_verification_process_new_will_send_4_digits_code_to_your_email">Enter your email id for the verification process now will send 4 digits code to your email</string>
+    <string name="continue_">Continue</string>
+    <string name="already_have_an_account">Already have an account</string>
+    <string name="sign_in">Sing in</string>
+    <string name="signup_with_google">Signup with google</string>
+    <string name="signup_to_a_m_u_n">Signup tp A M U N</string>
+    <string name="signup_with_facebook">Signup with facebook</string>
+    <string name="signup_successful">Signup successful</string>
 
 </resources>
