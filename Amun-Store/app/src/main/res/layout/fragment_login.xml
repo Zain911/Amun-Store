@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/login_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingBottom="16dp"
+        android:text="@string/don_t_have_an_account_yet"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/login_loginWithEmailBtn" />
+
+    <TextView
+        android:id="@+id/login_signupTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="@string/sign_up"
+        android:textColor="#042E78"
+        app:layout_constraintStart_toEndOf="@+id/login_text"
+        app:layout_constraintTop_toTopOf="@+id/login_text" />
+
+    <LinearLayout
+        android:id="@+id/login_linearlayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:weightSum="3"
+        app:layout_constraintEnd_toEndOf="@+id/login_logWithFacebookBtn"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/login_logWithFacebookBtn"
+        app:layout_constraintTop_toBottomOf="@+id/login_logWithFacebookBtn">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_weight="1"
+            android:background="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:layout_weight="0"
+            android:text="@string/or" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_weight="1"
+            android:background="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/login_loginTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="48dp"
+        android:text="@string/login_to_a_m_u_n"
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:background="@drawable/round_corners"
+        android:backgroundTint="@color/white"
+        android:id="@+id/login_logWithGoogleBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:drawableStart="@drawable/ic_google"
+        android:text="@string/login_with_google"
+        android:textColor="@color/black"
+        app:iconTintMode="src_in"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/login_loginTxt" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:backgroundTint="@color/white"
+        android:background="@drawable/round_corners"
+        android:id="@+id/login_logWithFacebookBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="19dp"
+        android:drawableStart="@drawable/ic_facebook"
+        android:text="@string/login_with_facebook"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="@+id/login_logWithGoogleBtn"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/login_logWithGoogleBtn"
+        app:layout_constraintTop_toBottomOf="@+id/login_logWithGoogleBtn" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/login_loginWithEmailBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:background="@drawable/round_corners"
+
+        android:textColor="@color/white"
+        android:backgroundTintMode="add"
+        android:hapticFeedbackEnabled="true"
+        android:text="@string/login_with_email"
+        app:layout_constraintEnd_toEndOf="@+id/login_linearlayout"
+        app:layout_constraintHorizontal_bias="0.328"
+        app:layout_constraintStart_toStartOf="@+id/login_linearlayout"
+        app:layout_constraintTop_toBottomOf="@+id/login_linearlayout" />
+</androidx.constraintlayout.widget.ConstraintLayout>
