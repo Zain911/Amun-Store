@@ -4,6 +4,7 @@ import com.example.amunstore.data.network.NetworkServices
 import com.example.amunstore.data.repositories.categories.CategoriesRepository
 import com.example.amunstore.data.presistentstorage.room.ProductsDao
 import com.example.amunstore.data.presistentstorage.sharedprefs.UserSharedPreferences
+import com.example.amunstore.data.repositories.coupon.DiscountRepository
 import com.example.amunstore.data.repositories.orders.OrdersRepository
 import com.example.amunstore.data.repositories.products.ProductsRepository
 import com.example.amunstore.data.repositories.productvendor.ProductVendorRepository
@@ -23,7 +24,7 @@ object RepositoryModule {
     @Provides
     fun provideProductRepository(
         networkServices: NetworkServices,
-        productsDao: ProductsDao
+        productsDao: ProductsDao,
     ): ProductsRepository {
         return ProductsRepository(productsDao, networkServices)
     }
@@ -50,7 +51,7 @@ object RepositoryModule {
     @Provides
     fun provideUserRepository(
         networkServices: NetworkServices,
-        userSharedPreferences: UserSharedPreferences
+        userSharedPreferences: UserSharedPreferences,
     ): UserRepository {
         return UserRepository(networkServices, userSharedPreferences)
     }
@@ -59,5 +60,11 @@ object RepositoryModule {
     @Provides
     fun provideOrdersRepository(networkServices: NetworkServices): OrdersRepository {
         return OrdersRepository(networkServices)
+    }
+
+    @Singleton
+    @Provides
+    fun provideDiscountRepository(networkServices: NetworkServices): DiscountRepository {
+        return DiscountRepository(networkServices)
     }
 }

@@ -6,4 +6,5 @@ interface NetworkServices :
     BrandsService,
     ProductsVendorService,
     UserServices,
-    OrdersServices
+    OrdersServices,
+    DiscountService
