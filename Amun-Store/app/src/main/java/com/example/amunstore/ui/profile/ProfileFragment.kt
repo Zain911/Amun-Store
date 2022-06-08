@@ -8,7 +8,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.coroutineScope
+import androidx.navigation.fragment.findNavController
 import com.example.amunstore.R
+import com.example.amunstore.data.model.order.Order
 import com.example.amunstore.data.model.product.Product
 import com.example.amunstore.databinding.FragmentProfileBinding
 import com.example.amunstore.ui.favourites.FavouriteListAdapter
@@ -18,7 +20,7 @@ import kotlinx.coroutines.launch
 @AndroidEntryPoint
 class ProfileFragment : Fragment() {
 
-  private val viewModel: ProfileViewModel by viewModels()
+    private val viewModel: ProfileViewModel by viewModels()
 
     private var _binding: FragmentProfileBinding? = null
 
@@ -27,6 +29,7 @@ class ProfileFragment : Fragment() {
     private val binding get() = _binding!!
 
     private lateinit var favouriteListAdapter: FavouriteListAdapter
+    private lateinit var orderAdapter: OrdersAdapter
 
 
     @SuppressLint("SetTextI18n")
@@ -39,9 +42,14 @@ class ProfileFragment : Fragment() {
         _binding = FragmentProfileBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        favouriteListAdapter = FavouriteListAdapter(arrayListOf()) {
-
+        orderAdapter = OrdersAdapter(arrayListOf()) {
+            //open order details fragment
         }
+        favouriteListAdapter = FavouriteListAdapter(arrayListOf()) {
+            //remove item from favourite
+        }
+
+        binding.ordersRecyclerView.adapter = orderAdapter
         binding.wishListRecyclerView.adapter = favouriteListAdapter
 
         viewModel.userName.observe(viewLifecycleOwner) {
@@ -49,17 +57,17 @@ class ProfileFragment : Fragment() {
         }
 
         viewModel.ordersList.observe(viewLifecycleOwner) {
-            //add data to adapter
-            if(it.isNotEmpty()){
-                //println(it)
-            }
+            if (it.size > 2)
+                orderAdapter.changeList(it.subList(0, 2) as MutableList<Order>)
+            else
+                orderAdapter.changeList(it as MutableList<Order>)
         }
 
         viewModel.favProductList.observe(viewLifecycleOwner) {
-            var list = it
             if (it.size > 4)
-                list = list.subList(0, 4)
-            favouriteListAdapter.changeList(list as MutableList<Product>)
+                favouriteListAdapter.changeList(it.subList(0, 4) as MutableList<Product>)
+            else
+                favouriteListAdapter.changeList(it as MutableList<Product>)
         }
 
 
@@ -76,6 +84,9 @@ class ProfileFragment : Fragment() {
             }
         }
 
+        binding.ordersMoreTextView.setOnClickListener {
+            findNavController().navigate(R.id.ordersFragment)
+        }
 
         viewModel.isUserLoggedIn()
 
