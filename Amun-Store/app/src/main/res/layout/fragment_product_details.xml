@@ -384,6 +384,8 @@
         android:weightSum="2">
 
         <Button
+            android:gravity="center"
+            android:layout_gravity="center"
             android:id="@+id/product_saveButton"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -397,6 +399,8 @@
             app:cornerRadius="16dp" />
 
         <Button
+            android:gravity="center"
+            android:layout_gravity="center"
             android:id="@+id/product_buyButton"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
