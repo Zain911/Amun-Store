@@ -117,7 +117,7 @@
         <androidx.appcompat.widget.AppCompatEditText
             android:maxLength="32"
             android:drawablePadding="8dp"
-            android:nextFocusDown="@+id/dialogSignup_SignupBtn"
+            android:nextFocusForward="@+id/dialogSignup_SignupBtn"
             android:id="@+id/dialogSignup_passwordConfirmEdtIn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

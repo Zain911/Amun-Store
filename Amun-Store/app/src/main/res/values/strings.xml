@@ -93,10 +93,9 @@
     <string name="available">available</string>
 
     <string name="password_updated_successfully">Password updated successfully</string>
-    <string name="done">Done</string>
     <string name="login_with_email">Login with email</string>
     <string name="email_id">Email id</string>
-    <string name="login" />
+    <string name="login">Login</string>
     <string name="forgot_password">Forgot password</string>
     <string name="first_name">First name</string>
     <string name="last_name">Last name</string>
@@ -119,6 +118,9 @@
     <string name="signup_to_a_m_u_n">Signup tp A M U N</string>
     <string name="signup_with_facebook">Signup with facebook</string>
     <string name="signup_successful">Signup successful</string>
-
-
-</resources>
+    <string name="network_error">Network Error</string>
+    <string name="fields_are_empty">Fields are empty</string>
+    <string name="two_passwords_are_not_similar">Two passwords are not similar</string>
+    <string name="email_format_is_not_accepted">Email format is not accepted</string>
+    <string name="password_cannot_be_less_than_5_chars">Password can\'t be less than 5 characters</string>
+    <string name="login_failed">Login Failed</string>
