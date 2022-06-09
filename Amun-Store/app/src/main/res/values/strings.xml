@@ -125,4 +125,7 @@
     <string name="password_cannot_be_less_than_5_chars">Password can\'t be less than 5 characters</string>
     <string name="login_failed">Login Failed</string>
     <string name="done">Done</string>
-    </resources>
+    <string name="color_">"Color: "</string>
+    <string name="price">Price</string>
+    <string name="_87_reviews">87 Reviews</string>
+</resources>
