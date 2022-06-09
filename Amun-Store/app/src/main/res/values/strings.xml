@@ -104,7 +104,7 @@
     <string name="don_t_have_an_account_yet">Don\'t have an account yet ?</string>
     <string name="login_to_a_m_u_n">Login to A M U N</string>
     <string name="login_with_google">Login with Google</string>
-    <string name="login_with_facebook">Login with Facebok</string>
+    <string name="login_with_facebook">Login with Facebook</string>
     <string name="login_successful">Login successful</string>
     <string name="create_new_password">Create new password</string>
     <string name="new_password">New password</string>
@@ -124,3 +124,5 @@
     <string name="email_format_is_not_accepted">Email format is not accepted</string>
     <string name="password_cannot_be_less_than_5_chars">Password can\'t be less than 5 characters</string>
     <string name="login_failed">Login Failed</string>
+    <string name="done">Done</string>
+    </resources>
