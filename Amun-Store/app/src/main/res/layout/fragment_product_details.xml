@@ -7,8 +7,6 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-
-
         <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -98,13 +96,13 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="16dp"
-                            android:drawableStart="@drawable/baseline_departure_board_24"
                             android:drawablePadding="8dp"
                             android:gravity="center"
                             android:text="Get it by wed, Feb 02"
                             android:textColor="@color/black"
                             app:layout_constraintStart_toStartOf="@+id/product_deliverOptionTitle"
-                            app:layout_constraintTop_toBottomOf="@+id/product_enterPinCodeEdt" />
+                            app:layout_constraintTop_toBottomOf="@+id/product_enterPinCodeEdt"
+                            app:drawableStartCompat="@drawable/baseline_departure_board_24" />
 
                         <TextView
                             android:id="@+id/product_deliverOptionTxt3"
@@ -112,27 +110,27 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="16dp"
                             android:layout_marginBottom="16dp"
-                            android:drawableStart="@drawable/baseline_autorenew_24"
                             android:gravity="center"
                             android:text="30 Days Exhange/ Return Available"
                             android:textColor="@color/black"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toStartOf="@+id/product_deliverOptionTxt2"
                             app:layout_constraintTop_toBottomOf="@+id/product_deliverOptionTxt2"
-                            app:layout_constraintVertical_bias="1.0" />
+                            app:layout_constraintVertical_bias="1.0"
+                            app:drawableStartCompat="@drawable/baseline_autorenew_24" />
 
                         <TextView
                             android:id="@+id/product_deliverOptionTxt2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="16dp"
-                            android:drawableStart="@drawable/baseline_payments_24"
                             android:drawablePadding="8dp"
                             android:gravity="center"
                             android:text="COD Available"
                             android:textColor="@color/black"
                             app:layout_constraintStart_toStartOf="@+id/product_deliverOptionTxt1"
-                            app:layout_constraintTop_toBottomOf="@+id/product_deliverOptionTxt1" />
+                            app:layout_constraintTop_toBottomOf="@+id/product_deliverOptionTxt1"
+                            app:drawableStartCompat="@drawable/baseline_payments_24" />
 
                         <TextView
                             android:id="@+id/product_deliverOptionCheckTxt"
@@ -176,7 +174,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:text="title"
+                    tools:text="title"
                     android:textColor="@color/black"
                     app:layout_constraintStart_toStartOf="@+id/product_vendorText"
                     app:layout_constraintTop_toBottomOf="@+id/product_vendorText" />
@@ -187,7 +185,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="36dp"
                     android:layout_marginTop="12dp"
-                    android:text="vendor"
+                    tools:text="vendor"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/product_linearLayoutDots" />
 
@@ -196,7 +194,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
-                    android:text="price"
+                    android:text="@string/price"
                     android:textColor="@color/black"
                     app:layout_constraintStart_toStartOf="@+id/product_star"
                     app:layout_constraintTop_toBottomOf="@+id/product_star" />
@@ -207,19 +205,19 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:background="#F18E4C"
-                    android:drawableStart="@drawable/star"
                     android:gravity="center"
-                    android:paddingEnd="5dp"
-                    android:text="5"
+                    android:layout_marginEnd="5dp"
+                    tools:text="5"
                     app:layout_constraintStart_toStartOf="@+id/product_titleText"
-                    app:layout_constraintTop_toBottomOf="@+id/product_titleText" />
+                    app:layout_constraintTop_toBottomOf="@+id/product_titleText"
+                    app:drawableStartCompat="@drawable/star" />
 
                 <TextView
                     android:id="@+id/product_reviewsNumber"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
-                    android:text="87 Reviews"
+                    android:text="@string/_87_reviews"
                     app:layout_constraintBottom_toBottomOf="@+id/product_star"
                     app:layout_constraintStart_toEndOf="@+id/product_star"
                     app:layout_constraintTop_toTopOf="@+id/product_star" />
@@ -229,7 +227,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="12dp"
-                    android:text="----"
+                    tools:text="----"
                     app:layout_constraintBottom_toBottomOf="@+id/product_priceText"
                     app:layout_constraintStart_toEndOf="@+id/product_priceText"
                     app:layout_constraintTop_toTopOf="@+id/product_priceText"
@@ -240,7 +238,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="12dp"
-                    android:text="15% Off"
+                    tools:text="15% Off"
                     android:textColor="#F18E4C"
                     app:layout_constraintBottom_toBottomOf="@+id/product_oldPriceTxt"
                     app:layout_constraintStart_toEndOf="@+id/product_oldPriceTxt"
@@ -252,7 +250,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
-                    android:text="Color: "
+                    android:text="@string/color_"
                     app:layout_constraintStart_toStartOf="@+id/product_priceText"
                     app:layout_constraintTop_toBottomOf="@+id/product_priceText" />
 
@@ -261,7 +259,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="12dp"
-                    android:text="TheColor"
+                    tools:text="TheColor"
                     android:textColor="@color/black"
                     app:layout_constraintBottom_toBottomOf="@+id/product_color"
                     app:layout_constraintStart_toEndOf="@+id/product_color"
@@ -305,7 +303,6 @@
                     android:id="@+id/product_sizeChartTxt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Size Chart"
                     app:layout_constraintBottom_toBottomOf="@+id/product_sizesTxt"
                     app:layout_constraintEnd_toEndOf="@+id/product_numberOfLeftTxt"
                     app:layout_constraintTop_toTopOf="@+id/product_sizesTxt" />
@@ -358,7 +355,7 @@
                             android:layout_marginStart="28dp"
                             android:layout_marginTop="20dp"
                             android:padding="16dp"
-                            android:text="\u2022 This women's backpack has a glam look, thanks to a faux-leather build with an allover fur print. The front zip pocket keeps small things within reach, while an interior divider reins in potential chaos."
+                            tools:text="\u2022 This women's backpack has a glam look, thanks to a faux-leather build with an allover fur print. The front zip pocket keeps small things within reach, while an interior divider reins in potential chaos."
                             android:textColor="@color/black"
                             android:textSize="16sp"
                             app:layout_constraintStart_toStartOf="@+id/product_productDetailsTitle"
@@ -378,12 +375,13 @@
         android:id="@+id/product_buttonsLinearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
         android:layout_gravity="end"
         android:orientation="horizontal"
         android:weightSum="2">
 
         <Button
+            android:gravity="center"
+            android:layout_gravity="center"
             android:id="@+id/product_saveButton"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -397,6 +395,8 @@
             app:cornerRadius="16dp" />
 
         <Button
+            android:gravity="center"
+            android:layout_gravity="center"
             android:id="@+id/product_buyButton"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -407,7 +407,8 @@
             android:paddingTop="8dp"
             android:paddingBottom="8dp"
             android:text="@string/buy_now"
-            app:cornerRadius="16dp" />
+            app:cornerRadius="16dp"
+            style="?android:attr/buttonBarButtonStyle" />
 
     </LinearLayout>
 </LinearLayout>
