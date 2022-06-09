@@ -80,6 +80,18 @@
     <string name="continue_address">Continue</string>
     <string name="lastName">Last Name</string>
     <string name="firstName">First Name</string>
+    <string name="color">Color</string>
+    <string name="quantity">Quantity</string>
+    <string name="financial_state">Financial State</string>
+
+    <string name="coupons">Coupons</string>
+    <string name="avaliableCoupons">Available coupons</string>
+    <string name="copy">Copy</string>
+    <string name="discount_value">Discount value</string>
+    <string name="start_date">Start Date :</string>
+    <string name="status">Status</string>
+    <string name="available">available</string>
+
     <string name="password_updated_successfully">Password updated successfully</string>
     <string name="login_with_email">Login with email</string>
     <string name="email_id">Email id</string>
@@ -112,5 +124,3 @@
     <string name="email_format_is_not_accepted">Email format is not accepted</string>
     <string name="password_cannot_be_less_than_5_chars">Password can\'t be less than 5 characters</string>
     <string name="login_failed">Login Failed</string>
-
-</resources>

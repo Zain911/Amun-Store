@@ -19,4 +19,6 @@
     <color name="hyber_blue">#1976D2</color>
     <color name="subcategory_selected_text_color">#fff</color>
     <color name="subcategory_unselected_text_color">#000</color>
+    <color name="dark_title">#BF000000</color>
+
 </resources>
