@@ -17,7 +17,7 @@ import javax.inject.Singleton
 object NetworkModule {
 
     private const val baseUrl =
-        "https://mobile-ismailia.myshopify.com/admin/api/2022-04/"
+        "https://mad-ism2022.myshopify.com/admin/api/2022-04/"
 
     @Singleton
     @Provides
