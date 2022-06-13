@@ -1,13 +1,14 @@
 package com.example.amunstore.ui.auth
 
+import android.annotation.SuppressLint
+import android.os.Bundle
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.amunstore.data.repositories.user.UserRepository
+import com.facebook.*
+import com.facebook.messenger.BuildConfig
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.*
 import okhttp3.MediaType
 import okhttp3.RequestBody
 import org.json.JSONObject
@@ -111,8 +112,69 @@ class AuthViewModel @Inject constructor(
         return email_address_pattern.matcher(email).matches()
     }
 
-     fun isUserLoggedIn() =
+    fun isUserLoggedIn() =
         repository.isUserLoggedIn()
+
+    @SuppressLint("LongLogTag")
+    fun getUserProfile() {
+        val token = AccessToken.getCurrentAccessToken()
+        val userId = token?.userId
+        val parameters = Bundle()
+        parameters.putString(
+            "fields",
+            " first_name, last_name, name,  email"
+        )
+
+        GraphRequest(token,
+            "/$userId/",
+            parameters,
+            HttpMethod.GET,
+            { response ->
+                runBlocking {
+                    var facebookFirstName = ""
+                    var facebookEmail = ""
+                    var facebookLastName = ""
+                    val jsonObject = response.jsonObject
+
+                    // Facebook Access Token
+                    // You can see Access Token only in Debug mode.
+                    // You can't see it in Logcat using Log.d, Facebook did that to avoid leaking user's access token.
+                    if (BuildConfig.DEBUG) {
+                        FacebookSdk.setIsDebugEnabled(true)
+                        FacebookSdk.addLoggingBehavior(LoggingBehavior.INCLUDE_ACCESS_TOKENS)
+                    }
+
+                    // Facebook First Name
+                    if (jsonObject!!.has("first_name")) {
+                        facebookFirstName = jsonObject.getString("first_name")
+                    }
+
+                    // Facebook Last Name
+                    if (jsonObject.has("last_name")) {
+                        facebookLastName = jsonObject.getString("last_name")
+                    }
+
+                    // Facebook Email
+                    if (jsonObject.has("email")) {
+                        facebookEmail = jsonObject.getString("email")
+                    }
+                    createUser(
+                        first_name = facebookFirstName,
+                        second_name = facebookLastName,
+                        email = facebookEmail,
+                        password = "facebook",
+                        password_confirmation = "facebook"
+                    )
+                    getUserByEmail(email = facebookEmail, password = "facebook")
+                }
+            }).executeAsync()
+    }
+
+    fun isLoggedInWithFacebook(): Boolean {
+        val accessToken = AccessToken.getCurrentAccessToken()
+        return accessToken != null && !accessToken.isExpired
+    }
+
 }
 
 
