@@ -128,4 +128,11 @@
     <string name="color_">"Color: "</string>
     <string name="price">Price</string>
     <string name="_87_reviews">87 Reviews</string>
+
+<!--    facebook login-->
+    <string name="facebook_app_id">344977891111078</string>
+    <string name="fb_login_protocol_scheme">b812555ec2b90e7193d733f6f9d0e3cb</string>
+    <string name="facebook_client_token">8eb9f3215827292004e8856834ca83e8</string>
+
+
 </resources>
