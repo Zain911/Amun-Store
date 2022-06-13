@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -78,12 +77,12 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:background="@drawable/round_corners"
-        android:backgroundTint="@color/white"
         android:id="@+id/login_logWithGoogleBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
+        android:background="@drawable/round_corners"
+        android:backgroundTint="@color/white"
         android:drawableStart="@drawable/ic_google"
         android:text="@string/login_with_google"
         android:textColor="@color/black"
@@ -91,20 +90,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/login_loginTxt" />
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:backgroundTint="@color/white"
-        android:background="@drawable/round_corners"
+    <com.facebook.login.widget.LoginButton
         android:id="@+id/login_logWithFacebookBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="19dp"
-        android:drawableStart="@drawable/ic_facebook"
+        android:padding="16dp"
         android:text="@string/login_with_facebook"
-        android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="@+id/login_logWithGoogleBtn"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/login_logWithGoogleBtn"
         app:layout_constraintTop_toBottomOf="@+id/login_logWithGoogleBtn" />
+
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/login_loginWithEmailBtn"
@@ -113,10 +109,10 @@
         android:layout_margin="16dp"
         android:background="@drawable/round_corners"
 
-        android:textColor="@color/white"
         android:backgroundTintMode="add"
         android:hapticFeedbackEnabled="true"
         android:text="@string/login_with_email"
+        android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="@+id/login_linearlayout"
         app:layout_constraintHorizontal_bias="0.328"
         app:layout_constraintStart_toStartOf="@+id/login_linearlayout"

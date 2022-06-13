@@ -6,16 +6,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.viewModels
 import com.example.amunstore.MainActivity
 import com.example.amunstore.R
 import com.example.amunstore.databinding.DialogSignupWithEmailBinding
 import com.example.amunstore.ui.auth.AuthViewModel
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import dagger.hilt.android.AndroidEntryPoint
 
-
-class SignupBottomSheetDialogFragment(val viewModel: AuthViewModel) : BottomSheetDialogFragment() {
+@AndroidEntryPoint
+class SignupBottomSheetDialogFragment : BottomSheetDialogFragment() {
     private var _binding: DialogSignupWithEmailBinding? = null
     private val binding get() = _binding!!
+    private val viewModel: AuthViewModel by viewModels()
 
     private lateinit var email: String
     private lateinit var password: String
@@ -31,16 +34,6 @@ class SignupBottomSheetDialogFragment(val viewModel: AuthViewModel) : BottomShee
         _binding = DialogSignupWithEmailBinding.inflate(inflater, container, false)
         val root: View = binding.root
         binding.dialogSignupCloseImageView.setOnClickListener { this@SignupBottomSheetDialogFragment.dismiss() } // to close dialog
-
-        viewModel.users.observe(viewLifecycleOwner) {
-            if (it) {
-                val intent = Intent(context, MainActivity::class.java)
-                startActivity(intent)
-                activity?.finish()
-            } else {
-                Toast.makeText(context, getString(R.string.login_failed), Toast.LENGTH_LONG).show()
-            }
-        }
 
         binding.dialogSignupSignupBtn.setOnClickListener {
             email = binding.dialogSignupEmailIdEdt.text.toString().trim().lowercase()
@@ -80,7 +73,6 @@ class SignupBottomSheetDialogFragment(val viewModel: AuthViewModel) : BottomShee
                     password = password,
                     password_confirmation = passwordConfirm
                 )
-                this@SignupBottomSheetDialogFragment.dismiss()
             }
         }
 
@@ -91,6 +83,19 @@ class SignupBottomSheetDialogFragment(val viewModel: AuthViewModel) : BottomShee
         }
 
         return root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        viewModel.users.observe(viewLifecycleOwner) {
+            if (it) {
+                val intent = Intent(context, MainActivity::class.java)
+                startActivity(intent)
+                activity?.finish()
+            } else {
+                Toast.makeText(context, getString(R.string.login_failed), Toast.LENGTH_LONG).show()
+            }
+        }
     }
 
     private fun showBottomSheetDialogFragment() {

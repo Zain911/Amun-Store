@@ -4,7 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.viewModels
 import com.example.amunstore.MainActivity
 import com.example.amunstore.R
 import dagger.hilt.android.AndroidEntryPoint
