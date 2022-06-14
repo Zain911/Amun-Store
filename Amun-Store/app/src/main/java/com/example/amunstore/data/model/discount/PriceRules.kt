@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName
 
 data class PriceRules(
 
-    @SerializedName("id") var id: Int? = null,
+    @SerializedName("id") var id: Long? = null,
     @SerializedName("value_type") var valueType: String? = null,
     @SerializedName("value") var value: String? = null,
     @SerializedName("once_per_customer") var oncePerCustomer: Boolean? = null,

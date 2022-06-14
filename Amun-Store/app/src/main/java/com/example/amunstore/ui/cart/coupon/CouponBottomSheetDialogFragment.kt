@@ -34,21 +34,19 @@ class CouponBottomSheetDialogFragment : BottomSheetDialogFragment() {
         _binding = FragmentBottomSheetCouponBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-//        couponAdapter = CouponAdapter(mutableListOf())
-        couponAdapter= CouponAdapter((getDisCount()) )
+      couponAdapter = CouponAdapter(mutableListOf())
 
         binding.couponsRecyclerView.adapter = couponAdapter
 
 
 
-      /*  viewModel.couponList.observe(viewLifecycleOwner) {
+        viewModel.couponList.observe(viewLifecycleOwner) {
             couponAdapter.setList(it as MutableList<PriceRules>)
         }
 
         lifecycle.coroutineScope.launch {
             viewModel.getAllCoupons()
         }
-*/
         return root
     }
 
