@@ -137,51 +137,69 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/coupon_txt" />
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/couponTextInputLayout"
+                <!--
+                                <com.google.android.material.textfield.TextInputLayout
+                                    android:id="@+id/couponTextInputLayout"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    app:errorEnabled="false"
+                                    app:layout_constraintEnd_toStartOf="@+id/applyCouponAppCompactButton"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toBottomOf="@+id/sepratorCoupon">
+
+                                    <com.google.android.material.textfield.TextInputEditText
+                                        android:id="@+id/couponInputEditText"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:backgroundTint="@color/white"
+                                        android:ems="1"
+                                        android:hint="Enter Coupon"
+                                        android:inputType="text"
+                                        android:maxLines="1"
+                                        android:nextFocusDown="@+id/formEditMedication_spinner" />
+                                </com.google.android.material.textfield.TextInputLayout>
+                -->
+                <TextView
+                    android:id="@+id/couponTextView"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="8dp"
+                    android:backgroundTint="@color/white"
+                    android:ems="1"
+                    android:gravity="center"
+                    android:hint="Coupon"
+                    android:maxLines="1"
+                    android:nextFocusDown="@+id/formEditMedication_spinner"
                     app:errorEnabled="false"
                     app:layout_constraintEnd_toStartOf="@+id/applyCouponAppCompactButton"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/sepratorCoupon">
+                    app:layout_constraintTop_toBottomOf="@+id/sepratorCoupon" />
 
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/couponInputEditText"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:backgroundTint="@color/white"
-                        android:ems="1"
-                        android:hint="Enter Coupon"
-                        android:inputType="text"
-                        android:maxLines="1"
-                        android:nextFocusDown="@+id/formEditMedication_spinner" />
-                </com.google.android.material.textfield.TextInputLayout>
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/applyCouponAppCompactButton"
                     android:layout_width="wrap_content"
                     android:layout_height="38dp"
                     android:background="@drawable/border_change_address"
-                    android:text="Apply"
+                    android:text="Find"
                     android:textAllCaps="false"
                     android:textColor="@color/hyber_blue"
                     android:textSize="12sp"
-                    app:layout_constraintBottom_toBottomOf="@+id/couponTextInputLayout"
+                    app:layout_constraintBottom_toBottomOf="@+id/couponTextView"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/sepratorCoupon"
-                    app:layout_constraintTop_toTopOf="@+id/couponTextInputLayout" />
+                    app:layout_constraintTop_toTopOf="@+id/couponTextView" />
 
-                <TextView
-                    android:id="@+id/ShowAvaliable"
-                    android:layout_width="0dp"
-                    android:layout_marginStart="16dp"
-                    android:layout_height="wrap_content"
-                    android:text="show avalibale discount"
-                    app:layout_constraintBottom_toBottomOf="@+id/coupon_txt"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/coupon_txt"
-                    app:layout_constraintTop_toTopOf="@+id/coupon_txt" />
+                <!--    <TextView
+                        android:id="@+id/ShowAvaliable"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:text="show avalibale discount"
+                        app:layout_constraintBottom_toBottomOf="@+id/coupon_txt"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/coupon_txt"
+                        app:layout_constraintTop_toTopOf="@+id/coupon_txt" />-->
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout

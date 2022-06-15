@@ -18,7 +18,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class CouponBottomSheetDialogFragment : BottomSheetDialogFragment() {
+class CouponBottomSheetDialogFragment ( val click : (PriceRules) -> Unit ) : BottomSheetDialogFragment() {
 
     private val viewModel: CouponViewModel by viewModels()
 
@@ -34,7 +34,9 @@ class CouponBottomSheetDialogFragment : BottomSheetDialogFragment() {
         _binding = FragmentBottomSheetCouponBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-      couponAdapter = CouponAdapter(mutableListOf())
+      couponAdapter = CouponAdapter(mutableListOf()){
+          click(it)
+      }
 
         binding.couponsRecyclerView.adapter = couponAdapter
 

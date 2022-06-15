@@ -14,6 +14,7 @@ import com.example.amunstore.ui.cart.addresses.AddressesBottomSheetDialogFragmen
 import com.example.amunstore.ui.cart.coupon.CouponBottomSheetDialogFragment
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
+import kotlin.math.absoluteValue
 
 @AndroidEntryPoint
 class CartFragment : Fragment() {
@@ -22,7 +23,7 @@ class CartFragment : Fragment() {
 
     private var _binding: FragmentCartBinding? = null
     private val binding get() = _binding!!
-
+    private var discountValue: Float = 0.0f
     private lateinit var cartAdapter: CartAdapter
 
     @SuppressLint("SetTextI18n")
@@ -50,21 +51,28 @@ class CartFragment : Fragment() {
         orderViewModel.data.observe(viewLifecycleOwner) {
             cartAdapter.changeList(it as MutableList<ItemCart>)
             var totalPrice = 0.0f
+            var totalAmount = 0.0f
             for (item in it) {
                 if (item.price != null && item.item_number != null)
                     totalPrice += item.price.toFloat().times(item.item_number!!)
             }
+            totalAmount = totalPrice - discountValue.absoluteValue
             binding.totalPriceTextView.text = "$totalPrice  L.E"
-            binding.totalAmountTextView.text = "$totalPrice L.E"
+            binding.totalAmountTextView.text = "$totalAmount  L.E"
+            binding.discountTextView.text = "$discountValue L.E"
         }
 
-        binding.changeAddressAppCompactButton.setOnClickListener{
+        binding.changeAddressAppCompactButton.setOnClickListener {
             val fragment = AddressesBottomSheetDialogFragment()
-            fragment.show(childFragmentManager , "Address")
+            fragment.show(childFragmentManager, "Address")
         }
-        binding.ShowAvaliable.setOnClickListener {
-            val fragment = CouponBottomSheetDialogFragment()
-            fragment.show(childFragmentManager , "Address")
+        binding.applyCouponAppCompactButton.setOnClickListener {
+            val fragment = CouponBottomSheetDialogFragment() {
+                binding.couponTextView.text=it.title
+                discountValue = (it.value)?.toFloat() ?: 0.0f
+                binding.discountTextView.text = "$discountValue L.E"
+            }
+            fragment.show(childFragmentManager, "Address")
         }
 
 
