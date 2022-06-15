@@ -15,8 +15,8 @@ import com.example.example.PriceRules
 
 class CouponAdapter(
     private var couponList: MutableList<PriceRules>,
-
-    ) :
+    val couponClicked: (PriceRules) -> Unit,
+) :
     RecyclerView.Adapter<CouponAdapter.ViewHolder>() {
 
 
@@ -48,17 +48,16 @@ class CouponAdapter(
         holder.view.startDateTextView.text = couponList[position].startsAt?.substringBefore("T")
 
         holder.view.copyCouponAppCompactButton.setOnClickListener {
-            // val clipboard = context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
-            ///   val clip = ClipData.newPlainText("Copied", couponList[position].title)
-
             val clipboard: ClipboardManager? =
                 context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager?
-            val clip = ClipData.newPlainText("Copied", couponList[position].title)
+            val clip = ClipData.newPlainText("Applied", couponList[position].title)
             if (clipboard != null || clip != null) {
                 clipboard?.setPrimaryClip(clip)
-                Toast.makeText(context, "Copied", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "Applied", Toast.LENGTH_SHORT).show()
+
             }
 
+            couponClicked(couponList[position])
         }
     }
 

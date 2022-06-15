@@ -13,7 +13,7 @@ class CartAdapter(
     private var itemCartList: MutableList<ItemCart>,
     val removeProductFromFavourite: (ItemCart) -> Unit,
     val increaseItem: (ItemCart) -> Unit,
-    val decreaseItem: (ItemCart) -> Unit
+    val decreaseItem: (ItemCart) -> Unit,
 ) :
     RecyclerView.Adapter<CartAdapter.ViewHolder>() {
 
@@ -55,6 +55,7 @@ class CartAdapter(
         }
 
         holder.view.increaseButton.setOnClickListener {
+
             increaseItem(itemCartList[position])
             holder.view.decreaseButton.isEnabled = itemCartList[position].item_number != 0
         }
