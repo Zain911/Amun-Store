@@ -1,6 +1,7 @@
 package com.example.amunstore.ui.profile
 
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import com.example.amunstore.data.model.order.Order
 import com.example.amunstore.data.model.product.Product
@@ -36,14 +37,18 @@ class ProfileViewModel @Inject constructor(
         }
     }
 
+    private val productsObserver  = Observer<List<Product>>{
+        favProductList.postValue(it)
+    }
+
     suspend fun getUserFavouriteProducts() {
-        favProductList.postValue(productRepository.getAllFavouriteProducts())
+        productRepository.getAllFavouriteProducts().observeForever(productsObserver)
     }
 
     suspend fun getUserOrders() {
         //TODO remove static customer id and get it from sharedPref
         //ordersList.postValue(ordersRepository.getUserOrders(sharedPreferences.getCustomerId()).orders)
-        ordersList.postValue(ordersRepository.getUserOrders(6432302989541).orders)
+        ordersList.postValue(ordersRepository.getUserOrders(6252021154050).orders)
     }
 
 

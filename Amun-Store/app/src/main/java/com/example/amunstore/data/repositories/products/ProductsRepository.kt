@@ -45,5 +45,7 @@ class ProductsRepository @Inject constructor(
         return false
     }
 
+    override fun getFavouritesItemCount() = productsDao.getFavouritesItemsCount()
+
 
 }

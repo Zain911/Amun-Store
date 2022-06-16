@@ -46,19 +46,19 @@ class SignupBottomSheetDialogFragment : BottomSheetDialogFragment() {
             if (!viewModel.inputsIsEmpty(email, pass1 = password, pass2 = passwordConfirm)) {
                 Toast.makeText(context, getString(R.string.fields_are_empty), Toast.LENGTH_LONG)
                     .show()
-            } else if (!viewModel.isPasswordConfirmed(pass2 = password, pass1 = passwordConfirm)) {
+            } else if (!viewModel.validatePasswordConfirmation(pass2 = password, pass1 = passwordConfirm)) {
                 Toast.makeText(
                     context,
                     getString(R.string.two_passwords_are_not_similar),
                     Toast.LENGTH_LONG
                 ).show()
-            } else if (!viewModel.checkIfEmailIsGood(email = email)) {
+            } else if (!viewModel.validateEmail(email = email)) {
                 Toast.makeText(
                     context,
                     getString(R.string.email_format_is_not_accepted),
                     Toast.LENGTH_LONG
                 ).show()
-            } else if (!viewModel.checkIfPaswwordIsGood(password)) {
+            } else if (!viewModel.validatePassword(password)) {
 
                 Toast.makeText(
                     context,

@@ -15,7 +15,7 @@ class AddressesViewModel @Inject constructor(private val userRepo: UserRepositor
 
         //TODO remove static customer id and get it from sharedPref
         //val list = userRepo.getUserAddresses(userRepo.getCustomerId())
-        val list = userRepo.getUserAddresses(6259990331650)
+        val list = userRepo.getUserAddresses(6256082157826)
         addressesList.postValue(list.addresses)
     }
 }

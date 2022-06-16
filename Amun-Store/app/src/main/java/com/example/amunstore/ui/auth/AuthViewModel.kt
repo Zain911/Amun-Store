@@ -2,6 +2,7 @@ package com.example.amunstore.ui.auth
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Patterns
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.amunstore.data.repositories.user.UserRepository
@@ -12,7 +13,6 @@ import kotlinx.coroutines.*
 import okhttp3.MediaType
 import okhttp3.RequestBody
 import org.json.JSONObject
-import java.util.regex.Pattern
 import javax.inject.Inject
 
 
@@ -22,17 +22,6 @@ class AuthViewModel @Inject constructor(
 ) : ViewModel() {
     val users = MutableLiveData<Boolean>()
     val isRegistered = MutableLiveData<Boolean>()
-    private val email_address_pattern: Pattern by lazy {
-        Pattern.compile(
-            "[a-zA-Z0-9\\+\\.\\_\\%\\-\\+]{1,32}" +  // 1 - 265
-                    "\\@" +
-                    "[a-zA-Z0-9][a-zA-Z0-9\\-]{0,32}" +    // 0 - 64
-                    "(" +
-                    "\\." +
-                    "[a-zA-Z0-9][a-zA-Z0-9\\-]{0,32}" +   // 0 - 25
-                    ")+"
-        )
-    }
 
     fun getUserByEmail(email: String, password: String) {
         CoroutineScope(Dispatchers.IO).launch {
@@ -103,13 +92,13 @@ class AuthViewModel @Inject constructor(
     fun inputsIsEmpty(email: String, pass1: String, pass2: String): Boolean =
         !(pass1.isEmpty() || pass2.isEmpty() || email.isEmpty())
 
-    fun isPasswordConfirmed(pass1: String, pass2: String): Boolean = pass1 == pass2
+    fun validatePasswordConfirmation(pass1: String, pass2: String): Boolean = pass1 == pass2
 
-    fun checkIfPaswwordIsGood(pass1: String): Boolean = pass1.count() > 5
+    fun validatePassword(pass1: String): Boolean = pass1.count() > 5
 
-    fun checkIfEmailIsGood(email: String): Boolean {
+    fun validateEmail(email: String): Boolean {
         email.lowercase()
-        return email_address_pattern.matcher(email).matches()
+        return Patterns.EMAIL_ADDRESS.matcher(email).matches()
     }
 
     fun isUserLoggedIn() =

@@ -134,6 +134,7 @@
     <string name="fb_login_protocol_scheme">b812555ec2b90e7193d733f6f9d0e3cb</string>
     <string name="facebook_client_token">8eb9f3215827292004e8856834ca83e8</string>
     <string name="shopping">Shopping</string>
+    <string name="no_items_available">No items available</string>
 
     <!--    payment strings-->
     <string name="googlepay_button_content_description">Google Pay</string>

@@ -7,10 +7,10 @@
     tools:context=".ui.categories.singlecategory.SingleCategoryFragment">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:background="@color/gray_light"
         android:id="@+id/subCategoryRecyclerView"
         android:layout_width="100dp"
         android:layout_height="0dp"
+        android:background="@color/gray_light"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -25,5 +25,35 @@
         app:layout_constraintStart_toEndOf="@id/subCategoryRecyclerView"
         app:layout_constraintTop_toTopOf="parent"
         tools:listitem="@layout/item_category_product" />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/noDataLottieAnimationView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/subCategoryRecyclerView"
+        app:layout_constraintTop_toTopOf="parent"
+        app:lottie_repeatMode="restart"
+        app:lottie_loop="true"
+        app:lottie_autoPlay="true"
+        app:lottie_rawRes="@raw/no_data_animation" />
+
+    <TextView
+        android:id="@+id/noDataTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/no_items_available"
+        app:layout_constraintEnd_toEndOf="@id/noDataLottieAnimationView"
+        app:layout_constraintStart_toStartOf="@id/noDataLottieAnimationView"
+        app:layout_constraintTop_toBottomOf="@id/noDataLottieAnimationView" />
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/noDataGroup"
+        android:visibility="gone"
+        app:constraint_referenced_ids="noDataTextView,noDataLottieAnimationView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
