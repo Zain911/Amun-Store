@@ -8,14 +8,20 @@ import com.bumptech.glide.Glide
 import com.example.amunstore.R
 import com.example.amunstore.data.model.cart.ItemCart
 import com.example.amunstore.databinding.ItemCartBinding
+import com.google.android.material.snackbar.BaseTransientBottomBar
+import com.google.android.material.snackbar.Snackbar
 
 class CartAdapter(
     private var itemCartList: MutableList<ItemCart>,
     val removeProductFromFavourite: (ItemCart) -> Unit,
     val increaseItem: (ItemCart) -> Unit,
     val decreaseItem: (ItemCart) -> Unit,
+
 ) :
     RecyclerView.Adapter<CartAdapter.ViewHolder>() {
+    private var removedPosition = 0
+    lateinit var removedObject: ItemCart
+
 
     @SuppressLint("NotifyDataSetChanged")
     fun changeList(list: MutableList<ItemCart>) {
@@ -51,7 +57,32 @@ class CartAdapter(
         holder.view.itemCountText.text = itemCartList[position].item_number.toString()
 
         holder.view.removeBtnTextView.setOnClickListener {
-            removeProductFromFavourite(itemCartList[position])
+            removedPosition = holder.adapterPosition
+            removedObject = itemCartList[holder.adapterPosition]
+            itemCartList.removeAt(holder.adapterPosition)
+            notifyItemRemoved(holder.adapterPosition)
+            Snackbar.make(
+               it,
+                "${removedObject.title?.slice(0..7)} removed",
+                Snackbar.LENGTH_LONG
+            ).apply {
+                setAction("Undo") {
+                    itemCartList.add(removedPosition, removedObject)
+                    notifyItemInserted(removedPosition)
+                }
+                addCallback(object : BaseTransientBottomBar.BaseCallback<Snackbar>() {
+                    override fun onShown(transientBottomBar: Snackbar?) {
+                        super.onShown(transientBottomBar)
+                    }
+
+                    override fun onDismissed(transientBottomBar: Snackbar?, event: Int) {
+                        super.onDismissed(transientBottomBar, event)
+                        if (event == Snackbar.Callback.DISMISS_EVENT_TIMEOUT) {
+                            removeProductFromFavourite(itemCartList[removedPosition])
+                        }
+                    }
+                })
+            }.show()
         }
 
         holder.view.increaseButton.setOnClickListener {
@@ -66,6 +97,7 @@ class CartAdapter(
         }
 
     }
+
 
     override fun getItemCount() = itemCartList.size
 }

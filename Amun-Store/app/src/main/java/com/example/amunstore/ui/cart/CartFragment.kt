@@ -19,7 +19,7 @@ import kotlin.math.absoluteValue
 @AndroidEntryPoint
 class CartFragment : Fragment() {
 
-    private val orderViewModel: CartViewModel by viewModels()
+    private val cartViewModel: CartViewModel by viewModels()
 
     private var _binding: FragmentCartBinding? = null
     private val binding get() = _binding!!
@@ -38,29 +38,40 @@ class CartFragment : Fragment() {
 
         cartAdapter = CartAdapter(
             arrayListOf(),
-            { orderViewModel.removeItem(it) },
-            { orderViewModel.increaseItemQuantity(it) },
-            { orderViewModel.decreaseItemQuantity(it) }
+            { cartViewModel.removeItem(it) },
+            { cartViewModel.increaseItemQuantity(it) },
+            { cartViewModel.decreaseItemQuantity(it) }
+
         )
         binding.recyclerView.adapter = cartAdapter
 
         viewLifecycleOwner.lifecycleScope.launch {
-            orderViewModel.getCartItems()
+            cartViewModel.getCartItems()
+
         }
 
-        orderViewModel.data.observe(viewLifecycleOwner) {
-            cartAdapter.changeList(it as MutableList<ItemCart>)
-            var totalPrice = 0.0f
-            var totalAmount = 0.0f
-            for (item in it) {
-                if (item.price != null && item.item_number != null)
-                    totalPrice += item.price.toFloat().times(item.item_number!!)
+        cartViewModel.data.observe(viewLifecycleOwner) {
+            if (it.isNotEmpty()) {
+                binding.emptyCartLottieView.visibility = View.GONE
+                binding.containerScrollView.visibility = View.VISIBLE
+                cartAdapter.changeList(it as MutableList<ItemCart>)
+                var totalPrice = 0.0f
+                var totalAmount = 0.0f
+                for (item in it) {
+                    if (item.price != null && item.item_number != null)
+                        totalPrice += item.price.toFloat().times(item.item_number!!)
+                }
+                totalAmount = totalPrice - discountValue.absoluteValue
+                binding.totalPriceTextView.text = "$totalPrice  L.E"
+                binding.totalAmountTextView.text = "$totalAmount  L.E"
+                binding.discountTextView.text = "$discountValue L.E"
+            } else {
+                binding.emptyCartLottieView.visibility = View.VISIBLE
+                binding.containerScrollView.visibility = View.GONE
             }
-            totalAmount = totalPrice - discountValue.absoluteValue
-            binding.totalPriceTextView.text = "$totalPrice  L.E"
-            binding.totalAmountTextView.text = "$totalAmount  L.E"
-            binding.discountTextView.text = "$discountValue L.E"
+
         }
+
 
         binding.changeAddressAppCompactButton.setOnClickListener {
             val fragment = AddressesBottomSheetDialogFragment()
@@ -68,7 +79,7 @@ class CartFragment : Fragment() {
         }
         binding.applyCouponAppCompactButton.setOnClickListener {
             val fragment = CouponBottomSheetDialogFragment() {
-                binding.couponTextView.text=it.title
+                binding.couponTextView.text = it.title
                 discountValue = (it.value)?.toFloat() ?: 0.0f
                 binding.discountTextView.text = "$discountValue L.E"
             }
