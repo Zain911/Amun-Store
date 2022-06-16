@@ -24,10 +24,13 @@ class ProductVendorViewModel @Inject constructor(
 
 
     fun addItemToFavourite(product: Product) {
-        repo.addProductToFavourite(product)
+        repo.addProductToFavourite(product.apply{
+            this.imageSrc = this.image?.src
+        })
     }
 
     fun removeItemFromFavourite(product: Product) {
         repo.removeProductFromFavourite(product)
     }
+
 }

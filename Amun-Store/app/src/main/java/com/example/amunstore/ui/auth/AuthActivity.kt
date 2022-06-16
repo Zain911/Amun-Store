@@ -14,7 +14,7 @@ class AuthActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        if (!viewModel.isUserLoggedIn()) {
+        if (viewModel.isUserLoggedIn()) {
             val intent = Intent(application, MainActivity::class.java)
             startActivity(intent)
         }

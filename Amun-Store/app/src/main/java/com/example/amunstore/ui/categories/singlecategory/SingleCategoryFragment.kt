@@ -55,7 +55,12 @@ class SingleCategoryFragment(
         binding.subCategoryRecyclerView.adapter = subCategoriesAdapter
 
         viewModel.viewedList.observe(viewLifecycleOwner) {
-            productsAdapter.changeList(it as MutableList<Product>)
+            if (it?.size == 0) {
+                hideRecyclerAndShowNoDataImage()
+            } else {
+                productsAdapter.changeList(it as MutableList<Product>)
+                showRecyclerAndHideNoDataImage()
+            }
         }
 
         lifecycle.coroutineScope.launch {
@@ -69,5 +74,16 @@ class SingleCategoryFragment(
         super.onDestroyView()
         _binding = null
     }
+
+    private fun hideRecyclerAndShowNoDataImage() {
+        binding.categoriesProductsRecyclerView.visibility = View.GONE
+        binding.noDataGroup.visibility = View.VISIBLE
+    }
+
+    private fun showRecyclerAndHideNoDataImage() {
+        binding.categoriesProductsRecyclerView.visibility = View.VISIBLE
+        binding.noDataGroup.visibility = View.GONE
+    }
+
 
 }

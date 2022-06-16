@@ -6,6 +6,7 @@ import android.view.View
 import android.view.View.INVISIBLE
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavDestination
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -45,10 +46,10 @@ class MainActivity : AppCompatActivity() {
             navController.navigate(R.id.searchFragment)
         }
 
-        binding.favourite.favouriteButton.setOnClickListener{
+        binding.favourite.favouriteButton.setOnClickListener {
             navController.navigate(R.id.favouriteFragment)
         }
-        binding.cartView.cartButton.setOnClickListener{
+        binding.cartView.cartButton.setOnClickListener {
             navController.navigate(R.id.cartFragment)
         }
 
@@ -58,12 +59,26 @@ class MainActivity : AppCompatActivity() {
                 || nd.id == R.id.navigation_notifications
             ) {
                 navView.visibility = View.VISIBLE
-                binding.toolbar.visibility=View.VISIBLE
+                binding.toolbar.visibility = View.VISIBLE
             } else {
                 navView.visibility = View.GONE
-                binding.toolbar.visibility=View.GONE
+                binding.toolbar.visibility = View.GONE
             }
         }
 
+        viewmodel.cartItemsCount.observe(this) {
+            binding.cartView.cartItems.visibility = View.VISIBLE
+            binding.cartView.cartItems.text = it.toString()
+        }
 
-}}
+        viewmodel.favouriteItemsCount.observe(this) {
+            binding.favourite.favouriteItems.visibility = View.VISIBLE
+            binding.favourite.favouriteItems.text = it.toString()
+        }
+
+        viewmodel.getCartItemsCount()
+        viewmodel.getFavouriteItemsCount()
+
+
+    }
+}

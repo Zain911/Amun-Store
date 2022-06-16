@@ -47,7 +47,7 @@ class UserRepository @Inject constructor(
     }
 
     override fun isUserLoggedIn(): Boolean {
-        return sharedPref.getCustomerId() == -1L
+        return sharedPref.getCustomerId() != -1L
     }
 
     override fun getUser(): User {

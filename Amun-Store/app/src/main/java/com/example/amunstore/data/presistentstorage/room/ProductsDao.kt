@@ -1,5 +1,6 @@
 package com.example.amunstore.data.presistentstorage.room
 
+import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
@@ -11,7 +12,7 @@ import com.example.amunstore.data.model.product.Product
 interface ProductsDao {
 
     @Query("SELECT * FROM product WHERE isFavourite = :isFavourite")
-    fun getAllFavourite(isFavourite: Boolean = true): List<Product>
+    fun getAllFavourite(isFavourite: Boolean = true): LiveData<List<Product>>
 
     @Query("SELECT * FROM product WHERE id IN (:productId)")
     fun loadAllByIds(productId: IntArray): List<Product>
@@ -27,4 +28,8 @@ interface ProductsDao {
 
     @Query("SELECT * From Product WHERE (:productId)=id")
     fun getProductById(productId : Long) : Product?
+
+    @Query("SELECT COUNT(id) FROM product")
+    fun getFavouritesItemsCount(): LiveData<Int>
+
 }
