@@ -28,6 +28,7 @@ class CartViewModel @Inject constructor(private val cartRepository: CartReposito
 
     fun removeItem(itemCart: ItemCart) {
         cartRepository.deleteItem(itemCart)
+
     }
 
     fun increaseItemQuantity(itemCart: ItemCart) {
@@ -44,5 +45,6 @@ class CartViewModel @Inject constructor(private val cartRepository: CartReposito
 
     // increase item
     // decrease item
+
 
 }
