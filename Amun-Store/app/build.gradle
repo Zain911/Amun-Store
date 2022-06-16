@@ -70,7 +70,6 @@ dependencies {
     //View Pager 2
     implementation "androidx.viewpager2:viewpager2:1.0.0"
 
-
     //Room
     implementation "androidx.room:room-ktx:2.4.2"
     kapt "androidx.room:room-compiler:2.4.2"
@@ -83,16 +82,10 @@ dependencies {
     implementation "com.google.android.gms:play-services-wallet:19.1.0"
     implementation "com.google.android.gms:play-services-pay:16.0.3"
 
-    //lottie
+     //Lottie Animation
     implementation 'com.airbnb.android:lottie:5.0.2'
 }
 
 kapt {
     correctErrorTypes = true
 }
-
-
-
-
-
-

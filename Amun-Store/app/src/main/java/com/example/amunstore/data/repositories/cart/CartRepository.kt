@@ -14,12 +14,16 @@ class CartRepository @Inject constructor(private val cartDao: CartDao) : CartRep
         cartDao.addToCart(itemCart)
     }
 
-    override  fun deleteItem(itemCart: ItemCart) {
+    override fun deleteItem(itemCart: ItemCart) {
         cartDao.deleteItem(itemCart)
     }
 
-    override fun updateItem(itemCart: ItemCart){
+    override fun updateItem(itemCart: ItemCart) {
         cartDao.updateItem(itemCart)
     }
+
+    override fun getCartItemsCount() =
+        cartDao.getCartItemsCount()
+
 
 }

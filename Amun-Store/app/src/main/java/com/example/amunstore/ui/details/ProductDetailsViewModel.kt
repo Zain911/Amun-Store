@@ -5,7 +5,6 @@ import androidx.lifecycle.ViewModel
 import com.example.amunstore.data.model.cart.ItemCart
 import com.example.amunstore.data.model.details.ProductDetailsResponse
 import com.example.amunstore.data.repositories.cart.CartRepository
-import com.example.amunstore.data.repositories.cart.CartRepositoryInterface
 import com.example.amunstore.data.repositories.products.ProductsRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.*
@@ -16,8 +15,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class ProductDetailsViewModel @Inject constructor(
-    val repository: ProductsRepository,
-    val repositoryCart: CartRepository
+    private val repository: ProductsRepository,
+    private val repositoryCart: CartRepository
 ) :
     ViewModel() {
 

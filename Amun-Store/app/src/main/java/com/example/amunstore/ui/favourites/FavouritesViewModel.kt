@@ -2,6 +2,7 @@ package com.example.amunstore.ui.favourites
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import com.example.amunstore.data.model.product.Product
 import com.example.amunstore.data.repositories.products.ProductsRepository
@@ -15,8 +16,12 @@ class FavouritesViewModel @Inject constructor(private val repo: ProductsReposito
 
     var data : LiveData<List<Product>> = favList
 
+    private val productsObserver  = Observer<List<Product>>{
+        favList.postValue(it)
+    }
+
     suspend fun getFavourites() {
-        favList.postValue(repo.getAllFavouriteProducts())
+        repo.getAllFavouriteProducts().observeForever(productsObserver)
     }
 
     fun removeProductFromFavourite(product: Product) {

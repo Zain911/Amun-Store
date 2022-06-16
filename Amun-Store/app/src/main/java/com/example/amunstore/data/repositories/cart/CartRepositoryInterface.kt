@@ -9,4 +9,6 @@ interface CartRepositoryInterface {
     suspend fun addItem(itemCart: ItemCart)
     fun deleteItem(itemCart: ItemCart)
     fun updateItem(itemCart: ItemCart)
+
+    fun getCartItemsCount(): LiveData<Int>
 }
