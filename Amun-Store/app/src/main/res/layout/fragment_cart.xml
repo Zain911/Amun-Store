@@ -8,6 +8,7 @@
     android:background="@color/gray_light">
 
     <ScrollView
+        android:id="@+id/containerScrollView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:background="@color/gray_light"
@@ -323,4 +324,25 @@
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent" />
 
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/emptyCartLottieView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_gravity="center"
+        android:scaleType="centerInside"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/empty_cart" />
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/groupedCart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:constraint_referenced_ids="containerScrollView,continueTextView" />
 </androidx.constraintlayout.widget.ConstraintLayout>
