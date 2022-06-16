@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.example.amunstore.data.model.cart.ItemCart
 import com.example.amunstore.databinding.FragmentCartBinding
 import com.example.amunstore.ui.cart.addresses.AddressesBottomSheetDialogFragment
@@ -53,6 +54,7 @@ class CartFragment : Fragment() {
         cartViewModel.data.observe(viewLifecycleOwner) {
             if (it.isNotEmpty()) {
                 binding.emptyCartLottieView.visibility = View.GONE
+                binding.continueShoppingButton.visibility = View.GONE
                 binding.containerScrollView.visibility = View.VISIBLE
                 cartAdapter.changeList(it as MutableList<ItemCart>)
                 var totalPrice = 0.0f
@@ -67,6 +69,7 @@ class CartFragment : Fragment() {
                 binding.discountTextView.text = "$discountValue L.E"
             } else {
                 binding.emptyCartLottieView.visibility = View.VISIBLE
+                binding.continueShoppingButton.visibility = View.VISIBLE
                 binding.containerScrollView.visibility = View.GONE
             }
 
@@ -86,7 +89,9 @@ class CartFragment : Fragment() {
             fragment.show(childFragmentManager, "Address")
         }
 
-
+        binding.continueShoppingButton.setOnClickListener {
+            findNavController().navigateUp()
+        }
         return root
     }
 

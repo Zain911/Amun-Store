@@ -328,17 +328,30 @@
         android:id="@+id/emptyCartLottieView"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_gravity="center"
+        android:scaleType="centerInside"
         app:layout_constraintBottom_toBottomOf="parent"
-
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_gravity="center"
-        android:scaleType="centerInside"
         app:lottie_autoPlay="true"
         app:lottie_loop="true"
         app:lottie_rawRes="@raw/empty_cart" />
 
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/continueShoppingButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/corner_raduis_button"
+        android:text="@string/shopping"
+        android:textSize="16sp"
+        android:layout_marginStart="40dp"
+        android:layout_marginBottom="32dp"
+        android:layout_marginEnd="40dp"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
     <androidx.constraintlayout.widget.Group
         android:id="@+id/groupedCart"
         android:layout_width="wrap_content"

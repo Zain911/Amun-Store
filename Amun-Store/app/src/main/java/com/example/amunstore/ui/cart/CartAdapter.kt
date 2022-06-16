@@ -1,6 +1,7 @@
 package com.example.amunstore.ui.cart
 
 import android.annotation.SuppressLint
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -78,7 +79,7 @@ class CartAdapter(
                     override fun onDismissed(transientBottomBar: Snackbar?, event: Int) {
                         super.onDismissed(transientBottomBar, event)
                         if (event == Snackbar.Callback.DISMISS_EVENT_TIMEOUT) {
-                            removeProductFromFavourite(itemCartList[removedPosition])
+                            removeProductFromFavourite(removedObject)
                         }
                     }
                 })
