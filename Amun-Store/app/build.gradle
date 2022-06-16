@@ -78,16 +78,14 @@ dependencies {
     //facebook login sdk
     implementation 'com.facebook.android:facebook-android-sdk:13.0.0'
 
-    //Lottie Animation
+    //google payment wallet
+    implementation "com.google.android.gms:play-services-wallet:19.1.0"
+    implementation "com.google.android.gms:play-services-pay:16.0.3"
+
+     //Lottie Animation
     implementation 'com.airbnb.android:lottie:5.0.2'
 }
 
 kapt {
     correctErrorTypes = true
 }
-
-
-
-
-
-
