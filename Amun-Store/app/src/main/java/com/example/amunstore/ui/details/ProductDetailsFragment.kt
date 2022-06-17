@@ -3,6 +3,7 @@ package com.example.amunstore.ui.details
 import android.os.Bundle
 import android.text.Html
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
@@ -28,7 +29,7 @@ import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class ProductDetailsFragment : Fragment() {
-
+    var productID: Long = 0L
     private val viewModel: ProductDetailsViewModel by viewModels()
     private var _binding: FragmentProductDetailsBinding? = null
     private val binding get() = _binding!!
@@ -53,6 +54,7 @@ class ProductDetailsFragment : Fragment() {
     lateinit var sizeRecyclerView: RecyclerView
 
     lateinit var topAppBar: MaterialToolbar
+    private lateinit var favButton: MenuItem
 
     lateinit var productDetails: ProductDetailsResponse
     override fun onCreateView(
@@ -63,13 +65,14 @@ class ProductDetailsFragment : Fragment() {
         _binding = FragmentProductDetailsBinding.inflate(inflater, container, false)
         val root: View = binding.root
         viewPager = binding.productImageView
-        viewModel.getProductDetails(args.productId)
+        productID = args.productId
+        viewModel.getProductDetails(productID)
 
         colorRecyclerView = binding.productProductPhotsRecycler
         sizeRecyclerView = binding.productSizeRecycler
 
         topAppBar = binding.topAppBar
-
+        favButton = topAppBar.menu.findItem(R.id.favorite)
         topAppBar.setNavigationOnClickListener {
             this.findNavController().popBackStack()
         }
@@ -77,7 +80,7 @@ class ProductDetailsFragment : Fragment() {
         topAppBar.setOnMenuItemClickListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.favorite -> {
-                    // Handle edit text press
+                    viewModel.addOrRemoveProductToFavourite(productDetails.product)
                     true
                 }
                 R.id.share -> {
@@ -114,6 +117,14 @@ class ProductDetailsFragment : Fragment() {
                     maxItem = productDetails.product.variants[0].inventoryQuantity
                 )
             }?.let { it2 -> viewLifecycleOwner.lifecycleScope.launch { viewModel.addToCart(it2) } }
+        }
+        viewModel.isProductInFavourite(productID = productID)
+        viewModel.isInFavourite.observe(viewLifecycleOwner) {
+            if (it) {
+                favButton.setIcon(R.drawable.red_heart)
+            } else {
+                favButton.setIcon(R.drawable.heart)
+            }
         }
         return root
     }

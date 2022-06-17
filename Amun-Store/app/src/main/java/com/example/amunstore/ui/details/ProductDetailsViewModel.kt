@@ -4,6 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.amunstore.data.model.cart.ItemCart
 import com.example.amunstore.data.model.details.ProductDetailsResponse
+import com.example.amunstore.data.model.product.Product
 import com.example.amunstore.data.repositories.cart.CartRepository
 import com.example.amunstore.data.repositories.products.ProductsRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -22,7 +23,7 @@ class ProductDetailsViewModel @Inject constructor(
 
     val errorMessage = MutableLiveData<String>()
     val productDetails = MutableLiveData<ProductDetailsResponse>()
-    val sizeChooser = MutableLiveData<Int>()
+    val isInFavourite = MutableLiveData<Boolean>()
     var job: Job? = null
 
     fun getProductDetails(id: Long) {
@@ -31,7 +32,8 @@ class ProductDetailsViewModel @Inject constructor(
             withContext(Dispatchers.Main) {
                 if (response.isSuccessful) {
                     productDetails.postValue(
-                        response.body())
+                        response.body()
+                    )
                     //    loading.value = false
                 } else {
                     onError("Error : ${response.message()} ")
@@ -63,14 +65,31 @@ class ProductDetailsViewModel @Inject constructor(
 
     }
 
-    fun setVarientsPosition(position: Int) {
-        sizeChooser.postValue(
-            position)
-    }
-
-   suspend fun addToCart(itemCart: ItemCart) {
+    suspend fun addToCart(itemCart: ItemCart) {
         repositoryCart.addItem(itemCart)
     }
 
+    fun isProductInFavourite(productID: Long) {
+        CoroutineScope(Dispatchers.IO).launch {
+            isInFavourite.postValue(repository.isProductFavourite(productID))
+        }
+    }
+
+    fun addOrRemoveProductToFavourite(product: Product) {
+        CoroutineScope(Dispatchers.IO).launch {
+            if (isInFavourite.value == true) {
+                product.isFavourite = false
+                repository.removeProductFromFavourite(product)
+                isInFavourite.postValue(false)
+            } else {
+                product.apply {
+                    this.imageSrc = this.image?.src
+                    isFavourite = true
+                }
+                repository.addProductToFavourite(product)
+                isInFavourite.postValue(true)
+            }
+        }
+    }
 
 }
