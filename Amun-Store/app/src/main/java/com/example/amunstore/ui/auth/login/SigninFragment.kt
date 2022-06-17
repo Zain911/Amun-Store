@@ -29,7 +29,6 @@ class SigninFragment : Fragment() {
         private var EMAIL = "email"
     }
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
