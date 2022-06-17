@@ -3,12 +3,12 @@
     package="com.example.amunstore">
 
     <uses-permission android:name="android.permission.INTERNET" />
-<!--    <queries>-->
-<!--        <package android:name="com.facebook.katana" />-->
-<!--        <package android:name="com.facebook.lite" />-->
-<!--        <package android:name="com.facebook.android" />-->
-<!--        <package android:name="com.example.facebook" />-->
-<!--    </queries>-->
+    <!--    <queries>-->
+    <!--        <package android:name="com.facebook.katana" />-->
+    <!--        <package android:name="com.facebook.lite" />-->
+    <!--        <package android:name="com.facebook.android" />-->
+    <!--        <package android:name="com.example.facebook" />-->
+    <!--    </queries>-->
     <application
         android:name=".AmunApplication"
         android:allowBackup="true"
@@ -22,7 +22,7 @@
             android:name=".MainActivity"
             android:exported="false">
         </activity>
-<!--        //this is our main Activity-->
+        <!--        //this is our main Activity-->
         <activity
             android:name=".ui.auth.AuthActivity"
             android:exported="true"
@@ -34,7 +34,7 @@
             </intent-filter>
         </activity>
 
-<!--        facebook-->
+        <!--        facebook-->
         <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_app_id"/>
         <meta-data android:name="com.facebook.sdk.ClientToken" android:value="@string/facebook_client_token"/>
 
@@ -57,7 +57,7 @@
 
         <activity
             android:name=".ui.wallet.activity.CheckoutActivity"
-            android:exported="true"
+            android:exported="false"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat">
@@ -70,6 +70,9 @@
         <!-- This element is required in order to use the PaymentsClient -->
         <meta-data
             android:name="com.google.android.gms.wallet.api.enabled"
+            android:value="true" />
+        <meta-data
+            android:name="com.facebook.sdk.AutoLogAppEventsEnabled"
             android:value="true" />
     </application>
 
