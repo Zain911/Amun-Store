@@ -21,18 +21,20 @@ class UserRepository @Inject constructor(
         val response = networkServices.addUserAddress("6264298406146", address)
         try {
             if (response.isSuccessful) {
-           //     return "Done"
+                //     return "Done"
 
             } else {
                 val jObjError =
                     JSONObject(response.errorBody()!!.toString()).getJSONObject("errors")
-              //  return "Check Your Input"
+                //  return "Check Your Input"
             }
         } catch (e: Exception) {
             e.printStackTrace()
         }
 
     }
+
+    override fun getUserEmail(): String = sharedPref.getUserEmail()
 
     override fun isUserLoggedIn(): Boolean {
         return sharedPref.getCustomerId() != -1L

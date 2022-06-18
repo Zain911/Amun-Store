@@ -2,15 +2,21 @@ package com.example.amunstore.ui.cart
 
 import androidx.lifecycle.*
 import com.example.amunstore.data.model.cart.ItemCart
+import com.example.amunstore.data.model.order.AddOrderRequestModel
+import com.example.amunstore.data.model.order.Customer
+import com.example.amunstore.data.model.order.Order
 import com.example.amunstore.data.repositories.cart.CartRepository
+import com.example.amunstore.data.repositories.orders.OrdersRepository
 import com.example.amunstore.data.repositories.user.UserRepository
+import com.example.example.LineItems
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
 class CartViewModel @Inject constructor(
     private val userRepository: UserRepository,
-    private val cartRepository: CartRepository
+    private val cartRepository: CartRepository,
+    private val ordersRepository: OrdersRepository,
 ) : ViewModel() {
 
     var cartItems = MutableLiveData<List<ItemCart>>()
@@ -60,6 +66,26 @@ class CartViewModel @Inject constructor(
         }
         if (addressesFiltered.isNotEmpty())
             userAddress.postValue(addressesFiltered[0].address1)
+    }
+
+    suspend fun addUserOrder(discount: Float) {
+        var order: AddOrderRequestModel = AddOrderRequestModel()
+        val lineItems = mutableListOf<LineItems>()
+        var totalPrice = 0.0f
+        for (item in cartItems.value!!) {
+            lineItems.add(LineItems(id = item.id, quantity = item.item_number))
+            totalPrice = totalPrice.plus(item.price?.toFloat()!!)
+        }
+        order.order =
+            Order(lineItems = lineItems as ArrayList<LineItems>,
+                customer = Customer(id = userRepository.getCustomerId()),
+                email = userRepository.getUserEmail(),
+                totalPrice = totalPrice.toString(),
+                totalDiscounts = discount.toString())
+
+        order.financial_status = "paid"
+
+        ordersRepository.addUserOrder(order)
     }
 
 

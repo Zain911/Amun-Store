@@ -10,9 +10,12 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.amunstore.data.model.cart.ItemCart
+import com.example.amunstore.data.model.order.AddOrderRequestModel
+import com.example.amunstore.data.model.order.Order
 import com.example.amunstore.databinding.FragmentCartBinding
 import com.example.amunstore.ui.cart.addresses.AddressesBottomSheetDialogFragment
 import com.example.amunstore.ui.cart.coupon.CouponBottomSheetDialogFragment
+import com.example.example.LineItems
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import kotlin.math.absoluteValue
@@ -20,7 +23,7 @@ import kotlin.math.absoluteValue
 @AndroidEntryPoint
 class CartFragment : Fragment() {
 
-    private val cartViewModel: CartViewModel by viewModels()
+    private val viewModel: CartViewModel by viewModels()
 
     private var _binding: FragmentCartBinding? = null
     private val binding get() = _binding!!
@@ -39,23 +42,23 @@ class CartFragment : Fragment() {
 
         cartAdapter = CartAdapter(
             arrayListOf(),
-            { cartViewModel.removeItem(it) },
-            { cartViewModel.increaseItemQuantity(it) },
-            { cartViewModel.decreaseItemQuantity(it) }
+            { viewModel.removeItem(it) },
+            { viewModel.increaseItemQuantity(it) },
+            { viewModel.decreaseItemQuantity(it) }
 
         )
         binding.recyclerView.adapter = cartAdapter
 
         viewLifecycleOwner.lifecycleScope.launch {
-            cartViewModel.getCartItems()
-            cartViewModel.getUserAddresses()
+            viewModel.getCartItems()
+            viewModel.getUserAddresses()
         }
 
-        cartViewModel.userAddress.observe(viewLifecycleOwner){
+        viewModel.userAddress.observe(viewLifecycleOwner) {
             binding.addressTextView.text = it
         }
 
-        cartViewModel.data.observe(viewLifecycleOwner) {
+        viewModel.data.observe(viewLifecycleOwner) {
             if (it.isNotEmpty()) {
                 binding.emptyCartLottieView.visibility = View.GONE
                 binding.continueShoppingButton.visibility = View.GONE
@@ -99,11 +102,15 @@ class CartFragment : Fragment() {
             findNavController().navigateUp()
         }
 
-        cartViewModel.userName.observe(viewLifecycleOwner) {
+        viewModel.userName.observe(viewLifecycleOwner) {
             binding.customerNameTextView.text = it
         }
 
-        cartViewModel.loadUserName()
+        viewModel.loadUserName()
+        binding.continueTextView.setOnClickListener {
+            viewLifecycleOwner.lifecycleScope.launch { viewModel.addUserOrder(discountValue)//50 is total price
+             }
+        }
         return root
     }
 

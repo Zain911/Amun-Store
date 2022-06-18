@@ -30,4 +30,7 @@ interface UserRepositoryInterface {
 
     suspend fun getUserByEmail(email: String): Response<CustomerResponse?>
 
+    fun getUserEmail() : String
+
+
 }
