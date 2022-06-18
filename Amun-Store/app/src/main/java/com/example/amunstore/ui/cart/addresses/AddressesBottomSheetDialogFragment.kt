@@ -16,7 +16,8 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class AddressesBottomSheetDialogFragment : BottomSheetDialogFragment() {
+class AddressesBottomSheetDialogFragment(val itemClick: (Address) -> Unit) :
+    BottomSheetDialogFragment() {
 
     private val viewModel: AddressesViewModel by viewModels()
 
@@ -32,7 +33,9 @@ class AddressesBottomSheetDialogFragment : BottomSheetDialogFragment() {
         _binding = FragmentBottomSheetAddressesBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        addressAdapter = AddressAdapter(mutableListOf(), { })
+        addressAdapter = AddressAdapter(mutableListOf()) {
+            itemClick(it)
+        }
 
         binding.addressesRecyclerView.adapter = addressAdapter
 
@@ -42,6 +45,10 @@ class AddressesBottomSheetDialogFragment : BottomSheetDialogFragment() {
 
         viewModel.addressesList.observe(viewLifecycleOwner) {
             addressAdapter.setList(it as MutableList<Address>)
+        }
+
+        binding.continueAppCompatButton.setOnClickListener {
+            dismiss()
         }
 
         lifecycle.coroutineScope.launch {

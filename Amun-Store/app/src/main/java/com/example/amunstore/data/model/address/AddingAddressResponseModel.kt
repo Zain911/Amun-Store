@@ -4,6 +4,6 @@ import com.google.gson.annotations.SerializedName
 
 data class AddingAddressResponseModel (
 
-    @SerializedName("customer_address" ) var customerAddress : Address? = Address()
+    @SerializedName("customer_address" ) var customerAddress : Address? = null
 
 )

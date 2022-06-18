@@ -1,7 +1,6 @@
 package com.example.amunstore.ui.address
 
 import android.os.Bundle
-import android.text.Editable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,8 +9,10 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.example.amunstore.data.model.address.AddAddress
-import com.example.amunstore.data.model.address.Address
+import com.example.amunstore.data.model.address.AddAddressRequestModel
 import com.example.amunstore.databinding.FragmentAddAddressBinding
+import com.google.gson.Gson
+import com.google.gson.GsonBuilder
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -27,21 +28,21 @@ class AddressFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
-    ): View? {
+    ): View {
         _binding = FragmentAddAddressBinding.inflate(inflater, container, false)
 
-/*
-FixMe for testing
+
+//FixMe for testing
         binding.firstNameEdt.setText("Eslam")
         binding.lastNameEdt.setText("Eslam")
         binding.phoneEdt.setText("0102114578")
         binding.cityEdt.setText("Eslam")
         binding.stateEdt.setText("Eslam")
-        binding.postCodeEdt.setText("Eslam")
-        binding.addressEdt.setText("Eslam")
+        binding.postCodeEdt.setText("G1R 4P5")
+        binding.addressEdt.setText("Eslam1")
         binding.address2Edt.setText("Eslam")
-        binding.countryEdt.setText("Eslam")
-*/
+        binding.countryEdt.setText("Egypt")
+
         intiFocusListener()
         binding.saveAddressButton.setOnClickListener { submitForm() }
         return binding.root
@@ -77,20 +78,23 @@ FixMe for testing
 
         viewLifecycleOwner.lifecycleScope.launch {
             if (validFirstName && validLastName && validPhone && validCity && validState && validPostCode && validCountry)
-                viewModel.addNewAddress(AddAddress(
-                    firstName = binding.firstNameEdt.text.toString(),
-                    lastName = binding.lastNameEdt.text.toString(),
-                    city = binding.cityEdt.text.toString(),
-                    province = binding.stateEdt.text.toString(),
-                    zip = binding.postCodeEdt.text.toString(),
-                    address1 = binding.addressEdt.text.toString(),
-                    address2 = binding.address2Edt.text.toString() ?: "no",
-                    country = binding.countryEdt.text.toString(),
-                    phone = binding.phoneEdt.text.toString()
-                ))
+                viewModel.addNewAddress(
+                    AddAddressRequestModel(
+                        address = AddAddress(
+                            firstName = binding.firstNameEdt.text.toString(),
+                            lastName = binding.lastNameEdt.text.toString(),
+                            city = binding.cityEdt.text.toString(),
+                            zip = binding.postCodeEdt.text.toString(),
+                            address1 = binding.addressEdt.text.toString(),
+                            address2 = binding.address2Edt.text.toString(),
+                            country = binding.countryEdt.text.toString(),
+                            phone = binding.phoneEdt.text.toString()
+                        )
+                    )
+
+                )
             else
                 Toast.makeText(context, "Invalid Address", Toast.LENGTH_SHORT).show()
-
         }
     }
 

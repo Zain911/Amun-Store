@@ -3,15 +3,26 @@ package com.example.amunstore.ui.cart
 import androidx.lifecycle.*
 import com.example.amunstore.data.model.cart.ItemCart
 import com.example.amunstore.data.repositories.cart.CartRepository
+import com.example.amunstore.data.repositories.user.UserRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class CartViewModel @Inject constructor(private val cartRepository: CartRepository) : ViewModel() {
+class CartViewModel @Inject constructor(
+    private val userRepository: UserRepository,
+    private val cartRepository: CartRepository
+) : ViewModel() {
 
     var cartItems = MutableLiveData<List<ItemCart>>()
 
     var data: LiveData<List<ItemCart>> = cartItems
+
+    var userName = MutableLiveData<String>()
+    var userAddress = MutableLiveData<String>()
+
+    fun loadUserName() {
+        userName.postValue(userRepository.getUserName())
+    }
 
     private val x = Observer<List<ItemCart>> {
         cartItems.postValue(it)
@@ -28,7 +39,6 @@ class CartViewModel @Inject constructor(private val cartRepository: CartReposito
 
     fun removeItem(itemCart: ItemCart) {
         cartRepository.deleteItem(itemCart)
-
     }
 
     fun increaseItemQuantity(itemCart: ItemCart) {
@@ -43,8 +53,14 @@ class CartViewModel @Inject constructor(private val cartRepository: CartReposito
             })
     }
 
-    // increase item
-    // decrease item
+    suspend fun getUserAddresses() {
+        val addresses = userRepository.getUserAddresses(userRepository.getCustomerId())
+        val addressesFiltered = addresses.addresses.filter {
+            it.default == true
+        }
+        if (addressesFiltered.isNotEmpty())
+            userAddress.postValue(addressesFiltered[0].address1)
+    }
 
 
 }

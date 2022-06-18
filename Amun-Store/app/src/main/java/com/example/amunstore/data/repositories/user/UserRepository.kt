@@ -1,21 +1,11 @@
 package com.example.amunstore.data.repositories.user
 
-import android.util.Log
-import com.example.amunstore.data.model.address.AddAddress
-import com.example.amunstore.data.model.address.Address
+import com.example.amunstore.data.model.address.AddAddressRequestModel
 import com.example.amunstore.data.model.customer.CustomerResponse
 import com.example.amunstore.data.model.order.Customer
 import com.example.amunstore.data.model.user.User
 import com.example.amunstore.data.network.NetworkServices
-import com.example.amunstore.data.network.UserServices
 import com.example.amunstore.data.presistentstorage.sharedprefs.UserSharedPreferences
-import com.google.gson.GsonBuilder
-import com.google.gson.JsonParser
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
-import okhttp3.MediaType
 import okhttp3.RequestBody
 import org.json.JSONObject
 import retrofit2.Response
@@ -26,10 +16,9 @@ class UserRepository @Inject constructor(
     private var sharedPref: UserSharedPreferences,
 ) : UserRepositoryInterface {
 
-    override suspend fun addUserAddress(address: AddAddress) {
+    override suspend fun addUserAddress(address: AddAddressRequestModel) {
 
-
-        val response = networkServices.addUserAddress("6466883977445", address)
+        val response = networkServices.addUserAddress("6264298406146", address)
         try {
             if (response.isSuccessful) {
            //     return "Done"
@@ -42,7 +31,6 @@ class UserRepository @Inject constructor(
         } catch (e: Exception) {
             e.printStackTrace()
         }
-
 
     }
 
