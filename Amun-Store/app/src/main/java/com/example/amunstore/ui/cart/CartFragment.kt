@@ -48,7 +48,11 @@ class CartFragment : Fragment() {
 
         viewLifecycleOwner.lifecycleScope.launch {
             cartViewModel.getCartItems()
+            cartViewModel.getUserAddresses()
+        }
 
+        cartViewModel.userAddress.observe(viewLifecycleOwner){
+            binding.addressTextView.text = it
         }
 
         cartViewModel.data.observe(viewLifecycleOwner) {
@@ -57,8 +61,9 @@ class CartFragment : Fragment() {
                 binding.continueShoppingButton.visibility = View.GONE
                 binding.containerScrollView.visibility = View.VISIBLE
                 cartAdapter.changeList(it as MutableList<ItemCart>)
-                var totalPrice = 0.0f
+
                 var totalAmount = 0.0f
+                var totalPrice = 0.0f
                 for (item in it) {
                     if (item.price != null && item.item_number != null)
                         totalPrice += item.price.toFloat().times(item.item_number!!)
@@ -75,13 +80,14 @@ class CartFragment : Fragment() {
 
         }
 
-
         binding.changeAddressAppCompactButton.setOnClickListener {
-            val fragment = AddressesBottomSheetDialogFragment()
+            val fragment = AddressesBottomSheetDialogFragment {
+                binding.addressTextView.text = it.address1
+            }
             fragment.show(childFragmentManager, "Address")
         }
         binding.applyCouponAppCompactButton.setOnClickListener {
-            val fragment = CouponBottomSheetDialogFragment() {
+            val fragment = CouponBottomSheetDialogFragment {
                 binding.couponTextView.text = it.title
                 discountValue = (it.value)?.toFloat() ?: 0.0f
                 binding.discountTextView.text = "$discountValue L.E"
@@ -92,6 +98,12 @@ class CartFragment : Fragment() {
         binding.continueShoppingButton.setOnClickListener {
             findNavController().navigateUp()
         }
+
+        cartViewModel.userName.observe(viewLifecycleOwner) {
+            binding.customerNameTextView.text = it
+        }
+
+        cartViewModel.loadUserName()
         return root
     }
 

@@ -58,14 +58,14 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="serif"
                     android:paddingTop="8dp"
-                    android:text="Walid Zain"
                     android:textAlignment="viewStart"
                     android:textColor="@color/black"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/seprator" />
+                    app:layout_constraintTop_toBottomOf="@+id/seprator"
+                    tools:text="Walid Zain" />
 
                 <TextView
-                    android:id="@+id/textView2"
+                    android:id="@+id/addressTextView"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:lines="2"
@@ -85,7 +85,7 @@
                     android:textAllCaps="false"
                     android:textColor="@color/hyber_blue"
                     android:textSize="12sp"
-                    app:layout_constraintBottom_toBottomOf="@+id/textView2"
+                    app:layout_constraintBottom_toBottomOf="@+id/addressTextView"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/customerNameTextView" />
 
@@ -330,6 +330,7 @@
         android:layout_height="0dp"
         android:layout_gravity="center"
         android:scaleType="centerInside"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -342,20 +343,21 @@
         android:id="@+id/continueShoppingButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginBottom="32dp"
         android:background="@drawable/corner_raduis_button"
         android:text="@string/shopping"
-        android:textSize="16sp"
-        android:layout_marginStart="40dp"
-        android:layout_marginBottom="32dp"
-        android:layout_marginEnd="40dp"
         android:textColor="@color/white"
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
     <androidx.constraintlayout.widget.Group
         android:id="@+id/groupedCart"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:visibility="gone"
+        android:visibility="visible"
         app:constraint_referenced_ids="containerScrollView,continueTextView" />
 </androidx.constraintlayout.widget.ConstraintLayout>

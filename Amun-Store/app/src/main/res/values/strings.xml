@@ -151,4 +151,5 @@
     <string name="you_can_pick_between_cash_on_delivery_and_pay_with_google_payment">You can pick between cash on delivery and pay with google payment</string>
     <string name="specify_payment_method">Specify payment method</string>
     <string name="order_details">Order detail</string>
+    <string name="apply">Apply</string>
 </resources>
