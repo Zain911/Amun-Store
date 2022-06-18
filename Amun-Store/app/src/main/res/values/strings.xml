@@ -152,4 +152,5 @@
     <string name="specify_payment_method">Specify payment method</string>
     <string name="order_details">Order detail</string>
     <string name="apply">Apply</string>
+    <string name="signup_failed">Signup failed</string>
 </resources>

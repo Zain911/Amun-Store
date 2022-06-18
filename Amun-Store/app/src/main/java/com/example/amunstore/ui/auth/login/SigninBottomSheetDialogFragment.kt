@@ -39,7 +39,7 @@ class SigninBottomSheetDialogFragment : BottomSheetDialogFragment() {
             }
             else{ Toast.makeText(
                 context,
-                getString(R.string.network_error),
+                getString(R.string.login_failed),
                 Toast.LENGTH_LONG
             ).show() }
         }

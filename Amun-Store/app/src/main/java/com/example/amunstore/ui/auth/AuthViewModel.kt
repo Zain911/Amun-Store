@@ -37,9 +37,11 @@ class AuthViewModel @Inject constructor(
                         users.postValue(true)
 
                     } else {
+                        //user is not exist
                         users.postValue(false)
                     }
                 } else {
+//                    response not successful
                     users.postValue(false)
                 }
             }
