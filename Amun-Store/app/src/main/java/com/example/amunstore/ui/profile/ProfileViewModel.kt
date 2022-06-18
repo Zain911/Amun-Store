@@ -37,7 +37,7 @@ class ProfileViewModel @Inject constructor(
         }
     }
 
-    private val productsObserver  = Observer<List<Product>>{
+    private val productsObserver = Observer<List<Product>> {
         favProductList.postValue(it)
     }
 
@@ -49,6 +49,10 @@ class ProfileViewModel @Inject constructor(
         //TODO remove static customer id and get it from sharedPref
         //ordersList.postValue(ordersRepository.getUserOrders(sharedPreferences.getCustomerId()).orders)
         ordersList.postValue(ordersRepository.getUserOrders(6252021154050).orders)
+    }
+
+    fun removeItemFromFavourites(product: Product) {
+        productRepository.removeProductFromFavourite(product)
     }
 
 

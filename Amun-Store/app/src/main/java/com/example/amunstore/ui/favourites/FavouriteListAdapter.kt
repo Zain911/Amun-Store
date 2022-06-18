@@ -12,7 +12,8 @@ import com.example.amunstore.databinding.ItemFavouriteBinding
 
 class FavouriteListAdapter(
     private var favouriteList: MutableList<Product>,
-    val removeProductFromFavourite: (Product) -> Unit
+    val removeProductFromFavourite: (Product) -> Unit,
+    val itemDetailsClick: (Product) -> Unit
 ) :
     RecyclerView.Adapter<FavouriteListAdapter.ViewHolder>() {
 
@@ -48,6 +49,10 @@ class FavouriteListAdapter(
 
         holder.view.favouriteButtonImageView.setOnClickListener {
             removeProductFromFavourite(favouriteList[position])
+        }
+
+        holder.view.mainContainerCardView.setOnClickListener {
+            itemDetailsClick(favouriteList[position])
         }
     }
 
