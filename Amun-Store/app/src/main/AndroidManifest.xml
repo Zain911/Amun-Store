@@ -3,12 +3,6 @@
     package="com.example.amunstore">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <!--    <queries>-->
-    <!--        <package android:name="com.facebook.katana" />-->
-    <!--        <package android:name="com.facebook.lite" />-->
-    <!--        <package android:name="com.facebook.android" />-->
-    <!--        <package android:name="com.example.facebook" />-->
-    <!--    </queries>-->
     <application
         android:name=".AmunApplication"
         android:allowBackup="true"

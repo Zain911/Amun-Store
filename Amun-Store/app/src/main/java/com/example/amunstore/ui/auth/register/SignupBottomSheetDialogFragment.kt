@@ -79,14 +79,11 @@ class SignupBottomSheetDialogFragment : BottomSheetDialogFragment() {
         viewModel.isRegistered.observe(viewLifecycleOwner) {
             if (it) {
                 showBottomSheetDialogFragment()
+            } else {
+                Toast.makeText(context, getString(R.string.signup_failed), Toast.LENGTH_LONG).show()
             }
         }
 
-        return root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
         viewModel.users.observe(viewLifecycleOwner) {
             if (it) {
                 val intent = Intent(context, MainActivity::class.java)
@@ -96,6 +93,8 @@ class SignupBottomSheetDialogFragment : BottomSheetDialogFragment() {
                 Toast.makeText(context, getString(R.string.login_failed), Toast.LENGTH_LONG).show()
             }
         }
+
+        return root
     }
 
     private fun showBottomSheetDialogFragment() {
