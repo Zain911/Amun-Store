@@ -8,12 +8,14 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.coroutineScope
+import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import com.example.amunstore.R
 import com.example.amunstore.data.model.order.Order
 import com.example.amunstore.data.model.product.Product
 import com.example.amunstore.databinding.FragmentProfileBinding
 import com.example.amunstore.ui.favourites.FavouriteListAdapter
+import com.example.amunstore.ui.favourites.FavouritesFragmentDirections
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -45,9 +47,21 @@ class ProfileFragment : Fragment() {
         orderAdapter = OrdersAdapter(arrayListOf()) {
             //open order details fragment
         }
-        favouriteListAdapter = FavouriteListAdapter(arrayListOf()) {
-            //remove item from favourite
+        favouriteListAdapter = FavouriteListAdapter(arrayListOf(), {
+            viewModel.removeItemFromFavourites(it)
+        }, {
+            val action =
+                it.id?.let { it1 ->
+                    ProfileFragmentDirections.actionNavigationNotificationsToProductDetailsFragment(
+                        it1)
+                }
+            view?.let { it1 ->
+                action?.let { it2 ->
+                    Navigation.findNavController(it1).navigate(it2)
+                }
+            }
         }
+        )
 
         binding.ordersRecyclerView.adapter = orderAdapter
         binding.wishListRecyclerView.adapter = favouriteListAdapter

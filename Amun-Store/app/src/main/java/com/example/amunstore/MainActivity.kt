@@ -67,13 +67,21 @@ class MainActivity : AppCompatActivity() {
         }
 
         viewmodel.cartItemsCount.observe(this) {
-            binding.cartView.cartItems.visibility = View.VISIBLE
-            binding.cartView.cartItems.text = it.toString()
+            if (it != 0) {
+                binding.cartView.cartItems.visibility = View.VISIBLE
+                binding.cartView.cartItems.text = it.toString()
+            } else {
+                binding.cartView.cartItems.visibility = View.GONE
+            }
         }
 
         viewmodel.favouriteItemsCount.observe(this) {
-            binding.favourite.favouriteItems.visibility = View.VISIBLE
-            binding.favourite.favouriteItems.text = it.toString()
+            if (it != 0) {
+                binding.favourite.favouriteItems.visibility = View.VISIBLE
+                binding.favourite.favouriteItems.text = it.toString()
+            } else {
+                binding.favourite.favouriteItems.visibility = View.GONE
+            }
         }
 
         viewmodel.getCartItemsCount()
