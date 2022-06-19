@@ -10,5 +10,5 @@ import javax.inject.Inject
 class AddressViewModel @Inject constructor(private val userRepository: UserRepository) :
     ViewModel() {
     suspend fun addNewAddress(address: AddAddressRequestModel) =
-        userRepository.addUserAddress(address)
+        userRepository.addUserAddress(address,userRepository.getCustomerId())
 }

@@ -21,7 +21,7 @@ interface OrdersServices {
     suspend fun getOrderById(@Path("order_id") orderId: Long): Response<OrderResponse>
 
     @POST("orders.json")
-    suspend fun addUserOrder(@Body order: AddOrderRequestModel): Response<Order>
+    suspend fun addUserOrder(@Body order: RequestBody): Response<Order>
 
     @DELETE("orders/{order_id}.json")
     suspend fun deleteOrder(@Path("order_id") order_id: Long)

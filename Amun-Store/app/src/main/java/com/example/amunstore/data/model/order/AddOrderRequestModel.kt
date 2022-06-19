@@ -1,10 +1,11 @@
 package com.example.amunstore.data.model.order
 
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
-data class AddOrderRequestModel(
+data class AddOrderRequestModel (
     @SerializedName("order") var order: OrderRequest? = null,
-)
+):Serializable
 
 data class OrderRequest(
     @SerializedName("customer") var customer: OrderCustomer?,
@@ -13,12 +14,12 @@ data class OrderRequest(
     @SerializedName("financial_status") var financialStatus: String? = null,
     @SerializedName("total_discounts") var totalDiscounts: String? = null,
     @SerializedName("total_price") var totalPrice: String? = null
-    )
+    ):Serializable
 
 data class OrderCustomer(
     @SerializedName("email") var email: String? = null
-)
+):Serializable
 
 data class OrderShippingAddress(
     @SerializedName("address1") var address1: String? = null
-)
+):Serializable

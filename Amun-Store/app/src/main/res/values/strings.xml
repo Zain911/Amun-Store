@@ -153,4 +153,6 @@
     <string name="order_details">Order detail</string>
     <string name="apply">Apply</string>
     <string name="signup_failed">Signup failed</string>
+    <string name="thank_you_your_order_will_be_shipped_soon">thank you, your order will be shipped soon</string>
+    <string name="please_contact_us">please contact us</string>
 </resources>
