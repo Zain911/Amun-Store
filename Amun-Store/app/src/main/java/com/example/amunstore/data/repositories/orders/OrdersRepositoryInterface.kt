@@ -13,7 +13,7 @@ interface OrdersRepositoryInterface {
 
     suspend fun getOrderById(orderId: Long): Response<OrderResponse>
 
-    suspend fun addUserOrder(addOrderRequestModel: AddOrderRequestModel): Response<Order>
+    suspend fun addUserOrder(addOrderRequestModel: RequestBody): Response<Order>
 
     suspend fun deleteOrder(orderId: Long)
 

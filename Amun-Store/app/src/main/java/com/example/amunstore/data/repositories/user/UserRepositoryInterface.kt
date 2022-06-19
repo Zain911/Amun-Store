@@ -10,7 +10,7 @@ import retrofit2.Response
 
 interface UserRepositoryInterface {
 
-    suspend fun addUserAddress(address: AddAddressRequestModel)
+    suspend fun addUserAddress(address: AddAddressRequestModel, customerId: Long)
 
     fun isUserLoggedIn(): Boolean
 
@@ -33,5 +33,7 @@ interface UserRepositoryInterface {
     suspend fun getUserEmailById(id: Long): Response<Customer>
 
     fun getUserEmail() : String
+
+    fun setUserEmail(email: String)
 
 }

@@ -1,14 +1,14 @@
 package com.example.amunstore.ui.wallet.viewmodel
 
-import android.app.Activity
 import android.app.Application
 import android.util.Log
+import android.widget.Toast
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.example.amunstore.data.model.order.Customer
+import com.example.amunstore.R
+import com.example.amunstore.data.model.order.AddOrderRequestModel
 import com.example.amunstore.data.repositories.orders.OrdersRepository
-import com.example.amunstore.data.repositories.user.UserRepository
 import com.example.amunstore.ui.wallet.util.PaymentsUtil
 import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.pay.Pay
@@ -23,14 +23,17 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import retrofit2.Response
+import kotlinx.coroutines.withContext
+import okhttp3.MediaType
+import okhttp3.RequestBody
+import org.json.JSONArray
+import org.json.JSONObject
 import javax.inject.Inject
 
 @HiltViewModel
 class CheckoutViewModel @Inject constructor(
     application: Application,
-    val ordersRepo: OrdersRepository,
-    val usersRepo: UserRepository
+    private val ordersRepo: OrdersRepository
 ) : AndroidViewModel(application) {
 
     // A client for interacting with the Google Pay API.
@@ -54,7 +57,6 @@ class CheckoutViewModel @Inject constructor(
     }
 
     val canUseGooglePay: LiveData<Boolean> = _canUseGooglePay
-    val canSavePasses: LiveData<Boolean> = _canSavePasses
 
     /**
      * Determine the user's ability to pay with a payment method supported by your app and display
@@ -115,31 +117,46 @@ class CheckoutViewModel @Inject constructor(
     /*
     {"order":{"email":"foo@example.com","fulfillment_status":"fulfilled","line_items":[{"variant_id":447654529,"quantity":1}]}}
     */
-    fun createOrder(variant_id: Long, quantity: Int) {
-        var emailResponse: Response<Customer>
-        val fullfill = "fulfilled"
-        var email: String
+    fun createOrder(orderRequestModel: AddOrderRequestModel) {
         CoroutineScope(Dispatchers.IO).launch {
-            emailResponse = usersRepo.getUserEmailById(usersRepo.getCustomerId())
-            if (emailResponse.isSuccessful) {
-                email = emailResponse.body()?.email.toString()
+            // Create JSON using JSONObject
+            val orderBody = JSONObject()
+            val jsonObject = JSONObject()
+            jsonObject.put("email", orderRequestModel.order?.customer?.email)
+            jsonObject.put("fulfillment_status", "fulfilled")
+
+            val lineItems = JSONArray()
+            for (item in orderRequestModel.order?.lineItems!!) {
+                val lineItem = JSONObject()
+                lineItem.put("variant_id", item.variantId)
+                lineItem.put("quantity", item.quantity)
+                lineItems.put(lineItem)
             }
+            jsonObject.put("line_items", lineItems)
 
-            //todo complete request body
-            //  ordersRepo.createOrder(requestbody)
+            // Convert JSONObject to String
+            val jsonObjectString = orderBody.put("order", jsonObject).toString()
+
+            val body: RequestBody =
+                RequestBody.create(MediaType.parse("application/json"), jsonObjectString)
+
+            val response = ordersRepo.addUserOrder(body)
+
+            withContext(Dispatchers.Main) {
+                if (response.isSuccessful) {
+                    Toast.makeText(getApplication(), "success", Toast.LENGTH_LONG).show()
+                } else {
+                    Toast.makeText(
+                        getApplication(),
+                        response.code().toString() + getApplication<Application?>().getString(
+                            R.string.please_contact_us
+                        ),
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
+            }
         }
-
     }
-
-    /**
-     * Exposes the `savePassesJwt` method in the wallet client
-     */
-    val savePassesJwt: (String, Activity, Int) -> Unit = walletClient::savePassesJwt
-
-    /**
-     * Exposes the `savePasses` method in the wallet client
-     */
-    val savePasses: (String, Activity, Int) -> Unit = walletClient::savePasses
 
     // Test generic object used to be created against the API
     val genericObjectJwt =

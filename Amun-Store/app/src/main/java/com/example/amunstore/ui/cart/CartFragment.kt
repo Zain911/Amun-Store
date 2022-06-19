@@ -1,6 +1,7 @@
 package com.example.amunstore.ui.cart
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -13,6 +14,7 @@ import com.example.amunstore.data.model.cart.ItemCart
 import com.example.amunstore.databinding.FragmentCartBinding
 import com.example.amunstore.ui.cart.addresses.AddressesBottomSheetDialogFragment
 import com.example.amunstore.ui.cart.coupon.CouponBottomSheetDialogFragment
+import com.example.amunstore.ui.wallet.activity.CheckoutActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import kotlin.math.absoluteValue
@@ -107,8 +109,10 @@ class CartFragment : Fragment() {
 
         viewModel.loadUserName()
         binding.continueTextView.setOnClickListener {
-            viewLifecycleOwner.lifecycleScope.launch { viewModel.addUserOrder(discountValue)//50 is total price
-             }
+            val intent = Intent(context , CheckoutActivity::class.java)
+            intent.putExtra("order",viewModel.addUserOrder(discountValue) )//50 is total price)
+         requireActivity().startActivity(intent)
+
         }
         return root
     }

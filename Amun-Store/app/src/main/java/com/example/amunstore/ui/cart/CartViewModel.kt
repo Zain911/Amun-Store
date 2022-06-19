@@ -1,13 +1,14 @@
 package com.example.amunstore.ui.cart
 
-import android.util.Log
-import androidx.lifecycle.*
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModel
 import com.example.amunstore.data.model.cart.ItemCart
 import com.example.amunstore.data.model.order.*
 import com.example.amunstore.data.repositories.cart.CartRepository
 import com.example.amunstore.data.repositories.orders.OrdersRepository
 import com.example.amunstore.data.repositories.user.UserRepository
-import com.google.gson.Gson
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
@@ -67,7 +68,7 @@ class CartViewModel @Inject constructor(
             userAddress.postValue(addressesFiltered[0].address1)
     }
 
-    suspend fun addUserOrder(discount: Float) {
+    fun addUserOrder(discount: Float): AddOrderRequestModel {
 
         val order = AddOrderRequestModel()
 
@@ -81,16 +82,17 @@ class CartViewModel @Inject constructor(
         }
 
         order.order = OrderRequest(
-            customer = OrderCustomer("EslamTest1@mail.com"),
+            customer = OrderCustomer(getUserEmailById()),
             lineItems = lineItems,
             shippingAddress = OrderShippingAddress(userAddress.value),
             totalPrice = totalPrice.toString(),
             totalDiscounts = discount.toString()
         )
-
-        val response = ordersRepository.addUserOrder(order)
-        response.toString()
+        return order
+        //        val response = ordersRepository.addUserOrder(order)
+//        response.toString()
     }
 
+    fun getUserEmailById(): String = userRepository.getUserEmail()
 
 }
