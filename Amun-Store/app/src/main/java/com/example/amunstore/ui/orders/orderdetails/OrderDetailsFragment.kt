@@ -34,16 +34,25 @@ class OrderDetailsFragment : Fragment() {
 
         viewModel.order.observe(viewLifecycleOwner) {
             binding.orderIdTextView.text = "Order ID : " + it.id.toString()
+
             binding.shippingNameTextView.text =
-                it.shippingAddress?.firstName + " " + it.shippingAddress?.lastName
-            binding.phoneTextView.text = it.shippingAddress?.phone
+                it.customer?.firstName + " " + it.customer?.lastName
+
+            binding.phoneTextView.text = it.customer?.phone
+            binding.phoneTextView.visibility = View.GONE
+            binding.phoneImageView.visibility = View.GONE
+
             binding.mailTextView.text = it.email
-            binding.locationTextView.text = it.shippingAddress?.address1
+            binding.locationTextView.text = it.customer?.defaultAddress?.address1
+
             binding.totalPaymentValueTextView.text = it.totalPrice + " " + it.currency
             binding.financialStateValueTextView.text =
                 it.financialStatus?.replaceFirstChar { it1 -> it1.uppercase() }
             binding.numberOfItemsTextView.text = it.lineItems.size.toString() + " items"
             binding.orderLinesItemsRecyclerView.adapter = LineItemAdapter(it.lineItems)
+
+
+            binding.orderDateTextView.text = it.createdAt?.substringBeforeLast("T")
         }
 
         lifecycle.coroutineScope.launch {

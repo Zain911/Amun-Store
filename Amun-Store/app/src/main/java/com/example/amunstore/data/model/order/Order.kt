@@ -1,6 +1,5 @@
 package com.example.amunstore.data.model.order
 
-import com.example.example.LineItems
 import com.google.gson.annotations.SerializedName
 
 data class Order (

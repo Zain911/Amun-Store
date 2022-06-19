@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.amunstore.databinding.ItemLineItemBinding
-import com.example.example.LineItems
+import com.example.amunstore.data.model.order.LineItems
 
 class LineItemAdapter(private var lineItemsList: MutableList<LineItems>) :
     RecyclerView.Adapter<LineItemAdapter.ViewHolder>() {
@@ -43,6 +43,8 @@ class LineItemAdapter(private var lineItemsList: MutableList<LineItems>) :
         holder.view.colorValueTextView.text = variantTitle?.get(1)?.trim()?.replaceFirstChar {
             it.uppercase()
         }
+
+
 
     }
 

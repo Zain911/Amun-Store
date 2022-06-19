@@ -10,12 +10,9 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.amunstore.data.model.cart.ItemCart
-import com.example.amunstore.data.model.order.AddOrderRequestModel
-import com.example.amunstore.data.model.order.Order
 import com.example.amunstore.databinding.FragmentCartBinding
 import com.example.amunstore.ui.cart.addresses.AddressesBottomSheetDialogFragment
 import com.example.amunstore.ui.cart.coupon.CouponBottomSheetDialogFragment
-import com.example.example.LineItems
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import kotlin.math.absoluteValue
