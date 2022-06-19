@@ -4,6 +4,7 @@ import com.example.amunstore.data.model.order.AddOrderRequestModel
 import com.example.amunstore.data.model.order.Order
 import com.example.amunstore.data.model.order.OrderResponse
 import com.example.amunstore.data.model.order.OrdersResponse
+import okhttp3.RequestBody
 import retrofit2.Response
 import retrofit2.http.*
 
@@ -24,4 +25,5 @@ interface OrdersServices {
 
     @DELETE("orders/{order_id}.json")
     suspend fun deleteOrder(@Path("order_id") order_id: Long)
+
 }

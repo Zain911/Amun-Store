@@ -1,4 +1,4 @@
-package com.google.android.gms.samples.wallet.viewmodel
+package com.example.amunstore.ui.wallet.viewmodel
 
 import android.app.Activity
 import android.app.Application
@@ -6,6 +6,9 @@ import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.example.amunstore.data.model.order.Customer
+import com.example.amunstore.data.repositories.orders.OrdersRepository
+import com.example.amunstore.data.repositories.user.UserRepository
 import com.example.amunstore.ui.wallet.util.PaymentsUtil
 import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.pay.Pay
@@ -16,8 +19,19 @@ import com.google.android.gms.wallet.IsReadyToPayRequest
 import com.google.android.gms.wallet.PaymentData
 import com.google.android.gms.wallet.PaymentDataRequest
 import com.google.android.gms.wallet.PaymentsClient
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import retrofit2.Response
+import javax.inject.Inject
 
-class CheckoutViewModel(application: Application) : AndroidViewModel(application) {
+@HiltViewModel
+class CheckoutViewModel @Inject constructor(
+    application: Application,
+    val ordersRepo: OrdersRepository,
+    val usersRepo: UserRepository
+) : AndroidViewModel(application) {
 
     // A client for interacting with the Google Pay API.
     private val paymentsClient: PaymentsClient = PaymentsUtil.createPaymentsClient(application)
@@ -96,6 +110,25 @@ class CheckoutViewModel(application: Application) : AndroidViewModel(application
                 // Google Play Services is too old. API availability can't be verified.
                 _canUseGooglePay.value = false
             }
+    }
+
+    /*
+    {"order":{"email":"foo@example.com","fulfillment_status":"fulfilled","line_items":[{"variant_id":447654529,"quantity":1}]}}
+    */
+    fun createOrder(variant_id: Long, quantity: Int) {
+        var emailResponse: Response<Customer>
+        val fullfill = "fulfilled"
+        var email: String
+        CoroutineScope(Dispatchers.IO).launch {
+            emailResponse = usersRepo.getUserEmailById(usersRepo.getCustomerId())
+            if (emailResponse.isSuccessful) {
+                email = emailResponse.body()?.email.toString()
+            }
+
+            //todo complete request body
+            //  ordersRepo.createOrder(requestbody)
+        }
+
     }
 
     /**

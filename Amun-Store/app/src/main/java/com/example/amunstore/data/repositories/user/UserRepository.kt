@@ -69,5 +69,8 @@ class UserRepository @Inject constructor(
         return networkServices.getUserByEmail(email)
     }
 
+    override suspend fun getUserEmailById(id: Long): Response<Customer> {
+        return networkServices.getUserEmailById(id)
+    }
 
 }

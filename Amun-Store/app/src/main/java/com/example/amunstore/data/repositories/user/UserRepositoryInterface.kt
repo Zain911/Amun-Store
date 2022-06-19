@@ -1,7 +1,7 @@
 package com.example.amunstore.data.repositories.user
 
-import com.example.amunstore.data.model.address.AddressResponse
 import com.example.amunstore.data.model.address.AddAddressRequestModel
+import com.example.amunstore.data.model.address.AddressResponse
 import com.example.amunstore.data.model.customer.CustomerResponse
 import com.example.amunstore.data.model.order.Customer
 import com.example.amunstore.data.model.user.User
@@ -30,7 +30,8 @@ interface UserRepositoryInterface {
 
     suspend fun getUserByEmail(email: String): Response<CustomerResponse?>
 
-    fun getUserEmail() : String
+    suspend fun getUserEmailById(id: Long): Response<Customer>
 
+    fun getUserEmail() : String
 
 }

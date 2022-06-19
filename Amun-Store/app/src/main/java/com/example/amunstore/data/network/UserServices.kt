@@ -1,6 +1,8 @@
 package com.example.amunstore.data.network
 
-import com.example.amunstore.data.model.address.*
+import com.example.amunstore.data.model.address.AddAddressRequestModel
+import com.example.amunstore.data.model.address.AddingAddressResponseModel
+import com.example.amunstore.data.model.address.AddressResponse
 import com.example.amunstore.data.model.customer.CustomerResponse
 import com.example.amunstore.data.model.order.Customer
 import okhttp3.RequestBody
@@ -27,5 +29,6 @@ interface UserServices {
     @POST("customers.json")
     suspend fun createCustomer(@Body body: RequestBody): Response<Customer>
 
-
+    @GET("customers/{customer_id}.json")
+    suspend fun getUserEmailById(@Path("customer_id") customer_id: Long): Response<Customer>
 }
