@@ -14,4 +14,5 @@ data class ItemCart(
     @SerializedName("item_number") var item_number: Int?,
     @SerializedName("item_size") val size: String?,
     @SerializedName("inventory_quantity") val maxItem: Int?,
+    @SerializedName("variant_id") val variant_id: Long,
 )

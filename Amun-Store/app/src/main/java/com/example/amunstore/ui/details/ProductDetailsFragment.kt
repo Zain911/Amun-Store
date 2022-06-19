@@ -23,7 +23,6 @@ import com.example.amunstore.data.model.cart.ItemCart
 import com.example.amunstore.data.model.details.ProductDetailsResponse
 import com.example.amunstore.data.model.product.Images
 import com.example.amunstore.databinding.FragmentProductDetailsBinding
-import com.facebook.share.widget.ShareDialog
 import com.google.android.material.appbar.MaterialToolbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -59,14 +58,12 @@ class ProductDetailsFragment : Fragment() {
     private lateinit var favButton: MenuItem
 
     private lateinit var productDetails: ProductDetailsResponse
-    private lateinit var shareDialog: ShareDialog
     private var variantNumber = 0
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View {
-        shareDialog = ShareDialog(this)
         _binding = FragmentProductDetailsBinding.inflate(inflater, container, false)
         val root: View = binding.root
         viewPager = binding.productImageView
@@ -132,14 +129,14 @@ class ProductDetailsFragment : Fragment() {
             ItemCart(
                 it,
                 productDetails.product.title,
-                productDetails.product.variants[variantNumber].price,
+                productDetails.product.variants[0].price,
                 productDetails.product.image?.src,
                 1,
                 size = selectedSize ?: productDetails.product.options[0].values[variantNumber],
-                maxItem = productDetails.product.variants[variantNumber].inventoryQuantity?.minus(1)
+                maxItem = productDetails.product.variants[variantNumber].inventoryQuantity?.minus(1),
+                variant_id = productDetails.product.variants[variantNumber].id!!
             )
-        }?.let { it2 -> viewLifecycleOwner.lifecycleScope.launch { viewModel.addToCart(it2) } }
-    }
+        }?.let { it2 -> viewLifecycleOwner.lifecycleScope.launch { viewModel.addToCart(it2) } } }
 
     private fun addDots(currentImage: Int) {
         binding.productLinearLayoutDots.removeAllViews()

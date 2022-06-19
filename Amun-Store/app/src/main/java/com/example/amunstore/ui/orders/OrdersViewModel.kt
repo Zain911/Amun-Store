@@ -18,8 +18,13 @@ class OrdersViewModel @Inject constructor(
 
     suspend fun getUserOrders() {
         //TODO change static customer id to real customer id from shared prefs
-        //ordersList.postValue(ordersRepository.getUserOrders(userRepository.getCustomerId()).orders)
-        ordersList.postValue(ordersRepository.getUserOrders(6252021154050).orders)
+        ordersList.postValue(ordersRepository.getUserOrders(userRepository.getCustomerId()).orders)
+        //ordersList.postValue(ordersRepository.getUserOrders(6252021154050).orders)
+    }
+
+    suspend fun removeOrder(order: Order) {
+        ordersRepository.deleteOrder(order.id!!)
+
     }
 
 }

@@ -31,4 +31,7 @@ interface UserRepositoryInterface {
     suspend fun getUserByEmail(email: String): Response<CustomerResponse?>
 
     suspend fun getUserEmailById(id: Long): Response<Customer>
+
+    fun getUserEmail() : String
+
 }
