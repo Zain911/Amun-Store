@@ -31,10 +31,8 @@ class ProductDetailsSizeAdapter(
     @SuppressLint("NotifyDataSetChanged")
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.size.isChecked = position == checkedItemPosition.value
-
         holder.size.text = arrayList[position]
         holder.size.setOnClickListener {
-
             if (checkedItemPosition.value != position) {
                 holder.size.isChecked = true
                 checkedItemPosition.value = position
@@ -53,8 +51,6 @@ class ProductDetailsSizeAdapter(
 
     // Holds the views for adding it to image and text
     class ViewHolder(ItemView: View) : RecyclerView.ViewHolder(ItemView) {
-
         val size: CheckedTextView = itemView.findViewById(R.id.item_product_size_checkbox)
-
     }
 }
