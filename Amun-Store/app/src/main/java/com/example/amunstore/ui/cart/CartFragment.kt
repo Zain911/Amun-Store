@@ -60,6 +60,7 @@ class CartFragment : Fragment() {
                 binding.emptyCartLottieView.visibility = View.GONE
                 binding.continueShoppingButton.visibility = View.GONE
                 binding.containerScrollView.visibility = View.VISIBLE
+                binding.continueTextView.visibility=View.VISIBLE
                 cartAdapter.changeList(it as MutableList<ItemCart>)
 
                 var totalAmount = 0.0f
@@ -76,6 +77,7 @@ class CartFragment : Fragment() {
                 binding.emptyCartLottieView.visibility = View.VISIBLE
                 binding.continueShoppingButton.visibility = View.VISIBLE
                 binding.containerScrollView.visibility = View.GONE
+                binding.continueTextView.visibility=View.GONE
             }
 
         }
