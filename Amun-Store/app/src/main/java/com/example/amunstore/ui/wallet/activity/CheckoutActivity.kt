@@ -71,8 +71,8 @@ class CheckoutActivity : AppCompatActivity() {
         price = myOrder.order?.totalPrice.toString()
         address = myOrder.order?.shippingAddress?.address1.toString()
 
-        layout.detailPrice.text = price
-        layout.detailAddress.text = address
+        layout.detailPrice.text = "price: $price"
+        layout.detailAddress.text = "address: $address"
 
         val cashOnDeliveryButton = layout.cashOnDeliveryButton
         cashOnDeliveryButton.setOnClickListener {
