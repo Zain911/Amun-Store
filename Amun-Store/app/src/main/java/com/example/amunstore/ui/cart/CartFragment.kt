@@ -112,7 +112,6 @@ class CartFragment : Fragment() {
             val intent = Intent(context , CheckoutActivity::class.java)
             intent.putExtra("order",viewModel.addUserOrder(discountValue) )//50 is total price)
          requireActivity().startActivity(intent)
-
         }
         return root
     }

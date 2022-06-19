@@ -9,6 +9,7 @@ import androidx.lifecycle.MutableLiveData
 import com.example.amunstore.R
 import com.example.amunstore.data.model.order.AddOrderRequestModel
 import com.example.amunstore.data.repositories.orders.OrdersRepository
+import com.example.amunstore.data.repositories.user.UserRepository
 import com.example.amunstore.ui.wallet.util.PaymentsUtil
 import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.pay.Pay
@@ -33,7 +34,7 @@ import javax.inject.Inject
 @HiltViewModel
 class CheckoutViewModel @Inject constructor(
     application: Application,
-    private val ordersRepo: OrdersRepository
+    private val ordersRepo: OrdersRepository, private val userRepo: UserRepository
 ) : AndroidViewModel(application) {
 
     // A client for interacting with the Google Pay API.
@@ -116,14 +117,20 @@ class CheckoutViewModel @Inject constructor(
 
     /*
     {"order":{"email":"foo@example.com","fulfillment_status":"fulfilled","line_items":[{"variant_id":447654529,"quantity":1}]}}
+    {"order":{"line_items":[{"variant_id":447654529,"quantity":1}],"customer":{"id":207119551},"financial_status":"pending"}}'
     */
     fun createOrder(orderRequestModel: AddOrderRequestModel) {
         CoroutineScope(Dispatchers.IO).launch {
             // Create JSON using JSONObject
             val orderBody = JSONObject()
             val jsonObject = JSONObject()
+            val customer = JSONObject().put("id" , userRepo.getCustomerId())
+            jsonObject.put("customer" , customer)
             jsonObject.put("email", orderRequestModel.order?.customer?.email)
-            jsonObject.put("fulfillment_status", "fulfilled")
+//            jsonObject.put("fulfillment_status", "fulfilled")
+            jsonObject.put("currency" , "EGP")
+            jsonObject.put("financial_status" , "paid")
+
 
             val lineItems = JSONArray()
             for (item in orderRequestModel.order?.lineItems!!) {
