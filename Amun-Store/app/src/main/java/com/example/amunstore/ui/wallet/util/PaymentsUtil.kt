@@ -1,19 +1,3 @@
-/*
- * Copyright 2021 Google Inc.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 package com.example.amunstore.ui.wallet.util
 
 import android.content.Context
@@ -54,9 +38,6 @@ object PaymentsUtil {
      * The Google Pay API response will return an encrypted payment method capable of being charged
      * by a supported gateway after payer authorization.
      *
-     *
-     * TODO: Check with your gateway on the parameters to pass and modify them in Constants.java.
-     *
      * @return Payment data tokenization for the CARD payment method.
      * @throws JSONException
      * See [PaymentMethodTokenizationSpecification](https://developers.google.com/pay/api/android/reference/object.PaymentMethodTokenizationSpecification)
@@ -72,7 +53,6 @@ object PaymentsUtil {
      * Card networks supported by your app and your gateway.
      *
      *
-     * TODO: Confirm card networks supported by your app and gateway & update in Constants.java.
      *
      * @return Allowed card networks
      * See [CardParameters](https://developers.google.com/pay/api/android/reference/object.CardParameters)

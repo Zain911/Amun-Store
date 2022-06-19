@@ -28,17 +28,19 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import com.example.amunstore.R
 import com.example.amunstore.databinding.ActivityCheckoutBinding
+import com.example.amunstore.ui.wallet.viewmodel.CheckoutViewModel
 import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.common.api.CommonStatusCodes
 import com.google.android.gms.common.api.ResolvableApiException
-import com.google.android.gms.samples.wallet.viewmodel.CheckoutViewModel
 import com.google.android.gms.wallet.PaymentData
+import dagger.hilt.android.AndroidEntryPoint
 import org.json.JSONException
 import org.json.JSONObject
 
 /**
  * Checkout implementation for the app
  */
+@AndroidEntryPoint
 class CheckoutActivity : AppCompatActivity() {
 
     private val model: CheckoutViewModel by viewModels()
@@ -73,7 +75,7 @@ class CheckoutActivity : AppCompatActivity() {
 
         val cashOnDeliveryButton = layout.cashOnDeliveryButton
         cashOnDeliveryButton.setOnClickListener {
-            //todo complete order and finish this activity
+            completePayment()
         }
     }
 
@@ -139,11 +141,10 @@ class CheckoutActivity : AppCompatActivity() {
         registerForActivityResult(StartIntentSenderForResult()) { result: ActivityResult ->
             when (result.resultCode) {
                 RESULT_OK ->
-                    //todo payment complete complete order and finist activity
                     result.data?.let { intent ->
                         PaymentData.getFromIntent(intent)?.let(::handlePaymentSuccess)
+                        completePayment()
                     }
-
                 RESULT_CANCELED -> {
                     Toast
                         .makeText(this, getString(R.string.canceled), Toast.LENGTH_LONG)
@@ -152,6 +153,11 @@ class CheckoutActivity : AppCompatActivity() {
                 }
             }
         }
+
+    private fun completePayment() {
+        //todo payment complete complete order and finish activity
+        //todo complete order and finish this activity
+    }
 
     /**
      * PaymentData response object contains the payment information, as well as any additional

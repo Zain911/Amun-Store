@@ -1,12 +1,10 @@
 package com.example.amunstore.data.network
 
-import com.example.amunstore.data.model.order.Order
 import com.example.amunstore.data.model.order.OrderResponse
 import com.example.amunstore.data.model.order.OrdersResponse
+import okhttp3.RequestBody
 import retrofit2.Response
-import retrofit2.http.GET
-import retrofit2.http.Path
-import retrofit2.http.Query
+import retrofit2.http.*
 
 interface OrdersServices {
 
@@ -19,5 +17,8 @@ interface OrdersServices {
 
     @GET("orders/{order_id}.json")
     suspend fun getOrderById(@Path("order_id") orderId: Long): Response<OrderResponse>
+
+    @POST("orders.json")
+    suspend fun createOrder(@Body body: RequestBody): Response<OrderResponse>
 
 }
