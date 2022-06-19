@@ -11,5 +11,6 @@ interface OrdersRepositoryInterface {
     suspend fun getUserOrders(customerId: Long): OrdersResponse
 
     suspend fun getOrderById(orderId: Long): Response<OrderResponse>
-    suspend fun addUserOrder(addOrderRequestModel: AddOrderRequestModel):Response<Order>
+    suspend fun addUserOrder(addOrderRequestModel: AddOrderRequestModel): Response<Order>
+    suspend fun deleteOrder(orderId: Long)
 }

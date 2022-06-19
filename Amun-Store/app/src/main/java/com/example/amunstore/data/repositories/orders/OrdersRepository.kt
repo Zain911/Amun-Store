@@ -18,5 +18,8 @@ class OrdersRepository @Inject constructor(private val networkServices: NetworkS
     override suspend fun addUserOrder(addOrderRequestModel: AddOrderRequestModel): Response<Order> =
         networkServices.addUserOrder(addOrderRequestModel)
 
+    override  suspend fun deleteOrder(orderId: Long) {
+        networkServices.deleteOrder(orderId)
+    }
 
 }

@@ -44,9 +44,7 @@ class ProfileFragment : Fragment() {
         _binding = FragmentProfileBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        orderAdapter = OrdersAdapter(arrayListOf()) {
-            //open order details fragment
-        }
+        orderAdapter = OrdersAdapter(arrayListOf(),{},{})
         favouriteListAdapter = FavouriteListAdapter(arrayListOf(), {
             viewModel.removeItemFromFavourites(it)
         }, {

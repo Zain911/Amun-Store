@@ -22,4 +22,9 @@ class OrdersViewModel @Inject constructor(
         //ordersList.postValue(ordersRepository.getUserOrders(6252021154050).orders)
     }
 
+    suspend fun removeOrder(order: Order) {
+        ordersRepository.deleteOrder(order.id!!)
+
+    }
+
 }
