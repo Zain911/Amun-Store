@@ -9,7 +9,6 @@ import androidx.lifecycle.MutableLiveData
 import com.example.amunstore.R
 import com.example.amunstore.data.model.order.AddOrderRequestModel
 import com.example.amunstore.data.repositories.orders.OrdersRepository
-import com.example.amunstore.data.repositories.user.UserRepository
 import com.example.amunstore.ui.wallet.util.PaymentsUtil
 import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.pay.Pay
@@ -119,7 +118,7 @@ class CheckoutViewModel @Inject constructor(
     {"order":{"email":"foo@example.com","fulfillment_status":"fulfilled","line_items":[{"variant_id":447654529,"quantity":1}]}}
     {"order":{"line_items":[{"variant_id":447654529,"quantity":1}],"customer":{"id":207119551},"financial_status":"pending"}}'
     */
-    fun createOrder(orderRequestModel: AddOrderRequestModel) {
+      fun createOrder(orderRequestModel: AddOrderRequestModel) {
         CoroutineScope(Dispatchers.IO).launch {
             // Create JSON using JSONObject
             val orderBody = JSONObject()
@@ -130,8 +129,7 @@ class CheckoutViewModel @Inject constructor(
 //            jsonObject.put("fulfillment_status", "fulfilled")
             jsonObject.put("currency" , "EGP")
             jsonObject.put("financial_status" , "paid")
-
-
+            
             val lineItems = JSONArray()
             for (item in orderRequestModel.order?.lineItems!!) {
                 val lineItem = JSONObject()
