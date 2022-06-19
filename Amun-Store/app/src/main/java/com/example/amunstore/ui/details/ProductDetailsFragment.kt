@@ -114,7 +114,8 @@ class ProductDetailsFragment : Fragment() {
                     productDetails.product.image?.src,
                     1,
                     size = selectedSize ?: productDetails.product.options[0].values[0],
-                    maxItem = productDetails.product.variants[0].inventoryQuantity
+                    maxItem = productDetails.product.variants[0].inventoryQuantity,
+                    variant_id = productDetails.product.variants[0].id!!
                 )
             }?.let { it2 -> viewLifecycleOwner.lifecycleScope.launch { viewModel.addToCart(it2) } }
         }
