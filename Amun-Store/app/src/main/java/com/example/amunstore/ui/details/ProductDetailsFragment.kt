@@ -1,5 +1,6 @@
 package com.example.amunstore.ui.details
 
+import android.graphics.Paint
 import android.os.Bundle
 import android.text.Html
 import android.view.LayoutInflater
@@ -202,7 +203,7 @@ class ProductDetailsFragment : Fragment() {
             binding.productVendorText.text = it.product.vendor
 
             binding.productPriceText.text =
-                "${it.product.variants[variantNumber].price} ${viewModel.getCurrencyInfoForDefaultLocale()}"
+                "${it.product.variants[variantNumber].price} L.E"
 
             binding.productProductDetailsTxt.text = "\u2022 ${it.product.bodyHtml}"
 
@@ -211,11 +212,12 @@ class ProductDetailsFragment : Fragment() {
                 binding.productOldPriceTxt.visibility = View.INVISIBLE
                 binding.productPricePercentTxt.visibility = View.INVISIBLE
             } else {
-                binding.productOldPriceTxt.text = it.product.variants[variantNumber].compareAtPrice
+                binding.productOldPriceTxt.text = it.product.variants[variantNumber].compareAtPrice + "L.E"
+                binding.productOldPriceTxt.paintFlags =  Paint.STRIKE_THRU_TEXT_FLAG
                 binding.productOldPriceTxt.paintFlags = binding.productOldPriceTxt.paintFlags
                 val percent =
-                    it.product.variants[variantNumber].compareAtPrice!!.toDouble() / it.product.variants[variantNumber].price?.toDouble()!! * 100
-                binding.productPricePercentTxt.text = " ${percent}% OFF"
+                    it.product.variants[variantNumber].price!!.toDouble() / it.product.variants[variantNumber].compareAtPrice?.toDouble()!! * 100
+                binding.productPricePercentTxt.text = " ${percent.toInt()}% OFF"
             }
 
             binding.productNumberOfLeftTxt.text =
