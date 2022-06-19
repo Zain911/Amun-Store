@@ -1,4 +1,4 @@
-package com.example.example
+package com.example.amunstore.data.model.order
 
 import com.google.gson.annotations.SerializedName
 
