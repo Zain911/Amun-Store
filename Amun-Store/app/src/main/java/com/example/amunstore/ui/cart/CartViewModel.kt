@@ -89,8 +89,6 @@ class CartViewModel @Inject constructor(
             totalDiscounts = discount.toString()
         )
         return order
-        //        val response = ordersRepository.addUserOrder(order)
-//        response.toString()
     }
 
     fun getUserEmailById(): String = userRepository.getUserEmail()
