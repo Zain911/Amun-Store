@@ -44,20 +44,18 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
         connectionLiveData = InternetConnectivity(applicationContext)
-        connectionLiveData.observe(MainActivity@this) { isAvailable ->
+        connectionLiveData.observe(MainActivity@ this) { isAvailable ->
             when (isAvailable) {
                 true -> {
                     val id = navController.currentDestination!!.id
                     if (id == R.id.noConnectionFragment) {
-                       /// Toast.makeText(this, getString(R.string.connected), Toast.LENGTH_SHORT).show()
+                        /// Toast.makeText(this, getString(R.string.connected), Toast.LENGTH_SHORT).show()
                         navController.navigateUp()
                     }
                 }
 
                 false -> {
-                    val id = navController.currentDestination!!.displayName
-                    Log.d( "onCreate: ",id)
-                    navController.navigate(R.id.searchFragment)
+                    navController.navigate(R.id.noConnectionFragment)
                 }
             }
         }

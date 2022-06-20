@@ -15,6 +15,7 @@ import com.example.amunstore.R
 
 import com.example.amunstore.databinding.FragmentHomeBinding
 import com.example.amunstore.data.model.getImage
+import com.example.amunstore.domain.util.InternetConnectivity
 import com.example.example.SmartCollections
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.*
@@ -32,6 +33,10 @@ class HomeFragment : Fragment() {
     private lateinit var viewPager: ViewPager2
     private lateinit var viewPagerAdapter: SliderViewPagerAdapter
     private var dots: Array<TextView?> = arrayOfNulls<TextView>(getImage().size)
+
+
+    private lateinit var connectionLiveData: InternetConnectivity
+
     private var onImageSliderChange = object : ViewPager2.OnPageChangeCallback() {
         override fun onPageSelected(position: Int) {
             super.onPageSelected(position)
@@ -70,10 +75,13 @@ class HomeFragment : Fragment() {
         }
         binding.brandsRecyclerView.adapter = vendorAdapter
 
-
-
-        viewLifecycleOwner.lifecycleScope.launch {
-            viewModel.getBrands()
+        connectionLiveData = InternetConnectivity(context!!)
+        connectionLiveData.observe(viewLifecycleOwner) {
+            if (it) {
+                viewLifecycleOwner.lifecycleScope.launch {
+                    viewModel.getBrands()
+                }
+            }
         }
 
         viewModel.brands.observe(viewLifecycleOwner) {
