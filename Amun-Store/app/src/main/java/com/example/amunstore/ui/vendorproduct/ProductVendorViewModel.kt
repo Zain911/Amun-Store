@@ -16,11 +16,15 @@ class ProductVendorViewModel @Inject constructor(
     private val repo: ProductsRepository,
 ) : ViewModel() {
 
-    val brands = MutableLiveData<List<SmartCollections>>()
     val products = MutableLiveData<List<Product>>()
 
-    suspend fun getProducts(vendorID: String) =
-        products.postValue(repository.getProductsVendor(vendorID).body()?.products)
+    suspend fun getProducts(vendorID: String){
+        val list = repository.getProductsVendor(vendorID).body()?.products
+        if (list != null) {
+            checkForFavouriteItems(list)
+        }
+        products.postValue(list)
+    }
 
 
     fun addItemToFavourite(product: Product) {
@@ -32,5 +36,14 @@ class ProductVendorViewModel @Inject constructor(
     fun removeItemFromFavourite(product: Product) {
         repo.removeProductFromFavourite(product)
     }
+
+    private fun checkForFavouriteItems(list: ArrayList<Product>) {
+        for (product in list) {
+            product.id?.let {
+                product.isFavourite = repo.isProductFavourite(it)
+            }
+        }
+    }
+
 
 }

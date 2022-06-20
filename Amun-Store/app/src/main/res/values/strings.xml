@@ -156,4 +156,10 @@
     <string name="thank_you_your_order_will_be_shipped_soon">thank you, your order will be shipped soon</string>
     <string name="please_try_again_later_or_contact_us">\tplease try again later or contact us</string>
     <string name="succuss">Success</string>
+    <string name="low_to_high">Price: Low to High</string>
+    <string name="highToLow">Price: High to Low</string>
+    <string name="alphabetical">Alphabetical</string>
+    <string name="all">All products</string>
+    <string name="sort_by">Sort By:</string>
+    <string name="a_m_u_n_store">A m u n Store</string>
 </resources>

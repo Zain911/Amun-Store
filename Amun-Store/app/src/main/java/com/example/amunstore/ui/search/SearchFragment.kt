@@ -14,6 +14,8 @@ import androidx.navigation.Navigation
 import com.example.amunstore.R
 import com.example.amunstore.data.model.product.Product
 import com.example.amunstore.databinding.FragmentSearchBinding
+import com.example.amunstore.ui.cart.addresses.AddressesBottomSheetDialogFragment
+import com.example.amunstore.ui.search.searchfiltersbottomsheet.SearchFiltersBottomSheetDialogFragment
 
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -34,7 +36,7 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
 
         _binding = FragmentSearchBinding.inflate(inflater, container, false)
 
-        intiFilterSpinner()
+        //intiFilterSpinner()
 
         binding.searchProductSearchView.requestFocus()
         lifecycle.coroutineScope.launch {
@@ -55,28 +57,32 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
         binding.itemsRecView.adapter = searchAdapter
 
         viewModel.filterList.observe(viewLifecycleOwner) {
-
             initView(it)
-
         }
 
         binding.searchProductSearchView.setOnQueryTextListener(object :
             SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
-                viewModel.searchProduct(query, productFilter)
+                viewModel.searchProduct(query)
                 return false
             }
 
             override fun onQueryTextChange(query: String): Boolean {
-                viewModel.searchProduct(query, productFilter)
+                viewModel.searchProduct(query)
                 return true
             }
         })
         binding.backImageView.setOnClickListener { requireActivity().onBackPressed() }
 
 
+        binding.searchFiltersImageView.setOnClickListener {
+            val fragment = SearchFiltersBottomSheetDialogFragment(productFilter) {
+                productFilter = it
+                viewModel.sortProducts(productFilter)
+            }
+            fragment.show(childFragmentManager, "SearchFilters")
+        }
         return binding.root
-
     }
 
     private fun initView(productsList: List<Product>?) {
@@ -93,7 +99,7 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
         }
     }
 
-
+/* filter spinner
     private fun intiFilterSpinner() {
         binding.sortSpinner.onItemSelectedListener =
             object : AdapterView.OnItemSelectedListener {
@@ -128,7 +134,7 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
                 }
             }
 
-    }
+    }*/
 
 }
 
