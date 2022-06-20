@@ -1,6 +1,7 @@
 package com.example.amunstore
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -10,6 +11,7 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.amunstore.databinding.ActivityMainBinding
+import com.example.amunstore.domain.util.InternetConnectivity
 import com.example.amunstore.ui.main.MainViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint
@@ -19,6 +21,8 @@ class MainActivity : AppCompatActivity() {
 
     private val viewmodel: MainViewModel by viewModels()
     private lateinit var binding: ActivityMainBinding
+    private lateinit var connectionLiveData: InternetConnectivity
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -41,6 +45,22 @@ class MainActivity : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+        connectionLiveData = InternetConnectivity(applicationContext)
+        connectionLiveData.observe(MainActivity@ this) { isAvailable ->
+            when (isAvailable) {
+                true -> {
+                    val id = navController.currentDestination!!.id
+                    if (id == R.id.noConnectionFragment) {
+                        navController.navigateUp()
+                    }
+                }
+
+                false -> {
+                    navController.navigate(R.id.noConnectionFragment)
+                }
+            }
+        }
+
 
         binding.searchIcon.setOnClickListener {
             navController.navigate(R.id.searchFragment)

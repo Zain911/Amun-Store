@@ -28,8 +28,8 @@
         android:layout_height="0dp"
         android:layout_gravity="center"
         android:scaleType="centerInside"
+        app:layout_constraintBottom_toTopOf="@+id/bottom_slide_text_5"
         app:layout_constraintEnd_toEndOf="parent"
-
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2"
         app:lottie_autoPlay="true"
@@ -38,8 +38,10 @@
 
 
     <TextView
+        android:id="@+id/bottom_slide_text_5"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="64dp"
         android:fontFamily="casual"
         android:gravity="center"
         android:paddingStart="6dp"

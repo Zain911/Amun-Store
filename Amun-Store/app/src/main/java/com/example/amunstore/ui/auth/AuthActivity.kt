@@ -13,11 +13,15 @@ class AuthActivity : AppCompatActivity() {
     private val viewModel: AuthViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        // hiding action bar
+            this.supportActionBar?.hide()
+        //if user is logged in go to MainActivity else let user sign in
         if (viewModel.isUserLoggedIn()) {
             val intent = Intent(application, MainActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
             startActivity(intent)
+        } else {
+            setContentView(R.layout.activity_auth)
         }
-        else{ setContentView(R.layout.activity_auth) }
     }
 }
