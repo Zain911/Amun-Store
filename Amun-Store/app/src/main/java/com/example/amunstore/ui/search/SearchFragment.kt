@@ -99,42 +99,6 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
         }
     }
 
-/* filter spinner
-    private fun intiFilterSpinner() {
-        binding.sortSpinner.onItemSelectedListener =
-            object : AdapterView.OnItemSelectedListener {
-                override fun onItemSelected(
-                    parent: AdapterView<*>?,
-                    view: View?,
-                    position: Int,
-                    id: Long,
-                ) {
-                    when {
-                        parent?.getItemAtPosition(position)!!.equals("Alphabetically") -> {
-                            productFilter = "Alphabetically"
-
-                        }
-                        parent.getItemAtPosition(position).equals("price: Low to High") -> {
-                            productFilter = "price: Low to High"
-                        }
-                        parent.getItemAtPosition(position).equals("price: High to Low") -> {
-                            productFilter = "price: High to Low"
-                        }
-                        else -> {
-                            productFilter = "none"
-                        }
-
-                    }
-                    Log.d("onItemSelected: ", productFilter)
-                    viewModel.sortProducts(productFilter)
-                }
-
-                override fun onNothingSelected(parent: AdapterView<*>?) {
-                    viewModel.sortProducts(productFilter)
-                }
-            }
-
-    }*/
 
 }
 
