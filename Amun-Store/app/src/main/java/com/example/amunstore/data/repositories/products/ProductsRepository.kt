@@ -2,6 +2,7 @@ package com.example.amunstore.data.repositories.products
 
 import com.example.amunstore.data.model.details.ProductDetailsResponse
 import com.example.amunstore.data.model.product.Product
+import com.example.amunstore.data.model.product.ProductImagesResponse
 import com.example.amunstore.data.model.product.ProductsResponse
 import com.example.amunstore.data.network.NetworkServices
 import com.example.amunstore.data.network.ProductServices
@@ -46,6 +47,9 @@ class ProductsRepository @Inject constructor(
     }
 
     override fun getFavouritesItemCount() = productsDao.getFavouritesItemsCount()
+
+    override suspend  fun getProductImages(id: Long): Response<ProductImagesResponse> =
+        networkServices.getProductImages(id)
 
 
 }

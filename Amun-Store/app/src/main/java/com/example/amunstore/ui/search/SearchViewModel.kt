@@ -24,14 +24,13 @@ class SearchViewModel @Inject constructor(private val repo: ProductsRepository) 
 
     val filterList = MutableLiveData<List<Product>?>()
 
-    fun searchProduct(query: String, productFilter: String) {
+    fun searchProduct(query: String) {
         query.let {
             if (it == "")
                 filterList.postValue(arrayListOf())
             else {
                 filterList.postValue(productsList.value?.filter {
                     it.title?.contains(query, true) ?: false
-
                 })
 
             }
