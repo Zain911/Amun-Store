@@ -31,7 +31,6 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/firstNameInputText"
                 android:layout_width="0dp"
-
                 style="@style/AddressTextInputLayout"
                 android:layout_height="match_parent"
                 app:layout_constraintEnd_toEndOf="@id/guideline1"
@@ -39,11 +38,12 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <EditText
+
+                    android:drawableTint="@color/gray"
                     android:id="@+id/firstName_edt"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
-                    android:backgroundTint="@color/white"
                     android:hint="@string/firstName"
                     android:inputType="text|textNoSuggestions"
                     android:textColorHint="@color/gray" />
@@ -63,7 +63,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
-                    android:backgroundTint="@color/white"
                     android:hint="@string/lastName"
                     android:inputType="text|textNoSuggestions"
                     android:textColorHint="@color/gray" />
