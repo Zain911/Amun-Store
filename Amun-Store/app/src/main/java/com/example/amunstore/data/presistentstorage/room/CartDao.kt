@@ -23,5 +23,8 @@ interface CartDao {
     @Query("SELECT COUNT(id) FROM ItemCart")
     fun getCartItemsCount(): LiveData<Int>
 
+    @Query("DELETE FROM ItemCart")
+    fun clearCart()
+
 
 }
