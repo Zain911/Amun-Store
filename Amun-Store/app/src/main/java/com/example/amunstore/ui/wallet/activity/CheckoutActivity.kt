@@ -76,7 +76,7 @@ class CheckoutActivity : AppCompatActivity() {
 
         val cashOnDeliveryButton = layout.cashOnDeliveryButton
         cashOnDeliveryButton.setOnClickListener {
-            completePayment()
+            completePayment("unpaid")
         }
     }
 
@@ -145,7 +145,7 @@ class CheckoutActivity : AppCompatActivity() {
                 RESULT_OK ->
                     result.data?.let { intent ->
                         PaymentData.getFromIntent(intent)?.let(::handlePaymentSuccess)
-                        completePayment()
+                        completePayment("paid")
                     }
                 RESULT_CANCELED -> {
                     Toast
@@ -156,10 +156,9 @@ class CheckoutActivity : AppCompatActivity() {
             }
         }
 
-    private fun completePayment() {
-        model.createOrder(myOrder)
+    private fun completePayment(financial:String) {
+        model.createOrder(myOrder, financial_status = financial)
         this.finish()
-        Toast.makeText(this,getString(R.string.thank_you_your_order_will_be_shipped_soon),Toast.LENGTH_LONG).show()
     }
 
     /**
