@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import com.example.amunstore.R
 import com.example.amunstore.databinding.FragmentConnectionBinding
@@ -28,14 +29,20 @@ class NoConnectionFragment : Fragment() {
 
         _binding = FragmentConnectionBinding.inflate(inflater, container, false)
         val root: View = binding.root
-  //Toast.makeText(context, getString(R.string.connected), Toast.LENGTH_SHORT).show()
+        //Toast.makeText(context, getString(R.string.connected), Toast.LENGTH_SHORT).show()
 
         binding.tryAgainAppCompactButton.setOnClickListener {
             Toast.makeText(context, getString(R.string.noConnection), Toast.LENGTH_SHORT).show()
 
         }
 
-
+        requireActivity()
+            .onBackPressedDispatcher
+            .addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+                    activity?.finish()
+                }
+            })
         return root
     }
 

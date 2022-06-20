@@ -49,7 +49,6 @@ class MainActivity : AppCompatActivity() {
                 true -> {
                     val id = navController.currentDestination!!.id
                     if (id == R.id.noConnectionFragment) {
-                        /// Toast.makeText(this, getString(R.string.connected), Toast.LENGTH_SHORT).show()
                         navController.navigateUp()
                     }
                 }
