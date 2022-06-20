@@ -16,8 +16,10 @@ class AuthActivity : AppCompatActivity() {
 
         if (viewModel.isUserLoggedIn()) {
             val intent = Intent(application, MainActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
             startActivity(intent)
+        } else {
+            setContentView(R.layout.activity_auth)
         }
-        else{ setContentView(R.layout.activity_auth) }
     }
 }

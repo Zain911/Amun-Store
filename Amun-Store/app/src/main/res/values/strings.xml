@@ -178,5 +178,7 @@
     <string name="content_slider_3">buy goods and services from any part of the world safely and securely on time.</string>
     <string name="content_slider_2">choose items to purchase without actually completing the payment.</string>
     <string name="content_slider_1">navigation and search for exactly what you want with multiple filtration way.</string>
+    <string name="noConnection">No Internet connection</string>
+    <string name="connected">connected</string>
 
 </resources>
