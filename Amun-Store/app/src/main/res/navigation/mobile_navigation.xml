@@ -34,7 +34,7 @@
         android:id="@+id/navigation_notifications"
         android:name="com.example.amunstore.ui.profile.ProfileFragment"
         android:label="@string/title_profile"
-        tools:layout="@layout/fragment_profile" >
+        tools:layout="@layout/fragment_profile">
         <action
             android:id="@+id/action_navigation_notifications_to_productDetailsFragment"
             app:destination="@id/productDetailsFragment" />
@@ -57,7 +57,7 @@
         android:id="@+id/searchFragment"
         android:name="com.example.amunstore.ui.search.SearchFragment"
         android:label="fragment_search"
-         tools:layout="@layout/fragment_search">
+        tools:layout="@layout/fragment_search">
         <action
             android:id="@+id/action_searchFragment_to_productDetailsFragment"
             app:destination="@id/productDetailsFragment" />
@@ -67,7 +67,7 @@
         android:id="@+id/favouriteFragment"
         android:name="com.example.amunstore.ui.favourites.FavouritesFragment"
         android:label="fragment_favourites"
-        tools:layout="@layout/fragment_favourites" >
+        tools:layout="@layout/fragment_favourites">
         <action
             android:id="@+id/action_favouriteFragment_to_productDetailsFragment"
             app:destination="@id/productDetailsFragment" />
@@ -105,7 +105,7 @@
         android:id="@+id/ordersFragment"
         android:name="com.example.amunstore.ui.orders.OrdersFragment"
         android:label="fragment_orders"
-        tools:layout="@layout/fragment_orders" >
+        tools:layout="@layout/fragment_orders">
         <action
             android:id="@+id/action_ordersFragment_to_orderDetailsFragment"
             app:destination="@id/orderDetailsFragment" />
@@ -115,12 +115,17 @@
         android:id="@+id/orderDetailsFragment"
         android:name="com.example.amunstore.ui.orders.orderdetails.OrderDetailsFragment"
         android:label="fragment_orders_details"
-        tools:layout="@layout/fragment_order_details" >
+        tools:layout="@layout/fragment_order_details">
         <argument
             android:name="orderId"
             app:argType="long" />
     </fragment>
 
+    <fragment
+        android:id="@+id/noConnectionFragment"
+        android:name="com.example.amunstore.ui.main.NoConnectionFragment"
+        android:label="NoConnectionFragment"
+        tools:layout="@layout/fragment_connection" />
 
 
 </navigation>

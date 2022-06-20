@@ -1,18 +1,18 @@
 package com.example.amunstore
 
-import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.View
-import android.view.View.INVISIBLE
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavDestination
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.amunstore.databinding.ActivityMainBinding
+import com.example.amunstore.domain.util.InternetConnectivity
 import com.example.amunstore.ui.main.MainViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint
@@ -22,6 +22,8 @@ class MainActivity : AppCompatActivity() {
 
     private val viewmodel: MainViewModel by viewModels()
     private lateinit var binding: ActivityMainBinding
+    private lateinit var connectionLiveData: InternetConnectivity
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -41,6 +43,25 @@ class MainActivity : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+        connectionLiveData = InternetConnectivity(applicationContext)
+        connectionLiveData.observe(MainActivity@this) { isAvailable ->
+            when (isAvailable) {
+                true -> {
+                    val id = navController.currentDestination!!.id
+                    if (id == R.id.noConnectionFragment) {
+                       /// Toast.makeText(this, getString(R.string.connected), Toast.LENGTH_SHORT).show()
+                        navController.navigateUp()
+                    }
+                }
+
+                false -> {
+                    val id = navController.currentDestination!!.displayName
+                    Log.d( "onCreate: ",id)
+                    navController.navigate(R.id.searchFragment)
+                }
+            }
+        }
+
 
         binding.searchIcon.setOnClickListener {
             navController.navigate(R.id.searchFragment)
