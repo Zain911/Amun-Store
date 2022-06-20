@@ -16,6 +16,7 @@
 
 package com.example.amunstore.ui.wallet.activity
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -26,6 +27,7 @@ import androidx.activity.result.contract.ActivityResultContracts.StartIntentSend
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
+import com.example.amunstore.MainActivity
 import com.example.amunstore.R
 import com.example.amunstore.data.model.order.AddOrderRequestModel
 import com.example.amunstore.databinding.ActivityCheckoutBinding
@@ -158,7 +160,9 @@ class CheckoutActivity : AppCompatActivity() {
 
     private fun completePayment(financial:String) {
         model.createOrder(myOrder, financial_status = financial)
-        this.finish()
+        val intent = Intent(application, MainActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+        startActivity(intent)
     }
 
     /**
