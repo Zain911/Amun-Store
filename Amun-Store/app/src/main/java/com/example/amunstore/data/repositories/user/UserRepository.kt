@@ -15,24 +15,27 @@ class UserRepository @Inject constructor(
     private val networkServices: NetworkServices,
     private var sharedPref: UserSharedPreferences,
 ) : UserRepositoryInterface {
+    override suspend fun addUserAddress(address: AddAddressRequestModel, customerId: Long){
 
-    override suspend fun addUserAddress(address: AddAddressRequestModel) {
-
-        val response = networkServices.addUserAddress("6264298406146", address)
+        val response = networkServices.addUserAddress(customerId.toString(), address)
         try {
             if (response.isSuccessful) {
-           //     return "Done"
+                //     return "Done"
 
             } else {
                 val jObjError =
                     JSONObject(response.errorBody()!!.toString()).getJSONObject("errors")
-              //  return "Check Your Input"
+                //  return "Check Your Input"
             }
         } catch (e: Exception) {
             e.printStackTrace()
         }
 
     }
+
+    override fun setUserEmail(email:String) { sharedPref.setUserEmail(email) }
+
+    override fun getUserEmail(): String = sharedPref.getUserEmail()
 
     override fun isUserLoggedIn(): Boolean {
         return sharedPref.getCustomerId() != -1L
@@ -67,5 +70,8 @@ class UserRepository @Inject constructor(
         return networkServices.getUserByEmail(email)
     }
 
+    override suspend fun getUserEmailById(id: Long): Response<Customer> {
+        return networkServices.getUserEmailById(id)
+    }
 
 }

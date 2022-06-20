@@ -27,18 +27,22 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import com.example.amunstore.R
+import com.example.amunstore.data.model.order.AddOrderRequestModel
 import com.example.amunstore.databinding.ActivityCheckoutBinding
+import com.example.amunstore.ui.wallet.viewmodel.CheckoutViewModel
 import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.common.api.CommonStatusCodes
 import com.google.android.gms.common.api.ResolvableApiException
-import com.google.android.gms.samples.wallet.viewmodel.CheckoutViewModel
 import com.google.android.gms.wallet.PaymentData
+import dagger.hilt.android.AndroidEntryPoint
 import org.json.JSONException
 import org.json.JSONObject
+import kotlin.math.absoluteValue
 
 /**
  * Checkout implementation for the app
  */
+@AndroidEntryPoint
 class CheckoutActivity : AppCompatActivity() {
 
     private val model: CheckoutViewModel by viewModels()
@@ -48,32 +52,31 @@ class CheckoutActivity : AppCompatActivity() {
 
     private lateinit var price: String
     private lateinit var address: String
-    private lateinit var orderNumber: String
+    private lateinit var myOrder:AddOrderRequestModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        myOrder = (intent.extras?.getSerializable("order") as AddOrderRequestModel?)!!
         // Use view binding to access the UI elements
         layout = ActivityCheckoutBinding.inflate(layoutInflater)
         setContentView(layout.root)
 
         // Setup buttons
         googlePayButton = layout.googlePayButton.root
-        googlePayButton.setOnClickListener { requestPayment() }
+        googlePayButton.setOnClickListener { requestPayment(myOrder) }
 
         // Check Google Pay availability
         model.canUseGooglePay.observe(this, Observer(::setGooglePayAvailable))
 
-        price = intent.getStringExtra("price").toString()
-        address = intent.getStringExtra("address").toString()
-        orderNumber = intent.getStringExtra("orderNumber").toString()
+        price = myOrder.order?.totalPrice.toString()
+        address = myOrder.order?.shippingAddress?.address1.toString()
 
-        layout.detailPrice.text = price
-        layout.detailAddress.text = address
+        layout.detailPrice.text = "price: $price L.E"
+        layout.detailAddress.text = "address: $address"
 
         val cashOnDeliveryButton = layout.cashOnDeliveryButton
         cashOnDeliveryButton.setOnClickListener {
-            //todo complete order and finish this activity
+            completePayment("unpaid")
         }
     }
 
@@ -96,16 +99,17 @@ class CheckoutActivity : AppCompatActivity() {
         }
     }
 
-    private fun requestPayment() {
+    private fun requestPayment(orderRequestModel: AddOrderRequestModel) {
 
         // Disables the button to prevent multiple clicks.
         googlePayButton.isClickable = false
 
         // The price provided to the API should include taxes and shipping.
         // This price is not displayed to the user.
-        val dummyPriceCents = 100L
-        val shippingCostCents = 900L
-        val task = model.getLoadPaymentDataTask(dummyPriceCents + shippingCostCents)
+        val dummyPriceCents = orderRequestModel.order?.totalPrice?.toDouble()
+        val shippingCostCents = 0L
+        val total = dummyPriceCents?.plus(shippingCostCents)
+        val task = model.getLoadPaymentDataTask(total?.toLong() ?: 0)
 
         task.addOnCompleteListener { completedTask ->
             if (completedTask.isSuccessful) {
@@ -139,11 +143,10 @@ class CheckoutActivity : AppCompatActivity() {
         registerForActivityResult(StartIntentSenderForResult()) { result: ActivityResult ->
             when (result.resultCode) {
                 RESULT_OK ->
-                    //todo payment complete complete order and finist activity
                     result.data?.let { intent ->
                         PaymentData.getFromIntent(intent)?.let(::handlePaymentSuccess)
+                        completePayment("paid")
                     }
-
                 RESULT_CANCELED -> {
                     Toast
                         .makeText(this, getString(R.string.canceled), Toast.LENGTH_LONG)
@@ -152,6 +155,11 @@ class CheckoutActivity : AppCompatActivity() {
                 }
             }
         }
+
+    private fun completePayment(financial:String) {
+        model.createOrder(myOrder, financial_status = financial)
+        this.finish()
+    }
 
     /**
      * PaymentData response object contains the payment information, as well as any additional

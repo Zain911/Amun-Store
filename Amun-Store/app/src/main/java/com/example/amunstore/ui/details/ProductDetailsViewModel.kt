@@ -58,13 +58,6 @@ class ProductDetailsViewModel @Inject constructor(
         return SimpleDateFormat("dd.MM.yyyy").format(date)
     }
 
-    fun getCurrencyInfoForDefaultLocale(): String? {
-        val defaultLocale = Locale.getDefault()
-        val currency = Currency.getInstance(defaultLocale)
-        return currency.symbol
-
-    }
-
     suspend fun addToCart(itemCart: ItemCart) {
         repositoryCart.addItem(itemCart)
     }

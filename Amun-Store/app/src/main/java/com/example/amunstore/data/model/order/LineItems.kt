@@ -1,6 +1,7 @@
-package com.example.example
+package com.example.amunstore.data.model.order
 
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 
 data class LineItems (
@@ -31,4 +32,4 @@ data class LineItems (
   @SerializedName("duties"                       ) var duties                     : ArrayList<String> = arrayListOf(),
   @SerializedName("discount_allocations"         ) var discountAllocations        : ArrayList<String> = arrayListOf()
 
-)
+): Serializable

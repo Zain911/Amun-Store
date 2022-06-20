@@ -1,7 +1,7 @@
 package com.example.amunstore.data.model.order
 
-import com.example.example.LineItems
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 data class Order (
 
@@ -79,4 +79,4 @@ data class Order (
     @SerializedName("shipping_address"            ) var shippingAddress          : BillingAndShippingAddress?          = BillingAndShippingAddress(),
     @SerializedName("shipping_lines"              ) var shippingLines            : ArrayList<String>         = arrayListOf()
 
-)
+):Serializable

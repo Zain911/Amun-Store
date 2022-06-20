@@ -47,8 +47,8 @@ class ProfileViewModel @Inject constructor(
 
     suspend fun getUserOrders() {
         //TODO remove static customer id and get it from sharedPref
-        //ordersList.postValue(ordersRepository.getUserOrders(sharedPreferences.getCustomerId()).orders)
-        ordersList.postValue(ordersRepository.getUserOrders(6252021154050).orders)
+        ordersList.postValue(ordersRepository.getUserOrders(sharedPreferences.getCustomerId()).orders)
+        //ordersList.postValue(ordersRepository.getUserOrders(6252021154050).orders)
     }
 
     fun removeItemFromFavourites(product: Product) {

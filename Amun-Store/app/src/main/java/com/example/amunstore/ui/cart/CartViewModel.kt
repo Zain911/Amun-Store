@@ -1,8 +1,13 @@
 package com.example.amunstore.ui.cart
 
-import androidx.lifecycle.*
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModel
 import com.example.amunstore.data.model.cart.ItemCart
+import com.example.amunstore.data.model.order.*
 import com.example.amunstore.data.repositories.cart.CartRepository
+import com.example.amunstore.data.repositories.orders.OrdersRepository
 import com.example.amunstore.data.repositories.user.UserRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
@@ -10,7 +15,8 @@ import javax.inject.Inject
 @HiltViewModel
 class CartViewModel @Inject constructor(
     private val userRepository: UserRepository,
-    private val cartRepository: CartRepository
+    private val cartRepository: CartRepository,
+    private val ordersRepository: OrdersRepository,
 ) : ViewModel() {
 
     var cartItems = MutableLiveData<List<ItemCart>>()
@@ -62,5 +68,29 @@ class CartViewModel @Inject constructor(
             userAddress.postValue(addressesFiltered[0].address1)
     }
 
+    fun addUserOrder(discount: Float): AddOrderRequestModel {
+
+        val order = AddOrderRequestModel()
+
+        val lineItems = ArrayList<LineItems>()
+
+        var totalPrice = 0.0f
+
+        for (item in cartItems.value!!) {
+            lineItems.add(LineItems(variantId = item.variant_id, quantity = item.item_number))
+            totalPrice = totalPrice.plus(item.price?.toFloat()!!)
+        }
+
+        order.order = OrderRequest(
+            customer = OrderCustomer(getUserEmailById()),
+            lineItems = lineItems,
+            shippingAddress = OrderShippingAddress(userAddress.value),
+            totalPrice = totalPrice.toString(),
+            totalDiscounts = discount.toString()
+        )
+        return order
+    }
+
+    fun getUserEmailById(): String = userRepository.getUserEmail()
 
 }

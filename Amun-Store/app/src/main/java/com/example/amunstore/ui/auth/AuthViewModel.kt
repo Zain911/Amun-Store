@@ -34,12 +34,15 @@ class AuthViewModel @Inject constructor(
                             "${response.body()!!.customers[0].firstName} ${response.body()!!.customers[0].lastName}"
                         repository.setCustomerId(response.body()!!.customers[0].id!!)
                         repository.setUserName(userName)
+                        repository.setUserEmail(email)
                         users.postValue(true)
 
                     } else {
+                        //user is not exist
                         users.postValue(false)
                     }
                 } else {
+//                    response not successful
                     users.postValue(false)
                 }
             }

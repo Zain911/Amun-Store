@@ -92,7 +92,7 @@ object Constants {
      *
      * @value #SHIPPING_SUPPORTED_COUNTRIES
      */
-    val SHIPPING_SUPPORTED_COUNTRIES = listOf("US", "EG")
+    val SHIPPING_SUPPORTED_COUNTRIES = listOf("EG")
 
     /**
      * The name of your payment processor/gateway. Please refer to their documentation for more

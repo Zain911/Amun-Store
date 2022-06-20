@@ -1,11 +1,16 @@
-package com.google.android.gms.samples.wallet.viewmodel
+package com.example.amunstore.ui.wallet.viewmodel
 
-import android.app.Activity
 import android.app.Application
 import android.util.Log
+import android.widget.Toast
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.example.amunstore.R
+import com.example.amunstore.data.model.order.AddOrderRequestModel
+import com.example.amunstore.data.repositories.cart.CartRepository
+import com.example.amunstore.data.repositories.orders.OrdersRepository
+import com.example.amunstore.data.repositories.user.UserRepository
 import com.example.amunstore.ui.wallet.util.PaymentsUtil
 import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.pay.Pay
@@ -16,8 +21,22 @@ import com.google.android.gms.wallet.IsReadyToPayRequest
 import com.google.android.gms.wallet.PaymentData
 import com.google.android.gms.wallet.PaymentDataRequest
 import com.google.android.gms.wallet.PaymentsClient
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import okhttp3.MediaType
+import okhttp3.RequestBody
+import org.json.JSONArray
+import org.json.JSONObject
+import javax.inject.Inject
 
-class CheckoutViewModel(application: Application) : AndroidViewModel(application) {
+@HiltViewModel
+class CheckoutViewModel @Inject constructor(
+    application: Application,
+    private val ordersRepo: OrdersRepository, private val userRepo: UserRepository ,private val cartRepo : CartRepository
+) : AndroidViewModel(application) {
 
     // A client for interacting with the Google Pay API.
     private val paymentsClient: PaymentsClient = PaymentsUtil.createPaymentsClient(application)
@@ -40,7 +59,6 @@ class CheckoutViewModel(application: Application) : AndroidViewModel(application
     }
 
     val canUseGooglePay: LiveData<Boolean> = _canUseGooglePay
-    val canSavePasses: LiveData<Boolean> = _canSavePasses
 
     /**
      * Determine the user's ability to pay with a payment method supported by your app and display
@@ -98,16 +116,60 @@ class CheckoutViewModel(application: Application) : AndroidViewModel(application
             }
     }
 
-    /**
-     * Exposes the `savePassesJwt` method in the wallet client
-     */
-    val savePassesJwt: (String, Activity, Int) -> Unit = walletClient::savePassesJwt
+    /*
+    {"order":{"email":"foo@example.com","fulfillment_status":"fulfilled","line_items":[{"variant_id":447654529,"quantity":1}]}}
+    {"order":{"line_items":[{"variant_id":447654529,"quantity":1}],"customer":{"id":207119551},"financial_status":"pending"}}'
+    */
+    fun createOrder(orderRequestModel: AddOrderRequestModel ,financial_status:String) {
+        CoroutineScope(Dispatchers.IO).launch {
+            // Create JSON using JSONObject
+            val orderBody = JSONObject()
+            val jsonObject = JSONObject()
+            val customer = JSONObject().put("id", userRepo.getCustomerId())
+            jsonObject.put("customer", customer)
+            jsonObject.put("email", orderRequestModel.order?.customer?.email)
+//            jsonObject.put("fulfillment_status", "fulfilled")
+            jsonObject.put("currency", "EGP")
+            jsonObject.put("financial_status", financial_status)
 
-    /**
-     * Exposes the `savePasses` method in the wallet client
-     */
-    val savePasses: (String, Activity, Int) -> Unit = walletClient::savePasses
+            val lineItems = JSONArray()
+            for (item in orderRequestModel.order?.lineItems!!) {
+                val lineItem = JSONObject()
+                lineItem.put("variant_id", item.variantId)
+                lineItem.put("quantity", item.quantity)
+                lineItems.put(lineItem)
+            }
+            jsonObject.put("line_items", lineItems)
 
+            // Convert JSONObject to String
+            val jsonObjectString = orderBody.put("order", jsonObject).toString()
+
+            val body: RequestBody =
+                RequestBody.create(MediaType.parse("application/json"), jsonObjectString)
+
+            val response = ordersRepo.addUserOrder(body)
+
+            withContext(Dispatchers.Main) {
+                if (response.isSuccessful) {
+                    clearAllCart()
+                    Toast.makeText(getApplication(), getApplication<Application>().getString(R.string.succuss), Toast.LENGTH_SHORT).show()
+                    Toast.makeText(getApplication(),getApplication<Application>().getString(R.string.thank_you_your_order_will_be_shipped_soon),Toast.LENGTH_LONG).show()
+                } else {
+                    Toast.makeText(
+                        getApplication(),
+                        response.code().toString() + getApplication<Application?>().getString(
+                            R.string.please_try_again_later_or_contact_us
+                        ),
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
+            }
+        }
+    }
+
+    fun clearAllCart(){
+        cartRepo.clearAllCart()
+    }
     // Test generic object used to be created against the API
     val genericObjectJwt =
         "eyJ0eXAiOiAiSldUIiwgImFsZyI6ICJSUzI1NiIsICJraWQiOiAiMTY4M2VjZDA1MmU5NTgyZWZhNGU5YTQxNjVmYzE5N2JjNmJlYTJhMCJ9.eyJpc3MiOiAid2FsbGV0LWxhYi10b29sc0BhcHBzcG90LmdzZXJ2aWNlYWNjb3VudC5jb20iLCAiYXVkIjogImdvb2dsZSIsICJ0eXAiOiAic2F2ZXRvd2FsbGV0IiwgImlhdCI6IDE2NTA1MzI2MjMsICJwYXlsb2FkIjogeyJnZW5lcmljT2JqZWN0cyI6IFt7ImlkIjogIjMzODgwMDAwMDAwMjIwOTUxNzcuZjUyZDRhZjYtMjQxMS00ZDU5LWFlNDktNzg2ZDY3N2FkOTJiIn1dfX0.fYKw6fpLfwwNMi5OGr4ybO3ybuCU7RYjQhw-QM_Z71mfOyv2wFUzf6dKgpspJKQmkiaBWBr1L9n8jq8ZMfj6iOA_9_njfUe9GepCwVLC0nZBDd2EqS3UrBYT7tEmk7W2-Cpy5FJFTt_eiqXBZgwa6vMw6e6mMp-GzSD5_ls39fjOPziboLyG-GDmph3f6UhBkjnUjYyY_FoYdlqkTkCWM7AFPcy-FbRyVDpIaHfVk4eYQi4Vzk0fwxaWWTfP3gSXXT6UJ9aFvaPYs0gnlV2WPVgGGKCMtYHFRGYX1t0WRpN2kbxfO5VuMKWJlz3TCnxp-9Axz-enuCgnq2cLvCk6Tw"
