@@ -76,7 +76,7 @@ class CheckoutActivity : AppCompatActivity() {
 
         val cashOnDeliveryButton = layout.cashOnDeliveryButton
         cashOnDeliveryButton.setOnClickListener {
-            completePayment("unpaid")
+            completePayment("pending")
         }
     }
 
