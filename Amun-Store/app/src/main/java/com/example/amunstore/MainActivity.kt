@@ -74,7 +74,7 @@ class MainActivity : AppCompatActivity() {
         navController.addOnDestinationChangedListener { _, nd: NavDestination, _ ->
             // the IDs of fragments as defined in the `navigation_graph`
             if (nd.id == R.id.navigation_home || nd.id == R.id.navigation_categories
-                || nd.id == R.id.navigation_notifications
+                || nd.id == R.id.navigation_notifications || nd.id == R.id.favouriteFragment
             ) {
                 navView.visibility = View.VISIBLE
                 binding.toolbar.visibility = View.VISIBLE

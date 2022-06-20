@@ -8,9 +8,11 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.coroutineScope
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
 import com.example.amunstore.databinding.FragmentOrderDetailsBinding
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
@@ -49,8 +51,8 @@ class OrderDetailsFragment : Fragment() {
             binding.financialStateValueTextView.text =
                 it.financialStatus?.replaceFirstChar { it1 -> it1.uppercase() }
             binding.numberOfItemsTextView.text = it.lineItems.size.toString() + " items"
-            binding.orderLinesItemsRecyclerView.adapter = LineItemAdapter(it.lineItems)
-
+            binding.orderLinesItemsRecyclerView.adapter =
+                LineItemAdapter(viewModel.productsRepository, it.lineItems)
 
             binding.orderDateTextView.text = it.createdAt?.substringBeforeLast("T")
         }
