@@ -72,7 +72,7 @@ data class Order (
     @SerializedName("billing_address"             ) var billingAndShippingAddress           : BillingAndShippingAddress?           = BillingAndShippingAddress(),
     @SerializedName("customer"                    ) var customer                 : Customer?                 = Customer(),
     @SerializedName("discount_applications"       ) var discountApplications     : ArrayList<String>         = arrayListOf(),
-    @SerializedName("fulfillments"                ) var fulfillments             : ArrayList<String>         = arrayListOf(),
+    @SerializedName("fulfillment"                 ) var fulfillments             : ArrayList<String>         = arrayListOf(),
     @SerializedName("line_items"                  ) var lineItems                : ArrayList<LineItems>      = arrayListOf(),
     @SerializedName("payment_terms"               ) var paymentTerms             : String?                   = null,
     @SerializedName("refunds"                     ) var refunds                  : ArrayList<String>         = arrayListOf(),
