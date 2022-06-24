@@ -19,19 +19,19 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatEditText
-        android:maxLength="32"
-        android:nextFocusDown="@id/dialogLogin_LoginBtn"
-        android:drawablePadding="8dp"
-        android:backgroundTint="@color/white"
-        android:background="@drawable/round_corners"
         android:id="@+id/dialogLogin_emailIdEdt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
+        android:background="@drawable/round_corners"
+        android:backgroundTint="@color/white"
         android:drawableStart="@drawable/ic_baseline_email_24"
+        android:drawablePadding="8dp"
         android:ems="10"
         android:hint="@string/email_id"
         android:inputType="textEmailAddress"
+        android:maxLength="32"
+        android:nextFocusDown="@id/dialogLogin_LoginBtn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
@@ -39,43 +39,43 @@
 
 
     <com.google.android.material.textfield.TextInputLayout
-        android:layout_margin="16dp"
-        app:passwordToggleEnabled="true"
         android:id="@+id/dialogLogin_passwordEdt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="textPassword"
-        android:backgroundTint="@color/white"
+        android:layout_gravity="center"
+        android:layout_margin="16dp"
         android:background="@drawable/round_corners"
+        android:backgroundTint="@color/white"
+        android:inputType="textPassword"
+        android:nextFocusForward="@id/dialogLogin_LoginBtn"
         app:layout_constraintEnd_toEndOf="@+id/dialogLogin_emailIdEdt"
         app:layout_constraintStart_toStartOf="@+id/dialogLogin_emailIdEdt"
-        android:layout_gravity="center"
-        android:nextFocusForward="@id/dialogLogin_LoginBtn"
-        app:layout_constraintTop_toBottomOf="@+id/dialogLogin_emailIdEdt" >
+        app:layout_constraintTop_toBottomOf="@+id/dialogLogin_emailIdEdt"
+        app:passwordToggleEnabled="true">
 
         <androidx.appcompat.widget.AppCompatEditText
-            android:maxLength="32"
-            android:background="@drawable/round_corners"
-            android:nextFocusForward="@id/dialogLogin_LoginBtn"
             android:id="@+id/dialogLogin_passwordEdt2"
-            android:layout_gravity="center"
-            android:backgroundTint="@color/white"
-            android:drawablePadding="8dp"
-            android:drawableStart="@drawable/ic_baseline_lock_24"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@drawable/round_corners"
+            android:backgroundTint="@color/white"
+            android:drawableStart="@drawable/ic_baseline_lock_24"
+            android:drawablePadding="8dp"
+            android:hint="@string/password"
             android:inputType="textPassword"
-            android:hint="@string/password" />
+            android:maxLength="32"
+            android:nextFocusForward="@id/dialogLogin_LoginBtn" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
-        android:nextFocusForward="@id/dialogLogin_LoginBtn"
-        android:padding="10dp"
         android:id="@+id/dialogLogin_forgotPasswordTxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
+        android:nextFocusForward="@id/dialogLogin_LoginBtn"
+        android:padding="10dp"
         android:text="@string/forgot_password"
         android:textColor="@color/primary_color"
         android:textSize="20sp"

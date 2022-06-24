@@ -2,6 +2,7 @@ package com.example.amunstore.data.repositories.draftorder
 
 import com.example.amunstore.data.model.draftorder.DraftOrder
 import com.example.amunstore.data.model.draftorder.DraftOrderRequest
+import com.example.amunstore.data.model.draftorder.DraftOrderResponse
 import com.example.amunstore.data.network.NetworkServices
 import retrofit2.Response
 import javax.inject.Inject
@@ -12,7 +13,11 @@ class DraftOrderRepository @Inject constructor(val networkServices: NetworkServi
     override suspend fun updateDraftOrder(
         draftOrderId: String,
         draftOrderRequest: DraftOrderRequest
-    ): Response<DraftOrder> =
+    ): Response<DraftOrderResponse> =
         networkServices.updateDraftOrder(draftOrderId, draftOrderRequest)
+
+    override suspend fun createDraftOrder(draftOrderRequest: DraftOrderRequest) =
+        networkServices.createDraftOrder(draftOrderRequest)
+
 
 }
