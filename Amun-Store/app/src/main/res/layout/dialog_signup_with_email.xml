@@ -52,8 +52,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:background="@drawable/round_corners"
-        android:backgroundTint="@color/white"
         android:drawableStart="@drawable/ic_baseline_email_24"
         android:drawablePadding="8dp"
         android:ems="10"
