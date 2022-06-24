@@ -6,19 +6,19 @@
     android:layout_height="wrap_content"
     android:background="@drawable/circle_image_border">
 
-        <EditText
-            android:maxLength="32"
-            android:id="@+id/signup_firstNAmeEdt"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            android:ems="10"
-            android:hint="@string/first_name"
-            android:inputType="textPersonName"
-            android:padding="16dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/dialogSignup_loginWithEmailTxt" />
+    <EditText
+        android:maxLength="32"
+        android:id="@+id/signup_firstNAmeEdt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:ems="10"
+        android:hint="@string/first_name"
+        android:inputType="textPersonName"
+        android:padding="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dialogSignup_loginWithEmailTxt" />
 
     <EditText
         android:maxLength="32"
@@ -61,7 +61,7 @@
         android:ems="10"
         android:backgroundTint="@color/white"
         android:hint="@string/email_id"
-       android:layout_marginTop="8dp"
+        android:layout_marginTop="8dp"
         android:inputType="textEmailAddress"
         app:layout_constraintEnd_toEndOf="@+id/signup_lastNameEdt"
         app:layout_constraintStart_toStartOf="@+id/signup_lastNameEdt"
