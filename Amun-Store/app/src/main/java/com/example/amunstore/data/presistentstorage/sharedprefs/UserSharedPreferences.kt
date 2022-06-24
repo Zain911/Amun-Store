@@ -13,6 +13,7 @@ class UserSharedPreferences @Inject constructor(@ApplicationContext context: Con
     private val userEmailInSharedPreferences = "USER_EMAIL_IN_SHARED_PREFERENCES"
     private val userCustomerIdInSharedPreferences = "USER_CUSTOMER_ID_IN_SHARED_PREFERENCES"
     private val userNameInSharedPreferences = "USER_NAME_IN_SHARED_PREFERENCES"
+    private val userCartDraftOrderInSharedPreferences = "CART_DRAFT_ORDER_ID_IN_SHARED_PREFERENCES"
 
     private val prefs =
         context.getSharedPreferences(sharedPreferencesFileName, Context.MODE_PRIVATE)
@@ -41,6 +42,13 @@ class UserSharedPreferences @Inject constructor(@ApplicationContext context: Con
     override fun setUserName(name: String) {
         prefs.edit().putString(userNameInSharedPreferences, name).apply()
     }
+
+    override fun setCartDraftOrderId(id: String) {
+        prefs.edit().putString(userCartDraftOrderInSharedPreferences, id).apply()
+    }
+
+    override fun getCartDraftOrderId(): String =
+        prefs.getString(userCartDraftOrderInSharedPreferences, "0")!!
 
 
     fun clearAllCache() {
