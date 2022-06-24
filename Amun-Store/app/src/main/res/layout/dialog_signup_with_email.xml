@@ -48,21 +48,20 @@
 
 
     <androidx.appcompat.widget.AppCompatEditText
-        android:layout_margin="8dp"
-        android:maxLength="32"
-        android:nextFocusForward="@+id/dialogLogin_passwordEdt2"
-        android:drawablePadding="8dp"
-        android:padding="8dp"
         android:id="@+id/dialogSignup_emailIdEdt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="16dp"
         android:background="@drawable/round_corners"
-        android:drawableStart="@drawable/ic_baseline_email_24"
-        android:ems="10"
         android:backgroundTint="@color/white"
+        android:drawableStart="@drawable/ic_baseline_email_24"
+        android:drawablePadding="8dp"
+        android:ems="10"
         android:hint="@string/email_id"
-       android:layout_marginTop="8dp"
         android:inputType="textEmailAddress"
+        android:maxLength="32"
+        android:nextFocusForward="@+id/dialogLogin_passwordEdt2"
+        android:padding="16dp"
         app:layout_constraintEnd_toEndOf="@+id/signup_lastNameEdt"
         app:layout_constraintStart_toStartOf="@+id/signup_lastNameEdt"
         app:layout_constraintTop_toBottomOf="@+id/signup_lastNameEdt">
