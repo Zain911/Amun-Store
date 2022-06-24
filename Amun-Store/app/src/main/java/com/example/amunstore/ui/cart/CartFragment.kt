@@ -16,6 +16,9 @@ import com.example.amunstore.ui.cart.addresses.AddressesBottomSheetDialogFragmen
 import com.example.amunstore.ui.cart.coupon.CouponBottomSheetDialogFragment
 import com.example.amunstore.ui.wallet.activity.CheckoutActivity
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlin.math.absoluteValue
 
@@ -62,7 +65,7 @@ class CartFragment : Fragment() {
                 binding.emptyCartLottieView.visibility = View.GONE
                 binding.continueShoppingButton.visibility = View.GONE
                 binding.containerScrollView.visibility = View.VISIBLE
-                binding.continueTextView.visibility=View.VISIBLE
+                binding.continueTextView.visibility = View.VISIBLE
                 cartAdapter.changeList(it as MutableList<ItemCart>)
 
                 var totalAmount = 0.0f
@@ -79,7 +82,7 @@ class CartFragment : Fragment() {
                 binding.emptyCartLottieView.visibility = View.VISIBLE
                 binding.continueShoppingButton.visibility = View.VISIBLE
                 binding.containerScrollView.visibility = View.GONE
-                binding.continueTextView.visibility=View.GONE
+                binding.continueTextView.visibility = View.GONE
             }
 
         }
@@ -109,15 +112,18 @@ class CartFragment : Fragment() {
 
         viewModel.loadUserName()
         binding.continueTextView.setOnClickListener {
-            val intent = Intent(context , CheckoutActivity::class.java)
-            intent.putExtra("order",viewModel.addUserOrder(discountValue) )//50 is total price)
-         requireActivity().startActivity(intent)
+            val intent = Intent(context, CheckoutActivity::class.java)
+            intent.putExtra("order", viewModel.addUserOrder(discountValue))//50 is total price)
+            requireActivity().startActivity(intent)
         }
         return root
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
+        GlobalScope.launch {
+            viewModel.updateUserDraftOrder()
+        }
         _binding = null
     }
 

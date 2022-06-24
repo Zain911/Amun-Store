@@ -7,4 +7,5 @@ interface NetworkServices :
     ProductsVendorService,
     UserServices,
     OrdersServices,
-    DiscountService
+    DiscountService,
+    DraftOrderServices

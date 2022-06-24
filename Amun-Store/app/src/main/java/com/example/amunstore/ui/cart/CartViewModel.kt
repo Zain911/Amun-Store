@@ -1,14 +1,18 @@
 package com.example.amunstore.ui.cart
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import com.example.amunstore.data.model.cart.ItemCart
+import com.example.amunstore.data.model.draftorder.*
 import com.example.amunstore.data.model.order.*
 import com.example.amunstore.data.repositories.cart.CartRepository
+import com.example.amunstore.data.repositories.draftorder.DraftOrderRepository
 import com.example.amunstore.data.repositories.orders.OrdersRepository
 import com.example.amunstore.data.repositories.user.UserRepository
+import com.google.gson.Gson
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
@@ -17,6 +21,7 @@ class CartViewModel @Inject constructor(
     private val userRepository: UserRepository,
     private val cartRepository: CartRepository,
     private val ordersRepository: OrdersRepository,
+    private val draftOrderRepository: DraftOrderRepository
 ) : ViewModel() {
 
     var cartItems = MutableLiveData<List<ItemCart>>()
@@ -82,7 +87,7 @@ class CartViewModel @Inject constructor(
         }
 
         order.order = OrderRequest(
-            customer = OrderCustomer(getUserEmailById()),
+            customer = OrderCustomer(userRepository.getUserEmail()),
             lineItems = lineItems,
             shippingAddress = OrderShippingAddress(userAddress.value),
             totalPrice = totalPrice.toString(),
@@ -91,6 +96,32 @@ class CartViewModel @Inject constructor(
         return order
     }
 
-    fun getUserEmailById(): String = userRepository.getUserEmail()
+    suspend fun updateUserDraftOrder() {
+
+
+        val lineItems = ArrayList<DraftOrderLineItemModel>()
+        for (item in cartItems.value!!) {
+            lineItems.add(DraftOrderLineItemModel(variantId = item.variant_id, quantity = item.item_number))
+        }
+
+        val draftOrder = DraftOrderRequest(
+            draftOrder = DraftOrderRequestModel(
+                lineItems = lineItems,
+                customer = DraftOrderRequestCustomer(
+                    id = "6268448801026",
+                    email = userRepository.getUserEmail()
+                )
+            )
+        )
+        val gson = Gson()
+        Log.d("DraftOrder", gson.toJson(draftOrder).toString())
+
+        //TODO change the default draftOrder and user From Shared Preferences
+        //draftOrderRepository.updateDraftOrder(userRepository.getCartDraftOrderIdFromSharedPrefs() , draftOrder)
+        val response = draftOrderRepository.updateDraftOrder("1102154563842", draftOrder)
+
+        Log.d("DraftOrder", response.toString())
+
+    }
 
 }

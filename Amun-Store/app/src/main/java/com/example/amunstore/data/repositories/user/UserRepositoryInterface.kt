@@ -32,8 +32,12 @@ interface UserRepositoryInterface {
 
     suspend fun getUserEmailById(id: Long): Response<Customer>
 
-    fun getUserEmail() : String
+    fun getUserEmail(): String
 
     fun setUserEmail(email: String)
+
+    fun getCartDraftOrderIdFromSharedPrefs(): String
+
+    fun setCartDraftOrderIdInSharedPrefs(id: String)
 
 }
