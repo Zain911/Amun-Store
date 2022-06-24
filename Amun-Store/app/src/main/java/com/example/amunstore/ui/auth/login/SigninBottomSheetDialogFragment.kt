@@ -52,6 +52,10 @@ class SigninBottomSheetDialogFragment : BottomSheetDialogFragment() {
             ).show()
         }
 
+
+        binding.dialogLoginEmailIdEdt.setText("test1@mail.com")
+        binding.dialogLoginPasswordEdt2.setText("123456789")
+
         return root
     }
 

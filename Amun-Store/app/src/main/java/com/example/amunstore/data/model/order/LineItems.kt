@@ -28,7 +28,7 @@ data class LineItems (
   @SerializedName("variant_inventory_management" ) var variantInventoryManagement : String?           = null,
   @SerializedName("variant_title"                ) var variantTitle               : String?           = null,
   @SerializedName("vendor"                       ) var vendor                     : String?           = null,
-  @SerializedName("tax_lines"                    ) var taxLines                   : ArrayList<String> = arrayListOf(),
+  //@SerializedName("tax_lines"                    ) var taxLines                   : ArrayList<String> = arrayListOf(),
   @SerializedName("duties"                       ) var duties                     : ArrayList<String> = arrayListOf(),
   @SerializedName("discount_allocations"         ) var discountAllocations        : ArrayList<String> = arrayListOf()
 

@@ -4,6 +4,7 @@ import com.example.amunstore.data.model.address.AddAddressRequestModel
 import com.example.amunstore.data.model.address.AddingAddressResponseModel
 import com.example.amunstore.data.model.address.AddressResponse
 import com.example.amunstore.data.model.customer.CustomerResponse
+import com.example.amunstore.data.model.customer.UpdateCustomer
 import com.example.amunstore.data.model.order.Customer
 import okhttp3.RequestBody
 import retrofit2.Response
@@ -31,4 +32,8 @@ interface UserServices {
 
     @GET("customers/{customer_id}.json")
     suspend fun getUserEmailById(@Path("customer_id") customer_id: Long): Response<Customer>
+
+    //6268209725698
+    @PUT("customers/{customer_id}.json")
+    suspend fun updateCustomerIdsDraftOrders(@Path ("customer_id") customer_id: String ,@Body customer: UpdateCustomer):Response<Customer>
 }

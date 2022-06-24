@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModel
 import com.example.amunstore.data.model.cart.ItemCart
 import com.example.amunstore.data.model.draftorder.*
 import com.example.amunstore.data.model.order.*
+import com.example.amunstore.data.presistentstorage.sharedprefs.UserSharedPreferences
 import com.example.amunstore.data.repositories.cart.CartRepository
 import com.example.amunstore.data.repositories.draftorder.DraftOrderRepository
 import com.example.amunstore.data.repositories.orders.OrdersRepository
@@ -21,7 +22,8 @@ class CartViewModel @Inject constructor(
     private val userRepository: UserRepository,
     private val cartRepository: CartRepository,
     private val ordersRepository: OrdersRepository,
-    private val draftOrderRepository: DraftOrderRepository
+    private val draftOrderRepository: DraftOrderRepository,
+    private val sharedPreferences: UserSharedPreferences,
 ) : ViewModel() {
 
     var cartItems = MutableLiveData<List<ItemCart>>()
@@ -101,14 +103,15 @@ class CartViewModel @Inject constructor(
 
         val lineItems = ArrayList<DraftOrderLineItemModel>()
         for (item in cartItems.value!!) {
-            lineItems.add(DraftOrderLineItemModel(variantId = item.variant_id, quantity = item.item_number))
+            lineItems.add(DraftOrderLineItemModel(variantId = item.variant_id,
+                quantity = item.item_number))
         }
 
         val draftOrder = DraftOrderRequest(
             draftOrder = DraftOrderRequestModel(
                 lineItems = lineItems,
                 customer = DraftOrderRequestCustomer(
-                    id = "6268448801026",
+                    id = "6268209725698",
                     email = userRepository.getUserEmail()
                 )
             )
@@ -118,9 +121,27 @@ class CartViewModel @Inject constructor(
 
         //TODO change the default draftOrder and user From Shared Preferences
         //draftOrderRepository.updateDraftOrder(userRepository.getCartDraftOrderIdFromSharedPrefs() , draftOrder)
-        val response = draftOrderRepository.updateDraftOrder("1102154563842", draftOrder)
+        if (sharedPreferences.getCartDraftOrderId() != "0") {
+            val response = draftOrderRepository.updateDraftOrder(sharedPreferences.getCartDraftOrderId(), draftOrder)
+            Log.d("DraftOrder", response.toString())
+            Log.d( "DraftOrder Shard pref: ", sharedPreferences.getCartDraftOrderId())
+            Log.d( "respons body: ",response.body().toString())
+        } else {
+            val response = draftOrderRepository.createDraftOrder(draftOrder)
+            if (response.isSuccessful)
+                setDraftCartId(response.body()?.draftOrder?.id.toString())
+            Log.d("DraftOrder create", response.toString())
+            Log.d( "respons body: ",response.body().toString())
 
-        Log.d("DraftOrder", response.toString())
+
+        }
+
+    }
+
+    private fun setDraftCartId(id: String?) {
+        Log.d("DraftOrder id", id.toString())
+
+        sharedPreferences.setCartDraftOrderId(id ?: "0")
 
     }
 
