@@ -121,17 +121,19 @@ class CartViewModel @Inject constructor(
 
         //TODO change the default draftOrder and user From Shared Preferences
         //draftOrderRepository.updateDraftOrder(userRepository.getCartDraftOrderIdFromSharedPrefs() , draftOrder)
-        if (sharedPreferences.getCartDraftOrderId() != "0") {
-            val response = draftOrderRepository.updateDraftOrder(sharedPreferences.getCartDraftOrderId(), draftOrder)
+        if (sharedPreferences.getCartDraftOrderId().isEmpty()) {
+            val response =
+                draftOrderRepository.updateDraftOrder(sharedPreferences.getCartDraftOrderId(),
+                    draftOrder)
             Log.d("DraftOrder", response.toString())
-            Log.d( "DraftOrder Shard pref: ", sharedPreferences.getCartDraftOrderId())
-            Log.d( "respons body: ",response.body().toString())
+            Log.d("DraftOrder Shard pref: ", sharedPreferences.getCartDraftOrderId())
+            Log.d("respons body: ", response.body().toString())
         } else {
             val response = draftOrderRepository.createDraftOrder(draftOrder)
             if (response.isSuccessful)
                 setDraftCartId(response.body()?.draftOrder?.id.toString())
             Log.d("DraftOrder create", response.toString())
-            Log.d( "respons body: ",response.body().toString())
+            Log.d("respons body: ", response.body().toString())
 
 
         }
@@ -141,7 +143,7 @@ class CartViewModel @Inject constructor(
     private fun setDraftCartId(id: String?) {
         Log.d("DraftOrder id", id.toString())
 
-        sharedPreferences.setCartDraftOrderId(id ?: "0")
+        sharedPreferences.setCartDraftOrderId(id ?: "")
 
     }
 

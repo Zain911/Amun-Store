@@ -3,6 +3,9 @@ package com.example.amunstore.data.repositories.user
 import com.example.amunstore.data.model.address.AddAddressRequestModel
 import com.example.amunstore.data.model.address.AddressResponse
 import com.example.amunstore.data.model.customer.CustomerResponse
+import com.example.amunstore.data.model.customer.CustomerSingleResponse
+import com.example.amunstore.data.model.customer.RequestCartDraftOrder
+import com.example.amunstore.data.model.customer.RequestFavouriteDraftOrder
 import com.example.amunstore.data.model.order.Customer
 import com.example.amunstore.data.model.user.User
 import okhttp3.RequestBody
@@ -39,5 +42,15 @@ interface UserRepositoryInterface {
     fun getCartDraftOrderIdFromSharedPrefs(): String
 
     fun setCartDraftOrderIdInSharedPrefs(id: String)
+
+    suspend fun setUserFavouriteDraftOrderId(
+        customerId: String,
+        draftOrderId: RequestFavouriteDraftOrder,
+    ): Response<CustomerSingleResponse>
+
+    suspend fun setUserCartDraftOrderId(
+        customerId: String,
+        draftOrderId: RequestCartDraftOrder,
+    ): Response<CustomerSingleResponse>
 
 }

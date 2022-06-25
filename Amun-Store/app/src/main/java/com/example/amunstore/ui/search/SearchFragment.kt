@@ -63,12 +63,12 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
         binding.searchProductSearchView.setOnQueryTextListener(object :
             SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
-                viewModel.searchProduct(query)
+                viewModel.searchProduct(query.trim())
                 return false
             }
 
             override fun onQueryTextChange(query: String): Boolean {
-                viewModel.searchProduct(query)
+                viewModel.searchProduct(query.trim())
                 return true
             }
         })
