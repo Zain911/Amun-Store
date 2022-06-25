@@ -90,6 +90,14 @@ class UserRepository @Inject constructor(
         sharedPref.setCartDraftOrderId(id)
     }
 
+    override fun setFavouriteDraftOrderIdInSharedPrefs(id: String) {
+        sharedPref.setFavouriteOrderId(id)
+    }
+
+    override fun getFavouriteDraftOrderIdFromSharedPrefs(): String =
+        sharedPref.getFavouriteOrderId()
+
+
     override suspend fun setUserFavouriteDraftOrderId(
         customerId: String,
         draftOrderId: RequestFavouriteDraftOrder,

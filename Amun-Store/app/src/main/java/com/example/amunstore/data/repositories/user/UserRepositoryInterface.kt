@@ -43,6 +43,10 @@ interface UserRepositoryInterface {
 
     fun setCartDraftOrderIdInSharedPrefs(id: String)
 
+    fun getFavouriteDraftOrderIdFromSharedPrefs(): String
+
+    fun setFavouriteDraftOrderIdInSharedPrefs(id: String)
+
     suspend fun setUserFavouriteDraftOrderId(
         customerId: String,
         draftOrderId: RequestFavouriteDraftOrder,

@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavDestination
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
@@ -15,6 +16,7 @@ import com.example.amunstore.domain.util.InternetConnectivity
 import com.example.amunstore.ui.main.MainViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -76,7 +78,7 @@ class MainActivity : AppCompatActivity() {
         navController.addOnDestinationChangedListener { _, nd: NavDestination, _ ->
             // the IDs of fragments as defined in the `navigation_graph`
             if (nd.id == R.id.navigation_home || nd.id == R.id.navigation_categories
-                 || nd.id == R.id.favouriteFragment
+                || nd.id == R.id.favouriteFragment
             ) {
                 navView.visibility = View.VISIBLE
                 binding.toolbar.visibility = View.VISIBLE
@@ -106,7 +108,10 @@ class MainActivity : AppCompatActivity() {
 
         viewmodel.getCartItemsCount()
         viewmodel.getFavouriteItemsCount()
-
+        lifecycleScope.launch {
+            viewmodel.getCartItems()
+            viewmodel.getFavoriteItems()
+        }
 
     }
 }

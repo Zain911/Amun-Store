@@ -35,6 +35,8 @@ class AuthViewModel @Inject constructor(
                         repository.setCustomerId(response.body()!!.customers[0].id!!)
                         repository.setUserName(userName)
                         repository.setUserEmail(email)
+                        repository.setFavouriteDraftOrderIdInSharedPrefs(response.body()!!.customers[0].tags ?: "")
+                        repository.setCartDraftOrderIdInSharedPrefs(response.body()!!.customers[0].multipassIdentifier ?: "")
                         users.postValue(true)
 
                     } else {
