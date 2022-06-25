@@ -3,8 +3,7 @@ package com.example.amunstore.data.network
 import com.example.amunstore.data.model.address.AddAddressRequestModel
 import com.example.amunstore.data.model.address.AddingAddressResponseModel
 import com.example.amunstore.data.model.address.AddressResponse
-import com.example.amunstore.data.model.customer.CustomerResponse
-import com.example.amunstore.data.model.customer.UpdateCustomer
+import com.example.amunstore.data.model.customer.*
 import com.example.amunstore.data.model.order.Customer
 import okhttp3.RequestBody
 import retrofit2.Response
@@ -24,7 +23,7 @@ interface UserServices {
 
     @GET("customers/search.json")
     suspend fun getUserByEmail(
-        @Query(value = "query") emails: String
+        @Query(value = "query") emails: String,
     ): Response<CustomerResponse?>
 
     @POST("customers.json")
@@ -35,5 +34,15 @@ interface UserServices {
 
     //6268209725698
     @PUT("customers/{customer_id}.json")
-    suspend fun updateCustomerIdsDraftOrders(@Path ("customer_id") customer_id: String ,@Body customer: UpdateCustomer):Response<Customer>
+    suspend fun setCartDraftOrdersId(
+        @Path("customer_id") customer_id: String,
+        @Body customer: RequestCartDraftOrder,
+    ): Response<CustomerSingleResponse>
+
+    @PUT("customers/{customer_id}.json")
+    suspend fun setFavouriteDraftOrdersId(
+        @Path("customer_id") customer_id: String,
+        @Body customer: RequestFavouriteDraftOrder,
+    ): Response<CustomerSingleResponse>
+
 }

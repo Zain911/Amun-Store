@@ -49,14 +49,14 @@ class UserSharedPreferences @Inject constructor(@ApplicationContext context: Con
     }
 
     override fun getCartDraftOrderId(): String =
-        prefs.getString(userCartDraftOrderInSharedPreferences, "0")!!
+        prefs.getString(userCartDraftOrderInSharedPreferences, "")!!
 
     override fun setFavouriteOrderId(id: String) {
         prefs.edit().putString(userFavouriteDraftOrder, id).apply()
     }
 
     override fun getFavouriteOrderId(): String=
-        prefs.getString(userFavouriteDraftOrder,"0")!!
+        prefs.getString(userFavouriteDraftOrder,"")!!
 
 
 

@@ -2,6 +2,9 @@ package com.example.amunstore.data.repositories.user
 
 import com.example.amunstore.data.model.address.AddAddressRequestModel
 import com.example.amunstore.data.model.customer.CustomerResponse
+import com.example.amunstore.data.model.customer.CustomerSingleResponse
+import com.example.amunstore.data.model.customer.RequestCartDraftOrder
+import com.example.amunstore.data.model.customer.RequestFavouriteDraftOrder
 import com.example.amunstore.data.model.order.Customer
 import com.example.amunstore.data.model.user.User
 import com.example.amunstore.data.network.DraftOrderServices
@@ -87,5 +90,15 @@ class UserRepository @Inject constructor(
         sharedPref.setCartDraftOrderId(id)
     }
 
+    override suspend fun setUserFavouriteDraftOrderId(
+        customerId: String,
+        draftOrderId: RequestFavouriteDraftOrder,
+    ) = networkServices.setFavouriteDraftOrdersId(customerId,
+        draftOrderId)
+
+    override suspend fun setUserCartDraftOrderId(
+        customerId: String,
+        draftOrderId: RequestCartDraftOrder,
+    ) = networkServices.setCartDraftOrdersId(customerId, draftOrderId)
 
 }
