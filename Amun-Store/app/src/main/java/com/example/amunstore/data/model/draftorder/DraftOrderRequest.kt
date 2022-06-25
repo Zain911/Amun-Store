@@ -20,6 +20,13 @@ data class DraftOrderRequestCustomer(
 
 data class DraftOrderLineItemModel(
     @SerializedName("variant_id") var variantId: Long? = null,
-    @SerializedName("quantity") var quantity: Int? = null
+    @SerializedName("quantity") var quantity: Int? = null,
+    @SerializedName("properties") var properties: ArrayList<Property>? = null
 )
+
+data class Property(
+    @SerializedName("name") var name: String? = null,
+    @SerializedName("value") var value: String? = null
+)
+
 

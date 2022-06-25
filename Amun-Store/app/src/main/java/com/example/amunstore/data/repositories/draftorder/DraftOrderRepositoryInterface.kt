@@ -12,5 +12,7 @@ interface DraftOrderRepositoryInterface {
         draftOrderRequest: DraftOrderRequest,
     ): Response<DraftOrderResponse>
 
-    suspend fun createDraftOrder(draftOrderRequest: DraftOrderRequest) :Response<DraftOrderResponse>
+    suspend fun createDraftOrder(draftOrderRequest: DraftOrderRequest): Response<DraftOrderResponse>
+
+    suspend fun getDraftOrderById(draftOrderId: String): Response<DraftOrderResponse>
 }
