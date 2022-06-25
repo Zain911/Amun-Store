@@ -19,5 +19,8 @@ class DraftOrderRepository @Inject constructor(val networkServices: NetworkServi
     override suspend fun createDraftOrder(draftOrderRequest: DraftOrderRequest) =
         networkServices.createDraftOrder(draftOrderRequest)
 
+    override suspend fun getDraftOrderById(draftOrderId: String) =
+        networkServices.getDraftOrderById(draftOrderId)
+
 
 }

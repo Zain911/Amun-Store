@@ -48,7 +48,7 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
         connectionLiveData = InternetConnectivity(applicationContext)
-        connectionLiveData.observe(MainActivity@ this) { isAvailable ->
+        connectionLiveData.observe(this) { isAvailable ->
             when (isAvailable) {
                 true -> {
                     val id = navController.currentDestination!!.id
@@ -108,10 +108,14 @@ class MainActivity : AppCompatActivity() {
 
         viewmodel.getCartItemsCount()
         viewmodel.getFavouriteItemsCount()
+
+
         lifecycleScope.launch {
-            viewmodel.getCartItems()
             viewmodel.getFavoriteItems()
+            viewmodel.getCartDraftOrder()
+            //viewmodel.getCartItems()
         }
+
 
     }
 }

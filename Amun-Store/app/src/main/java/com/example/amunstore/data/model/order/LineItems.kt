@@ -1,5 +1,6 @@
 package com.example.amunstore.data.model.order
 
+import com.example.amunstore.data.model.draftorder.Property
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
@@ -17,7 +18,7 @@ data class LineItems (
   @SerializedName("price"                        ) var price                      : String?           = null,
   @SerializedName("product_exists"               ) var productExists              : Boolean?          = null,
   @SerializedName("product_id"                   ) var productId                  : Long?              = null,
-  @SerializedName("properties"                   ) var properties                 : ArrayList<String> = arrayListOf(),
+  @SerializedName("properties"                   ) var properties                 : ArrayList<Property> = arrayListOf(),
   @SerializedName("quantity"                     ) var quantity                   : Int?              = null,
   @SerializedName("requires_shipping"            ) var requiresShipping           : Boolean?          = null,
   @SerializedName("sku"                          ) var sku                        : String?           = null,

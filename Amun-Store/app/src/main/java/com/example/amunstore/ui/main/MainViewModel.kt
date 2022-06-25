@@ -1,29 +1,34 @@
 package com.example.amunstore.ui.main
 
 import android.util.Log
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModel
+import androidx.lifecycle.*
 import com.example.amunstore.data.model.cart.ItemCart
+import com.example.amunstore.data.model.customer.RequestCartDraftOrder
+import com.example.amunstore.data.model.customer.SetDraftOrderId
+import com.example.amunstore.data.model.draftorder.*
+import com.example.amunstore.data.model.order.LineItems
 import com.example.amunstore.data.model.product.Product
+import com.example.amunstore.data.presistentstorage.sharedprefs.UserSharedPreferences
 import com.example.amunstore.data.repositories.cart.CartRepository
+import com.example.amunstore.data.repositories.draftorder.DraftOrderRepository
 import com.example.amunstore.data.repositories.products.ProductsRepository
+import com.example.amunstore.data.repositories.user.UserRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class MainViewModel @Inject constructor(
     private val favouriteRepository: ProductsRepository,
     private val cartRepository: CartRepository,
+    private val userRepository: UserRepository,
+    private val draftOrderRepository: DraftOrderRepository,
+    private val sharedPreferences: UserSharedPreferences
 ) : ViewModel() {
 
     var cartItemsCount = MutableLiveData<Int>()
     var favouriteItemsCount = MutableLiveData<Int>()
-
-    var cartItems = MutableLiveData<LiveData<Product>>()
-    var favoriteItems = MutableLiveData<LiveData<Product>>()
-
 
     private val cartItemsCountObserver = Observer<Int> {
         cartItemsCount.postValue(it)
@@ -34,8 +39,67 @@ class MainViewModel @Inject constructor(
     }
 
     private val cartItemsObserver = Observer<List<ItemCart>> {
-        // send data to api
-        Log.d("TestCart", it.toString())
+
+        if (it.isEmpty()) {
+            GlobalScope.launch {
+                setEmptyOrder()
+            }
+        } else {
+            // send data to api
+            Log.d("DebugCart dataObserver: ", it.toString())
+            val lineItems = ArrayList<DraftOrderLineItemModel>()
+
+            for (item in it) {
+                lineItems.add(
+                    DraftOrderLineItemModel(
+                        variantId = item.variant_id,
+                        quantity = item.item_number,
+                        properties = arrayListOf(
+                            Property("src", item.src),
+                            Property("max_item", item.maxItem.toString())
+                        )
+                    )
+                )
+            }
+
+            val draftOrder = DraftOrderRequest(
+                draftOrder = DraftOrderRequestModel(
+                    lineItems = lineItems,
+                    customer = DraftOrderRequestCustomer(
+                        id = "6268209725698",
+                        email = userRepository.getUserEmail()
+                    )
+                )
+            )
+
+            Log.d("DebugCart userId", sharedPreferences.getCustomerId().toString())
+            Log.d("DebugCart cartDraftOrderId", sharedPreferences.getCartDraftOrderId())
+
+            GlobalScope.launch {
+                if (sharedPreferences.getCartDraftOrderId().isNotEmpty()) {
+                    val response =
+                        draftOrderRepository.updateDraftOrder(
+                            sharedPreferences.getCartDraftOrderId(),
+                            draftOrder
+                        )
+                    Log.d("DebugCart responseUpdateDraftOrder", response.body().toString())
+
+                } else {
+                    val response = draftOrderRepository.createDraftOrder(draftOrder)
+
+                    Log.d("DebugCart createDraftOrder", response.body().toString())
+                    if (response.isSuccessful) {
+                        sharedPreferences.setCartDraftOrderId(response.body()?.draftOrder?.id.toString())
+                        val response2 = userRepository.setUserCartDraftOrderId(
+                            userRepository.getCustomerId().toString(),
+                            RequestCartDraftOrder(draftOrderId = SetDraftOrderId(response.body()?.draftOrder?.id.toString()))
+                        )
+                        Log.d("DebugCart setUserCartDraftOrderId", response2.body().toString())
+                    }
+                }
+            }
+        }
+
     }
 
     private val favoriteItemsObserver = Observer<List<Product>> {
@@ -58,11 +122,44 @@ class MainViewModel @Inject constructor(
         cartRepository.getAllItemCart().observeForever(cartItemsObserver)
     }
 
+    private suspend fun setEmptyOrder() {
+        sharedPreferences.setCartDraftOrderId("")
+        userRepository.setUserCartDraftOrderId(
+            userRepository.getCustomerId().toString(), RequestCartDraftOrder(
+                SetDraftOrderId(idDraftCart = "")
+            )
+        )
+    }
+
     override fun onCleared() {
         super.onCleared()
         cartRepository.getCartItemsCount().removeObserver(cartItemsCountObserver)
         favouriteRepository.getFavouritesItemCount().removeObserver(favouriteItemsCountObserver)
     }
 
+    suspend fun getCartDraftOrder() {
+        if (userRepository.getCartDraftOrderIdFromSharedPrefs().isNotEmpty()) {
+            val response =
+                draftOrderRepository.getDraftOrderById(userRepository.getCartDraftOrderIdFromSharedPrefs())
+
+            if (response.isSuccessful) {
+                for (item in response.body()?.draftOrder?.lineItems!!)
+                    cartRepository.addItem(
+                        ItemCart(
+                            id = item.productId,
+                            title = item.title,
+                            price = item.price,
+                            size = item.variantTitle?.substringBefore("/"),
+                            src = item.properties[0].value,
+                            maxItem = item.properties[1].value?.toInt(),
+                            item_number = item.quantity,
+                            variant_id = item.variantId
+                        )
+                    )
+            }
+        }
+
+        getCartItems()
+    }
 
 }
