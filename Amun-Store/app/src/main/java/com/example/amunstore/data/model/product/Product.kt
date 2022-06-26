@@ -47,5 +47,7 @@ data class Product(
     var imageSrc: String? = "",
 
     @ColumnInfo(name = "isFavourite")
-    var isFavourite: Boolean = false
+    var isFavourite: Boolean = false,
+    @ColumnInfo(name = "main_variant")
+    var mainVariant: Long? = null,
 )

@@ -121,9 +121,7 @@ class CartFragment : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
-        GlobalScope.launch {
-            viewModel.updateUserDraftOrder()
-        }
+
         _binding = null
     }
 

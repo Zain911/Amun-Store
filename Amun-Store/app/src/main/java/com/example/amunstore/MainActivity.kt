@@ -1,7 +1,6 @@
 package com.example.amunstore
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -111,9 +110,9 @@ class MainActivity : AppCompatActivity() {
 
 
         lifecycleScope.launch {
-            viewmodel.getFavoriteItems()
+           // viewmodel.getFavoriteItems()
             viewmodel.getCartDraftOrder()
-            //viewmodel.getCartItems()
+            viewmodel.getFavouriteDraftOrder()
         }
 
 

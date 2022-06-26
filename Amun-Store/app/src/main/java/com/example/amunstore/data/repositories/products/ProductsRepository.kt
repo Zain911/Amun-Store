@@ -29,6 +29,7 @@ class ProductsRepository @Inject constructor(
     override suspend fun getAllFavouriteProducts() = productsDao.getAllFavourite()
 
     override fun addProductToFavourite(product: Product) {
+        product.mainVariant=product.variants[0].id
         productsDao.addItemToFavourite(product)
     }
 

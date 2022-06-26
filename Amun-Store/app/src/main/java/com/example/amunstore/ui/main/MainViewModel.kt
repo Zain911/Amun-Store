@@ -4,7 +4,9 @@ import android.util.Log
 import androidx.lifecycle.*
 import com.example.amunstore.data.model.cart.ItemCart
 import com.example.amunstore.data.model.customer.RequestCartDraftOrder
+import com.example.amunstore.data.model.customer.RequestFavouriteDraftOrder
 import com.example.amunstore.data.model.customer.SetDraftOrderId
+import com.example.amunstore.data.model.customer.SetFavouriteOrderId
 import com.example.amunstore.data.model.draftorder.*
 import com.example.amunstore.data.model.order.LineItems
 import com.example.amunstore.data.model.product.Product
@@ -13,6 +15,7 @@ import com.example.amunstore.data.repositories.cart.CartRepository
 import com.example.amunstore.data.repositories.draftorder.DraftOrderRepository
 import com.example.amunstore.data.repositories.products.ProductsRepository
 import com.example.amunstore.data.repositories.user.UserRepository
+import com.google.gson.Gson
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -24,7 +27,7 @@ class MainViewModel @Inject constructor(
     private val cartRepository: CartRepository,
     private val userRepository: UserRepository,
     private val draftOrderRepository: DraftOrderRepository,
-    private val sharedPreferences: UserSharedPreferences
+    private val sharedPreferences: UserSharedPreferences,
 ) : ViewModel() {
 
     var cartItemsCount = MutableLiveData<Int>()
@@ -103,7 +106,68 @@ class MainViewModel @Inject constructor(
     }
 
     private val favoriteItemsObserver = Observer<List<Product>> {
-        // send data to api
+        if (it.isEmpty()) {
+            GlobalScope.launch {
+                setEmptyFavourite()
+            }
+        } else {
+            Log.d("DebugFavourite dataObserver: ", it.toString())
+            var json= Gson()
+            json.toJson(it.toString())
+            Log.d("JSONFavourite", json.toString())
+            val lineItems = ArrayList<DraftOrderLineItemModel>()
+
+            for (item in it) {
+                lineItems.add(
+                    DraftOrderLineItemModel(
+                        variantId = item.mainVariant,
+                        quantity = 1,
+                        properties = arrayListOf(
+                            Property("src", item.imageSrc),
+                            Property("vendor", item.vendor),
+                            Property("product_type", item.productType)
+                        )
+                    )
+                )
+            }
+
+            val draftOrder = DraftOrderRequest(
+                draftOrder = DraftOrderRequestModel(
+                    lineItems = lineItems,
+                    customer = DraftOrderRequestCustomer(
+                        id = userRepository.getCustomerId().toString(),
+                        email = userRepository.getUserEmail()
+                    )
+                )
+            )
+
+            Log.d("DebugFavourite userId", sharedPreferences.getCustomerId().toString())
+            Log.d("DebugFavourite cartDraftFavouriteId", sharedPreferences.getFavouriteOrderId())
+
+            GlobalScope.launch {
+                if (sharedPreferences.getFavouriteOrderId().isNotEmpty()) {
+                    val response =
+                        draftOrderRepository.updateDraftOrder(
+                            sharedPreferences.getFavouriteOrderId(),
+                            draftOrder
+                        )
+                    Log.d("DebugFavourite responseUpdateDraftOrder", response.body().toString())
+
+                } else {
+                    val response = draftOrderRepository.createDraftOrder(draftOrder)
+
+                    Log.d("DebugFavourite createDraftOrder", response.body().toString())
+                    if (response.isSuccessful) {
+                        sharedPreferences.setFavouriteOrderId(response.body()?.draftOrder?.id.toString())
+                        val response2 = userRepository.setUserFavouriteDraftOrderId(
+                            userRepository.getCustomerId().toString(),
+                            RequestFavouriteDraftOrder(draftOrderId = SetFavouriteOrderId(response.body()?.draftOrder?.id.toString()))
+                        )
+                        Log.d("DebugCart setUserCartDraftOrderId", response2.body().toString())
+                    }
+                }
+            }
+        }
     }
 
     fun getCartItemsCount() {
@@ -130,6 +194,16 @@ class MainViewModel @Inject constructor(
             )
         )
     }
+
+    private suspend fun setEmptyFavourite() {
+        sharedPreferences.setFavouriteOrderId("")
+        userRepository.setUserFavouriteDraftOrderId(
+            userRepository.getCustomerId().toString(), RequestFavouriteDraftOrder(
+                SetFavouriteOrderId(idDraftFavourite = "")
+            )
+        )
+    }
+
 
     override fun onCleared() {
         super.onCleared()
@@ -160,6 +234,29 @@ class MainViewModel @Inject constructor(
         }
 
         getCartItems()
+    }
+
+    suspend fun getFavouriteDraftOrder() {
+        if (userRepository.getFavouriteDraftOrderIdFromSharedPrefs().isNotEmpty()) {
+            val response =
+                draftOrderRepository.getDraftOrderById(userRepository.getFavouriteDraftOrderIdFromSharedPrefs())
+
+            if (response.isSuccessful) {
+                for (item in response.body()?.draftOrder?.lineItems!!)
+                    favouriteRepository.addProductToFavourite(
+                        Product(
+                            id = item.productId,
+                            title = item.title,
+                            imageSrc = item.properties[0].value,
+                            vendor = item.properties[1].value,
+                            productType = item.properties[2].value,
+                            mainVariant = item.variantId
+                        )
+                    )
+            }
+        }
+
+        getFavoriteItems()
     }
 
 }
