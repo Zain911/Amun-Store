@@ -31,6 +31,7 @@ class SigninFragment : Fragment() {
 
 
     lateinit var bottomSignUpFragment: SignupBottomSheetDialogFragment
+    lateinit var bottomSignInFragment: SigninBottomSheetDialogFragment
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -43,7 +44,7 @@ class SigninFragment : Fragment() {
         callbackManager = CallbackManager.Factory.create()
 
         bottomSignUpFragment = SignupBottomSheetDialogFragment()
-
+        bottomSignInFragment = SigninBottomSheetDialogFragment()
         LoginManager.getInstance().registerCallback(callbackManager,
             object : FacebookCallback<LoginResult> {
                 override fun onCancel() {
@@ -91,8 +92,8 @@ class SigninFragment : Fragment() {
     }
 
     private fun showBottomSheetDialogFragment() {
-        val bottomSignInFragment = SigninBottomSheetDialogFragment()
-        bottomSignInFragment.show(childFragmentManager, bottomSignInFragment.tag)
+        if (!bottomSignInFragment.isVisible)
+            bottomSignInFragment.show(childFragmentManager, bottomSignInFragment.tag)
     }
 
     override fun onResume() {
