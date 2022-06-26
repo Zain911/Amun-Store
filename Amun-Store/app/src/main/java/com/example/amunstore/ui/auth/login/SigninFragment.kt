@@ -29,6 +29,8 @@ class SigninFragment : Fragment() {
         private var EMAIL = "email"
     }
 
+
+    lateinit var bottomSignUpFragment: SignupBottomSheetDialogFragment
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -39,6 +41,8 @@ class SigninFragment : Fragment() {
         loginButton.fragment = this@SigninFragment
         loginButton.setPermissions(listOf(EMAIL))
         callbackManager = CallbackManager.Factory.create()
+
+        bottomSignUpFragment = SignupBottomSheetDialogFragment()
 
         LoginManager.getInstance().registerCallback(callbackManager,
             object : FacebookCallback<LoginResult> {
@@ -70,21 +74,25 @@ class SigninFragment : Fragment() {
                     // An error occurred
                 }
             })
-        binding.loginLoginWithEmailBtn.setOnClickListener { showBottomSheetDialogFragment() }
+        binding.loginLoginWithEmailBtn.setOnClickListener {
+            showBottomSheetDialogFragment()
+        }
 
-        binding.loginSignupTxt.setOnClickListener { showSignUpSheet() }
+        binding.loginSignupTxt.setOnClickListener {
+            showSignUpSheet()
+        }
 
         return root
     }
 
     private fun showSignUpSheet() {
-        val bottomSheetFragment = SignupBottomSheetDialogFragment()
-        bottomSheetFragment.show(childFragmentManager, bottomSheetFragment.tag)
+        if (!bottomSignUpFragment.isVisible)
+            bottomSignUpFragment.show(childFragmentManager, bottomSignUpFragment.tag)
     }
 
     private fun showBottomSheetDialogFragment() {
-        val bottomSheetFragment = SigninBottomSheetDialogFragment()
-        bottomSheetFragment.show(childFragmentManager, bottomSheetFragment.tag)
+        val bottomSignInFragment = SigninBottomSheetDialogFragment()
+        bottomSignInFragment.show(childFragmentManager, bottomSignInFragment.tag)
     }
 
     override fun onResume() {
