@@ -13,7 +13,7 @@ import javax.inject.Inject
 
 class ProductsRepository @Inject constructor(
     private val productsDao: ProductsDao,
-    private val networkServices: ProductServices
+    private val networkServices: ProductServices,
 ) : ProductsRepositoryInterface {
 
     override suspend fun getProductByCategory(category: CustomCollections): Response<ProductsResponse> =
@@ -29,7 +29,12 @@ class ProductsRepository @Inject constructor(
     override suspend fun getAllFavouriteProducts() = productsDao.getAllFavourite()
 
     override fun addProductToFavourite(product: Product) {
-        product.mainVariant=product.variants[0].id
+        product.mainVariant = product.variants[0].id
+        productsDao.addItemToFavourite(product)
+    }
+
+    override fun addDraftOrderToFavourite(product: Product) {
+        // product.mainVariant=product.mainVariant
         productsDao.addItemToFavourite(product)
     }
 
@@ -49,7 +54,7 @@ class ProductsRepository @Inject constructor(
 
     override fun getFavouritesItemCount() = productsDao.getFavouritesItemsCount()
 
-    override suspend  fun getProductImages(id: Long): Response<ProductImagesResponse> =
+    override suspend fun getProductImages(id: Long): Response<ProductImagesResponse> =
         networkServices.getProductImages(id)
 
 

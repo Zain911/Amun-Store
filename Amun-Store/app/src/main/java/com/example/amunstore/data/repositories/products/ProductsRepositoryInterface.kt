@@ -29,5 +29,6 @@ interface ProductsRepositoryInterface {
     fun getFavouritesItemCount(): LiveData<Int>
 
     suspend fun getProductImages(id: Long): Response<ProductImagesResponse>
+    fun addDraftOrderToFavourite(product: Product)
 
 }
