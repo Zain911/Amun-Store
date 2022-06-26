@@ -27,6 +27,7 @@ class SigninBottomSheetDialogFragment : BottomSheetDialogFragment() {
 
         binding.dialogLoginCloseImageView.setOnClickListener { dismiss() } // to close dialog
         binding.dialogLoginLoginBtn.setOnClickListener {
+            changeButtonsActivation(false)
             viewModel.getUserByEmail(
                 binding.dialogLoginEmailIdEdt.text.toString(),
                 binding.dialogLoginPasswordEdt2.text.toString()
@@ -42,6 +43,7 @@ class SigninBottomSheetDialogFragment : BottomSheetDialogFragment() {
                 getString(R.string.login_failed),
                 Toast.LENGTH_LONG
             ).show() }
+            changeButtonsActivation(true)
         }
 
         binding.dialogLoginForgotPasswordTxt.setOnClickListener {
@@ -62,5 +64,10 @@ class SigninBottomSheetDialogFragment : BottomSheetDialogFragment() {
     private fun showBottomSheetDialogFragment() {
         val bottomSheetFragment = SigninSucessfulBottomSheetDialogFragment()
         bottomSheetFragment.show(childFragmentManager, bottomSheetFragment.tag)
+    }
+
+    private fun changeButtonsActivation(activeStatue:Boolean){
+        binding.dialogLoginLoginBtn.isEnabled =activeStatue
+        binding.dialogLoginCloseImageView.isEnabled=activeStatue
     }
 }
