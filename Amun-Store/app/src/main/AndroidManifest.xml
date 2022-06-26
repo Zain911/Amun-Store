@@ -15,7 +15,7 @@
 
         <activity
             android:name=".MainActivity"
-            android:exported="false"></activity>
+            android:exported="false" />
         <!--        //this is our main Activity-->
         <activity
             android:name=".ui.intro.IntroActivity"
@@ -62,7 +62,7 @@
 
         <activity
             android:name=".ui.auth.AuthActivity"
-            android:noHistory="true" />
+            android:exported="true" />
 
         <!-- This element is required in order to use the PaymentsClient -->
         <meta-data
