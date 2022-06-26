@@ -66,6 +66,7 @@ class SignupBottomSheetDialogFragment : BottomSheetDialogFragment() {
                     Toast.LENGTH_LONG
                 ).show()
             } else {
+                changeButtonsActivation(false)
                 viewModel.createUser(
                     email = email,
                     first_name = first,
@@ -82,6 +83,7 @@ class SignupBottomSheetDialogFragment : BottomSheetDialogFragment() {
             } else {
                 Toast.makeText(context, getString(R.string.signup_failed), Toast.LENGTH_LONG).show()
             }
+            changeButtonsActivation(true)
         }
 
         viewModel.users.observe(viewLifecycleOwner) {
@@ -92,6 +94,7 @@ class SignupBottomSheetDialogFragment : BottomSheetDialogFragment() {
             } else {
                 Toast.makeText(context, getString(R.string.login_failed), Toast.LENGTH_LONG).show()
             }
+            changeButtonsActivation(true)
         }
 
         return root
@@ -100,5 +103,10 @@ class SignupBottomSheetDialogFragment : BottomSheetDialogFragment() {
     private fun showBottomSheetDialogFragment() {
         val bottomSheetFragment = SignupSuccesfulBottomSheetDialogFragment()
         bottomSheetFragment.show(childFragmentManager, bottomSheetFragment.tag)
+    }
+
+    private fun changeButtonsActivation(activeStatue:Boolean){
+        binding.dialogSignupSignupBtn.isEnabled =activeStatue
+        binding.dialogSignupCloseImageView.isEnabled=activeStatue
     }
 }
