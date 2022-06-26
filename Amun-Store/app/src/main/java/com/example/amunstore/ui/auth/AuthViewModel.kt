@@ -28,7 +28,7 @@ class AuthViewModel @Inject constructor(
             val response = repository.getUserByEmail("email:$email")
             withContext(Dispatchers.Main) {
                 if (response.isSuccessful && response.body()!!.customers.isNotEmpty()) {
-                    if (response.body()!!.customers[0].note.equals(password, true)) {
+                    if (response.body()!!.customers[0].note.equals(password, false)) {
 
                         val userName =
                             "${response.body()!!.customers[0].firstName} ${response.body()!!.customers[0].lastName}"
