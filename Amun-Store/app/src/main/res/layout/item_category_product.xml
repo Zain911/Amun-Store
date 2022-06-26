@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <ImageView
         android:id="@+id/productImageView"
@@ -19,16 +20,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:maxEms="12"
-        android:text="Adidas 2020"
+        android:maxEms="10"
+        tools:text="Adidased'f,';;'ewkfw;';'wkf';w'e;fkw';fkwwe;lfkwe'k 2020"
         app:layout_constraintStart_toStartOf="@+id/productImageView"
         app:layout_constraintTop_toBottomOf="@id/productImageView" />
 
     <ImageView
-        android:layout_margin="8dp"
+        android:layout_margin="4dp"
         android:id="@+id/favouriteButtonImageView"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
+        android:layout_width="34dp"
+        android:padding="4dp"
+        android:layout_height="34dp"
         android:src="@drawable/ic_baseline_favorite_border_24"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
