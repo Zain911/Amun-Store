@@ -243,14 +243,15 @@ class MainViewModel @Inject constructor(
 
             if (response.isSuccessful) {
                 for (item in response.body()?.draftOrder?.lineItems!!)
-                    favouriteRepository.addProductToFavourite(
+                    favouriteRepository.addDraftOrderToFavourite(
                         Product(
                             id = item.productId,
                             title = item.title,
                             imageSrc = item.properties[0].value,
                             vendor = item.properties[1].value,
                             productType = item.properties[2].value,
-                            mainVariant = item.variantId
+                            mainVariant = item.variantId,
+                            isFavourite = true
                         )
                     )
             }
