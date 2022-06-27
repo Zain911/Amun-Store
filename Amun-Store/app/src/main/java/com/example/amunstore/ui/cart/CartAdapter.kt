@@ -1,7 +1,6 @@
 package com.example.amunstore.ui.cart
 
 import android.annotation.SuppressLint
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -88,13 +87,13 @@ class CartAdapter(
 
         holder.view.increaseButton.setOnClickListener {
 
-            increaseItem(itemCartList[position])
-            holder.view.decreaseButton.isEnabled = itemCartList[position].item_number != 0
+            increaseItem(itemCartList[holder.adapterPosition])
+            holder.view.decreaseButton.isEnabled = itemCartList[holder.adapterPosition].item_number != 0
         }
 
         holder.view.decreaseButton.setOnClickListener {
-            decreaseItem(itemCartList[position])
-            holder.view.decreaseButton.isEnabled = itemCartList[position].item_number != 0
+            decreaseItem(itemCartList[holder.adapterPosition])
+            holder.view.decreaseButton.isEnabled = itemCartList[holder.adapterPosition].item_number != 0
         }
 
     }

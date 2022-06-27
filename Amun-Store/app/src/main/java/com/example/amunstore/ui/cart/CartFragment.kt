@@ -16,9 +16,6 @@ import com.example.amunstore.ui.cart.addresses.AddressesBottomSheetDialogFragmen
 import com.example.amunstore.ui.cart.coupon.CouponBottomSheetDialogFragment
 import com.example.amunstore.ui.wallet.activity.CheckoutActivity
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlin.math.absoluteValue
 
@@ -31,6 +28,8 @@ class CartFragment : Fragment() {
     private val binding get() = _binding!!
     private var discountValue: Float = 0.0f
     private lateinit var cartAdapter: CartAdapter
+    private var totalPrice = 0.0f
+    private var totalAmount = 0.0f
 
     @SuppressLint("SetTextI18n")
     override fun onCreateView(
@@ -68,16 +67,14 @@ class CartFragment : Fragment() {
                 binding.continueTextView.visibility = View.VISIBLE
                 cartAdapter.changeList(it as MutableList<ItemCart>)
 
-                var totalAmount = 0.0f
-                var totalPrice = 0.0f
+                totalAmount = 0.0f
+                totalPrice = 0.0f
                 for (item in it) {
                     if (item.price != null && item.item_number != null)
                         totalPrice += item.price.toFloat().times(item.item_number!!)
                 }
-                totalAmount = totalPrice - discountValue.absoluteValue
-                binding.totalPriceTextView.text = "$totalPrice  L.E"
-                binding.totalAmountTextView.text = "$totalAmount  L.E"
-                binding.discountTextView.text = "$discountValue L.E"
+                setPriceDetails()
+
             } else {
                 binding.emptyCartLottieView.visibility = View.VISIBLE
                 binding.continueShoppingButton.visibility = View.VISIBLE
@@ -97,9 +94,12 @@ class CartFragment : Fragment() {
             val fragment = CouponBottomSheetDialogFragment {
                 binding.couponTextView.text = it.title
                 discountValue = (it.value)?.toFloat() ?: 0.0f
-                binding.discountTextView.text = "$discountValue L.E"
+                totalAmount = 0.0f
+
+                setPriceDetails()
+
             }
-            fragment.show(childFragmentManager, "Address")
+            fragment.show(childFragmentManager, "coupon")
         }
 
         binding.continueShoppingButton.setOnClickListener {
@@ -113,10 +113,17 @@ class CartFragment : Fragment() {
         viewModel.loadUserName()
         binding.continueTextView.setOnClickListener {
             val intent = Intent(context, CheckoutActivity::class.java)
-            intent.putExtra("order", viewModel.addUserOrder(discountValue))//50 is total price)
+            intent.putExtra("order", viewModel.addUserOrder(discountValue))
             requireActivity().startActivity(intent)
         }
         return root
+    }
+
+    private fun setPriceDetails() {
+        totalAmount = totalPrice - discountValue.absoluteValue
+        binding.totalPriceTextView.text = "$totalPrice  L.E"
+        binding.totalAmountTextView.text = "$totalAmount  L.E"
+        binding.discountTextView.text = "$discountValue L.E"
     }
 
     override fun onDestroyView() {

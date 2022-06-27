@@ -5,14 +5,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import com.example.amunstore.data.model.cart.ItemCart
-import com.example.amunstore.data.model.draftorder.DraftOrderLineItemModel
-import com.example.amunstore.data.model.draftorder.DraftOrderRequest
-import com.example.amunstore.data.model.draftorder.DraftOrderRequestCustomer
-import com.example.amunstore.data.model.draftorder.DraftOrderRequestModel
 import com.example.amunstore.data.model.order.*
-import com.example.amunstore.data.presistentstorage.sharedprefs.UserSharedPreferences
 import com.example.amunstore.data.repositories.cart.CartRepository
-import com.example.amunstore.data.repositories.draftorder.DraftOrderRepository
 import com.example.amunstore.data.repositories.user.UserRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
@@ -21,8 +15,7 @@ import javax.inject.Inject
 class CartViewModel @Inject constructor(
     private val userRepository: UserRepository,
     private val cartRepository: CartRepository,
-    private val draftOrderRepository: DraftOrderRepository,
-    private val sharedPreferences: UserSharedPreferences,
+
 ) : ViewModel() {
 
     var cartItems = MutableLiveData<List<ItemCart>>()
