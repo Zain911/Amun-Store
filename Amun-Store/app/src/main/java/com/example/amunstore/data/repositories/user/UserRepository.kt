@@ -49,6 +49,11 @@ class UserRepository @Inject constructor(
         return sharedPref.getCustomerId() != -1L
     }
 
+    override fun setUserLoggedIn(boolean: Boolean) {
+        sharedPref.setUserLoggedIn(boolean)
+    }
+
+
     override fun getUser(): User {
         TODO("Implement the return of user based on room or shared prefs")
     }

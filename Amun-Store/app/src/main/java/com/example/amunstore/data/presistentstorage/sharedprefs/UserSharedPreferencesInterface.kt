@@ -15,5 +15,7 @@ interface UserSharedPreferencesInterface {
     fun getCartDraftOrderId(): String
 
     fun setFavouriteOrderId(id: String)
-    fun getFavouriteOrderId():String
+    fun getFavouriteOrderId(): String
+
+    fun setUserLoggedIn(boolean: Boolean)
 }

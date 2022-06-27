@@ -16,7 +16,7 @@ class CartViewModel @Inject constructor(
     private val userRepository: UserRepository,
     private val cartRepository: CartRepository,
 
-) : ViewModel() {
+    ) : ViewModel() {
 
     var cartItems = MutableLiveData<List<ItemCart>>()
 
@@ -59,12 +59,14 @@ class CartViewModel @Inject constructor(
     }
 
     suspend fun getUserAddresses() {
-        val addresses = userRepository.getUserAddresses(userRepository.getCustomerId())
-        val addressesFiltered = addresses.addresses.filter {
-            it.default == true
+        if (userRepository.getCustomerId() != -1L) {
+            val addresses = userRepository.getUserAddresses(userRepository.getCustomerId())
+            val addressesFiltered = addresses.addresses.filter {
+                it.default == true
+            }
+            if (addressesFiltered.isNotEmpty())
+                userAddress.postValue(addressesFiltered[0].address1)
         }
-        if (addressesFiltered.isNotEmpty())
-            userAddress.postValue(addressesFiltered[0].address1)
     }
 
     fun addUserOrder(discount: Float): AddOrderRequestModel {
@@ -84,5 +86,8 @@ class CartViewModel @Inject constructor(
         )
         return order
     }
+
+
+    fun isUserLoggedIn() = userRepository.isUserLoggedIn()
 
 }

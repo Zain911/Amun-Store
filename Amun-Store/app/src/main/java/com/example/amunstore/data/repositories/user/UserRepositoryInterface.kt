@@ -17,6 +17,8 @@ interface UserRepositoryInterface {
 
     fun isUserLoggedIn(): Boolean
 
+    fun setUserLoggedIn(boolean: Boolean)
+
     fun getUser(): User
 
     suspend fun getUserAddresses(customerId: Long): AddressResponse

@@ -70,8 +70,8 @@
                     android:layout_height="wrap_content"
                     android:lines="2"
                     android:paddingEnd="8dp"
-                    android:text="addre adss in adress  in  a dress in adress  in  a"
                     app:layout_constraintEnd_toStartOf="@+id/changeAddressAppCompactButton"
+                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="@+id/customerNameTextView"
                     app:layout_constraintTop_toBottomOf="@+id/customerNameTextView" />
 

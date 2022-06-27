@@ -6,14 +6,19 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import com.example.amunstore.MainActivity
+import com.example.amunstore.R
 import com.example.amunstore.data.model.cart.ItemCart
 import com.example.amunstore.databinding.FragmentCartBinding
+import com.example.amunstore.ui.auth.AuthActivity
 import com.example.amunstore.ui.cart.addresses.AddressesBottomSheetDialogFragment
 import com.example.amunstore.ui.cart.coupon.CouponBottomSheetDialogFragment
+import com.example.amunstore.ui.intro.IntroActivity
 import com.example.amunstore.ui.wallet.activity.CheckoutActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -112,9 +117,17 @@ class CartFragment : Fragment() {
 
         viewModel.loadUserName()
         binding.continueTextView.setOnClickListener {
-            val intent = Intent(context, CheckoutActivity::class.java)
-            intent.putExtra("order", viewModel.addUserOrder(discountValue))
-            requireActivity().startActivity(intent)
+            if (viewModel.isUserLoggedIn()) {
+                val intent = Intent(context, CheckoutActivity::class.java)
+                intent.putExtra("order", viewModel.addUserOrder(discountValue))
+                requireActivity().startActivity(intent)
+            } else {
+                startActivity(Intent(context, AuthActivity::class.java))
+            }
+        }
+
+        if (!viewModel.isUserLoggedIn()) {
+            binding.containerAddressConstraintLayout.visibility = View.GONE
         }
         return root
     }
@@ -126,9 +139,9 @@ class CartFragment : Fragment() {
         binding.discountTextView.text = "$discountValue L.E"
     }
 
+
     override fun onDestroyView() {
         super.onDestroyView()
-
         _binding = null
     }
 
