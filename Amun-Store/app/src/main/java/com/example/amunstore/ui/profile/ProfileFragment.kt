@@ -101,7 +101,7 @@ class ProfileFragment : Fragment() {
         }
 
         binding.settingImageView.setOnClickListener{
-            findNavController().navigate(R.id.addressesFragment)
+            findNavController().navigate(R.id.settingsFragment)
         }
 
         viewModel.isUserLoggedIn()

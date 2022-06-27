@@ -139,6 +139,11 @@
         android:name="com.example.amunstore.ui.profile.address.AddressesFragment"
         android:label="addressesFragment"
         tools:layout="@layout/fragment_addresses" />
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.example.amunstore.ui.settings.SettingsFragment"
+        android:label="fragment_settings"
+        tools:layout="@layout/fragment_settings" />
 
 
 </navigation>
