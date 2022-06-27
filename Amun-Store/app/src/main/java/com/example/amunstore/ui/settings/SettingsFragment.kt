@@ -42,7 +42,7 @@ class SettingsFragment : Fragment() {
         }
 
         binding.cvFAQ.setOnClickListener {
-
+            findNavController().navigate(R.id.FAQFragment)
         }
 
         binding.signout.setOnClickListener {
