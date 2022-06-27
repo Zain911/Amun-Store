@@ -21,7 +21,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:lottie_autoPlay="true"
         app:lottie_loop="false"
-        app:lottie_rawRes="@raw/payment" />
+        app:lottie_rawRes="@raw/no_connection" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/tryAgainAppCompactButton"
@@ -30,7 +30,7 @@
         android:background="@drawable/border_change_address"
         android:paddingStart="40dp"
         android:paddingEnd="40dp"
-        android:text="Try again"
+        android:text="@string/try_again"
         android:textAllCaps="false"
         android:textColor="@color/hyper_blue"
         android:textSize="12sp"

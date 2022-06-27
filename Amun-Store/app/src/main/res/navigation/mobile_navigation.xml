@@ -153,6 +153,11 @@
         android:name="com.example.amunstore.ui.settings.AboutFragment"
         android:label="fragment_about"
         tools:layout="@layout/fragment_about" />
+    <fragment
+        android:id="@+id/developedByFragment"
+        android:name="com.example.amunstore.ui.settings.developed.DevelopedByFragment"
+        android:label="fragment_developed_by"
+        tools:layout="@layout/fragment_developed_by" />
 
 
 </navigation>

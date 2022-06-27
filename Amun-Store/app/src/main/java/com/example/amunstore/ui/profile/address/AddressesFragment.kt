@@ -28,7 +28,7 @@ class AddressesFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View {
         _binding = FragmentAddressesBinding.inflate(inflater, container, false)
         val root: View = binding.root
@@ -66,6 +66,7 @@ class AddressesFragment : Fragment() {
             addressAdapter.changeList(it as MutableList)
         }
 
+        binding.toolbarTitle.setOnClickListener { findNavController().popBackStack() }
         return root
     }
 
