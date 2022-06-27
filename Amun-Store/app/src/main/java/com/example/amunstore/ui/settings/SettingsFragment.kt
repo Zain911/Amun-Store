@@ -35,10 +35,11 @@ class SettingsFragment : Fragment() {
 
         }
         binding.cvProfile.setOnClickListener {
-
+            findNavController().navigate(R.id.navigation_notifications)
         }
 
         binding.cvAbout.setOnClickListener {
+            findNavController().navigate(R.id.aboutFragment)
         }
 
         binding.cvFAQ.setOnClickListener {
@@ -49,6 +50,7 @@ class SettingsFragment : Fragment() {
 
 
         }
+        binding.backImageView.setOnClickListener { findNavController().popBackStack() }
     }
 
 

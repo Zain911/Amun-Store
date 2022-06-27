@@ -148,6 +148,11 @@
         android:id="@+id/FAQFragment"
         android:name="com.example.shopy.ui.settings.FAQFragment"
         android:label="FAQFragment" />
+    <fragment
+        android:id="@+id/aboutFragment"
+        android:name="com.example.amunstore.ui.settings.AboutFragment"
+        android:label="fragment_about"
+        tools:layout="@layout/fragment_about" />
 
 
 </navigation>

@@ -38,13 +38,13 @@ class ProfileFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View {
 
         _binding = FragmentProfileBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        orderAdapter = OrdersAdapter(arrayListOf(),{},{})
+        orderAdapter = OrdersAdapter(arrayListOf(), {}, {})
         favouriteListAdapter = FavouriteListAdapter(arrayListOf(), {
             viewModel.removeItemFromFavourites(it)
         }, {
@@ -100,10 +100,11 @@ class ProfileFragment : Fragment() {
             findNavController().navigate(R.id.ordersFragment)
         }
 
-        binding.settingImageView.setOnClickListener{
-            findNavController().navigate(R.id.settingsFragment)
-        }
-
+        /* binding.settingImageView.setOnClickListener{
+             findNavController().navigate(R.id.settingsFragment)
+         }
+ */
+        binding.backImageView.setOnClickListener { findNavController().popBackStack() }
         viewModel.isUserLoggedIn()
 
         return root

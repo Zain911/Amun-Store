@@ -181,7 +181,7 @@
     <string name="noConnection">No Internet connection</string>
     <string name="connected">connected</string>
     <string name="egp">EGP</string>
-    <string name="edit_profile">profile</string>
+    <string name="edit_profile">Profile</string>
     <string name="address">My Addresses</string>
     <string name="faq">FAQ</string>
     <string name="about_shopy">About Amoun</string>
@@ -194,5 +194,8 @@
     <string name="edit_address">Edit Address</string>
     <string name="saved_addresses">Saved Addresses</string>
     <string name="setAsDefault">Set Default</string>
+    <string name="about_us">About Amun</string>
+    <string name="about_us_tv"><![CDATA[Amun is a unique and modern e-commerce mobile application built with users in mind. It offers high level of interactivity and optimum performance to ensure user satisfaction. It is perfect for your digital store, watch store, men store, women store, clothing store, furniture store, bookstore, cosmetics shop, luxury jewelry & accessories store and you name it. Furthermore, this amazing platform comes with lots of features –cart, fast search, filter and sorting options, Slider with smooth transition effects and a lot more. You have all the power to make an amazing, fast, user friendly, secure ecommerce store that your customers will love to browse and buy from. Let’s experience this awesomeness and celebrate your growth with Amun ]]></string>
+    <string name="settings">Settings</string>
 
 </resources>

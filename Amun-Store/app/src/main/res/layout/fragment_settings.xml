@@ -7,12 +7,36 @@
     android:background="@color/gray_light"
     tools:context=".ui.settings.SettingsFragment">
 
+    <TextView
+        android:id="@+id/toolbar_title"
+        android:layout_width="match_parent"
+        android:layout_height="54dp"
+        android:background="@color/gray"
+        android:gravity="center"
+        android:text="@string/settings"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/backImageView"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:paddingStart="12dp"
+        android:src="@drawable/ic_baseline_arrow_back_ios_24"
+        app:layout_constraintBottom_toBottomOf="@+id/toolbar_title"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/toolbar_title"
+        app:tint="@color/white" />
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@id/signout"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@id/toolbar_title">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -270,10 +294,11 @@
     </ScrollView>
 
 
-    <Button
+    <TextView
         android:id="@+id/signout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="12dp"
         android:elevation="8dp"
         android:gravity="center"
         android:padding="8dp"
@@ -281,7 +306,6 @@
         android:textAllCaps="true"
         android:textColor="@color/removeRed"
         android:textSize="16sp"
-
         app:backgroundTint="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
