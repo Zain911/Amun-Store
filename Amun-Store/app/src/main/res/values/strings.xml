@@ -180,5 +180,6 @@
     <string name="content_slider_1">navigation and search for exactly what you want with multiple filtration way.</string>
     <string name="noConnection">No Internet connection</string>
     <string name="connected">connected</string>
+    <string name="egp">EGP</string>
 
 </resources>

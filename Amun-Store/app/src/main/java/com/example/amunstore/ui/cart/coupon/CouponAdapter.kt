@@ -55,6 +55,7 @@ class CouponAdapter(
                 clipboard?.setPrimaryClip(clip)
                 Toast.makeText(context, "Applied", Toast.LENGTH_SHORT).show()
 
+
             }
 
             couponClicked(couponList[position])
