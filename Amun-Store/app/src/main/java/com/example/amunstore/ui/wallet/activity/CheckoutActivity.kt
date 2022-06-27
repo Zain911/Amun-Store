@@ -39,7 +39,6 @@ import com.google.android.gms.wallet.PaymentData
 import dagger.hilt.android.AndroidEntryPoint
 import org.json.JSONException
 import org.json.JSONObject
-import kotlin.math.absoluteValue
 
 /**
  * Checkout implementation for the app
@@ -52,9 +51,10 @@ class CheckoutActivity : AppCompatActivity() {
     private lateinit var layout: ActivityCheckoutBinding
     private lateinit var googlePayButton: View
 
-    private lateinit var price: String
+    private var price: Double = 0.0
+    private var disscount: Double = 0.0
     private lateinit var address: String
-    private lateinit var myOrder:AddOrderRequestModel
+    private lateinit var myOrder: AddOrderRequestModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -65,20 +65,36 @@ class CheckoutActivity : AppCompatActivity() {
 
         // Setup buttons
         googlePayButton = layout.googlePayButton.root
-        googlePayButton.setOnClickListener { requestPayment(myOrder) }
+        googlePayButton.setOnClickListener {
+            if (myOrder.order?.shippingAddress?.address1.isNullOrEmpty())
+                Toast.makeText(this, getString(R.string.no_address_available), Toast.LENGTH_LONG)
+                    .show()
+            else
+                requestPayment(myOrder)
+        }
 
         // Check Google Pay availability
         model.canUseGooglePay.observe(this, Observer(::setGooglePayAvailable))
 
-        price = myOrder.order?.totalPrice.toString()
+        price = myOrder.order?.totalPrice!!.toDouble()
+        disscount = myOrder.order?.totalDiscounts!!.toDouble()
         address = myOrder.order?.shippingAddress?.address1.toString()
 
-        layout.detailPrice.text = "price: $price L.E"
+        if (price - disscount > 0)
+            layout.detailPrice.text = "price: ${price + disscount} L.E"
+        else
+            layout.detailPrice.text = "price: ${0} L.E"
+        if (myOrder.order?.shippingAddress?.address1.isNullOrEmpty())
+            layout.detailAddress.text = getString(R.string.no_address_available)
         layout.detailAddress.text = "address: $address"
 
         val cashOnDeliveryButton = layout.cashOnDeliveryButton
         cashOnDeliveryButton.setOnClickListener {
-            completePayment("pending")
+            if (myOrder.order?.shippingAddress?.address1.isNullOrEmpty())
+                Toast.makeText(this, getString(R.string.no_address_available), Toast.LENGTH_LONG)
+                    .show()
+            else
+                completePayment("pending")
         }
     }
 
@@ -158,7 +174,7 @@ class CheckoutActivity : AppCompatActivity() {
             }
         }
 
-    private fun completePayment(financial:String) {
+    private fun completePayment(financial: String) {
         model.createOrder(myOrder, financial_status = financial)
         val intent = Intent(application, MainActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
