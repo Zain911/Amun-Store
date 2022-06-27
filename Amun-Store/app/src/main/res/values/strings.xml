@@ -181,6 +181,12 @@
     <string name="noConnection">No Internet connection</string>
     <string name="connected">connected</string>
     <string name="egp">EGP</string>
+    <string name="edit_profile">profile</string>
+    <string name="address">My Addresses</string>
+    <string name="faq">FAQ</string>
+    <string name="about_shopy">About Amoun</string>
+    <string name="developed_by">Developed By</string>
+    <string name="sign_out">SIGN OUT</string>
 
     <string name="addresses">Addresses</string>
     <string name="new_address">New Address</string>
