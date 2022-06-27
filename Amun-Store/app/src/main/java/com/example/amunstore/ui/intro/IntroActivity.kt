@@ -12,15 +12,18 @@ import android.view.WindowManager
 import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager.widget.PagerAdapter
 import androidx.viewpager.widget.ViewPager
 import androidx.viewpager.widget.ViewPager.OnPageChangeListener
+import com.example.amunstore.MainActivity
 import com.example.amunstore.R
 import com.example.amunstore.databinding.ActivityIntroBinding
-import com.example.amunstore.databinding.ActivityMainBinding
 import com.example.amunstore.ui.auth.AuthActivity
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class IntroActivity : AppCompatActivity() {
     private lateinit var binding: ActivityIntroBinding
     private var viewPager: ViewPager? = null
@@ -30,8 +33,14 @@ class IntroActivity : AppCompatActivity() {
     private lateinit var layouts: IntArray
     private var btnSkip: Button? = null
     private var btnNext: Button? = null
+    private val viewModel: IntroViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        if (viewModel.isUserLoggedIn()) {
+            val intent = Intent(application, MainActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+            startActivity(intent)
+        }
         window.decorView.systemUiVisibility =
             View.SYSTEM_UI_FLAG_LAYOUT_STABLE or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
         binding = ActivityIntroBinding.inflate(layoutInflater)
