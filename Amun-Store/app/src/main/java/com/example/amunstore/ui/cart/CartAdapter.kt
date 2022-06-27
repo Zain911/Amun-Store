@@ -3,6 +3,7 @@ package com.example.amunstore.ui.cart
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.amunstore.R
@@ -17,7 +18,7 @@ class CartAdapter(
     val increaseItem: (ItemCart) -> Unit,
     val decreaseItem: (ItemCart) -> Unit,
 
-) :
+    ) :
     RecyclerView.Adapter<CartAdapter.ViewHolder>() {
     private var removedPosition = 0
     lateinit var removedObject: ItemCart
@@ -62,7 +63,7 @@ class CartAdapter(
             itemCartList.removeAt(holder.adapterPosition)
             notifyItemRemoved(holder.adapterPosition)
             Snackbar.make(
-               it,
+                it,
                 "${removedObject.title?.slice(0..7)} removed",
                 Snackbar.LENGTH_LONG
             ).apply {
@@ -88,14 +89,26 @@ class CartAdapter(
         holder.view.increaseButton.setOnClickListener {
 
             increaseItem(itemCartList[holder.adapterPosition])
-            holder.view.decreaseButton.isEnabled = itemCartList[holder.adapterPosition].item_number != 0
+            holder.view.decreaseButton.isEnabled =
+                itemCartList[holder.adapterPosition].item_number != 0
         }
 
         holder.view.decreaseButton.setOnClickListener {
             decreaseItem(itemCartList[holder.adapterPosition])
-            holder.view.decreaseButton.isEnabled = itemCartList[holder.adapterPosition].item_number != 0
+            holder.view.decreaseButton.isEnabled =
+                itemCartList[holder.adapterPosition].item_number != 0
         }
 
+        holder.view.itemCartImage.setOnClickListener {
+            val action = itemCartList[position].id?.let { it1 ->
+                CartFragmentDirections.actionCartFragmentToProductDetailsFragment(it1)
+            }
+            it?.let { it1 ->
+                action?.let { it2 ->
+                    Navigation.findNavController(it1).navigate(it2)
+                }
+            }
+        }
     }
 
 
