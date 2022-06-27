@@ -28,6 +28,7 @@ class SettingsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.cvDevelopedBy.setOnClickListener {
+            findNavController().navigate(R.id.developedByFragment)
         }
         binding.cvAddress.setOnClickListener {
 
