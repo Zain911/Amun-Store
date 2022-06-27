@@ -144,6 +144,10 @@
         android:name="com.example.amunstore.ui.settings.SettingsFragment"
         android:label="fragment_settings"
         tools:layout="@layout/fragment_settings" />
+    <fragment
+        android:id="@+id/FAQFragment"
+        android:name="com.example.shopy.ui.settings.FAQFragment"
+        android:label="FAQFragment" />
 
 
 </navigation>
