@@ -51,14 +51,14 @@
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:src="@drawable/ic_add"
-            app:tint="@color/hyber_blue" />
+            app:tint="@color/hyper_blue" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:text="Add New Address"
-            android:textColor="@color/hyber_blue"
+            android:textColor="@color/hyper_blue"
             android:textSize="18sp" />
     </LinearLayout>
 
@@ -69,7 +69,7 @@
         android:layout_marginTop="12dp"
         android:layout_marginBottom="8dp"
         android:background="@drawable/corner_raduis_button"
-        android:backgroundTint="@color/hyber_blue"
+        android:backgroundTint="@color/hyper_blue"
         android:minHeight="50dp"
         android:text="@string/continue_address"
         android:textColor="@color/white"

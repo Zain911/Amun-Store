@@ -57,4 +57,9 @@ interface UserRepositoryInterface {
         draftOrderId: RequestCartDraftOrder,
     ): Response<CustomerSingleResponse>
 
+    suspend fun deleteUserAddress(customerId: String, addressId: String)
+
+
+    suspend fun setAddressAsDefault(customerId: String, addressId: String)
+
 }

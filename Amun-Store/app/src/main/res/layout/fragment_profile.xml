@@ -14,7 +14,7 @@
             android:id="@+id/userDataGroup"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:constraint_referenced_ids="ordersMoreTextView,ordersRecyclerView,ordersMoreTextView,wishListTextView,wishListRecyclerView,wishListMoreTextView" />
+            app:constraint_referenced_ids="ordersMoreTextView,ordersRecyclerView,ordersMoreTextView,wishListTextView,wishListRecyclerView" />
 
         <TextView
             android:id="@+id/userNameWelcomeTextView"
@@ -26,6 +26,15 @@
             android:textColor="@color/black"
             android:textSize="18sp"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/settingImageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="24dp"
+            android:src="@drawable/ic_baseline_settings_24"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
@@ -60,16 +69,6 @@
             app:layout_constraintBottom_toBottomOf="@id/ordersTextView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/ordersTextView" />
-
-        <TextView
-            android:id="@+id/wishListMoreTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="24dp"
-            android:text="@string/more"
-            app:layout_constraintBottom_toBottomOf="@id/wishListTextView"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/wishListTextView" />
 
         <TextView
             android:id="@+id/wishListTextView"

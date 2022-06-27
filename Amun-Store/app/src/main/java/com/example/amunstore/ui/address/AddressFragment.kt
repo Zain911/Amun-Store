@@ -11,8 +11,6 @@ import androidx.lifecycle.lifecycleScope
 import com.example.amunstore.data.model.address.AddAddress
 import com.example.amunstore.data.model.address.AddAddressRequestModel
 import com.example.amunstore.databinding.FragmentAddAddressBinding
-import com.google.gson.Gson
-import com.google.gson.GsonBuilder
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -32,7 +30,7 @@ class AddressFragment : Fragment() {
         _binding = FragmentAddAddressBinding.inflate(inflater, container, false)
 
 
-//FixMe for testing
+        //TODO for testing
         binding.firstNameEdt.setText("Eslam")
         binding.lastNameEdt.setText("Eslam")
         binding.phoneEdt.setText("0102114578")

@@ -32,7 +32,7 @@
         android:paddingEnd="40dp"
         android:text="Try again"
         android:textAllCaps="false"
-        android:textColor="@color/hyber_blue"
+        android:textColor="@color/hyper_blue"
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/noConnectionLottieAnimation"

@@ -31,7 +31,7 @@
         android:background="@drawable/border_change_address"
         android:text="@string/apply"
         android:textAllCaps="false"
-        android:textColor="@color/hyber_blue"
+        android:textColor="@color/hyper_blue"
         android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

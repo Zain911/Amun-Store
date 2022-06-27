@@ -38,6 +38,9 @@
         <action
             android:id="@+id/action_navigation_notifications_to_productDetailsFragment"
             app:destination="@id/productDetailsFragment" />
+        <action
+            android:id="@+id/action_navigation_notifications_to_addressesFragment"
+            app:destination="@id/addressesFragment" />
     </fragment>
 
     <fragment
@@ -130,6 +133,12 @@
         android:name="com.example.amunstore.ui.main.NoConnectionFragment"
         android:label="NoConnectionFragment"
         tools:layout="@layout/fragment_connection" />
+
+    <fragment
+        android:id="@+id/addressesFragment"
+        android:name="com.example.amunstore.ui.profile.address.AddressesFragment"
+        android:label="addressesFragment"
+        tools:layout="@layout/fragment_addresses" />
 
 
 </navigation>
