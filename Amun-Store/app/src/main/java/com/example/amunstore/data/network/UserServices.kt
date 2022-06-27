@@ -45,4 +45,16 @@ interface UserServices {
         @Body customer: RequestFavouriteDraftOrder,
     ): Response<CustomerSingleResponse>
 
+    @DELETE("customers/{customer_id}/addresses/{address_id}.json")
+    suspend fun deleteUserAddress(
+        @Path("customer_id") customer_id: String,
+        @Path("address_id") addressId: String
+    )
+
+    @PUT("customers/{customer_id}/addresses/{address_id}/default.json")
+    suspend fun setAddressAsDefault(
+        @Path("customer_id") customer_id: String,
+        @Path("address_id") addressId: String
+    )
+
 }

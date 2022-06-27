@@ -59,7 +59,7 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="helperTextTextColor">@android:color/holo_red_dark</item>
         <item name="boxStrokeColor">@color/gray_medium</item>
-        <item name="hintTextColor">@color/hyber_blue</item>
+        <item name="hintTextColor">@color/hyper_blue</item>
 
     </style>
 

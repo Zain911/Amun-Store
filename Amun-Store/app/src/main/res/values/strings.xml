@@ -181,4 +181,11 @@
     <string name="noConnection">No Internet connection</string>
     <string name="connected">connected</string>
 
+    <string name="addresses">Addresses</string>
+    <string name="new_address">New Address</string>
+    <string name="default_address">Default Address</string>
+    <string name="edit_address">Edit Address</string>
+    <string name="saved_addresses">Saved Addresses</string>
+    <string name="setAsDefault">Set Default</string>
+
 </resources>

@@ -97,16 +97,24 @@ class UserRepository @Inject constructor(
     override fun getFavouriteDraftOrderIdFromSharedPrefs(): String =
         sharedPref.getFavouriteOrderId()
 
-
     override suspend fun setUserFavouriteDraftOrderId(
         customerId: String,
         draftOrderId: RequestFavouriteDraftOrder,
-    ) = networkServices.setFavouriteDraftOrdersId(customerId,
-        draftOrderId)
+    ) = networkServices.setFavouriteDraftOrdersId(
+        customerId,
+        draftOrderId
+    )
 
     override suspend fun setUserCartDraftOrderId(
         customerId: String,
         draftOrderId: RequestCartDraftOrder,
     ) = networkServices.setCartDraftOrdersId(customerId, draftOrderId)
+
+    override suspend fun deleteUserAddress(customerId: String, addressId: String) =
+        networkServices.deleteUserAddress(customerId, addressId)
+
+    override suspend fun setAddressAsDefault(customerId: String, addressId: String) {
+        networkServices.setAddressAsDefault(customerId, addressId)
+    }
 
 }
