@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.example.amunstore.data.model.address.AddAddress
 import com.example.amunstore.data.model.address.AddAddressRequestModel
 import com.example.amunstore.databinding.FragmentAddAddressBinding
@@ -31,7 +32,7 @@ class AddressFragment : Fragment() {
 
 
         //TODO for testing
-        binding.firstNameEdt.setText("Eslam")
+      /*  binding.firstNameEdt.setText("Eslam")
         binding.lastNameEdt.setText("Eslam")
         binding.phoneEdt.setText("0102114578")
         binding.cityEdt.setText("Eslam")
@@ -39,7 +40,7 @@ class AddressFragment : Fragment() {
         binding.postCodeEdt.setText("G1R 4P5")
         binding.addressEdt.setText("Eslam1")
         binding.address2Edt.setText("Eslam")
-        binding.countryEdt.setText("Egypt")
+        binding.countryEdt.setText("Egypt")*/
 
         intiFocusListener()
         binding.saveAddressButton.setOnClickListener { submitForm() }
@@ -75,8 +76,8 @@ class AddressFragment : Fragment() {
         val validCountry = binding.countryTextInput.helperText == null
 
         viewLifecycleOwner.lifecycleScope.launch {
-            if (validFirstName && validLastName && validPhone && validCity && validState && validPostCode && validCountry)
-                viewModel.addNewAddress(
+            if (validFirstName && validLastName && validPhone && validCity && validState && validPostCode && validCountry) {
+                val result = viewModel.addNewAddress(
                     AddAddressRequestModel(
                         address = AddAddress(
                             firstName = binding.firstNameEdt.text.toString(),
@@ -89,9 +90,15 @@ class AddressFragment : Fragment() {
                             phone = binding.phoneEdt.text.toString()
                         )
                     )
-
                 )
-            else
+                if (result.equals("Done"))
+                { findNavController().popBackStack()
+                    Toast.makeText(context, "add successfully ", Toast.LENGTH_SHORT).show()
+
+                }
+                else
+                    Toast.makeText(context, ""+result, Toast.LENGTH_SHORT).show()
+            } else
                 Toast.makeText(context, "Invalid Address", Toast.LENGTH_SHORT).show()
         }
     }
