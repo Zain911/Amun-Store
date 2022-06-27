@@ -39,7 +39,7 @@ class SigninFragment : Fragment() {
         _binding = FragmentLoginBinding.inflate(inflater, container, false)
         val root: View = binding.root
         loginButton = binding.loginLogWithFacebookBtn
-        loginButton.fragment = this@SigninFragment
+        loginButton.setFragment(this@SigninFragment)
         loginButton.setPermissions(listOf(EMAIL))
         callbackManager = CallbackManager.Factory.create()
 
