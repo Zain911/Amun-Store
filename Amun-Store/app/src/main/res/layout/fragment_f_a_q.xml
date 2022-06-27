@@ -20,6 +20,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
+        android:id="@+id/backImageView"
         android:layout_width="36dp"
         android:layout_height="36dp"
         android:paddingStart="12dp"
