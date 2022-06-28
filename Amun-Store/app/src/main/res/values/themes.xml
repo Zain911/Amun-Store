@@ -13,10 +13,6 @@
         <!-- Status bar color. -->
         <item name="android:windowLightStatusBar" tools:ignore="NewApi">true</item>
         <item name="android:statusBarColor">@color/gray_light</item>
-
-
-
-
     </style>
 
     <style name="CustomToolbarStyle">
@@ -31,28 +27,30 @@
         <item name="tabInlineLabel">true</item>
         <item name="indicatorInset">4dp</item>
         <item name="tabIndicatorHeight">2dp</item>
-        <item name="tabIndicatorAnimationMode"> elastic</item>
+        <item name="tabIndicatorAnimationMode">elastic</item>
     </style>
 
     <style name="MaterialComponents_Chip_Thin" parent="@style/Widget.MaterialComponents.Chip.Entry">
         <item name="chipMinHeight">24dp</item>
         <item name="chipMinTouchTargetSize">24dp</item>
         <item name="chipIconSize">18dp</item>
-        <item name="android:textAppearance">@style/TextAppearance.MaterialComponents.Body2_Thin</item>
-        <item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlay.MaterialComponents.Chip_Thin</item>
+        <item name="android:textAppearance">@style/TextAppearance.MaterialComponents.Body2_Thin
+        </item>
+        <item name="shapeAppearanceOverlay">
+            @style/ShapeAppearanceOverlay.MaterialComponents.Chip_Thin
+        </item>
     </style>
+
     <style name="ShapeAppearanceOverlay.MaterialComponents.Chip_Thin" parent="">
         <item name="cornerSize">12dp</item>
     </style>
+
     <style name="TextAppearance.MaterialComponents.Body2_Thin" parent="TextAppearance.MaterialComponents.Body2">
         <item name="android:textSize">12sp</item>
     </style>
-    <style name="AddressTextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense" >
+
+    <style name="AddressTextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
         <item name="layout_constraintEnd_toEndOf">parent</item>
-        <item name="layout_constraintStart_toStartOf">parent</item>
-<!--
-        <item name="android:background">@drawable/border_background_add_address</item>
--->
         <item name="android:layout_margin">8dp</item>
         <item name="android:elevation">4dp</item>
         <item name="android:layout_width">match_parent</item>
@@ -60,15 +58,14 @@
         <item name="helperTextTextColor">@android:color/holo_red_dark</item>
         <item name="boxStrokeColor">@color/gray_medium</item>
         <item name="hintTextColor">@color/hyper_blue</item>
-
     </style>
 
-    <style name="CustomBottomSheetDialogTheme" parent="Theme.Design.Light.BottomSheetDialog">
-        <item name="bottomSheetStyle">@style/CustomBottomSheetStyle</item>
+    <style name="AlertDialogTheme" parent="ThemeOverlay.AppCompat.Dialog.Alert">
+        <item name="colorPrimary">@color/hyper_blue</item>
+        <item name="colorOnPrimary">@color/hyper_blue</item>
     </style>
 
-    <style name="CustomBottomSheetStyle" parent="Widget.Design.BottomSheet.Modal">
-        <item name="android:background">@android:color/transparent</item>
-    </style>
+
+
 
 </resources>

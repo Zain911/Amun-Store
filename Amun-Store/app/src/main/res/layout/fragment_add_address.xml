@@ -7,6 +7,7 @@
 
 
     <androidx.core.widget.NestedScrollView
+        android:id="@+id/nestedScrollView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="12dp"
@@ -18,7 +19,6 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-
             app:layout_constraintTop_toTopOf="parent">
 
             <androidx.constraintlayout.widget.Guideline
@@ -30,9 +30,9 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/firstNameInputText"
-                android:layout_width="0dp"
-
                 style="@style/AddressTextInputLayout"
+
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
                 app:layout_constraintEnd_toEndOf="@id/guideline1"
                 app:layout_constraintStart_toStartOf="parent"
@@ -51,12 +51,12 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/lastNameInputText"
-                android:layout_width="0dp"
                 style="@style/AddressTextInputLayout"
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="@id/guideline1">
+                app:layout_constraintStart_toStartOf="@id/guideline1"
+                app:layout_constraintTop_toTopOf="parent">
 
                 <EditText
                     android:id="@+id/lastName_edt"
@@ -83,6 +83,7 @@
                     android:backgroundTint="@color/white"
                     android:hint="@string/phone_number"
                     android:inputType="phone"
+                    android:maxLength="11"
                     android:singleLine="true"
                     android:textColorHint="@color/gray" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -100,6 +101,8 @@
                     android:layout_margin="8dp"
                     android:backgroundTint="@color/white"
                     android:hint="@string/city"
+
+                    android:singleLine="true"
                     android:textColorHint="@color/gray" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -115,6 +118,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
                     android:backgroundTint="@color/white"
+                    android:singleLine="true"
                     android:hint="@string/state_province_optional"
                     android:textColorHint="@color/gray" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -132,6 +136,7 @@
                     android:layout_margin="8dp"
                     android:backgroundTint="@color/white"
                     android:hint="@string/post_zip_code"
+                    android:singleLine="true"
                     android:textColorHint="@color/gray" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -148,6 +153,7 @@
                     android:layout_margin="8dp"
                     android:backgroundTint="@color/white"
                     android:hint="@string/address_line_1"
+                    android:singleLine="true"
                     android:textColorHint="@color/gray" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -164,6 +170,7 @@
                     android:layout_margin="8dp"
                     android:backgroundTint="@color/white"
                     android:hint="@string/address_line_2"
+                    android:singleLine="true"
                     android:textColorHint="@color/gray" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -181,6 +188,7 @@
                     android:layout_margin="8dp"
                     android:backgroundTint="@color/white"
                     android:hint="@string/country"
+                    android:singleLine="true"
                     android:textColorHint="@color/gray" />
             </com.google.android.material.textfield.TextInputLayout>
 

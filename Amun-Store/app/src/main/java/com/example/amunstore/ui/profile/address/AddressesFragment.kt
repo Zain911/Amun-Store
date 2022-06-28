@@ -1,5 +1,6 @@
 package com.example.amunstore.ui.profile.address
 
+import android.app.AlertDialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -43,10 +44,25 @@ class AddressesFragment : Fragment() {
                 viewModel.getUserAddresses()
             }
         }) {
-            lifecycleScope.launch {
-                viewModel.deleteUserAddress(it)
-                viewModel.getUserAddresses()
-            }
+
+            val builder =
+                AlertDialog.Builder(context , R.style.AlertDialogTheme)
+                    .setCancelable(false)
+                    .setMessage("Do you want to Delete this address?")
+                    .setPositiveButton("Yes") { dialog, _ ->
+                        lifecycleScope.launch {
+
+                            viewModel.deleteUserAddress(it)
+                            viewModel.getUserAddresses()
+                        }
+                        dialog.dismiss()
+                    }.setNegativeButton("Cancel") { dialog, _ ->
+                        dialog.dismiss()
+                    }
+
+            val alert = builder.create()
+            alert.show()
+
         }
 
         binding.addressesRecyclerView.adapter = addressAdapter

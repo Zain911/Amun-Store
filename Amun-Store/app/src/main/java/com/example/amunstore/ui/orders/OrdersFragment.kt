@@ -73,6 +73,10 @@ class OrdersFragment : Fragment() {
             viewModel.getUserOrders()
         }
 
+        binding.backImageView.setOnClickListener{
+            findNavController().popBackStack()
+        }
+
         return root
     }
 

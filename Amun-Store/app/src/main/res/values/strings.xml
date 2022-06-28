@@ -200,5 +200,6 @@
     <string name="try_again">Try again</string>
     <string name="continue_as_guest">Continue as Guest</string>
     <string name="no_address_available">no address available</string>
+    <string name="previousOrders">Previous Orders</string>
 
 </resources>

@@ -32,7 +32,7 @@ class AddressFragment : Fragment() {
 
 
         //TODO for testing
-      /*  binding.firstNameEdt.setText("Eslam")
+        binding.firstNameEdt.setText("Eslam")
         binding.lastNameEdt.setText("Eslam")
         binding.phoneEdt.setText("0102114578")
         binding.cityEdt.setText("Eslam")
@@ -40,7 +40,7 @@ class AddressFragment : Fragment() {
         binding.postCodeEdt.setText("G1R 4P5")
         binding.addressEdt.setText("Eslam1")
         binding.address2Edt.setText("Eslam")
-        binding.countryEdt.setText("Egypt")*/
+        binding.countryEdt.setText("Egypt")
 
         intiFocusListener()
         binding.saveAddressButton.setOnClickListener { submitForm() }
@@ -148,8 +148,8 @@ class AddressFragment : Fragment() {
         if (!phone.matches(".*[0-9].*".toRegex())) {
             return "Must be all Digits"
         }
-        if (phone.length != 10) {
-            return "Must be 10 Digits"
+        if (phone.length != 11) {
+            return "Must be 11 Digits"
         }
         return null
     }
@@ -196,7 +196,7 @@ class AddressFragment : Fragment() {
     private fun validateZipCode(): String? {
         val zipCode = binding.postCodeEdt.text
         if (zipCode.length < 4)
-            return "Enter valid ZIP coce"
+            return "Enter valid ZIP code"
         return null
     }
 

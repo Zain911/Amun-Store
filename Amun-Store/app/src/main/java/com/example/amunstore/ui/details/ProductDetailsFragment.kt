@@ -108,6 +108,7 @@ class ProductDetailsFragment : Fragment() {
 
         binding.productSaveButton.setOnClickListener {
             addProductToCart()
+            Toast.makeText(context, "Added to cart", Toast.LENGTH_SHORT).show()
         }
 
         viewModel.isProductInFavourite(productID = productID)
@@ -137,7 +138,8 @@ class ProductDetailsFragment : Fragment() {
                 maxItem = productDetails.product.variants[variantNumber].inventoryQuantity?.minus(1),
                 variant_id = productDetails.product.variants[variantNumber].id!!
             )
-        }?.let { it2 -> viewLifecycleOwner.lifecycleScope.launch { viewModel.addToCart(it2) } } }
+        }?.let { it2 -> viewLifecycleOwner.lifecycleScope.launch { viewModel.addToCart(it2) } }
+    }
 
     private fun addDots(currentImage: Int) {
         binding.productLinearLayoutDots.removeAllViews()
@@ -212,8 +214,9 @@ class ProductDetailsFragment : Fragment() {
                 binding.productOldPriceTxt.visibility = View.INVISIBLE
                 binding.productPricePercentTxt.visibility = View.INVISIBLE
             } else {
-                binding.productOldPriceTxt.text = it.product.variants[variantNumber].compareAtPrice + "L.E"
-                binding.productOldPriceTxt.paintFlags =  Paint.STRIKE_THRU_TEXT_FLAG
+                binding.productOldPriceTxt.text =
+                    it.product.variants[variantNumber].compareAtPrice + "L.E"
+                binding.productOldPriceTxt.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
                 binding.productOldPriceTxt.paintFlags = binding.productOldPriceTxt.paintFlags
                 val percent =
                     it.product.variants[variantNumber].price!!.toDouble() / it.product.variants[variantNumber].compareAtPrice?.toDouble()!! * 100
