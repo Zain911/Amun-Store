@@ -36,6 +36,7 @@
         </activity>
         <activity
             android:name=".ui.intro.IntroActivity"
+            android:noHistory="true"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"
             tools:ignore="LockedOrientationActivity" />

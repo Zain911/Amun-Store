@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/gray_light"
     tools:context=".ui.profile.ProfileFragment">
+
     <TextView
         android:id="@+id/toolbar_title"
         android:layout_width="match_parent"
@@ -29,103 +30,105 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/toolbar_title"
         app:tint="@color/white" />
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="12dp"
         android:background="@color/gray_light"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/toolbar_title">
-<androidx.constraintlayout.widget.ConstraintLayout
-    android:layout_width="match_parent"
-    android:layout_height="0dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp">
 
 
-        <androidx.constraintlayout.widget.Group
-            android:id="@+id/userDataGroup"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            <androidx.constraintlayout.widget.Group
+                android:id="@+id/userDataGroup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:constraint_referenced_ids="ordersMoreTextView,ordersRecyclerView,ordersMoreTextView,wishListTextView,wishListRecyclerView" />
 
-            app:constraint_referenced_ids="ordersMoreTextView,ordersRecyclerView,ordersMoreTextView,wishListTextView,wishListRecyclerView" />
+            <TextView
+                android:id="@+id/userNameWelcomeTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="12dp"
+                android:text="Welcome, Eslam"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/userNameWelcomeTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="24dp"
-            android:text="Welcome, Eslam"
-            android:textColor="@color/black"
-            android:textSize="18sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/toolbar_title" />
+            <ImageView
+                android:id="@+id/settingImageView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="24dp"
+                android:src="@drawable/ic_baseline_settings_24"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageView
-            android:id="@+id/settingImageView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="24dp"
-            android:src="@drawable/ic_baseline_settings_24"
-            android:visibility="gone"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            <TextView
+                android:id="@+id/ordersTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="@string/orders"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="@id/userNameWelcomeTextView"
+                app:layout_constraintTop_toBottomOf="@id/userNameWelcomeTextView" />
 
-        <TextView
-            android:id="@+id/ordersTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:text="@string/orders"
-            android:textColor="@color/black"
-            android:textSize="16sp"
-            app:layout_constraintStart_toStartOf="@id/userNameWelcomeTextView"
-            app:layout_constraintTop_toBottomOf="@id/userNameWelcomeTextView" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/ordersRecyclerView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="24dp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@id/userNameWelcomeTextView"
+                app:layout_constraintTop_toBottomOf="@id/ordersTextView" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/ordersRecyclerView"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:layout_marginEnd="24dp"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@id/userNameWelcomeTextView"
-            app:layout_constraintTop_toBottomOf="@id/ordersTextView" />
+            <TextView
+                android:id="@+id/ordersMoreTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="24dp"
+                android:padding="4dp"
+                android:text="@string/more"
+                app:layout_constraintBottom_toBottomOf="@id/ordersTextView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/ordersTextView" />
 
-        <TextView
-            android:id="@+id/ordersMoreTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="24dp"
-            android:padding="4dp"
-            android:text="@string/more"
-            app:layout_constraintBottom_toBottomOf="@id/ordersTextView"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/ordersTextView" />
+            <TextView
+                android:id="@+id/wishListTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="@string/wish_list"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="@id/ordersTextView"
+                app:layout_constraintTop_toBottomOf="@id/ordersRecyclerView" />
 
-        <TextView
-            android:id="@+id/wishListTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:text="@string/wish_list"
-            android:textColor="@color/black"
-            android:textSize="16sp"
-            app:layout_constraintStart_toStartOf="@id/ordersTextView"
-            app:layout_constraintTop_toBottomOf="@id/ordersRecyclerView" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/wishListRecyclerView"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="24dp"
-            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@id/userNameWelcomeTextView"
-            app:layout_constraintTop_toBottomOf="@id/wishListTextView"
-            app:spanCount="2"
-            tools:itemCount="4" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/wishListRecyclerView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="24dp"
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@id/userNameWelcomeTextView"
+                app:layout_constraintTop_toBottomOf="@id/wishListTextView"
+                app:spanCount="2"
+                tools:itemCount="4" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
 

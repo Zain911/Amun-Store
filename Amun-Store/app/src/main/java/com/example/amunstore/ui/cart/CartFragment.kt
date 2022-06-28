@@ -61,7 +61,8 @@ class CartFragment : Fragment() {
         }
 
         viewModel.userAddress.observe(viewLifecycleOwner) {
-            binding.addressTextView.text = it
+            binding.customerNameTextView.text = it.firstName + " " + it.lastName
+            binding.addressTextView.text = it.address1
         }
 
         viewModel.data.observe(viewLifecycleOwner) {
@@ -91,6 +92,7 @@ class CartFragment : Fragment() {
 
         binding.changeAddressAppCompactButton.setOnClickListener {
             val fragment = AddressesBottomSheetDialogFragment {
+                binding.customerNameTextView.text = it.firstName + " " + it.lastName
                 binding.addressTextView.text = it.address1
             }
             fragment.show(childFragmentManager, "Address")
@@ -100,9 +102,7 @@ class CartFragment : Fragment() {
                 binding.couponTextView.text = it.title
                 discountValue = (it.value)?.toFloat() ?: 0.0f
                 totalAmount = 0.0f
-
                 setPriceDetails()
-
             }
             fragment.show(childFragmentManager, "coupon")
         }

@@ -52,6 +52,9 @@ class AddressesFragment : Fragment() {
         binding.addressesRecyclerView.adapter = addressAdapter
 
         viewModel.defaultAddress.observe(viewLifecycleOwner) {
+
+            binding.addressContainerConstraintLayout.visibility = View.VISIBLE
+
             binding.defaultAddressTypeTextView.text = it.company ?: "Home"
             binding.defaultAddressNameTextView.text = it.firstName + " " + it.lastName
             binding.defaultAddressAddress1TextView.text =

@@ -21,7 +21,8 @@ class AddressesViewModel @Inject constructor(
 
         val (match, rest) = response.addresses.partition { it.default == true }
 
-        defaultAddress.postValue(match[0])
+        if (match.isNotEmpty())
+            defaultAddress.postValue(match[0])
         addressList.postValue(rest)
 
         Log.d("addresses", response.toString())

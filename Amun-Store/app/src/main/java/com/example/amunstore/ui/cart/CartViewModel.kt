@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
+import com.example.amunstore.data.model.address.Address
 import com.example.amunstore.data.model.cart.ItemCart
 import com.example.amunstore.data.model.order.*
 import com.example.amunstore.data.repositories.cart.CartRepository
@@ -23,7 +24,7 @@ class CartViewModel @Inject constructor(
     var data: LiveData<List<ItemCart>> = cartItems
 
     var userName = MutableLiveData<String>()
-    var userAddress = MutableLiveData<String>()
+    var userAddress = MutableLiveData<Address>()
 
     fun loadUserName() {
         userName.postValue(userRepository.getUserName())
@@ -65,7 +66,7 @@ class CartViewModel @Inject constructor(
                 it.default == true
             }
             if (addressesFiltered.isNotEmpty())
-                userAddress.postValue(addressesFiltered[0].address1)
+                userAddress.postValue(addressesFiltered[0])
         }
     }
 
@@ -80,7 +81,7 @@ class CartViewModel @Inject constructor(
         order.order = OrderRequest(
             customer = OrderCustomer(userRepository.getUserEmail()),
             lineItems = lineItems,
-            shippingAddress = OrderShippingAddress(userAddress.value),
+            shippingAddress = OrderShippingAddress(userAddress.value?.address1),
             totalPrice = totalPrice.toString(),
             totalDiscounts = discount.toString()
         )
