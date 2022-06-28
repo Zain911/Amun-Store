@@ -124,16 +124,18 @@ class CartFragment : Fragment() {
 
         viewModel.loadUserName()
         binding.continueTextView.setOnClickListener {
-            if (binding.addressTextView.text.isNotEmpty()) {
-                if (viewModel.isUserLoggedIn()) {
+
+
+            if (viewModel.isUserLoggedIn()) {
+                if (binding.addressTextView.text.isNotEmpty()) {
                     val intent = Intent(context, CheckoutActivity::class.java)
                     intent.putExtra("order", viewModel.addUserOrder(discountValue))
                     requireActivity().startActivity(intent)
                 } else {
-                    startActivity(Intent(context, AuthActivity::class.java))
+                    Toast.makeText(context, "Please add address", Toast.LENGTH_SHORT).show()
                 }
             } else
-                Toast.makeText(context, "Please add address", Toast.LENGTH_SHORT).show()
+                startActivity(Intent(context, AuthActivity::class.java))
 
         }
 
