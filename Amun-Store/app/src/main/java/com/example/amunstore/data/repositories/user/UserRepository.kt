@@ -21,20 +21,21 @@ class UserRepository @Inject constructor(
     private var sharedPref: UserSharedPreferences,
 ) : UserRepositoryInterface {
 
-    override suspend fun addUserAddress(address: AddAddressRequestModel, customerId: Long) {
+    override suspend fun addUserAddress(address: AddAddressRequestModel, customerId: Long) :String {
 
         val response = networkServices.addUserAddress(customerId.toString(), address)
-        try {
+        return try {
             if (response.isSuccessful) {
-                //     return "Done"
+                "Done"
 
             } else {
                 val jObjError =
                     JSONObject(response.errorBody()!!.toString()).getJSONObject("errors")
-                //  return "Check Your Input"
+                "Check Your Input"
             }
         } catch (e: Exception) {
             e.printStackTrace()
+            "Error address try again"
         }
 
     }
