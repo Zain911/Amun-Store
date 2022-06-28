@@ -57,5 +57,8 @@ class ProductsRepository @Inject constructor(
     override suspend fun getProductImages(id: Long): Response<ProductImagesResponse> =
         networkServices.getProductImages(id)
 
+    override fun deleteAllData() {
+        productsDao.deleteAllData()
+    }
 
 }

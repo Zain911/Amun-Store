@@ -33,9 +33,10 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="24dp"
+        android:layout_height="0dp"
         android:layout_marginTop="12dp"
+        android:padding="24dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/toolbar_title">
 
         <TextView
@@ -144,6 +145,7 @@
                     android:layout_height="1dp"
                     android:layout_marginTop="12dp"
                     android:background="@color/gray_light"
+                    android:visibility="gone"
                     app:layout_constraintTop_toBottomOf="@id/defaultAddressAddress1TextView" />
 
                 <LinearLayout
@@ -154,7 +156,7 @@
                     android:gravity="center_vertical"
                     android:orientation="horizontal"
                     android:padding="4dp"
-                    android:visibility="invisible"
+                    android:visibility="gone"
                     app:layout_constraintStart_toStartOf="@id/defaultAddressTypeTextView"
                     app:layout_constraintTop_toBottomOf="@+id/splitterView"
                     tools:ignore="UseCompoundDrawables">
@@ -191,6 +193,7 @@
                     app:layout_constraintTop_toTopOf="@id/editAddressLinearLayout" />
 
                 <LinearLayout
+                    android:id="@+id/removeDefaultAddressLinearLayout"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="12dp"
@@ -198,6 +201,7 @@
                     android:gravity="center_vertical"
                     android:orientation="horizontal"
                     android:padding="4dp"
+                    android:visibility="gone"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/editAddressLinearLayout"
                     tools:ignore="UseCompoundDrawables">

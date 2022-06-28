@@ -27,9 +27,12 @@ interface ProductsDao {
     fun addItemToFavourite(product: Product)
 
     @Query("SELECT * From Product WHERE (:productId)=id")
-    fun getProductById(productId : Long) : Product?
+    fun getProductById(productId: Long): Product?
 
     @Query("SELECT COUNT(id) FROM product")
     fun getFavouritesItemsCount(): LiveData<Int>
+
+    @Query("DELETE FROM Product")
+    fun deleteAllData()
 
 }

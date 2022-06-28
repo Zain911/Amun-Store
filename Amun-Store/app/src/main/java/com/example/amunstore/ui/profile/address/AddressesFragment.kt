@@ -56,6 +56,13 @@ class AddressesFragment : Fragment() {
             binding.defaultAddressNameTextView.text = it.firstName + " " + it.lastName
             binding.defaultAddressAddress1TextView.text =
                 it.address1 + ", " + it.city + ", " + it.country
+
+            binding.removeDefaultAddressLinearLayout.setOnClickListener { _ ->
+                lifecycleScope.launch {
+                    viewModel.deleteUserAddress(it)
+                    viewModel.getUserAddresses()
+                }
+            }
         }
 
         binding.addNewAddressLinearLayout.setOnClickListener {
@@ -65,6 +72,8 @@ class AddressesFragment : Fragment() {
         viewModel.addressList.observe(viewLifecycleOwner) {
             addressAdapter.changeList(it as MutableList)
         }
+
+
 
         binding.toolbarTitle.setOnClickListener { findNavController().popBackStack() }
         return root

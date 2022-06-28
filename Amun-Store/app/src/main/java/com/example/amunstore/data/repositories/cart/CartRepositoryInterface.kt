@@ -12,4 +12,6 @@ interface CartRepositoryInterface {
 
     fun getCartItemsCount(): LiveData<Int>
     fun clearAllCart()
+
+    fun deleteAllItems()
 }

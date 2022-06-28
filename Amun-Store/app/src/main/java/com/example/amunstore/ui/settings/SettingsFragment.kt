@@ -12,6 +12,7 @@ import com.example.amunstore.R
 import com.example.amunstore.databinding.FragmentSettingsBinding
 import com.example.amunstore.ui.auth.AuthActivity
 import com.example.amunstore.ui.profile.ProfileViewModel
+import com.example.shopy.ui.splash.SplashActivity
 import dagger.hilt.android.AndroidEntryPoint
 import dagger.hilt.android.lifecycle.HiltViewModel
 
@@ -62,6 +63,13 @@ class SettingsFragment : Fragment() {
 
         binding.signout.setOnClickListener {
             viewModel.clearSharedPreferences()
+            viewModel.clearAllDataInRoom()
+            startActivity(
+                Intent(
+                    context,
+                    SplashActivity::class.java
+                ).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+            )
         }
         binding.backImageView.setOnClickListener { findNavController().popBackStack() }
 

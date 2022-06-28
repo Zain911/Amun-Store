@@ -25,8 +25,12 @@ class CartRepository @Inject constructor(private val cartDao: CartDao) : CartRep
     override fun getCartItemsCount() =
         cartDao.getCartItemsCount()
 
-    override fun clearAllCart(){
+    override fun clearAllCart() {
         cartDao.clearCart()
+    }
+
+    override fun deleteAllItems() {
+        cartDao.deleteAllData()
     }
 
 }

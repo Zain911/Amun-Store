@@ -31,4 +31,6 @@ interface ProductsRepositoryInterface {
     suspend fun getProductImages(id: Long): Response<ProductImagesResponse>
     fun addDraftOrderToFavourite(product: Product)
 
+    fun deleteAllData()
+
 }
