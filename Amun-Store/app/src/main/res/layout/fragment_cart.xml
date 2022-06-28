@@ -83,6 +83,7 @@
                     android:background="@drawable/border_change_address"
                     android:text="Change"
                     android:textAllCaps="false"
+                    android:padding="4dp"
                     android:textColor="@color/hyper_blue"
                     android:textSize="12sp"
                     app:layout_constraintBottom_toBottomOf="@+id/addressTextView"
@@ -138,28 +139,6 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/coupon_txt" />
 
-                <!--
-                                <com.google.android.material.textfield.TextInputLayout
-                                    android:id="@+id/couponTextInputLayout"
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    app:errorEnabled="false"
-                                    app:layout_constraintEnd_toStartOf="@+id/applyCouponAppCompactButton"
-                                    app:layout_constraintStart_toStartOf="parent"
-                                    app:layout_constraintTop_toBottomOf="@+id/sepratorCoupon">
-
-                                    <com.google.android.material.textfield.TextInputEditText
-                                        android:id="@+id/couponInputEditText"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:backgroundTint="@color/white"
-                                        android:ems="1"
-                                        android:hint="Enter Coupon"
-                                        android:inputType="text"
-                                        android:maxLines="1"
-                                        android:nextFocusDown="@+id/formEditMedication_spinner" />
-                                </com.google.android.material.textfield.TextInputLayout>
-                -->
                 <TextView
                     android:id="@+id/couponTextView"
                     android:layout_width="0dp"

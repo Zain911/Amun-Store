@@ -66,10 +66,18 @@ class OrdersFragment : Fragment() {
         )
 
         viewModel.ordersList.observe(viewLifecycleOwner) {
-            ordersAdapter.changeList(it as MutableList<Order>)
+            if (it.isNotEmpty()) {
+                binding.groupedEmptyOrder.visibility = View.GONE
+                ordersAdapter.changeList(it as MutableList<Order>)
+            }else
+                binding.groupedEmptyOrder.visibility = View.VISIBLE
+
+
         }
+        binding.continueShoppingButton.setOnClickListener {  }
 
         lifecycle.coroutineScope.launch {
+
             viewModel.getUserOrders()
         }
 

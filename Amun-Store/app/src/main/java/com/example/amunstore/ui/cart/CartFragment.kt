@@ -3,6 +3,7 @@ package com.example.amunstore.ui.cart
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -46,6 +47,7 @@ class CartFragment : Fragment() {
         _binding = FragmentCartBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
+
         cartAdapter = CartAdapter(
             arrayListOf(),
             { viewModel.removeItem(it) },
@@ -63,6 +65,11 @@ class CartFragment : Fragment() {
         viewModel.userAddress.observe(viewLifecycleOwner) {
             binding.customerNameTextView.text = it.firstName + " " + it.lastName
             binding.addressTextView.text = it.address1
+
+            if (binding.addressTextView.text.isEmpty())
+                binding.changeAddressAppCompactButton.text = "Add address"
+            else
+                binding.changeAddressAppCompactButton.text = "Change"
         }
 
         viewModel.data.observe(viewLifecycleOwner) {
@@ -108,7 +115,7 @@ class CartFragment : Fragment() {
         }
 
         binding.continueShoppingButton.setOnClickListener {
-            findNavController().navigateUp()
+            //todo add navigation
         }
 
         viewModel.userName.observe(viewLifecycleOwner) {
@@ -117,13 +124,17 @@ class CartFragment : Fragment() {
 
         viewModel.loadUserName()
         binding.continueTextView.setOnClickListener {
-            if (viewModel.isUserLoggedIn()) {
-                val intent = Intent(context, CheckoutActivity::class.java)
-                intent.putExtra("order", viewModel.addUserOrder(discountValue))
-                requireActivity().startActivity(intent)
-            } else {
-                startActivity(Intent(context, AuthActivity::class.java))
-            }
+            if (binding.addressTextView.text.isNotEmpty()) {
+                if (viewModel.isUserLoggedIn()) {
+                    val intent = Intent(context, CheckoutActivity::class.java)
+                    intent.putExtra("order", viewModel.addUserOrder(discountValue))
+                    requireActivity().startActivity(intent)
+                } else {
+                    startActivity(Intent(context, AuthActivity::class.java))
+                }
+            } else
+                Toast.makeText(context, "Please add address", Toast.LENGTH_SHORT).show()
+
         }
 
         if (!viewModel.isUserLoggedIn()) {
