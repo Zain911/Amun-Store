@@ -298,7 +298,7 @@
         android:background="@color/hyper_blue"
         android:fontFamily="sans-serif-medium"
         android:gravity="center"
-        android:text="Continue"
+        android:text="Checkout Payment"
         android:textColor="@color/white"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent" />

@@ -82,7 +82,7 @@
     <string name="firstName">First Name</string>
     <string name="color">Color</string>
     <string name="quantity">Quantity</string>
-    <string name="financial_state">Financial State</string>
+    <string name="financial_state">Payment State</string>
 
     <string name="coupons">Coupons</string>
     <string name="avaliableCoupons">Available coupons</string>
