@@ -10,6 +10,7 @@ import androidx.fragment.app.viewModels
 import com.example.amunstore.MainActivity
 import com.example.amunstore.R
 import com.example.amunstore.databinding.DialogSignupWithEmailBinding
+import com.example.amunstore.domain.util.InternetConnectivity
 import com.example.amunstore.ui.auth.AuthViewModel
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import dagger.hilt.android.AndroidEntryPoint
@@ -25,6 +26,7 @@ class SignupBottomSheetDialogFragment : BottomSheetDialogFragment() {
     private lateinit var passwordConfirm: String
     private lateinit var first: String
     private lateinit var second: String
+    private lateinit var connectionLiveData: InternetConnectivity
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -46,7 +48,11 @@ class SignupBottomSheetDialogFragment : BottomSheetDialogFragment() {
             if (!viewModel.inputsIsEmpty(email, pass1 = password, pass2 = passwordConfirm)) {
                 Toast.makeText(context, getString(R.string.fields_are_empty), Toast.LENGTH_LONG)
                     .show()
-            } else if (!viewModel.validatePasswordConfirmation(pass2 = password, pass1 = passwordConfirm)) {
+            } else if (!viewModel.validatePasswordConfirmation(
+                    pass2 = password,
+                    pass1 = passwordConfirm
+                )
+            ) {
                 Toast.makeText(
                     context,
                     getString(R.string.two_passwords_are_not_similar),
@@ -66,14 +72,23 @@ class SignupBottomSheetDialogFragment : BottomSheetDialogFragment() {
                     Toast.LENGTH_LONG
                 ).show()
             } else {
-                changeButtonsActivation(false)
-                viewModel.createUser(
-                    email = email,
-                    first_name = first,
-                    second_name = second,
-                    password = password,
-                    password_confirmation = passwordConfirm
-                )
+                connectionLiveData = InternetConnectivity(context!!)
+                connectionLiveData.observe(viewLifecycleOwner) {
+                    if (it) {
+                        changeButtonsActivation(false)
+                        viewModel.createUser(
+                            email = email,
+                            first_name = first,
+                            second_name = second,
+                            password = password,
+                            password_confirmation = passwordConfirm
+                        )
+
+                    } else
+                        Toast.makeText(context, "check Internet Connection", Toast.LENGTH_SHORT)
+                            .show()
+                }
+
             }
         }
 
@@ -105,8 +120,8 @@ class SignupBottomSheetDialogFragment : BottomSheetDialogFragment() {
         bottomSheetFragment.show(childFragmentManager, bottomSheetFragment.tag)
     }
 
-    private fun changeButtonsActivation(activeStatue:Boolean){
-        binding.dialogSignupSignupBtn.isEnabled =activeStatue
-        binding.dialogSignupCloseImageView.isEnabled=activeStatue
+    private fun changeButtonsActivation(activeStatue: Boolean) {
+        binding.dialogSignupSignupBtn.isEnabled = activeStatue
+        binding.dialogSignupCloseImageView.isEnabled = activeStatue
     }
 }
