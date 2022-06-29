@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.lifecycleScope
 import com.example.amunstore.MainActivity
 import com.example.amunstore.databinding.FragmentLoginBinding
 import com.example.amunstore.domain.util.InternetConnectivity
@@ -19,7 +18,6 @@ import com.facebook.login.LoginManager
 import com.facebook.login.LoginResult
 import com.facebook.login.widget.LoginButton
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class SigninFragment : Fragment() {
@@ -33,7 +31,6 @@ class SigninFragment : Fragment() {
     companion object {
         private var EMAIL = "email"
     }
-
 
     lateinit var bottomSignUpFragment: SignupBottomSheetDialogFragment
     lateinit var bottomSignInFragment: SigninBottomSheetDialogFragment

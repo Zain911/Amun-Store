@@ -17,7 +17,6 @@
 package com.example.amunstore.ui.wallet.activity
 
 import android.app.AlertDialog
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -28,10 +27,11 @@ import androidx.activity.result.contract.ActivityResultContracts.StartIntentSend
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
-import com.example.amunstore.MainActivity
 import com.example.amunstore.R
 import com.example.amunstore.data.model.order.AddOrderRequestModel
 import com.example.amunstore.databinding.ActivityCheckoutBinding
+import com.example.amunstore.domain.util.InternetConnectivity
+import com.example.amunstore.ui.auth.login.OrderCompletedFragment
 import com.example.amunstore.ui.wallet.viewmodel.CheckoutViewModel
 import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.common.api.CommonStatusCodes
@@ -56,6 +56,8 @@ class CheckoutActivity : AppCompatActivity() {
     private var disscount: Double = 0.0
     private lateinit var address: String
     private lateinit var myOrder: AddOrderRequestModel
+
+    lateinit var bottomFragment: OrderCompletedFragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -218,10 +220,14 @@ class CheckoutActivity : AppCompatActivity() {
         }
 
     private fun completePayment(financial: String) {
-        model.createOrder(myOrder, financial_status = financial)
-        val intent = Intent(application, MainActivity::class.java)
-        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
-        startActivity(intent)
+        var connectionLiveData = InternetConnectivity(context = baseContext!!)
+        connectionLiveData.observe(this) {
+            if (it) {
+                model.createOrder(myOrder, financial_status = financial)
+                showBottomSheetDialogFragment()
+            } else
+                Toast.makeText(this, "check Internet Connection", Toast.LENGTH_SHORT).show()
+        }
     }
 
     /**
@@ -274,4 +280,9 @@ class CheckoutActivity : AppCompatActivity() {
         Log.e("Google Pay API error", "Error code: $statusCode, Message: $message")
     }
 
+    private fun showBottomSheetDialogFragment() {
+        bottomFragment = OrderCompletedFragment()
+        if (!bottomFragment.isVisible)
+            bottomFragment.show(supportFragmentManager, bottomFragment.tag)
+    }
 }
