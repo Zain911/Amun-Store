@@ -11,8 +11,6 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.amunstore.R
 import com.example.amunstore.databinding.FragmentAddressesBinding
-import com.example.amunstore.ui.cart.addresses.AddressAdapter
-import com.example.amunstore.ui.categories.singlecategory.CategoriesProductAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -46,17 +44,17 @@ class AddressesFragment : Fragment() {
         }) {
 
             val builder =
-                AlertDialog.Builder(context , R.style.AlertDialogTheme)
+                AlertDialog.Builder(context, R.style.AlertDialogTheme)
                     .setCancelable(false)
-                    .setMessage("Do you want to Delete this address?")
-                    .setPositiveButton("Yes") { dialog, _ ->
+                    .setMessage(getString(R.string.do_you_want_to_delete_this_address))
+                    .setPositiveButton(getString(R.string.yes)) { dialog, _ ->
                         lifecycleScope.launch {
 
                             viewModel.deleteUserAddress(it)
                             viewModel.getUserAddresses()
                         }
                         dialog.dismiss()
-                    }.setNegativeButton("Cancel") { dialog, _ ->
+                    }.setNegativeButton(getString(R.string.cancel)) { dialog, _ ->
                         dialog.dismiss()
                     }
 
@@ -91,8 +89,6 @@ class AddressesFragment : Fragment() {
         viewModel.addressList.observe(viewLifecycleOwner) {
             addressAdapter.changeList(it as MutableList)
         }
-
-
 
         binding.toolbarTitle.setOnClickListener { findNavController().popBackStack() }
         return root
