@@ -47,9 +47,10 @@ class ProductDetailsFragment : Fragment() {
         override fun onPageSelected(position: Int) {
             super.onPageSelected(position)
             addDots(position)
+            imagNumebr = position
         }
     }
-
+    private var imagNumebr: Int = 0
     private var colorAdapter: ProductDetailsColorAdapter? = null
     private var sizeAdapter: ProductDetailsSizeAdapter? = null
     private lateinit var colorRecyclerView: RecyclerView
@@ -82,6 +83,9 @@ class ProductDetailsFragment : Fragment() {
             this.findNavController().popBackStack()
         }
 
+        binding.productImageView.setOnClickListener {
+//            showZoomableImage(productDetails.product.image?.src?.get(imagNumebr).toString())
+        }
         topAppBar.setOnMenuItemClickListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.favorite -> {
@@ -131,7 +135,7 @@ class ProductDetailsFragment : Fragment() {
             ItemCart(
                 it,
                 productDetails.product.title,
-                productDetails.product.variants[0].price,
+                productDetails.product.variants[variantNumber].price,
                 productDetails.product.image?.src,
                 1,
                 size = selectedSize ?: productDetails.product.options[0].values[variantNumber],
@@ -245,4 +249,5 @@ class ProductDetailsFragment : Fragment() {
             }
         }
     }
+
 }
