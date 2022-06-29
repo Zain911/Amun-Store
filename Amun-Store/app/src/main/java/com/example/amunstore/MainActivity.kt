@@ -105,15 +105,21 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        viewmodel.getCartItemsCount()
-        viewmodel.getFavouriteItemsCount()
+        connectionLiveData = InternetConnectivity(this)
+        connectionLiveData.observe(this) {
+            if (it) {
+                viewmodel.getCartItemsCount()
+                viewmodel.getFavouriteItemsCount()
 
-
-        lifecycleScope.launch {
-           // viewmodel.getFavoriteItems()
-            viewmodel.getCartDraftOrder()
-            viewmodel.getFavouriteDraftOrder()
+                lifecycleScope.launch {
+                    // viewmodel.getFavoriteItems()
+                    viewmodel.getCartDraftOrder()
+                    viewmodel.getFavouriteDraftOrder()
+                }
+            }
         }
+
+
 
 
     }

@@ -27,6 +27,10 @@
         tools:layout="@layout/fragment_categories">
         <action
             android:id="@+id/action_navigation_categories_to_productDetailsFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"
             app:destination="@id/productDetailsFragment" />
     </fragment>
 
@@ -37,9 +41,17 @@
         tools:layout="@layout/fragment_profile">
         <action
             android:id="@+id/action_navigation_notifications_to_productDetailsFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"
             app:destination="@id/productDetailsFragment" />
         <action
             android:id="@+id/action_navigation_notifications_to_addressesFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"
             app:destination="@id/addressesFragment" />
     </fragment>
 
@@ -53,6 +65,10 @@
             app:argType="com.example.example.SmartCollections" />
         <action
             android:id="@+id/action_productVendor_to_productDetailsFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"
             app:destination="@id/productDetailsFragment" />
     </fragment>
 
@@ -63,6 +79,10 @@
         tools:layout="@layout/fragment_search">
         <action
             android:id="@+id/action_searchFragment_to_productDetailsFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"
             app:destination="@id/productDetailsFragment" />
     </fragment>
 
@@ -73,6 +93,10 @@
         tools:layout="@layout/fragment_favourites">
         <action
             android:id="@+id/action_favouriteFragment_to_productDetailsFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"
             app:destination="@id/productDetailsFragment" />
     </fragment>
 
@@ -99,6 +123,10 @@
         tools:layout="@layout/fragment_cart" >
         <action
             android:id="@+id/action_cartFragment_to_productDetailsFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"
             app:destination="@id/productDetailsFragment" />
     </fragment>
 
@@ -115,6 +143,11 @@
         tools:layout="@layout/fragment_orders">
         <action
             android:id="@+id/action_ordersFragment_to_orderDetailsFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"
+
             app:destination="@id/orderDetailsFragment" />
     </fragment>
 

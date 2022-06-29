@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:paddingTop="20dp"
-        android:text="@string/title_slider_4"
+        android:text="@string/title_slider_5"
         android:textColor="#5D5D5D"
         android:textSize="18sp"
         android:textStyle="bold"
