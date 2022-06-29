@@ -55,6 +55,7 @@ class SigninFragment : Fragment() {
 
                 override fun onSuccess(result: LoginResult) {
                     viewModel.getUserProfile()
+                    startMainActivity()
                 }
             })
 
@@ -62,6 +63,7 @@ class SigninFragment : Fragment() {
             .retrieveLoginStatus(requireContext(), object : LoginStatusCallback {
                 override fun onCompleted(accessToken: AccessToken) {
                     viewModel.getUserProfile()
+                    startMainActivity()
                     // User was previously logged in, can log them in directly here.
                     // If this callback is called, a popup notification appears that says
                     // "Logged in as <User Name>"
@@ -98,10 +100,7 @@ class SigninFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        if (viewModel.isLoggedInWithFacebook()) {
-            viewModel.getUserProfile()
-            startMainActivity()
-        }
+        LoginManager.getInstance().logOut()
     }
 
     @Deprecated("Deprecated in Java")
