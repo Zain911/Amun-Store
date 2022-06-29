@@ -96,17 +96,21 @@ class CheckoutActivity : AppCompatActivity() {
         // Check Google Pay availability
         model.canUseGooglePay.observe(this, Observer(::setGooglePayAvailable))
 
+
         price = myOrder.order?.totalPrice!!.toDouble()
         disscount = myOrder.order?.totalDiscounts!!.toDouble()
         address = myOrder.order?.shippingAddress?.address1.toString()
 
-        if (price - disscount > 0)
-            layout.detailPrice.text = "price: ${price + disscount} L.E"
-        else
+        if (price - disscount > 0) {
+            layout.detailPrice.text = " ${price + disscount} L.E"
+            layout.totalPriceTextView.text = "$price L.E"
+            layout.discountTextView.text = "$disscount L.E"
+
+        } else
             layout.detailPrice.text = "price: ${0} L.E"
         if (myOrder.order?.shippingAddress?.address1.isNullOrEmpty())
             layout.detailAddress.text = getString(R.string.no_address_available)
-        layout.detailAddress.text = "address: $address"
+        layout.detailAddress.text = address
 
         val cashOnDeliveryButton = layout.cashOnDeliveryButton
         cashOnDeliveryButton.setOnClickListener {

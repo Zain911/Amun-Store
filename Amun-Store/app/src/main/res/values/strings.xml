@@ -67,16 +67,16 @@
     <string name="checkout">CHECKOUT</string>
     <string name="save">save</string>
     <string name="phone_number">*Phone Number</string>
-    <string name="city">*City</string>
+    <string name="city"> * City</string>
     <string name="address_line_2">Address Line 2</string>
-    <string name="post_zip_code">*Post/Zip Code</string>
-    <string name="address_line_1">*Address Line 1</string>
+    <string name="post_zip_code"> * Post/Zip Code</string>
+    <string name="address_line_1"> * Address Line 1</string>
     <string name="state_province_optional">*State/province</string>
-    <string name="country">*Country</string>
+    <string name="country"> * Country</string>
     <string name="remove">Remove</string>
     <string name="zero">0</string>
     <string name="size_name">"Size: "</string>
-    <string name="change_address">Change Address</string>
+    <string name="change_address"> Change Address</string>
     <string name="continue_address">Continue</string>
     <string name="lastName">Last Name</string>
     <string name="firstName">First Name</string>
@@ -90,7 +90,7 @@
     <string name="discount_value">Discount value</string>
     <string name="start_date">Start Date :</string>
     <string name="status">Status :</string>
-    <string name="available">available :</string>
+    <string name="available">Available</string>
 
     <string name="password_updated_successfully">Password updated successfully</string>
     <string name="login_with_email">Login with email</string>
@@ -205,5 +205,6 @@
     <string name="cancel">Cancel</string>
     <string name="do_you_want_to_complete_payment_with_google_pay">Do you want to complete payment with google pay ?</string>
     <string name="do_you_want_to_complete_order_with_cash_on_delivery">do you want to complete order with cash on delivery ?</string>
+    <string name="shippingAddress">Shipping Address</string>
 
 </resources>

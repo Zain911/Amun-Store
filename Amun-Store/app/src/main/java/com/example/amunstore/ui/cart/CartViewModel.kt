@@ -76,7 +76,7 @@ class CartViewModel @Inject constructor(
         var totalPrice = 0.0f
         for (item in cartItems.value!!) {
             lineItems.add(LineItems(variantId = item.variant_id, quantity = item.item_number))
-            totalPrice = totalPrice.plus(item.price?.toFloat()!!)
+            totalPrice = totalPrice.plus(item.price?.toFloat()?.times(item.item_number!!)!! )
         }
         order.order = OrderRequest(
             customer = OrderCustomer(userRepository.getUserEmail()),

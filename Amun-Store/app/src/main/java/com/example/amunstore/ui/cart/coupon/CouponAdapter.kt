@@ -44,7 +44,7 @@ class CouponAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, @SuppressLint("RecyclerView") position: Int) {
         holder.view.titleCouponTextView.text = couponList[position].title
-        holder.view.discountValueTextView.text = couponList[position].value
+        holder.view.discountValueTextView.text = couponList[position].value + " L.E"
         holder.view.startDateTextView.text = couponList[position].startsAt?.substringBefore("T")
 
         holder.view.copyCouponAppCompactButton.setOnClickListener {

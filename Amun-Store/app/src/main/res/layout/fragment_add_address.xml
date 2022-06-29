@@ -5,7 +5,6 @@
     android:layout_height="match_parent"
     android:background="@color/white">
 
-
     <androidx.core.widget.NestedScrollView
         android:id="@+id/nestedScrollView"
         android:layout_width="match_parent"
@@ -28,15 +27,28 @@
                 android:orientation="vertical"
                 app:layout_constraintGuide_percent="0.5" />
 
+            <TextView
+                android:id="@+id/recipientInfoTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
+                android:text="Recipient Info."
+                android:textColor="?android:textColorPrimary"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/firstNameInputText"
+                app:layout_constraintTop_toTopOf="parent" />
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/firstNameInputText"
                 style="@style/AddressTextInputLayout"
-
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 app:layout_constraintEnd_toEndOf="@id/guideline1"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toBottomOf="@+id/recipientInfoTextView">
 
                 <EditText
                     android:id="@+id/firstName_edt"
@@ -56,7 +68,7 @@
                 android:layout_height="match_parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@id/guideline1"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toBottomOf="@+id/recipientInfoTextView">
 
                 <EditText
                     android:id="@+id/lastName_edt"
@@ -92,7 +104,7 @@
                 android:id="@+id/cityTextInput"
                 style="@style/AddressTextInputLayout"
                 android:layout_width="match_parent"
-                app:layout_constraintTop_toBottomOf="@+id/phoneTextInput">
+                app:layout_constraintTop_toBottomOf="@+id/countryTextInput">
 
                 <EditText
                     android:id="@+id/city_edt"
@@ -110,6 +122,7 @@
                 android:id="@+id/stateTextInput"
                 style="@style/AddressTextInputLayout"
                 android:layout_width="match_parent"
+                android:visibility="gone"
                 app:layout_constraintTop_toBottomOf="@+id/cityTextInput">
 
                 <EditText
@@ -118,8 +131,8 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
                     android:backgroundTint="@color/white"
-                    android:singleLine="true"
                     android:hint="@string/state_province_optional"
+                    android:singleLine="true"
                     android:textColorHint="@color/gray" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -127,6 +140,7 @@
                 android:id="@+id/postCodeTextInput"
                 style="@style/AddressTextInputLayout"
                 android:layout_width="match_parent"
+                android:visibility="gone"
                 app:layout_constraintTop_toBottomOf="@+id/stateTextInput">
 
                 <EditText
@@ -178,8 +192,7 @@
                 android:id="@+id/countryTextInput"
                 style="@style/AddressTextInputLayout"
                 android:layout_width="match_parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/address2TextInput">
+                app:layout_constraintTop_toBottomOf="@+id/phoneTextInput">
 
                 <EditText
                     android:id="@+id/country_edt"
@@ -187,8 +200,11 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
                     android:backgroundTint="@color/white"
+                    android:clickable="false"
+                    android:editable="false"
                     android:hint="@string/country"
                     android:singleLine="true"
+                    android:text="Egypt"
                     android:textColorHint="@color/gray" />
             </com.google.android.material.textfield.TextInputLayout>
 

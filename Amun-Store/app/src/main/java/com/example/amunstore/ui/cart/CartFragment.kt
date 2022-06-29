@@ -24,6 +24,7 @@ import com.example.amunstore.ui.wallet.activity.CheckoutActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import kotlin.math.absoluteValue
+import kotlin.math.roundToInt
 
 @AndroidEntryPoint
 class CartFragment : Fragment() {
@@ -115,7 +116,7 @@ class CartFragment : Fragment() {
         }
 
         binding.continueShoppingButton.setOnClickListener {
-            //todo add navigation
+            findNavController().popBackStack()
         }
 
         viewModel.userName.observe(viewLifecycleOwner) {
@@ -148,7 +149,7 @@ class CartFragment : Fragment() {
     private fun setPriceDetails() {
         totalAmount = totalPrice - discountValue.absoluteValue
         binding.totalPriceTextView.text = "$totalPrice  L.E"
-        binding.totalAmountTextView.text = "$totalAmount  L.E"
+        binding.totalAmountTextView.text = "${totalAmount.roundToInt()}  L.E"
         binding.discountTextView.text = "$discountValue L.E"
     }
 
