@@ -205,5 +205,6 @@
     <string name="cancel">Cancel</string>
     <string name="do_you_want_to_complete_payment_with_google_pay">Do you want to complete payment with google pay ?</string>
     <string name="do_you_want_to_complete_order_with_cash_on_delivery">do you want to complete order with cash on delivery ?</string>
+    <string name="do_you_want_to_delete_this_address">Do you want to Delete this address ?</string>
 
 </resources>
