@@ -56,7 +56,6 @@ class IntroActivity : AppCompatActivity() {
         layouts = intArrayOf(
             R.layout.slide_intro_1,
             R.layout.slide_intro_2,
-            R.layout.slide_intro_3,
             R.layout.slide_intro_4,
             R.layout.slide_intro_5,
         )
