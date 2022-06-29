@@ -40,16 +40,19 @@ class AddressAdapter(
         holder.view.addressTypeTextView.text = addressList[position].name
         holder.view.addressNameTextView.text = addressList[position].address1
 
-        holder.view.circleImageView.setOnClickListener {
+        if(addressList[position].default == true){
+            holder.view.circleImageView.setImageResource(R.drawable.checked_circle)
+        }
 
+        holder.view.circleImageView.setOnClickListener {
             selected = position
             // unselect previous
-            selectedItem?.view?.circleImageView?.setImageResource(R.drawable.empty_circle);
+            selectedItem?.view?.circleImageView?.setImageResource(R.drawable.empty_circle)
 
             selectedItem = holder
             itemClick(addressList[position])
 
-            selectedItem?.view?.circleImageView?.setImageResource(R.drawable.checked_circle);
+            selectedItem?.view?.circleImageView?.setImageResource(R.drawable.checked_circle)
         }
 
     }
