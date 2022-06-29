@@ -5,10 +5,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import com.example.amunstore.MainActivity
 import com.example.amunstore.databinding.FragmentLoginBinding
+import com.example.amunstore.domain.util.InternetConnectivity
 import com.example.amunstore.ui.auth.AuthViewModel
 import com.example.amunstore.ui.auth.register.SignupBottomSheetDialogFragment
 import com.facebook.*
@@ -16,6 +19,7 @@ import com.facebook.login.LoginManager
 import com.facebook.login.LoginResult
 import com.facebook.login.widget.LoginButton
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class SigninFragment : Fragment() {
@@ -24,6 +28,7 @@ class SigninFragment : Fragment() {
     private lateinit var callbackManager: CallbackManager
     private lateinit var loginButton: LoginButton
     private val viewModel: AuthViewModel by viewModels()
+    private lateinit var connectionLiveData: InternetConnectivity
 
     companion object {
         private var EMAIL = "email"
@@ -77,8 +82,15 @@ class SigninFragment : Fragment() {
                     // An error occurred
                 }
             })
+
         binding.loginLoginWithEmailBtn.setOnClickListener {
-            showBottomSheetDialogFragment()
+            connectionLiveData = InternetConnectivity(context!!)
+            connectionLiveData.observe(viewLifecycleOwner) {
+                if (it)
+                    showBottomSheetDialogFragment()
+                else
+                    Toast.makeText(context,"check Internet Connection",Toast.LENGTH_SHORT).show()
+            }
         }
 
         binding.loginSignupTxt.setOnClickListener {
