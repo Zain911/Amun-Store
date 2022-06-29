@@ -145,7 +145,7 @@
     <string name="payments_show_name" translatable="false">Successfully received payment data for %s!</string>
     <string name="add_google_wallet_success" translatable="false">The pass was added successfully!</string>
     <string name="failed">failed</string>
-    <string name="canceled">canceled</string>
+    <string name="canceled">Canceled</string>
     <string name="no_orders">No orders</string>
     <string name="pay_when_the_order_arrive">Pay when the order arrive</string>
     <string name="you_can_pick_between_cash_on_delivery_and_pay_with_google_payment">You can pick between cash on delivery and pay with google payment</string>
@@ -201,5 +201,9 @@
     <string name="continue_as_guest">Continue as Guest</string>
     <string name="no_address_available">no address available</string>
     <string name="previousOrders">Previous Orders</string>
+    <string name="yes">Yes</string>
+    <string name="cancel">Cancel</string>
+    <string name="do_you_want_to_complete_payment_with_google_pay">Do you want to complete payment with google pay ?</string>
+    <string name="do_you_want_to_complete_order_with_cash_on_delivery">do you want to complete order with cash on delivery ?</string>
 
 </resources>

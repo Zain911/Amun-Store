@@ -16,6 +16,7 @@
 
 package com.example.amunstore.ui.wallet.activity
 
+import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -66,11 +67,30 @@ class CheckoutActivity : AppCompatActivity() {
         // Setup buttons
         googlePayButton = layout.googlePayButton.root
         googlePayButton.setOnClickListener {
-            if (myOrder.order?.shippingAddress?.address1.isNullOrEmpty())
-                Toast.makeText(this, getString(R.string.no_address_available), Toast.LENGTH_LONG)
-                    .show()
-            else
-                requestPayment(myOrder)
+            val builder =
+                AlertDialog.Builder(this, R.style.AlertDialogTheme)
+                    .setCancelable(false)
+                    .setMessage(getString(R.string.do_you_want_to_complete_payment_with_google_pay))
+                    .setPositiveButton(getString(R.string.yes)) { dialog, _ ->
+
+                        if (myOrder.order?.shippingAddress?.address1.isNullOrEmpty())
+                            Toast.makeText(
+                                this,
+                                getString(R.string.no_address_available),
+                                Toast.LENGTH_LONG
+                            )
+                                .show()
+                        else
+                            requestPayment(myOrder)
+
+
+                        dialog.dismiss()
+                    }.setNegativeButton(getString(R.string.cancel)) { dialog, _ ->
+                        dialog.dismiss()
+                    }
+
+            val alert = builder.create()
+            alert.show()
         }
 
         // Check Google Pay availability
@@ -90,11 +110,30 @@ class CheckoutActivity : AppCompatActivity() {
 
         val cashOnDeliveryButton = layout.cashOnDeliveryButton
         cashOnDeliveryButton.setOnClickListener {
-            if (myOrder.order?.shippingAddress?.address1.isNullOrEmpty())
-                Toast.makeText(this, getString(R.string.no_address_available), Toast.LENGTH_LONG)
-                    .show()
-            else
-                completePayment("pending")
+            val builder =
+                AlertDialog.Builder(this, R.style.AlertDialogTheme)
+                    .setCancelable(false)
+                    .setMessage(getString(R.string.do_you_want_to_complete_order_with_cash_on_delivery))
+                    .setPositiveButton(getString(R.string.yes)) { dialog, _ ->
+                        if (myOrder.order?.shippingAddress?.address1.isNullOrEmpty())
+                            Toast.makeText(
+                                this,
+                                getString(R.string.no_address_available),
+                                Toast.LENGTH_LONG
+                            )
+                                .show()
+                        else
+                            completePayment("pending")
+
+
+                        dialog.dismiss()
+                    }.setNegativeButton(getString(R.string.cancel)) { dialog, _ ->
+                        dialog.dismiss()
+                    }
+
+            val alert = builder.create()
+            alert.show()
+
         }
     }
 
