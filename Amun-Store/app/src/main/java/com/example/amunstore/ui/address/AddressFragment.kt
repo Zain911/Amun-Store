@@ -32,14 +32,14 @@ class AddressFragment : Fragment() {
 
 
         //TODO for testing
-        binding.firstNameEdt.setText("Eslam")
-        binding.lastNameEdt.setText("Eslam")
-        binding.phoneEdt.setText("0102114578")
-        binding.cityEdt.setText("Eslam")
+//        binding.firstNameEdt.setText("Eslam")
+//        binding.lastNameEdt.setText("Eslam")
+//        binding.phoneEdt.setText("0102114578")
+//        binding.cityEdt.setText("Eslam")
         binding.stateEdt.setText("Eslam")
         binding.postCodeEdt.setText("G1R 4P5")
-        binding.addressEdt.setText("Eslam1")
-        binding.address2Edt.setText("Eslam")
+//        binding.addressEdt.setText("Eslam1")
+//        binding.address2Edt.setText("Eslam")
         binding.countryEdt.setText("Egypt")
 
         intiFocusListener()
@@ -91,13 +91,12 @@ class AddressFragment : Fragment() {
                         )
                     )
                 )
-                if (result.equals("Done"))
-                { findNavController().popBackStack()
+                if (result.equals("Done")) {
+                    findNavController().popBackStack()
                     Toast.makeText(context, "add successfully ", Toast.LENGTH_SHORT).show()
 
-                }
-                else
-                    Toast.makeText(context, ""+result, Toast.LENGTH_SHORT).show()
+                } else
+                    Toast.makeText(context, "" + result, Toast.LENGTH_SHORT).show()
             } else
                 Toast.makeText(context, "Invalid Address", Toast.LENGTH_SHORT).show()
         }
