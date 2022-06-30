@@ -35,7 +35,9 @@ class OrdersAdapter(
 
     @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.view.orderDateTextView.text = ordersList[position].createdAt
+        holder.view.orderDateTextView.text = ordersList[position].createdAt?.substring(0, 10)
+        //holder.view.orderDateTextView.text = modifyDateLayout(ordersList[position].createdAt?.substring(0,10)!!)
+
         holder.view.orderNameTextView.text = ordersList[position].name
         holder.view.orderTotalPrice.text =
             ordersList[position].totalPrice + " " + ordersList[position].currency
@@ -50,8 +52,6 @@ class OrdersAdapter(
 
 
     override fun getItemCount() = ordersList.size
-
-
 
     fun removeFromAdapter(viewHolder: RecyclerView.ViewHolder) {
         removedPosition = viewHolder.adapterPosition
