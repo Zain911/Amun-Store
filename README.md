@@ -23,9 +23,12 @@ with lots of features –cart, fast search, filter and sorting options, Slider w
 * Payment Services (Google Pay)
 * Navigation Component
 
+#### Check Demo on youtube..
 
 [![Check Demo on youtube ](https://img.youtube.com/vi/g8mEa-dywAM/0.jpg)](http://www.youtube.com/watch?v=YOUTUBE_VIDEO_ID_HERE "Live Demo ")
 
+
+### ScreenShots
 ![Screenshot_20220703-125211_Amun Store](https://user-images.githubusercontent.com/10751421/177037389-924af3cd-07ff-488b-af1b-6f4f16411089.jpg) 
 ![Screenshot_20220703-125215_Amun Store](https://user-images.githubusercontent.com/10751421/177037392-ddc0e206-4f4f-480d-bebc-2eb330e22185.jpg) 
 ![Screenshot_20220703-125218_Amun Store](https://user-images.githubusercontent.com/10751421/177037393-34c144a6-8d22-422f-89a6-daa7b1f3fd73.jpg) 
