@@ -23,9 +23,7 @@ with lots of features –cart, fast search, filter and sorting options, Slider w
 * Payment Services (Google Pay)
 * Navigation Component
 
-#### Check Demo on youtube..
 
-[![Check Demo on youtube ](https://img.youtube.com/vi/g8mEa-dywAM/0.jpg)](http://www.youtube.com/watch?v=YOUTUBE_VIDEO_ID_HERE "Live Demo ")
 
 
 ### ScreenShots
@@ -33,21 +31,21 @@ with lots of features –cart, fast search, filter and sorting options, Slider w
 ![Screenshot_20220703-125215_Amun Store](https://user-images.githubusercontent.com/10751421/177037392-ddc0e206-4f4f-480d-bebc-2eb330e22185.jpg) 
 ![Screenshot_20220703-125218_Amun Store](https://user-images.githubusercontent.com/10751421/177037393-34c144a6-8d22-422f-89a6-daa7b1f3fd73.jpg) 
 ![Screenshot_20220703-125224_Amun Store](https://user-images.githubusercontent.com/10751421/177037395-260eb14d-429e-4599-9e70-089ba43fb633.jpg) 
-![Screenshot_20220703-125234_Amun Store](https://user-images.githubusercontent.com/10751421/177037397-666c0116-6867-4ddb-a175-0374d47d3ff1.jpg) 
+![Screenshot_20220703-125234_Amun Store](https://user-images.githubusercontent.com/10751421/177037397-666c0116-6867-4ddb-a175-0374d47d3ff1.jpg)
 
 
 ![Screenshot_20220703-125240_Amun Store](https://user-images.githubusercontent.com/10751421/177037400-9d691320-4251-4fd9-a242-f9d630c1c6da.jpg) 
 ![Screenshot_20220703-125332_Amun Store](https://user-images.githubusercontent.com/10751421/177037401-84653ef6-90fd-434c-aa87-33b97d7239f2.jpg) 
 ![Screenshot_20220703-125349_Amun Store](https://user-images.githubusercontent.com/10751421/177037403-b6889212-b6a7-4db4-90d5-3f0e6b84f034.jpg) 
 ![Screenshot_20220703-125358_Amun Store](https://user-images.githubusercontent.com/10751421/177037405-5e5a95f5-929a-4482-b78d-89c3b6768678.jpg) 
-![Screenshot_20220703-125406_Amun Store](https://user-images.githubusercontent.com/10751421/177037408-4cc05bf7-b48e-4cf6-8ec9-b2ed5dcb11ca.jpg) 
+![Screenshot_20220703-125406_Amun Store](https://user-images.githubusercontent.com/10751421/177037408-4cc05bf7-b48e-4cf6-8ec9-b2ed5dcb11ca.jpg)
 
 
 ![Screenshot_20220703-125436_Amun Store](https://user-images.githubusercontent.com/10751421/177037410-45f9d929-488e-473f-aebb-52ed075f48fd.jpg) 
 ![Screenshot_20220703-125442_Amun Store](https://user-images.githubusercontent.com/10751421/177037415-eef04147-93bb-4b41-837c-9a8d17a015fc.jpg) 
 ![Screenshot_20220703-125449_Amun Store](https://user-images.githubusercontent.com/10751421/177037416-2dc496c7-18b2-4dc5-98b2-f0d4263aa377.jpg) 
 ![Screenshot_20220703-125502_Amun Store](https://user-images.githubusercontent.com/10751421/177037418-32da5991-2a19-4a4f-a88b-0396d12892a0.jpg) 
-![Screenshot_20220703-125521_Amun Store](https://user-images.githubusercontent.com/10751421/177037419-6c47ecbc-26ff-4877-96ab-680c0b6c6d1c.jpg) 
+![Screenshot_20220703-125521_Amun Store](https://user-images.githubusercontent.com/10751421/177037419-6c47ecbc-26ff-4877-96ab-680c0b6c6d1c.jpg)
 
 
 ![Screenshot_20220703-125535_Amun Store](https://user-images.githubusercontent.com/10751421/177037421-6d0bc86e-6c3e-4452-97d5-2e60e9626c3b.jpg) 
